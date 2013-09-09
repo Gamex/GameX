@@ -9,9 +9,12 @@
 *.class
 
 # generated files
+GameX/proj.android/assets/
 GameX/proj.android/bin/
 GameX/proj.android/gen/
 GameX/proj.android/obj/
+GameX/Resources.Android/
+GameX/Resources.ios/
 
 # Local configuration file (sdk path, etc)
 local.properties
