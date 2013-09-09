@@ -11,6 +11,7 @@
 # generated files
 GameX/proj.android/assets/
 GameX/proj.android/bin/
+GameX/proj.android/lib/
 GameX/proj.android/gen/
 GameX/proj.android/obj/
 GameX/Resources.Android/
