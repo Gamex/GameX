@@ -82,6 +82,14 @@ void CArchersGun::attack(CRole* pAt)
 }
 
 
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+float  myACosf(float f)     // android 编译器这里会有bug，编译会失败，所以要这样写一下
+{
+    return acosf(f);
+}
+#else
+#define myACosf(__f__) acosf(__f__)
+#endif
 
 void CArchersGun::setAimPoint(const CCPoint& point)
 {
@@ -96,7 +104,7 @@ void CArchersGun::setAimPoint(const CCPoint& point)
         
         CCPoint vBase(0.f, 1.f);
         float dot = v.dot(vBase);
-        float rad = acosf(dot);
+        float rad = myACosf(dot);
         if (point.x < originPos.x)
         {
             rad = -rad;
