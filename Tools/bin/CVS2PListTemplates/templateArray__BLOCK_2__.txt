@@ -1,0 +1,9 @@
+	CCString* get_%s_Value(int key)
+	{
+		return getValueOf(key, "%s");
+	}
+	CCString* get_%s_Value(CCDictionary* subDict)
+	{
+		return getValueOf(subDict, "%s");
+	}
+

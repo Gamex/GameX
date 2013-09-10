@@ -18,7 +18,7 @@ using namespace std;
 class CCsv2PListSourceCode
 {
 public:
-    CCsv2PListSourceCode();
+    CCsv2PListSourceCode(const char* tp);
     virtual ~CCsv2PListSourceCode();
     
     bool openCVS(const char* cvsName);
@@ -38,6 +38,8 @@ protected:
     
     VS m_keys;
     VVS m_elems;
+    
+    string m_templatePath;
 };
 
 #endif /* defined(__CVS2PList__CCsv2PListSourceCode__) */

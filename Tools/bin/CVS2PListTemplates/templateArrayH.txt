@@ -1,12 +1,12 @@
-#ifndef __DTlevel__
-#define __DTlevel__
+#ifndef __#__CLASS_NAME____
+#define __#__CLASS_NAME____
 #include "cocos2d.h"
 #include <string>
 
 using namespace std;
 USING_NS_CC;
 
-class DTlevel
+class #__CLASS_NAME__
 {
 	friend class CDataCenterManager;
 public:
@@ -18,7 +18,7 @@ public:
             CC_SAFE_RETAIN(m_pArray);
         }
 
-
+#__BLOCK_1__
     }
         
     CCDictionary* getData(int key)
@@ -45,12 +45,12 @@ public:
         return dynamic_cast<CCString*>(subDict->objectForKey(subKey));
     }
 
-
+#__BLOCK_2__
 
 protected:
-	DTlevel():m_pArray(NULL)
+	#__CLASS_NAME__():m_pArray(NULL)
 	{}
-	~DTlevel()
+	~#__CLASS_NAME__()
 	{
 		CC_SAFE_RELEASE(m_pArray);
 	}
@@ -60,4 +60,4 @@ private:
 };
 
 
-#endif	// __DTlevel__
+#endif	// __#__CLASS_NAME____

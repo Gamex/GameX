@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		545A340A17C70E3600F6C832 /* GBSettingFilePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 545A340917C70E3600F6C832 /* GBSettingFilePath.m */; };
 		546816BE17BBC34A003A5F0C /* CVS2PList in CopyFiles */ = {isa = PBXBuildFile; fileRef = 54BAED8717A76BB3003B18BC /* CVS2PList */; };
 		54BAED8B17A76BB3003B18BC /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54BAED8A17A76BB3003B18BC /* main.cpp */; };
 		54BAEDA417A76D78003B18BC /* CCsv2PListSourceCode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54BAEDA217A76D78003B18BC /* CCsv2PListSourceCode.mm */; };
+		54EB564B17DF6401008135F5 /* CSTLStringHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54EB564917DF6401008135F5 /* CSTLStringHelper.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,13 +27,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		545A340817C70E3600F6C832 /* GBSettingFilePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBSettingFilePath.h; sourceTree = "<group>"; };
-		545A340917C70E3600F6C832 /* GBSettingFilePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBSettingFilePath.m; sourceTree = "<group>"; };
 		54BAED8717A76BB3003B18BC /* CVS2PList */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CVS2PList; sourceTree = BUILT_PRODUCTS_DIR; };
 		54BAED8A17A76BB3003B18BC /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		54BAED8C17A76BB3003B18BC /* CVS2PList.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = CVS2PList.1; sourceTree = "<group>"; };
 		54BAEDA217A76D78003B18BC /* CCsv2PListSourceCode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCsv2PListSourceCode.mm; sourceTree = "<group>"; };
 		54BAEDA317A76D78003B18BC /* CCsv2PListSourceCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCsv2PListSourceCode.h; sourceTree = "<group>"; };
+		54EB564917DF6401008135F5 /* CSTLStringHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSTLStringHelper.cpp; sourceTree = "<group>"; };
+		54EB564A17DF6401008135F5 /* CSTLStringHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTLStringHelper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,12 +66,12 @@
 		54BAED8917A76BB3003B18BC /* CVS2PList */ = {
 			isa = PBXGroup;
 			children = (
-				545A340817C70E3600F6C832 /* GBSettingFilePath.h */,
-				545A340917C70E3600F6C832 /* GBSettingFilePath.m */,
 				54BAED8A17A76BB3003B18BC /* main.cpp */,
 				54BAED8C17A76BB3003B18BC /* CVS2PList.1 */,
 				54BAEDA217A76D78003B18BC /* CCsv2PListSourceCode.mm */,
 				54BAEDA317A76D78003B18BC /* CCsv2PListSourceCode.h */,
+				54EB564917DF6401008135F5 /* CSTLStringHelper.cpp */,
+				54EB564A17DF6401008135F5 /* CSTLStringHelper.h */,
 			);
 			path = CVS2PList;
 			sourceTree = "<group>";
@@ -147,7 +147,7 @@
 			files = (
 				54BAED8B17A76BB3003B18BC /* main.cpp in Sources */,
 				54BAEDA417A76D78003B18BC /* CCsv2PListSourceCode.mm in Sources */,
-				545A340A17C70E3600F6C832 /* GBSettingFilePath.m in Sources */,
+				54EB564B17DF6401008135F5 /* CSTLStringHelper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

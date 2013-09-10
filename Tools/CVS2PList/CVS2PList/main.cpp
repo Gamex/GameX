@@ -8,10 +8,11 @@
 
 #include "stdio.h"
 #include "CCsv2PListSourceCode.h"
+#include "CSTLStringHelper.h"
 
 void printUsage()
 {
-    printf("Usage: -<cpp> -<a|d> srcfile destfile\n");
+    printf("Usage: -<cpp> -<a|d> <templatePath> <srcfile> <destPath>\n");
 }
 
 
@@ -28,7 +29,7 @@ enum OUTPUT_TYPE
 
 int main(int argc, const char * argv[])
 {
-    if (argc != 5)
+    if (argc != 6)
     {
         printUsage();
         return -1;
@@ -61,17 +62,34 @@ int main(int argc, const char * argv[])
         return -1;
     }
     // insert code here...
-    CCsv2PListSourceCode o;
+    string tp = argv[3];
+    if (tp[tp.length()-1] != '/')
+    {
+        tp += '/';
+    }
+    string srcfn = argv[4];
+    string fn = argv[5];
+    if (fn[fn.length()-1] != '/')
+    {
+        fn += '/';
+    }
+    fn += "DT";
+    string basename = *(STL_STRING_HELPER::split(srcfn, "/").rbegin());
+    size_t basename_len = basename.length();
+    basename[basename_len - 3] = 'h';
+    basename[basename_len - 2] = '\0';
+    fn += basename;
+    CCsv2PListSourceCode o(tp.c_str());
     if (o.openCVS(argv[3]))
     {
         bool ret = false;
         switch (ot)
         {
             case OUTPUT_TYPE_ARRAY:
-                ret = o.outputCCArray2CPP(argv[4]);
+                ret = o.outputCCArray2CPP(fn.c_str());
                 break;
             case OUTPUT_TYPE_DICTIONARY:
-                ret = o.outputCCDictionary2CPP(argv[4]);
+                ret = o.outputCCDictionary2CPP(fn.c_str());
                 break;
         }
         

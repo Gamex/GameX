@@ -1,0 +1,1 @@
+			elem->setObject(CCString::create("%s"), "%s");

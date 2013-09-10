@@ -1,12 +1,12 @@
-#ifndef __DTUnit__
-#define __DTUnit__
+#ifndef __#__CLASS_NAME____
+#define __#__CLASS_NAME____
 #include "cocos2d.h"
 #include <string>
 
 using namespace std;
 USING_NS_CC;
 
-class DTUnit
+class #__CLASS_NAME__
 {
 	friend class CDataCenterManager;
 public:
@@ -18,7 +18,7 @@ public:
             CC_SAFE_RETAIN(m_pDictionary);
         }
 
-
+#__BLOCK_1__
     }
         
     CCDictionary* getData(const string& key)
@@ -44,12 +44,12 @@ public:
         return dynamic_cast<CCString*>(subDict->objectForKey(subKey));
     }
 
-
+#__BLOCK_2__
 
 protected:
-	DTUnit():m_pDictionary(NULL)
+	#__CLASS_NAME__():m_pDictionary(NULL)
 	{}
-	~DTUnit()
+	~#__CLASS_NAME__()
 	{
 		CC_SAFE_RELEASE(m_pDictionary);
 	}
@@ -59,4 +59,4 @@ private:
 };
 
 
-#endif	// __DTUnit__
+#endif	// __#__CLASS_NAME____
