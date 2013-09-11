@@ -10,6 +10,10 @@ class #__CLASS_NAME__
 {
 	friend class CDataCenterManager;
 public:
+	CCDictionary* getRoot() const
+	{
+		return m_pDictionary;
+	}
 	void loadData2CCDictionary()
     {
         if (NULL == m_pDictionary)

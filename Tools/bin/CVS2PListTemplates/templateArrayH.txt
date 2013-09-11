@@ -10,6 +10,10 @@ class #__CLASS_NAME__
 {
 	friend class CDataCenterManager;
 public:
+	CCArray* getRoot() const
+	{
+		return m_pArray;
+	}
 	void loadData2CCArray()
     {
         if (NULL == m_pArray)

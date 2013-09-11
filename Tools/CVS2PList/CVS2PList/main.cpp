@@ -80,7 +80,7 @@ int main(int argc, const char * argv[])
     basename[basename_len - 2] = '\0';
     fn += basename;
     CCsv2PListSourceCode o(tp.c_str());
-    if (o.openCVS(argv[3]))
+    if (o.openCVS(argv[4]))
     {
         bool ret = false;
         switch (ot)
