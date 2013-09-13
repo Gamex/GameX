@@ -8,7 +8,6 @@
 
 #include "CDirectionBullet.h"
 #include "CRole.h"
-#include "CMonster.h"
 
 #include "TFPListReaderHelper.h"
 #include "Common.h"
@@ -62,11 +61,6 @@ void CDirectionBullet::addCollisionHandlers()
 
 void CDirectionBullet::onCollideWithTarget(TFCollisionProtocol* obj)
 {
-    CMonster* monster = dynamic_cast<CMonster*>(obj);
-    if (monster)
-    {
-        monster->die();
-    }
     die();
 }
 

@@ -8,7 +8,6 @@
 
 #include "CBulletBase.h"
 #include "CRole.h"
-#include "CMonster.h"
 
 #include "TFPListReaderHelper.h"
 #include "Common.h"

@@ -31,7 +31,7 @@ protected:
     virtual void touchMoved(CCPoint position);
     virtual void touchEnded(CCPoint position);
     
-    virtual void onFrameSel(int sel);
+    virtual void onFrameSel(const string& objName);
     virtual void onSave(class CFormation* fmt);
 private:
     CFormationPanelLayer* m_panel;

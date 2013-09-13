@@ -11,9 +11,9 @@
 #include "CFormationPanelLayer.h"
 #include "CGameSceneManager.h"
 #include "CBatchNodeManager.h"
-#include "CSoldierManager.h"
-#include "CSoldier.h"
 #include "CFormationManager.h"
+#include "CRole.h"
+#include "CDataCenterManager.h"
 
 #define Z_ORDER_PANEL           1000
 
@@ -149,13 +149,17 @@ void CFormationLayer::touchEnded(CCPoint position)
 
 
 
-void CFormationLayer::onFrameSel(int sel)
+void CFormationLayer::onFrameSel(const string& objName)
 {
     CLogicGrid* grid = BKG_MANAGER->getEmptyGridNearby(CGridPos(BKG_MANAGER->getWidthInGrid() >> 1, BKG_MANAGER->getHeightInGrid() >> 1));
     if (grid)
     {
         CCPoint pt = BKG_MANAGER->gridToPoint(grid->getGridPos());
-        CRole* role = SOLDIER_MANAGER->getSoldier(static_cast<SOLDIER_TYPE>(sel));
+        
+        CCDictionary* dict = DTUNIT->getData(objName);
+        CCString* name = DTUNIT->get_resourceID_Value(dict);
+        CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(name->getCString()));
+        CC_ASSERT(role);
         role->setSpritePosition(pt);
         role->attachSpriteTo();
         grid->setGroundUnit(role);
@@ -176,12 +180,12 @@ void CFormationLayer::onSave(CFormation* fmt)
             pos.x = x;
             pos.y = y;
             CLogicGrid* grid = bkg->getGrid(pos);
-            CSoldier* soldier = dynamic_cast<CSoldier*>(grid->getGroundUnit());
-            if (soldier)
+            CRole* role = grid->getGroundUnit();
+            if (role)
             {
                 CFormationElement* fe = new CFormationElement;
                 fe->pos = pos;
-                fe->type = soldier->getType();
+                fe->objName = role->getNameFromDict()->getCString();
                 
                 fmt->m_elements.push_back(fe);
             }

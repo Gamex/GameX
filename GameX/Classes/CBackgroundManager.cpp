@@ -233,7 +233,7 @@ void CBackgroundManager::hightlightGrid(const CGridPos& gridPos, bool onOff)
     CLogicGrid* grid = getGrid(gridPos);
     if (grid)
     {
-        grid->getGridBkg()->changeState(onOff ? "Hightlight" : "Ready");
+        grid->getGridBkg()->changeState(onOff ? "Highlight" : "Ready");
     }
 }
 

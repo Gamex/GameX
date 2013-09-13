@@ -9,11 +9,14 @@
 #include "CFormationPanelLayer.h"
 #include "CGameSceneManager.h"
 #include "CGlobalConfigration.h"
-#include "CSoldierManager.h"
-#include "CSoldier.h"
 #include "CFormationManager.h"
+#include "CWarriorRole.h"
+#include "CDataCenterManager.h"
 
 #define MENU_FRAME_TAG_START            100         // the tag is defined in cocosbuilder
+
+#define TAG_ROLE                        711
+
 
 static class CFormationPanelLayerRegister
 {
@@ -48,6 +51,28 @@ bool CFormationPanelLayer::init()
 {
     do
     {
+        m_editRoleNames.push_back("1");
+        m_editRoleNames.push_back("2");
+        m_editRoleNames.push_back("3");
+//        m_editRoleNames.push_back("4");
+//        m_editRoleNames.push_back("5");
+//        m_editRoleNames.push_back("6");
+//        m_editRoleNames.push_back("7");
+//        m_editRoleNames.push_back("8");
+//        m_editRoleNames.push_back("9");
+//        m_editRoleNames.push_back("10");
+//        m_editRoleNames.push_back("11");
+//        m_editRoleNames.push_back("12");
+
+        m_allRoles = CCArray::createWithCapacity(m_editRoleNames.size());
+        for (int i = 0; i < m_editRoleNames.size(); ++i)
+        {
+            CCDictionary* dict = DTUNIT->getData(m_editRoleNames[i]);
+            CCString* name = DTUNIT->get_resourceID_Value(dict);
+            CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(name->getCString()));
+            CC_ASSERT(role);
+            m_allRoles->addObject(role);
+        }
         return true;
     } while (false);
     
@@ -94,24 +119,7 @@ bool CFormationPanelLayer::onAssignCCBMemberVariable(CCObject* pTarget, const ch
 
 void CFormationPanelLayer::onNodeLoaded(CCNode * pNode, CCNodeLoader * pNodeLoader)
 {
-    return;
-    for (int i = 0; i < FRAME_NUM; ++i)
-    {
-        CSoldier* soldier = SOLDIER_MANAGER->getSoldier(static_cast<SOLDIER_TYPE>(i));
-        if (soldier == NULL)
-        {
-            m_frames[i]->setEnabled(false);
-        }
-        else
-        {
-            CCSize sz = m_frames[i]->getContentSize();
-            soldier->setSpritePosition(ccp(sz.width / 2.f, sz.height / 2.f));
-            soldier->attachSpriteTo(m_frames[i]);
-            m_frames[i]->setUserData((void*)i);
-            soldier->changeState("EditPos");
-//            soldier->setSpriteFlipX(true);
-        }
-    }
+    setFrameShowRole(0);
 }
 
 
@@ -152,15 +160,47 @@ void CFormationPanelLayer:: onFrame(CCObject *pSender)
 {
     CCMenuItem* menu = dynamic_cast<CCMenuItem*>(pSender);
     CC_ASSERT(menu);
+    
+    
     m_curSel = menu->getTag() - MENU_FRAME_TAG_START;
     
+
     if (m_delegate)
     {
-        m_delegate->onFrameSel(m_curSel);
+        int index = m_curSel + m_firstShownIdx;
+        CC_ASSERT(index < m_editRoleNames.size());
+        m_delegate->onFrameSel(m_editRoleNames[index]);
     }
 }
 
 
 
+void CFormationPanelLayer::setFrameShowRole(int fromIdx)
+{
+    CC_ASSERT(fromIdx < m_allRoles->count());
+    
+    m_firstShownIdx = fromIdx;
+    int i;
+    for (i = 0; i < FRAME_NUM; ++ i)
+    {
+        m_frames[i]->removeChildByTag(TAG_ROLE, false);
+        int index = i + fromIdx;
+        if (index < m_allRoles->count())
+        {
+            m_frames[i]->setEnabled(true);
+            CRole* role = (CRole*)m_allRoles->objectAtIndex(index);
+            CC_ASSERT(role);
+            CCSize sz = m_frames[i]->getContentSize();
+            role->setSpritePosition(ccp(sz.width / 2.f, sz.height / 2.f));
+            role->attachSpriteTo(m_frames[i], 0, TAG_ROLE);
+            role->changeState("EditPos");
+        }
+        else
+        {
+            m_frames[i]->setEnabled(false);
+        }
+    }
+
+}
 
 

@@ -8,7 +8,6 @@
 
 #include "TFCollisionMgr.h"
 #include "TFCollisionProtocol.h"
-#include "CMonster.h"
 #include "CBulletBase.h"
 #include "CCircleSensor.h"
 

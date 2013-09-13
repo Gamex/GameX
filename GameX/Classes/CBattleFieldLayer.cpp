@@ -12,16 +12,12 @@
 #include "TFGameObjectManager.h"
 #include "TFCollisionMgr.h"
 
-#include "CMonster.h"
 #include "CGameTime.h"
-#include "CMonsterManager.h"
-#include "CCastleManager.h"
-#include "CSoldierManager.h"
 #include "CBatchNodeManager.h"
 #include "CPathFinderManager.h"
 #include "CFightingRelationship.h"
 #include "CFormationManager.h"
-#include "CSoldier.h"
+#include "CRole.h"
 
 #define Z_ORDER_GAME_PANEL          1000
 
@@ -61,10 +57,6 @@ bool CBattleFieldLayer::init()
 
     BATCH_NODE_MANAGER->attachToParent(this, 0);
     
-    addChild(MONSTER_MANAGER);
-    
-    addChild(SOLDIER_MANAGER);
-    
 //    CASTLE_MANAGER->spawnAll();
 //
 //    addChild(CASTLE_MANAGER);
@@ -102,14 +94,12 @@ void CBattleFieldLayer::update(float dt)
 
  void CBattleFieldLayer::gbTouchesBegan(CCPoint position)
 {
-    CASTLE_MANAGER->setBaseGunAimTarget(position);
 }
 
 
 
 void CBattleFieldLayer::gbTouchesMoved(CCPoint position)
 {
-    CASTLE_MANAGER->setBaseGunAimTarget(position);
 }
 
 
@@ -117,7 +107,6 @@ void CBattleFieldLayer::gbTouchesMoved(CCPoint position)
 void CBattleFieldLayer::gbTouchesEnded(CCPoint position)
 {
     PATH_FINDER->findPath(CGridPos(10, 10), CGridPos(25, 25));
-    CASTLE_MANAGER->triggerBaseGunSkill();
 }
 
 
@@ -169,14 +158,14 @@ bool CBattleFieldLayer::loadFormation()
     for (; it != fmt->m_elements.end(); ++it)
     {
         CFormationElement* elem = (*it);
-        CSoldier* soldier = SOLDIER_MANAGER->getSoldier(static_cast<SOLDIER_TYPE>(elem->type));
-        if (soldier)
-        {
-            CLogicGrid* grid = BKG_MANAGER->getGrid(elem->pos);
-            grid->setGroundUnit(soldier);
-            soldier->setSpritePosition(BKG_MANAGER->gridToPoint(elem->pos));
-            soldier->attachSpriteTo();
-        }
+        CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(elem->objName));
+        CC_ASSERT(role);
+
+        CLogicGrid* grid = BKG_MANAGER->getGrid(elem->pos);
+        grid->setGroundUnit(role);
+        role->setSpritePosition(BKG_MANAGER->gridToPoint(elem->pos));
+        role->attachSpriteTo();
+
     }
     
     return true;

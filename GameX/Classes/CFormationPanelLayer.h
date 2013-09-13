@@ -17,7 +17,7 @@
 class IFormationLayerDelegate
 {
 public:
-    virtual void onFrameSel(int sel) = 0;
+    virtual void onFrameSel(const string& objName) = 0;
     virtual void onSave(class CFormation* fmt) = 0;
 };
 
@@ -46,6 +46,7 @@ public:
     virtual bool onAssignCCBMemberVariable(CCObject * pTarget, const char* pMemberVariableName, CCNode * pNode);
     
     virtual void onNodeLoaded(CCNode * pNode, CCNodeLoader * pNodeLoader);
+
 protected:
     virtual void onBack(CCObject *pSender);
     virtual void onSave(CCObject* pSender);
@@ -53,8 +54,13 @@ protected:
     virtual void onDown(CCObject *pSender);
     
     virtual void onFrame(CCObject *pSender);
+    
+    virtual void setFrameShowRole(int fromIdx);
 private:
+    vector<string> m_editRoleNames;     // 可在阵型中编辑的兵种名字，将来是从玩家解锁的兵种中得来，这里暂时写死
+    CCArray* m_allRoles;                // 与m_editRoleNames一一对应
     CCMenuItem* m_frames[FRAME_NUM];
+
     int m_firstShownIdx;
 };
 

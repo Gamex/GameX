@@ -19,7 +19,7 @@ class CFormationElement
 {
 public:
     CGridPos pos;
-    int type;
+    string objName;
 };
 
 class CFormation

@@ -12,14 +12,18 @@
 #include "CRole.h"
 #include "TFHPBar.h"
 
+#define WARRIOR_STATE_IDLE                              "Idle"
+#define WARRIOR_STATE_POS_IN_EDITOR                     "PosInEditor"
+#define WARRIOR_STATE_SEL_POS_IN_EDITOR                 "SelPosInEditor"
+
 
 class CWarriorRole : public CRole
 {
     CC_SYNTHESIZE_RETAIN(TFHPBar*, m_pHPBar, HPBar);
 public:
+    FACTORY_CREATE_FUNC(CWarriorRole);
+    
     virtual ~CWarriorRole();
-
-    virtual void goStraightToTarget(CCPoint target) = 0;
 
     virtual void die();
     
@@ -27,9 +31,7 @@ public:
     DECLARE_DICTFUNC(float, AttackRange);
 protected:
     CWarriorRole();
-    
-    virtual void castItems() = 0;
-    virtual const char* getHPBarName() = 0;
+
     virtual bool createHPBar();
     virtual void findNearestMonsterToAttack(){};
     

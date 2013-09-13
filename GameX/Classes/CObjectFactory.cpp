@@ -10,7 +10,6 @@
 #include "CObjectBase.h"
 #include "CRole.h"
 #include "CDirectionBullet.h"
-#include "CMonster.h"
 #include "TFItemInGame.h"
 #include "TFHPBar.h"
 #include "CDirectionGun.h"
@@ -19,10 +18,10 @@
 #include "CArchersGun.h"
 #include "CCircleSensor.h"
 #include "CTower.h"
-#include "CSoldier.h"
 #include "CBallisticBullet.h"
 #include "CBallisticGun.h"
 #include "CBallisticAOEBullet.h"
+#include "CWarriorRole.h"
 
 #define REGISTER_CLASS(__classname) if (!registerClass(#__classname, FACTOR_SEL(__classname::create))){return false;}
 #define FACTOR_SEL(__selector) (FACTORY_CREATE_FUNC)(&__selector)
@@ -47,7 +46,6 @@ bool CObjectFactory::Initialize()
 {
     REGISTER_CLASS(CRole);
     REGISTER_CLASS(CDirectionBullet);
-    REGISTER_CLASS(CMonster);
     REGISTER_CLASS(TFItemInGame);
     REGISTER_CLASS(TFHPBar);
     REGISTER_CLASS(CDirectionGun);
@@ -56,10 +54,10 @@ bool CObjectFactory::Initialize()
     REGISTER_CLASS(CArchersGun);
     REGISTER_CLASS(CCircleSensor);
     REGISTER_CLASS(CTower);
-    REGISTER_CLASS(CSoldier);
     REGISTER_CLASS(CBallisticBullet);
     REGISTER_CLASS(CBallisticGun);
     REGISTER_CLASS(CBallisticAOEBullet);
+    REGISTER_CLASS(CWarriorRole);
     return true;
 }
 

@@ -9,7 +9,6 @@
 #include "CMeleeAttackComp.h"
 #include "CRole.h"
 #include "CMoveTowardComp.h"
-#include "CMonster.h"
 
 CMeleeAttackComp::CMeleeAttackComp() :
 attackTime_(0.f)
@@ -43,11 +42,11 @@ void CMeleeAttackComp::update(float dt)
             return;
         }
         
-        if (dynamic_cast<CMonster*>(target))
-        {
-            target->die();
-            role->changeState(ROLE_STATE_MOVE);
-        }
+//        if (dynamic_cast<CMonster*>(target))
+//        {
+//            target->die();
+//            role->changeState(ROLE_STATE_MOVE);
+//        }
     } while (false);
     
     return;

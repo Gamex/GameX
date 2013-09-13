@@ -16,9 +16,6 @@
 #include "CPathManager.h"
 #include "TFCollisionMgr.h"
 #include "CRole.h"
-#include "CMonsterManager.h"
-#include "CCastleManager.h"
-#include "CSoldierManager.h"
 #include "CBatchNodeManager.h"
 #include "CDataCenterManager.h"
 #include "CBackgroundManager.h"
@@ -72,12 +69,6 @@ bool AppDelegate::applicationDidFinishLaunching()
         BREAK_IF_FAILED(PATH_MANAGER->initialize());
         
         BREAK_IF_FAILED(BATCH_NODE_MANAGER->initialize());
-
-        BREAK_IF_FAILED(MONSTER_MANAGER->initialize());
-
-        BREAK_IF_FAILED(SOLDIER_MANAGER->initialize());
-        
-        BREAK_IF_FAILED(CASTLE_MANAGER->initialize());
         
         BREAK_IF_FAILED(BKG_MANAGER->initialize());
         

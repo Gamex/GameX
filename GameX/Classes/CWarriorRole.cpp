@@ -44,13 +44,13 @@ bool CWarriorRole::createHPBar()
 {
     do
     {
-        setHPBar(dynamic_cast<TFHPBar*>(CObjectBase::createObject(getHPBarName())));
-        BREAK_IF(NULL == getHPBar());
-        
-        float w = m_pHPBar->getSpriteContentSize().width;
-        m_pHPBar->setSpritePosition(ccp(w / 2.f + 2.f, 0));
-        addChild(m_pHPBar);
-        m_pHPBar->attachSpriteTo(getInnerSprite());
+//        setHPBar(dynamic_cast<TFHPBar*>(CObjectBase::createObject(getHPBarName())));
+//        BREAK_IF(NULL == getHPBar());
+//        
+//        float w = m_pHPBar->getSpriteContentSize().width;
+//        m_pHPBar->setSpritePosition(ccp(w / 2.f + 2.f, 0));
+//        addChild(m_pHPBar);
+//        m_pHPBar->attachSpriteTo(getInnerSprite());
         return true;
     } while (false);
     

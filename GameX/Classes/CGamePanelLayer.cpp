@@ -7,8 +7,6 @@
 //
 
 #include "CGamePanelLayer.h"
-#include "CSoldierManager.h"
-#include "CMonsterManager.h"
 #include "CGameSceneManager.h"
 
 CGamePanelLayer::CGamePanelLayer()
@@ -68,5 +66,4 @@ void CGamePanelLayer::onBuild(CCObject* sender, CCControlEvent event)
 
 void CGamePanelLayer::onBuild2(CCObject* sender, CCControlEvent event)
 {
-    MONSTER_MANAGER->reset();
 }
