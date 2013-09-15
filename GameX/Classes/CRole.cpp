@@ -16,6 +16,7 @@ DEFINE_DICTFUNC_DICTIONARY(CRole, Gun);
 CRole::CRole()
 : m_pGun(NULL)
 , m_pGird(NULL)
+, m_faceTo(FACE_TO_RIGHT)
 {
 
 }
@@ -42,6 +43,10 @@ bool CRole::init(CCDictionary* pObjectDict)
         return false;
     }
     
+    m_faceToPrefix.resize(FACE_TO_MAX);
+    m_faceToPrefix[FACE_TO_LEFT] = ROLE_FACE_TO_LEFT_PREFIX;
+    m_faceToPrefix[FACE_TO_RIGHT] = ROLE_FACE_TO_RIGHT_PREFIX;
+
     CCDictionary* pGunDict = getGunFromDict();
     if (NULL != pGunDict )
     {
@@ -130,22 +135,6 @@ bool CRole::createGun(const string& name)
 
 
 
-bool CRole::attachSpriteTo(CCNode* parent, int zOrder, int tag)
-{
-    if (!CSpriteObject::attachSpriteTo(parent, zOrder, tag))
-    {
-        return false;
-    }
-    
-    // majun
-//    if (NULL != m_pGun)
-//    {
-//        m_pGun->attachBatchNodeToParent(this, zOrder, tag);
-//    }
-    return true;
-}
-
-
 
 bool CRole::changeBullet(const string& name)
 {
@@ -220,4 +209,14 @@ void CRole::setOnGridPos(int x, int y)
 void CRole::onMoveEvent()
 {
     
+}
+
+
+
+bool CRole::changeState(const string& state, CComponentParameter* parameter, bool force)
+{
+    string s = m_faceToPrefix[m_faceTo];
+    s += state;
+    
+	return CSpriteObject::changeState(s, parameter, force);
 }

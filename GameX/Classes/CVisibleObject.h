@@ -47,6 +47,7 @@ public:
     virtual int getCollisionGroup();
     
     virtual bool attachSpriteTo(CCNode* parent = NULL, int zOrder=0, int tag=-1);
+    virtual bool dettachSpriteFrom(CCNode* parent = NULL, bool cleanup = true);
     
     virtual bool isNeedCheckCollision();
     virtual bool isCollsionWith(TFCollisionProtocol* obj);

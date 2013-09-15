@@ -345,12 +345,35 @@ bool CVisibleObject::attachSpriteTo(CCNode* parent, int zOrder, int tag)
         parent = BATCH_NODE_MANAGER->getNodeByName(name, isBatchNode);
 
     }
-    if (NULL != getInnerSprite())
+    CC_ASSERT(parent);
+    CC_ASSERT(getInnerSprite());
+
+    parent->addChild(getInnerSprite(), zOrder, tag);
+    
+    return true;
+}
+
+
+
+bool CVisibleObject::dettachSpriteFrom(CCNode* parent, bool cleanup)
+{
+    if (parent == NULL)
     {
-        parent->addChild(getInnerSprite(), zOrder, tag);
-        return true;
+        CCString* batchNodeName = getBatchNodeNameFromDict();
+        string name;
+        if (batchNodeName)
+        {
+            name = batchNodeName->getCString();
+        }
+        
+        bool isBatchNode;
+        parent = BATCH_NODE_MANAGER->getNodeByName(name, isBatchNode);
     }
-    return false;
+    CC_ASSERT(parent);
+    CC_ASSERT(getInnerSprite());
+    parent->removeChild(getInnerSprite(), cleanup);
+    
+    return true;
 }
 
 

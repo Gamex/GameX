@@ -27,7 +27,7 @@ CFormationLayer::CFormationLayer()
 
 CFormationLayer::~CFormationLayer()
 {
-    
+    clearAll();
 }
 
 
@@ -37,6 +37,9 @@ bool CFormationLayer::init()
     do
     {
         setTouchEnabled(true);
+        
+        m_roleNode = CCNode::create();
+        addChild(m_roleNode);
 
         m_curSelGrid.x = -1;
         m_curSelGrid.y = -1;
@@ -163,6 +166,7 @@ void CFormationLayer::onFrameSel(const string& objName)
         role->setSpritePosition(pt);
         role->attachSpriteTo();
         grid->setGroundUnit(role);
+        m_roleNode->addChild(role);
     }
 }
 
@@ -191,4 +195,60 @@ void CFormationLayer::onSave(CFormation* fmt)
             }
         }
     }
+    
+    fmt->saveToFile("f.fmt");
 }
+
+
+
+void CFormationLayer::onLoad(CFormation* fmt)
+{
+    if (fmt->loadFromFile("f.fmt"))
+    {
+        clearFormation();
+        
+        int sz = fmt->m_elements.size();
+        for (int i = 0; i < sz; ++i)
+        {
+            CFormationElement* fe = fmt->m_elements[i];
+            CLogicGrid* grid = BKG_MANAGER->getEmptyGridNearby(fe->pos);
+            if (grid)
+            {
+                CCPoint pt = BKG_MANAGER->gridToPoint(grid->getGridPos());
+                CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(fe->objName));
+                CC_ASSERT(role);
+                role->setSpritePosition(pt);
+                role->attachSpriteTo();
+                grid->setGroundUnit(role);
+                m_roleNode->addChild(role);
+            }
+        }
+    }
+    
+}
+
+
+
+void CFormationLayer::clearAll()
+{
+    clearFormation();
+    removeAllChildrenWithCleanup(true);
+}
+
+
+void CFormationLayer::clearFormation()
+{
+    BKG_MANAGER->clearAllUnits();
+    CCArray* roles = m_roleNode->getChildren();
+    CCObject* obj;
+    CCARRAY_FOREACH(roles, obj)
+    {
+        CRole* role = (CRole*)obj;
+        role->clearAll();
+    }
+    
+    m_roleNode->removeAllChildrenWithCleanup(true);
+}
+
+
+

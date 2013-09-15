@@ -19,6 +19,7 @@ class IFormationLayerDelegate
 public:
     virtual void onFrameSel(const string& objName) = 0;
     virtual void onSave(class CFormation* fmt) = 0;
+    virtual void onLoad(class CFormation* fmt) = 0;
 };
 
 
@@ -50,6 +51,7 @@ public:
 protected:
     virtual void onBack(CCObject *pSender);
     virtual void onSave(CCObject* pSender);
+    virtual void onLoad(CCObject* pSender);
     virtual void onUp(CCObject *pSender);
     virtual void onDown(CCObject *pSender);
     

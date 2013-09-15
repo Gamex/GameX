@@ -123,3 +123,25 @@ CCNode* CBatchNodeManager::getNodeByName(const string& name, bool& isBatchNode)
     
     return (*it).second;
 }
+
+
+
+void CBatchNodeManager::clearAllChildren()
+{
+    MSSBN_IT it = m_pBatchNodes.begin();
+    for (; it != m_pBatchNodes.end(); ++it)
+    {
+        (*it).second->retain();
+        (*it).second->removeAllChildrenWithCleanup(true);
+    }
+    m_pBatchNodeHolder->removeAllChildrenWithCleanup(true);
+    
+    it = m_pBatchNodes.begin();
+    for (; it != m_pBatchNodes.end(); ++it)
+    {
+        m_pBatchNodeHolder->addChild((*it).second);
+        (*it).second->release();
+    }
+}
+
+

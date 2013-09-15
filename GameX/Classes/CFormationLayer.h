@@ -33,7 +33,12 @@ protected:
     
     virtual void onFrameSel(const string& objName);
     virtual void onSave(class CFormation* fmt);
+    virtual void onLoad(class CFormation* fmt);
+    
+    virtual void clearFormation();
+    void clearAll();
 private:
+    CCNode* m_roleNode;
     CFormationPanelLayer* m_panel;
     class CRole* m_curSelRole;
     

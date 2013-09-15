@@ -53,7 +53,7 @@ bool CFormationPanelLayer::init()
     {
         m_editRoleNames.push_back("1");
         m_editRoleNames.push_back("2");
-        m_editRoleNames.push_back("3");
+//        m_editRoleNames.push_back("3");
 //        m_editRoleNames.push_back("4");
 //        m_editRoleNames.push_back("5");
 //        m_editRoleNames.push_back("6");
@@ -84,6 +84,7 @@ SEL_MenuHandler CFormationPanelLayer::onResolveCCBCCMenuItemSelector(CCObject * 
 {
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onBack", CFormationPanelLayer::onBack);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onSave", CFormationPanelLayer::onSave);
+    CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onLoad", CFormationPanelLayer::onLoad);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onUp", CFormationPanelLayer::onUp);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onDown", CFormationPanelLayer::onDown);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onF0", CFormationPanelLayer::onFrame);
@@ -140,6 +141,21 @@ void CFormationPanelLayer:: onSave(CCObject *pSender)
     {
         m_delegate->onSave(fmt);
     }
+    
+}
+
+
+
+void CFormationPanelLayer::onLoad(CCObject *pSender)
+{
+    CFormation* fmt = FORMATION_MANAGER->getFormation();
+    fmt->m_elements.clear();
+    
+    if (m_delegate)
+    {
+        m_delegate->onLoad(fmt);
+    }
+    
 }
 
 
@@ -193,7 +209,8 @@ void CFormationPanelLayer::setFrameShowRole(int fromIdx)
             CCSize sz = m_frames[i]->getContentSize();
             role->setSpritePosition(ccp(sz.width / 2.f, sz.height / 2.f));
             role->attachSpriteTo(m_frames[i], 0, TAG_ROLE);
-            role->changeState("EditPos");
+            role->setfaceTo(FACE_TO_LEFT);
+            role->changeState(ROLE_STATE_IDLE);
         }
         else
         {

@@ -15,6 +15,8 @@
 #include "CGunBase.h"
 #include "CMoveOnGridComp.h"
 
+#define ROLE_FACE_TO_LEFT_PREFIX    "FL_"
+#define ROLE_FACE_TO_RIGHT_PREFIX    "FR_"
 
 #define ROLE_STATE_IDLE         "Idle"
 #define ROLE_STATE_MOVE         "Move"
@@ -22,11 +24,19 @@
 
 USING_NS_CC;
 
+enum FACE_TO
+{
+    FACE_TO_LEFT,
+    FACE_TO_RIGHT,
+    FACE_TO_MAX,
+};
+
 class CRole : public CSpriteObject, public IFightingRelation, public IMoveOnGridCompCallBack
 {
     friend class CObjectBase;
     CC_SYNTHESIZE_RETAIN(CGunBase*, m_pGun, Gun);
     CC_SYNTHESIZE(class CLogicGrid*, m_pGird, Grid);
+    CC_SYNTHESIZE(FACE_TO, m_faceTo, faceTo);
 public:
     FACTORY_CREATE_FUNC(CRole);
     
@@ -35,6 +45,7 @@ public:
     virtual _FIGHTING_RELATION_TYPE getReationType();
     
     virtual bool init(CCDictionary* pObjectDict);
+    virtual bool changeState(const string& state, CComponentParameter* parameter = NULL, bool force = false);
     
     virtual void die();
 
@@ -43,9 +54,7 @@ public:
     virtual void clearAll();
     virtual bool createGun(const string& name);
     virtual bool changeBullet(const string& name);
-    
-    virtual bool attachSpriteTo(CCNode* parent=NULL, int zOrder=0, int tag=-1);
-    
+
     virtual void attack(CRole* pAt);
     virtual CRole* getAttackTarget();
     
@@ -65,6 +74,7 @@ protected:
 	CCPoint m_shootPoint;
     CCPoint m_shootPointInWorldSpace;
 
+    vector<string> m_faceToPrefix;
 private:
 };
 

@@ -29,17 +29,17 @@ bool CGamePanelLayer::init()
     {
         BREAK_IF(!CCLayer::init());
         
-        CCControlButton* btnBuild = CBaseLayer::createImageButton("build");
-        BREAK_IF(!btnBuild);
-        btnBuild->setPosition(ccp(240, 50));
-        btnBuild->addTargetWithActionForControlEvents(this, cccontrol_selector(CGamePanelLayer::onBuild), CCControlEventTouchUpInside);
-        addChild(btnBuild);
-        
-        CCControlButton* btnBuild2 = CBaseLayer::createImageButton("build");
-        BREAK_IF(!btnBuild2);
-        btnBuild2->setPosition(ccp(270, 50));
-        btnBuild2->addTargetWithActionForControlEvents(this, cccontrol_selector(CGamePanelLayer::onBuild2), CCControlEventTouchUpInside);
-        addChild(btnBuild2);
+//        CCControlButton* btnBuild = CBaseLayer::createImageButton("build");
+//        BREAK_IF(!btnBuild);
+//        btnBuild->setPosition(ccp(240, 50));
+//        btnBuild->addTargetWithActionForControlEvents(this, cccontrol_selector(CGamePanelLayer::onBuild), CCControlEventTouchUpInside);
+//        addChild(btnBuild);
+//        
+//        CCControlButton* btnBuild2 = CBaseLayer::createImageButton("build");
+//        BREAK_IF(!btnBuild2);
+//        btnBuild2->setPosition(ccp(270, 50));
+//        btnBuild2->addTargetWithActionForControlEvents(this, cccontrol_selector(CGamePanelLayer::onBuild2), CCControlEventTouchUpInside);
+//        addChild(btnBuild2);
         return true;
     } while (false);
     

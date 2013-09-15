@@ -29,6 +29,11 @@ public:
     typedef vector<CFormationElement*>::iterator VFE_IT;
     typedef vector<CFormationElement*>::const_iterator VFE_CIT;
     
+    virtual bool saveToFile(const char* filename);
+    virtual bool loadFromFile(const char* filename);
+    
+    void clearAll();
+    
     VFE m_elements;
 };
 
@@ -42,6 +47,7 @@ public:
     {
         return &m_formation;
     }
+    
 protected:
 private:
     CFormation m_formation;

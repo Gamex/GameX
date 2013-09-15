@@ -30,6 +30,8 @@ public:
     virtual void attachToParent(CCNode* parent, int z);
     
     virtual CCNode* getNodeByName(const string& name, bool& isBatchNode);
+    
+    virtual void clearAllChildren();
 protected:
     
     virtual bool loadBatchNodeInitData();
