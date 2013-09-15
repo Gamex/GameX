@@ -9,8 +9,7 @@
 #include "CDirectionGun.h"
 #include "CDirectionBullet.h"
 #include "CRole.h"
-#include "CComponentParameter.h"
-#include "CMoveTowardComp.h"
+
 
 DEFINE_DICTFUNC(CDirectionGun, float, Frequency, 0);
 

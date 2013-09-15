@@ -29,7 +29,7 @@ CBallisticAOEBullet::~CBallisticAOEBullet()
 
 void CBallisticAOEBullet::onHitTarget()
 {
-    changeState(BALLISTIC_AOE_BULLET_STATE_BOMB);
+//    changeState(BALLISTIC_AOE_BULLET_STATE_BOMB);
 }
 
 
@@ -45,45 +45,45 @@ void CBallisticAOEBullet::update(float dt)
 
 void CBallisticAOEBullet::onCollideWithTarget(TFCollisionProtocol* obj)
 {
-    const string& state = getCurrentState();
-    
-    if (state.compare(BALLISTIC_AOE_BULLET_STATE_BOMB) == 0)
-    {
-        CObjectBase* object = dynamic_cast<CObjectBase*>(obj);
-        if (object)
-        {
-            object->die();
-        }
-    }
+//    const string& state = getCurrentState();
+//    
+//    if (state.compare(BALLISTIC_AOE_BULLET_STATE_BOMB) == 0)
+//    {
+//        CObjectBase* object = dynamic_cast<CObjectBase*>(obj);
+//        if (object)
+//        {
+//            object->die();
+//        }
+//    }
 }
 
 
 
 void CBallisticAOEBullet::updateBoundingBoxInWorldSpace()
 {
-    const string& state = getCurrentState();
-
-    if (state.compare(BALLISTIC_AOE_BULLET_STATE_BOMB) == 0)
-    {
-        float DamageArea = getDamageAreaFromDict();
-        CCNode* pInnerSprite = getInnerSprite();
-        if (pInnerSprite)
-        {
-            m_positionInWorldSpace = getSpritePosition();
-            m_boundingBoxInWorldSpace.origin = ccp(m_positionInWorldSpace.x - DamageArea / 2.f, m_positionInWorldSpace.y - DamageArea / 2.f);
-            m_boundingBoxInWorldSpace.size = CCSize(DamageArea, DamageArea);
-            
-            if (NULL != pInnerSprite->getParent())
-            {
-                m_boundingBoxInWorldSpace.origin = pInnerSprite->getParent()->convertToWorldSpaceAR(m_boundingBoxInWorldSpace.origin);
-                m_positionInWorldSpace = pInnerSprite->getParent()->convertToWorldSpaceAR(m_positionInWorldSpace);
-            }
-        }
-    }
-    else
-    {
-        CBallisticBullet::updateBoundingBoxInWorldSpace();
-    }
+//    const string& state = getCurrentState();
+//
+//    if (state.compare(BALLISTIC_AOE_BULLET_STATE_BOMB) == 0)
+//    {
+//        float DamageArea = getDamageAreaFromDict();
+//        CCNode* pInnerSprite = getInnerSprite();
+//        if (pInnerSprite)
+//        {
+//            m_positionInWorldSpace = getSpritePosition();
+//            m_boundingBoxInWorldSpace.origin = ccp(m_positionInWorldSpace.x - DamageArea / 2.f, m_positionInWorldSpace.y - DamageArea / 2.f);
+//            m_boundingBoxInWorldSpace.size = CCSize(DamageArea, DamageArea);
+//            
+//            if (NULL != pInnerSprite->getParent())
+//            {
+//                m_boundingBoxInWorldSpace.origin = pInnerSprite->getParent()->convertToWorldSpaceAR(m_boundingBoxInWorldSpace.origin);
+//                m_positionInWorldSpace = pInnerSprite->getParent()->convertToWorldSpaceAR(m_positionInWorldSpace);
+//            }
+//        }
+//    }
+//    else
+//    {
+//        CBallisticBullet::updateBoundingBoxInWorldSpace();
+//    }
 }
 
 

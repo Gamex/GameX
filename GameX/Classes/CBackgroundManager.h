@@ -36,8 +36,8 @@ enum GRID_REL
 
 class CLogicGrid
 {
-    CC_SYNTHESIZE_READONLY(CGridPos, m_gridPos, GridPos);
-    CC_SYNTHESIZE(class CVisibleObject*, m_gridBkg, GridBkg);
+    CC_SYNTHESIZE_READONLY(CCPoint, m_gridPos, GridPos);
+    CC_SYNTHESIZE(class CSpriteObject*, m_gridBkg, GridBkg);
 public:
     CLogicGrid(int x, int y);
     CLogicGrid(const CLogicGrid& obj);
@@ -69,16 +69,16 @@ public:
     
     virtual bool initialize();
     
-    // all param of CGridPos means in grid cooridnate. CPoint means position in screen coordinate.
-    virtual CLogicGrid* getGrid(const CGridPos& gridPos);
-    virtual CLogicGrid* getGrid(const CCPoint& pt);
-    virtual CCPoint gridToPoint(const CGridPos& gridPos);
-    virtual CGridPos pointToGrid(const CCPoint& pt);
+    // all param of CCPoint means in grid cooridnate. CPoint means position in screen coordinate.
+    virtual CLogicGrid* getGrid(const CCPoint& gridPos);
+    virtual CLogicGrid* getGridFromPt(const CCPoint& pt);
+    virtual CCPoint gridToPoint(const CCPoint& gridPos);
+    virtual CCPoint pointToGrid(const CCPoint& pt);
     
-    virtual CLogicGrid* getNeighborGrid(const CGridPos& gridPos, GRID_REL rel);
-    virtual CLogicGrid* getEmptyGridNearby(const CGridPos& gridPos);
+    virtual CLogicGrid* getNeighborGrid(const CCPoint& gridPos, GRID_REL rel);
+    virtual CLogicGrid* getEmptyGridNearby(const CCPoint& gridPos);
     
-    virtual void hightlightGrid(const CGridPos& gridPos, bool onOff = true);
+    virtual void hightlightGrid(const CCPoint& gridPos, bool onOff = true);
     virtual void hightlightGridInPoint(const CCPoint& pt, bool onOff = true);
     
     virtual void clearAllUnits();

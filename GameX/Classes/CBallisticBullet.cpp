@@ -7,7 +7,6 @@
 //
 
 #include "CBallisticBullet.h"
-#include "CBallisticMoveComp.h"
 
 
 DEFINE_DICTFUNC(CBallisticBullet, float, Damage, 0.f);
@@ -33,9 +32,7 @@ bool CBallisticBullet::init(CCDictionary* pObjectDict)
     do
     {
         BREAK_IF_FAILED(CBulletBase::init(pObjectDict));
-        
-        addComponentForState(BULLET_STATE_MOVE, CBallisticMoveComp::create(this));
-        
+
         return true;
     } while (false);
     
@@ -92,17 +89,6 @@ void CBallisticBullet::onCollideWithTarget(TFCollisionProtocol* obj)
 
 void CBallisticBullet::launch()
 {
-    CComponentParameter* param = CComponentParameter::create();
-    
-    CCPoint* pt = new CCPoint(getShootTarget()->getSpritePositionInWorldSpace());
-    pt->autorelease();
-    param->addFloatParameter(PARAM_BALLISTIC_MOVE_DURATION, .6f);
-    param->addObjectParameter(PARAM_BALLISTIC_MOVE_TARGET, pt);
-    CCCallFunc* callback = CCCallFunc::create(this, callfunc_selector(CBallisticBullet::onHitTarget));
-    param->addObjectParameter(PARAM_BALLISTIC_MOVE_HIT_CALLBACK, callback);
-    
-    changeState(BULLET_STATE_MOVE, param);
-
 }
 
 

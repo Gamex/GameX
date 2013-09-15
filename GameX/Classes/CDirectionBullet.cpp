@@ -11,7 +11,6 @@
 
 #include "TFPListReaderHelper.h"
 #include "Common.h"
-#include "CMoveTowardComp.h"
 
 DEFINE_DICTFUNC(CDirectionBullet, float, Damage, 0.f);
 DEFINE_DICTFUNC(CDirectionBullet, float, Speed, 0.f);
@@ -44,8 +43,7 @@ bool CDirectionBullet::init(CCDictionary* pObjectDict)
         __CCLOGWITHFUNCTION("Bullet's speed is not set or set to 0.bulletname: %s", getNameFromDict()->getCString());
         return false;
     }
-    
-    addComponentForState(BULLET_STATE_MOVE, CMoveTowardComp::create(this));
+
     return true;
 }
 
@@ -91,19 +89,5 @@ float CDirectionBullet::getDamage()
 
 void CDirectionBullet::launch()
 {
-    CComponentParameter* param = CComponentParameter::create();
-    
-    CCPoint* t = new CCPoint;
-    t->autorelease();
-    CCPoint tempVec = m_shootDirection * 100.f;
-    CCPoint bulletPos = getSpritePosition();
-    t->x = tempVec.x + bulletPos.x;
-    t->y = tempVec.y + bulletPos.y;
-    
-    
-    param->addFloatParameter(PARAM_MOVE_SPEED, getSpeedFromDict());
-    param->addObjectParameter(PARAM_MOVE_TOWARD_TARGET, t);
-    param->addBoolParameter(PARAM_MOVE_INFINITE, true);
-    changeState(BULLET_STATE_MOVE, param);
 }
 

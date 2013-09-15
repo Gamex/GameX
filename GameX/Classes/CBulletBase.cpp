@@ -11,7 +11,7 @@
 
 #include "TFPListReaderHelper.h"
 #include "Common.h"
-#include "CMoveTowardComp.h"
+
 
 CBulletBase::CBulletBase()
 {

@@ -59,7 +59,7 @@ bool CBackgroundManager::initialize()
             {
                 CSpriteObject* so = dynamic_cast<CSpriteObject*>(CObjectBase::createObject("BackgroundGrid"));
                 so->attachSpriteTo();
-                so->setSpritePosition(gridToPoint(CGridPos(x, y)));
+                so->setSpritePosition(gridToPoint(CCPoint(x, y)));
                 m_grids.push_back(CLogicGrid(x, y));
                 m_grids.back().setGridBkg(so);
             }
@@ -95,7 +95,7 @@ bool CBackgroundManager::initialize()
 
 
 
-CLogicGrid* CBackgroundManager::getGrid(const CGridPos& gridPos)
+CLogicGrid* CBackgroundManager::getGrid(const CCPoint& gridPos)
 {
     do
     {
@@ -110,7 +110,7 @@ CLogicGrid* CBackgroundManager::getGrid(const CGridPos& gridPos)
 
 
 
-CCPoint CBackgroundManager::gridToPoint(const CGridPos& gridPos)
+CCPoint CBackgroundManager::gridToPoint(const CCPoint& gridPos)
 {
     CCPoint pt;
     pt.x = gridPos.x * GRID_WIDTH_SIZE;
@@ -124,23 +124,23 @@ CCPoint CBackgroundManager::gridToPoint(const CGridPos& gridPos)
 
 
 
-CLogicGrid* CBackgroundManager::getGrid(const CCPoint& pt)
+CLogicGrid* CBackgroundManager::getGridFromPt(const CCPoint& pt)
 {
-    const CGridPos& gridPos = pointToGrid(pt);
+    const CCPoint& gridPos = pointToGrid(pt);
     
     return getGrid(gridPos);
 }
 
 
 
-CGridPos CBackgroundManager::pointToGrid(const CCPoint& pt)
+CCPoint CBackgroundManager::pointToGrid(const CCPoint& pt)
 {
-    return CGridPos(pt.x / GRID_WIDTH_SIZE, pt.y / GRID_HEIGHT_SIZE);
+    return CCPoint(int(pt.x / GRID_WIDTH_SIZE), int(pt.y / GRID_HEIGHT_SIZE));
 }
 
 
 
-CLogicGrid* CBackgroundManager::getNeighborGrid(const CGridPos& gridPos, GRID_REL rel)
+CLogicGrid* CBackgroundManager::getNeighborGrid(const CCPoint& gridPos, GRID_REL rel)
 {
     int x = gridPos.x;
     int y = gridPos.y;
@@ -178,12 +178,12 @@ CLogicGrid* CBackgroundManager::getNeighborGrid(const CGridPos& gridPos, GRID_RE
             CC_ASSERT(false);
     }
     
-    return getGrid(CGridPos(x, y));
+    return getGrid(CCPoint(x, y));
 }
 
 
 
-CLogicGrid* CBackgroundManager::getEmptyGridNearby(const CGridPos& gridPos)
+CLogicGrid* CBackgroundManager::getEmptyGridNearby(const CCPoint& gridPos)
 {
     CLogicGrid* grid = NULL;
 
@@ -197,28 +197,28 @@ CLogicGrid* CBackgroundManager::getEmptyGridNearby(const CGridPos& gridPos)
     int x = gridPos.x;
     int y = gridPos.y;
     
-    grid = getEmptyGridNearby(CGridPos(x - 1, y - 1));        // LEFT DOWN
+    grid = getEmptyGridNearby(CCPoint(x - 1, y - 1));        // LEFT DOWN
     if (grid) return grid;
     
-    grid = getEmptyGridNearby(CGridPos(x, y - 1));            // DOWN
+    grid = getEmptyGridNearby(CCPoint(x, y - 1));            // DOWN
     if (grid) return grid;
     
-    grid = getEmptyGridNearby(CGridPos(x + 1, y - 1));        // RIGHT DOWN
+    grid = getEmptyGridNearby(CCPoint(x + 1, y - 1));        // RIGHT DOWN
     if (grid) return grid;
     
-    grid = getEmptyGridNearby(CGridPos(x + 1, y));            // RIGHT
+    grid = getEmptyGridNearby(CCPoint(x + 1, y));            // RIGHT
     if (grid) return grid;
     
-    grid = getEmptyGridNearby(CGridPos(x + 1, y + 1));        // RIGHT UP
+    grid = getEmptyGridNearby(CCPoint(x + 1, y + 1));        // RIGHT UP
     if (grid) return grid;
     
-    grid = getEmptyGridNearby(CGridPos(x, y + 1));            // UP
+    grid = getEmptyGridNearby(CCPoint(x, y + 1));            // UP
     if (grid) return grid;
     
-    grid = getEmptyGridNearby(CGridPos(x - 1, y + 1));        // LEFT UP
+    grid = getEmptyGridNearby(CCPoint(x - 1, y + 1));        // LEFT UP
     if (grid) return grid;
     
-    grid = getEmptyGridNearby(CGridPos(x - 1, y));              // LEFT
+    grid = getEmptyGridNearby(CCPoint(x - 1, y));              // LEFT
     if (grid) return grid;
     
     
@@ -228,12 +228,12 @@ CLogicGrid* CBackgroundManager::getEmptyGridNearby(const CGridPos& gridPos)
 
 
 
-void CBackgroundManager::hightlightGrid(const CGridPos& gridPos, bool onOff)
+void CBackgroundManager::hightlightGrid(const CCPoint& gridPos, bool onOff)
 {
     CLogicGrid* grid = getGrid(gridPos);
     if (grid)
     {
-        grid->getGridBkg()->changeState(onOff ? "Highlight" : "Ready");
+        grid->getGridBkg()->playAnimation(onOff ? "Highlight" : "Ready");
     }
 }
 

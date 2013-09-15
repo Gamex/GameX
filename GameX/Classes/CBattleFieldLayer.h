@@ -29,9 +29,9 @@ public:
     virtual bool init();
     void update(float dt);
 
-    virtual void gbTouchesBegan(CCPoint position);
-    virtual void gbTouchesMoved(CCPoint position);
-    virtual void gbTouchesEnded(CCPoint position);
+    virtual void touchBegan(CCPoint position);
+    virtual void touchMoved(CCPoint position);
+    virtual void touchEnded(CCPoint position);
 //	virtual void gbTapGesture(CCPoint position);
 
 protected:
@@ -45,6 +45,8 @@ protected:
 private:
     float wipeY_;
     bool m_isGameOver;
+    
+    CRole* m_hero;
 };
 
 //#define BATTLE_FIELD_LAYER (CBattleFieldLayer::getInstance())

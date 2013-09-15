@@ -22,6 +22,7 @@
 		5411742317E203FE0082E53C /* unit9.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411741717E203FE0082E53C /* unit9.ccbi */; };
 		5411742417E203FE0082E53C /* unit10.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411741817E203FE0082E53C /* unit10.ccbi */; };
 		5411742517E203FE0082E53C /* unit11.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411741917E203FE0082E53C /* unit11.ccbi */; };
+		5411742E17E5B5750082E53C /* CMoveOnGridComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5411742C17E5B5750082E53C /* CMoveOnGridComp.cpp */; };
 		543EE19C17DB838F0096D97E /* CCBAnimationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE12C17DB838F0096D97E /* CCBAnimationManager.cpp */; };
 		543EE19D17DB838F0096D97E /* CCBFileLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE12E17DB838F0096D97E /* CCBFileLoader.cpp */; };
 		543EE19E17DB838F0096D97E /* CCBKeyframe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE13017DB838F0096D97E /* CCBKeyframe.cpp */; };
@@ -108,13 +109,11 @@
 		54DFBAA817DB6FBE00B006F3 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBAA517DB6FBE00B006F3 /* RootViewController.mm */; };
 		54DFBE9917DB747900B006F3 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE0817DB747800B006F3 /* AppDelegate.cpp */; };
 		54DFBE9A17DB747900B006F3 /* CAnimationCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE0A17DB747800B006F3 /* CAnimationCache.cpp */; };
-		54DFBE9B17DB747900B006F3 /* CApproachToAttackArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE0C17DB747800B006F3 /* CApproachToAttackArea.cpp */; };
 		54DFBE9C17DB747900B006F3 /* CArchersGun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE0E17DB747800B006F3 /* CArchersGun.cpp */; };
 		54DFBE9D17DB747900B006F3 /* CBackgroundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1017DB747800B006F3 /* CBackgroundManager.cpp */; };
 		54DFBE9E17DB747900B006F3 /* CBallisticAOEBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1217DB747800B006F3 /* CBallisticAOEBullet.cpp */; };
 		54DFBE9F17DB747900B006F3 /* CBallisticBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1417DB747800B006F3 /* CBallisticBullet.cpp */; };
 		54DFBEA017DB747900B006F3 /* CBallisticGun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1617DB747800B006F3 /* CBallisticGun.cpp */; };
-		54DFBEA117DB747900B006F3 /* CBallisticMoveComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1817DB747800B006F3 /* CBallisticMoveComp.cpp */; };
 		54DFBEA217DB747900B006F3 /* CBaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1A17DB747800B006F3 /* CBaseLayer.cpp */; };
 		54DFBEA317DB747900B006F3 /* CBatchNodeManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1C17DB747800B006F3 /* CBatchNodeManager.cpp */; };
 		54DFBEA417DB747900B006F3 /* CBatchNodeObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1E17DB747800B006F3 /* CBatchNodeObject.cpp */; };
@@ -123,8 +122,6 @@
 		54DFBEA817DB747900B006F3 /* CCControlToggleButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2617DB747800B006F3 /* CCControlToggleButton.cpp */; };
 		54DFBEA917DB747900B006F3 /* CPListSaver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2817DB747800B006F3 /* CPListSaver.cpp */; };
 		54DFBEAA17DB747900B006F3 /* CCircleSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2A17DB747800B006F3 /* CCircleSensor.cpp */; };
-		54DFBEAB17DB747900B006F3 /* CComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2C17DB747800B006F3 /* CComponent.cpp */; };
-		54DFBEAC17DB747900B006F3 /* CComponentParameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2E17DB747800B006F3 /* CComponentParameter.cpp */; };
 		54DFBEAD17DB747900B006F3 /* CDataCenterManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE3017DB747800B006F3 /* CDataCenterManager.cpp */; };
 		54DFBEAE17DB747900B006F3 /* CDirectionBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE3217DB747800B006F3 /* CDirectionBullet.cpp */; };
 		54DFBEAF17DB747900B006F3 /* CDirectionGun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE3417DB747800B006F3 /* CDirectionGun.cpp */; };
@@ -139,17 +136,13 @@
 		54DFBEB817DB747900B006F3 /* CGunBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE4617DB747800B006F3 /* CGunBase.cpp */; };
 		54DFBEB917DB747900B006F3 /* CHudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE4817DB747800B006F3 /* CHudLayer.cpp */; };
 		54DFBEBA17DB747900B006F3 /* CLobbyLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE4A17DB747800B006F3 /* CLobbyLayer.cpp */; };
-		54DFBEBB17DB747900B006F3 /* CMeleeAttackComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE4C17DB747800B006F3 /* CMeleeAttackComp.cpp */; };
 		54DFBEBC17DB747900B006F3 /* CMemPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE4E17DB747800B006F3 /* CMemPool.cpp */; };
-		54DFBEBF17DB747900B006F3 /* CMoveOnGridComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE5417DB747800B006F3 /* CMoveOnGridComp.cpp */; };
-		54DFBEC017DB747900B006F3 /* CMoveTowardComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE5617DB747800B006F3 /* CMoveTowardComp.cpp */; };
 		54DFBEC117DB747900B006F3 /* CNodeContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE5817DB747800B006F3 /* CNodeContainer.cpp */; };
 		54DFBEC217DB747900B006F3 /* CObjectBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE5A17DB747800B006F3 /* CObjectBase.cpp */; };
 		54DFBEC317DB747900B006F3 /* CObjectFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE5C17DB747800B006F3 /* CObjectFactory.cpp */; };
 		54DFBEC417DB747900B006F3 /* CPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE5F17DB747800B006F3 /* CPath.cpp */; };
 		54DFBEC517DB747900B006F3 /* CPathFinderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE6117DB747800B006F3 /* CPathFinderManager.cpp */; };
 		54DFBEC617DB747900B006F3 /* CPathManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE6317DB747800B006F3 /* CPathManager.cpp */; };
-		54DFBEC717DB747900B006F3 /* CPathMoveComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE6517DB747800B006F3 /* CPathMoveComp.cpp */; };
 		54DFBEC817DB747900B006F3 /* CRole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE6717DB747800B006F3 /* CRole.cpp */; };
 		54DFBEC917DB747900B006F3 /* CScale9SpriteObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE6917DB747800B006F3 /* CScale9SpriteObject.cpp */; };
 		54DFBECA17DB747900B006F3 /* CSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE6B17DB747800B006F3 /* CSensor.cpp */; };
@@ -219,6 +212,8 @@
 		5411741717E203FE0082E53C /* unit9.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit9.ccbi; sourceTree = "<group>"; };
 		5411741817E203FE0082E53C /* unit10.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit10.ccbi; sourceTree = "<group>"; };
 		5411741917E203FE0082E53C /* unit11.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit11.ccbi; sourceTree = "<group>"; };
+		5411742C17E5B5750082E53C /* CMoveOnGridComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CMoveOnGridComp.cpp; path = ../../Classes/CMoveOnGridComp.cpp; sourceTree = "<group>"; };
+		5411742D17E5B5750082E53C /* CMoveOnGridComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMoveOnGridComp.h; path = ../../Classes/CMoveOnGridComp.h; sourceTree = "<group>"; };
 		543EE12C17DB838F0096D97E /* CCBAnimationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCBAnimationManager.cpp; sourceTree = "<group>"; };
 		543EE12D17DB838F0096D97E /* CCBAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBAnimationManager.h; sourceTree = "<group>"; };
 		543EE12E17DB838F0096D97E /* CCBFileLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCBFileLoader.cpp; sourceTree = "<group>"; };
@@ -372,8 +367,6 @@
 		54DFBE0917DB747800B006F3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../Classes/AppDelegate.h; sourceTree = "<group>"; };
 		54DFBE0A17DB747800B006F3 /* CAnimationCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CAnimationCache.cpp; path = ../../Classes/CAnimationCache.cpp; sourceTree = "<group>"; };
 		54DFBE0B17DB747800B006F3 /* CAnimationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAnimationCache.h; path = ../../Classes/CAnimationCache.h; sourceTree = "<group>"; };
-		54DFBE0C17DB747800B006F3 /* CApproachToAttackArea.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CApproachToAttackArea.cpp; path = ../../Classes/CApproachToAttackArea.cpp; sourceTree = "<group>"; };
-		54DFBE0D17DB747800B006F3 /* CApproachToAttackArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CApproachToAttackArea.h; path = ../../Classes/CApproachToAttackArea.h; sourceTree = "<group>"; };
 		54DFBE0E17DB747800B006F3 /* CArchersGun.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CArchersGun.cpp; path = ../../Classes/CArchersGun.cpp; sourceTree = "<group>"; };
 		54DFBE0F17DB747800B006F3 /* CArchersGun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CArchersGun.h; path = ../../Classes/CArchersGun.h; sourceTree = "<group>"; };
 		54DFBE1017DB747800B006F3 /* CBackgroundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBackgroundManager.cpp; path = ../../Classes/CBackgroundManager.cpp; sourceTree = "<group>"; };
@@ -384,8 +377,6 @@
 		54DFBE1517DB747800B006F3 /* CBallisticBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBallisticBullet.h; path = ../../Classes/CBallisticBullet.h; sourceTree = "<group>"; };
 		54DFBE1617DB747800B006F3 /* CBallisticGun.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBallisticGun.cpp; path = ../../Classes/CBallisticGun.cpp; sourceTree = "<group>"; };
 		54DFBE1717DB747800B006F3 /* CBallisticGun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBallisticGun.h; path = ../../Classes/CBallisticGun.h; sourceTree = "<group>"; };
-		54DFBE1817DB747800B006F3 /* CBallisticMoveComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBallisticMoveComp.cpp; path = ../../Classes/CBallisticMoveComp.cpp; sourceTree = "<group>"; };
-		54DFBE1917DB747800B006F3 /* CBallisticMoveComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBallisticMoveComp.h; path = ../../Classes/CBallisticMoveComp.h; sourceTree = "<group>"; };
 		54DFBE1A17DB747800B006F3 /* CBaseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBaseLayer.cpp; path = ../../Classes/CBaseLayer.cpp; sourceTree = "<group>"; };
 		54DFBE1B17DB747800B006F3 /* CBaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBaseLayer.h; path = ../../Classes/CBaseLayer.h; sourceTree = "<group>"; };
 		54DFBE1C17DB747800B006F3 /* CBatchNodeManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBatchNodeManager.cpp; path = ../../Classes/CBatchNodeManager.cpp; sourceTree = "<group>"; };
@@ -402,10 +393,6 @@
 		54DFBE2917DB747800B006F3 /* CPListSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPListSaver.h; path = ../../Classes/CPListSaver.h; sourceTree = "<group>"; };
 		54DFBE2A17DB747800B006F3 /* CCircleSensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCircleSensor.cpp; path = ../../Classes/CCircleSensor.cpp; sourceTree = "<group>"; };
 		54DFBE2B17DB747800B006F3 /* CCircleSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCircleSensor.h; path = ../../Classes/CCircleSensor.h; sourceTree = "<group>"; };
-		54DFBE2C17DB747800B006F3 /* CComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CComponent.cpp; path = ../../Classes/CComponent.cpp; sourceTree = "<group>"; };
-		54DFBE2D17DB747800B006F3 /* CComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CComponent.h; path = ../../Classes/CComponent.h; sourceTree = "<group>"; };
-		54DFBE2E17DB747800B006F3 /* CComponentParameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CComponentParameter.cpp; path = ../../Classes/CComponentParameter.cpp; sourceTree = "<group>"; };
-		54DFBE2F17DB747800B006F3 /* CComponentParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CComponentParameter.h; path = ../../Classes/CComponentParameter.h; sourceTree = "<group>"; };
 		54DFBE3017DB747800B006F3 /* CDataCenterManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CDataCenterManager.cpp; path = ../../Classes/CDataCenterManager.cpp; sourceTree = "<group>"; };
 		54DFBE3117DB747800B006F3 /* CDataCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataCenterManager.h; path = ../../Classes/CDataCenterManager.h; sourceTree = "<group>"; };
 		54DFBE3217DB747800B006F3 /* CDirectionBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CDirectionBullet.cpp; path = ../../Classes/CDirectionBullet.cpp; sourceTree = "<group>"; };
@@ -434,14 +421,8 @@
 		54DFBE4917DB747800B006F3 /* CHudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHudLayer.h; path = ../../Classes/CHudLayer.h; sourceTree = "<group>"; };
 		54DFBE4A17DB747800B006F3 /* CLobbyLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CLobbyLayer.cpp; path = ../../Classes/CLobbyLayer.cpp; sourceTree = "<group>"; };
 		54DFBE4B17DB747800B006F3 /* CLobbyLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLobbyLayer.h; path = ../../Classes/CLobbyLayer.h; sourceTree = "<group>"; };
-		54DFBE4C17DB747800B006F3 /* CMeleeAttackComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CMeleeAttackComp.cpp; path = ../../Classes/CMeleeAttackComp.cpp; sourceTree = "<group>"; };
-		54DFBE4D17DB747800B006F3 /* CMeleeAttackComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMeleeAttackComp.h; path = ../../Classes/CMeleeAttackComp.h; sourceTree = "<group>"; };
 		54DFBE4E17DB747800B006F3 /* CMemPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CMemPool.cpp; path = ../../Classes/CMemPool.cpp; sourceTree = "<group>"; };
 		54DFBE4F17DB747800B006F3 /* CMemPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMemPool.h; path = ../../Classes/CMemPool.h; sourceTree = "<group>"; };
-		54DFBE5417DB747800B006F3 /* CMoveOnGridComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CMoveOnGridComp.cpp; path = ../../Classes/CMoveOnGridComp.cpp; sourceTree = "<group>"; };
-		54DFBE5517DB747800B006F3 /* CMoveOnGridComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMoveOnGridComp.h; path = ../../Classes/CMoveOnGridComp.h; sourceTree = "<group>"; };
-		54DFBE5617DB747800B006F3 /* CMoveTowardComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CMoveTowardComp.cpp; path = ../../Classes/CMoveTowardComp.cpp; sourceTree = "<group>"; };
-		54DFBE5717DB747800B006F3 /* CMoveTowardComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMoveTowardComp.h; path = ../../Classes/CMoveTowardComp.h; sourceTree = "<group>"; };
 		54DFBE5817DB747800B006F3 /* CNodeContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CNodeContainer.cpp; path = ../../Classes/CNodeContainer.cpp; sourceTree = "<group>"; };
 		54DFBE5917DB747800B006F3 /* CNodeContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CNodeContainer.h; path = ../../Classes/CNodeContainer.h; sourceTree = "<group>"; };
 		54DFBE5A17DB747800B006F3 /* CObjectBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CObjectBase.cpp; path = ../../Classes/CObjectBase.cpp; sourceTree = "<group>"; };
@@ -455,8 +436,6 @@
 		54DFBE6217DB747800B006F3 /* CPathFinderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPathFinderManager.h; path = ../../Classes/CPathFinderManager.h; sourceTree = "<group>"; };
 		54DFBE6317DB747800B006F3 /* CPathManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CPathManager.cpp; path = ../../Classes/CPathManager.cpp; sourceTree = "<group>"; };
 		54DFBE6417DB747800B006F3 /* CPathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPathManager.h; path = ../../Classes/CPathManager.h; sourceTree = "<group>"; };
-		54DFBE6517DB747800B006F3 /* CPathMoveComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CPathMoveComp.cpp; path = ../../Classes/CPathMoveComp.cpp; sourceTree = "<group>"; };
-		54DFBE6617DB747800B006F3 /* CPathMoveComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPathMoveComp.h; path = ../../Classes/CPathMoveComp.h; sourceTree = "<group>"; };
 		54DFBE6717DB747800B006F3 /* CRole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CRole.cpp; path = ../../Classes/CRole.cpp; sourceTree = "<group>"; };
 		54DFBE6817DB747800B006F3 /* CRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CRole.h; path = ../../Classes/CRole.h; sourceTree = "<group>"; };
 		54DFBE6917DB747800B006F3 /* CScale9SpriteObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CScale9SpriteObject.cpp; path = ../../Classes/CScale9SpriteObject.cpp; sourceTree = "<group>"; };
@@ -951,22 +930,8 @@
 		54D0CD8617DC91070022A1E9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				54DFBE4C17DB747800B006F3 /* CMeleeAttackComp.cpp */,
-				54DFBE4D17DB747800B006F3 /* CMeleeAttackComp.h */,
-				54DFBE6517DB747800B006F3 /* CPathMoveComp.cpp */,
-				54DFBE6617DB747800B006F3 /* CPathMoveComp.h */,
-				54DFBE5417DB747800B006F3 /* CMoveOnGridComp.cpp */,
-				54DFBE5517DB747800B006F3 /* CMoveOnGridComp.h */,
-				54DFBE5617DB747800B006F3 /* CMoveTowardComp.cpp */,
-				54DFBE5717DB747800B006F3 /* CMoveTowardComp.h */,
-				54DFBE2E17DB747800B006F3 /* CComponentParameter.cpp */,
-				54DFBE2F17DB747800B006F3 /* CComponentParameter.h */,
-				54DFBE2C17DB747800B006F3 /* CComponent.cpp */,
-				54DFBE2D17DB747800B006F3 /* CComponent.h */,
-				54DFBE1817DB747800B006F3 /* CBallisticMoveComp.cpp */,
-				54DFBE1917DB747800B006F3 /* CBallisticMoveComp.h */,
-				54DFBE0C17DB747800B006F3 /* CApproachToAttackArea.cpp */,
-				54DFBE0D17DB747800B006F3 /* CApproachToAttackArea.h */,
+				5411742C17E5B5750082E53C /* CMoveOnGridComp.cpp */,
+				5411742D17E5B5750082E53C /* CMoveOnGridComp.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -1174,13 +1139,11 @@
 				54DFBAA817DB6FBE00B006F3 /* RootViewController.mm in Sources */,
 				54DFBE9917DB747900B006F3 /* AppDelegate.cpp in Sources */,
 				54DFBE9A17DB747900B006F3 /* CAnimationCache.cpp in Sources */,
-				54DFBE9B17DB747900B006F3 /* CApproachToAttackArea.cpp in Sources */,
 				54DFBE9C17DB747900B006F3 /* CArchersGun.cpp in Sources */,
 				54DFBE9D17DB747900B006F3 /* CBackgroundManager.cpp in Sources */,
 				54DFBE9E17DB747900B006F3 /* CBallisticAOEBullet.cpp in Sources */,
 				54DFBE9F17DB747900B006F3 /* CBallisticBullet.cpp in Sources */,
 				54DFBEA017DB747900B006F3 /* CBallisticGun.cpp in Sources */,
-				54DFBEA117DB747900B006F3 /* CBallisticMoveComp.cpp in Sources */,
 				54DFBEA217DB747900B006F3 /* CBaseLayer.cpp in Sources */,
 				54DFBEA317DB747900B006F3 /* CBatchNodeManager.cpp in Sources */,
 				54DFBEA417DB747900B006F3 /* CBatchNodeObject.cpp in Sources */,
@@ -1189,8 +1152,6 @@
 				54DFBEA817DB747900B006F3 /* CCControlToggleButton.cpp in Sources */,
 				54DFBEA917DB747900B006F3 /* CPListSaver.cpp in Sources */,
 				54DFBEAA17DB747900B006F3 /* CCircleSensor.cpp in Sources */,
-				54DFBEAB17DB747900B006F3 /* CComponent.cpp in Sources */,
-				54DFBEAC17DB747900B006F3 /* CComponentParameter.cpp in Sources */,
 				54DFBEAD17DB747900B006F3 /* CDataCenterManager.cpp in Sources */,
 				54DFBEAE17DB747900B006F3 /* CDirectionBullet.cpp in Sources */,
 				54DFBEAF17DB747900B006F3 /* CDirectionGun.cpp in Sources */,
@@ -1205,17 +1166,13 @@
 				54DFBEB817DB747900B006F3 /* CGunBase.cpp in Sources */,
 				54DFBEB917DB747900B006F3 /* CHudLayer.cpp in Sources */,
 				54DFBEBA17DB747900B006F3 /* CLobbyLayer.cpp in Sources */,
-				54DFBEBB17DB747900B006F3 /* CMeleeAttackComp.cpp in Sources */,
 				54DFBEBC17DB747900B006F3 /* CMemPool.cpp in Sources */,
-				54DFBEBF17DB747900B006F3 /* CMoveOnGridComp.cpp in Sources */,
-				54DFBEC017DB747900B006F3 /* CMoveTowardComp.cpp in Sources */,
 				54DFBEC117DB747900B006F3 /* CNodeContainer.cpp in Sources */,
 				54DFBEC217DB747900B006F3 /* CObjectBase.cpp in Sources */,
 				54DFBEC317DB747900B006F3 /* CObjectFactory.cpp in Sources */,
 				54DFBEC417DB747900B006F3 /* CPath.cpp in Sources */,
 				54DFBEC517DB747900B006F3 /* CPathFinderManager.cpp in Sources */,
 				54DFBEC617DB747900B006F3 /* CPathManager.cpp in Sources */,
-				54DFBEC717DB747900B006F3 /* CPathMoveComp.cpp in Sources */,
 				54DFBEC817DB747900B006F3 /* CRole.cpp in Sources */,
 				54DFBEC917DB747900B006F3 /* CScale9SpriteObject.cpp in Sources */,
 				54DFBECA17DB747900B006F3 /* CSensor.cpp in Sources */,
@@ -1288,6 +1245,7 @@
 				543EE21817DB841B0096D97E /* CCComAudio.cpp in Sources */,
 				543EE21917DB841B0096D97E /* CCComController.cpp in Sources */,
 				543EE21A17DB841B0096D97E /* CCInputDelegate.cpp in Sources */,
+				5411742E17E5B5750082E53C /* CMoveOnGridComp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

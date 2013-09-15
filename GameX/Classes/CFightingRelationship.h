@@ -39,7 +39,7 @@ public:
     IFightingRelation(){}
     virtual ~IFightingRelation(){}
     
-    virtual _FIGHTING_RELATION_TYPE getReationType()=0;
+    virtual _FIGHTING_RELATION_TYPE getRelationType()=0;
 private:
     int m_aggro;
     VR_IT m_fightingRelationIterator;

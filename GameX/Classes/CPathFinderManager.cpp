@@ -45,27 +45,20 @@ void CPathFinderManager::update(float dt)
 
 
 
-void CPathFinderManager::findPath(const CGridPos& startPos, const CGridPos& targetPos)
+void CPathFinderManager::findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFinderDelegate* delegate)
 {
     _FinderTask* task = new _FinderTask;
     
     task->start = startPos;
     task->target = targetPos;
-    
-    // for test
-    int i;
-    for (i = 5; i < 30; ++i)
-    {
-        BKG_MANAGER->getGrid(CGridPos(18, i))->setGroundUnit((CRole*)1);
-    }
-    // end for test
-    task->doFind();
-//    m_finderTaskQueue.push(task);
+    task->delegate = delegate;
+
+    m_finderTaskQueue.push(task);
 }
 
 
 // -------------- _PathNode
-MEM_POOL_DEFINE(CPathFinderManager::_PathNode, 600);
+MEM_POOL_DEFINE(CPathFinderManager::_PathNode, 1200);
 
 CPathFinderManager::_PathNode::_PathNode()
 : grid(NULL)
@@ -89,7 +82,7 @@ void CPathFinderManager::_FinderTask::doFind()
         openList.push(pn);
     }
 
-    
+    vector<CCPoint> outPath;
     while (openList.size() > 0)
     {
         _PathNode* pn = openList.top();
@@ -102,17 +95,22 @@ void CPathFinderManager::_FinderTask::doFind()
         {
             while (pn)
             {
-                CCLOG("%d, %d", pn->grid->getGridPos().x, pn->grid->getGridPos().y);
+                outPath.push_back(pn->grid->getGridPos());
                 pn = pn->parent;
             };
             break;
         }
     }
+    
+    if (delegate)
+    {
+        delegate->onPathReady(outPath);
+    }
 }
 
 
 
-void CPathFinderManager::_FinderTask::checkF(const CGridPos& gridPos, int G, CPathFinderManager::_PathNode* parent)
+void CPathFinderManager::_FinderTask::checkF(const CCPoint& gridPos, int G, CPathFinderManager::_PathNode* parent)
 {
     if (!closeList.getInList(gridPos))
     {
@@ -122,7 +120,7 @@ void CPathFinderManager::_FinderTask::checkF(const CGridPos& gridPos, int G, CPa
             if (pn->G > G)
             {
                 pn->G = G;
-                pn->H = abs(target.x - gridPos.x) + abs(target.y - gridPos.y);
+                pn->H = fabs(target.x - gridPos.x) + fabs(target.y - gridPos.y);
                 pn->H *= 10;
                 pn->F = pn->G + pn->H;
                 pn->parent = parent;
@@ -137,7 +135,7 @@ void CPathFinderManager::_FinderTask::checkF(const CGridPos& gridPos, int G, CPa
                 pn->parent = parent;
                 pn->grid = grid;
                 pn->G = G;
-                pn->H = abs(target.x - gridPos.x) + abs(target.y - gridPos.y);
+                pn->H = fabs(target.x - gridPos.x) + fabs(target.y - gridPos.y);
                 pn->H *= 10;
                 pn->F = pn->G + pn->H;
                 
@@ -151,17 +149,23 @@ void CPathFinderManager::_FinderTask::checkF(const CGridPos& gridPos, int G, CPa
 
 void CPathFinderManager::_FinderTask::findSurround(CPathFinderManager::_PathNode* parent)
 {
-    const CGridPos& p = parent->grid->getGridPos();
+    const CCPoint& p = parent->grid->getGridPos();
     int G = parent->G;
     
-    checkF(CGridPos(p.x - 1, p.y     ), G + 10, parent);   // Left
-    checkF(CGridPos(p.x    , p.y - 1 ), G + 10, parent);   // Down
-    checkF(CGridPos(p.x + 1, p.y     ), G + 10, parent);   // Right
-    checkF(CGridPos(p.x    , p.y + 1 ), G + 10, parent);   // Up
-    checkF(CGridPos(p.x + 1, p.y + 1 ), G + 14, parent);   // Right up
-    checkF(CGridPos(p.x - 1, p.y + 1 ), G + 14, parent);   // Left up
-    checkF(CGridPos(p.x - 1, p.y - 1 ), G + 14, parent);   // Left down
-    checkF(CGridPos(p.x + 1, p.y - 1 ), G + 14, parent);   // Right down
+    checkF(CCPoint(p.x - 1, p.y     ), G + 10, parent);   // Left
+    checkF(CCPoint(p.x    , p.y - 1 ), G + 10, parent);   // Down
+    checkF(CCPoint(p.x + 1, p.y     ), G + 10, parent);   // Right
+    checkF(CCPoint(p.x    , p.y + 1 ), G + 10, parent);   // Up
+    checkF(CCPoint(p.x + 1, p.y + 1 ), G + 14, parent);   // Right up
+    checkF(CCPoint(p.x - 1, p.y + 1 ), G + 14, parent);   // Left up
+    checkF(CCPoint(p.x - 1, p.y - 1 ), G + 14, parent);   // Left down
+    checkF(CCPoint(p.x + 1, p.y - 1 ), G + 14, parent);   // Right down
 }
 
+
+
+CPathFinderManager::_FinderTask::~_FinderTask()
+{
+    
+}
 

@@ -9,6 +9,7 @@
 #include "CBulletBase.h"
 #include "TFGameObjectManager.h"
 #include "CBackgroundManager.h"
+#include "CMoveOnGridComp.h"
 
 DEFINE_DICTFUNC_DICTIONARY(CRole, Gun);
 
@@ -30,7 +31,7 @@ CRole::~CRole()
 
 
 
-IFightingRelation::_FIGHTING_RELATION_TYPE CRole::getReationType()
+IFightingRelation::_FIGHTING_RELATION_TYPE CRole::getRelationType()
 {
     return RELATION_1v1;
 }
@@ -73,6 +74,15 @@ bool CRole::init(CCDictionary* pObjectDict)
     }
     
 	return true;
+}
+
+
+
+void CRole::addComponentsForStates()
+{
+    CMoveOnGridComp* moveComp = CMoveOnGridComp::create();
+    addComponent(moveComp);
+    addComponentForState(ROLE_STATE_MOVE, moveComp->getName());
 }
 
 
@@ -188,35 +198,56 @@ void CRole::die()
 
 
 
-void CRole::setOnGridPos(int x, int y)
+void CRole::placeOnGridPos(const CCPoint& gridPos)
 {
-    CLogicGrid* grid = BKG_MANAGER->getGrid(CGridPos(x, y));
+    CLogicGrid* grid = BKG_MANAGER->getGrid(gridPos);
     if (grid->getGroundUnit() != NULL)
     {
-        grid = BKG_MANAGER->getEmptyGridNearby(CGridPos(x, y));
+        grid = BKG_MANAGER->getEmptyGridNearby(gridPos);
     }
     
     if (grid)
     {
         grid->setGroundUnit(this);
-        CCPoint pt = BKG_MANAGER->gridToPoint(grid->getGridPos());
+        m_moveTarget = grid->getGridPos();
+        setGrid(grid);
+        CCPoint pt = BKG_MANAGER->gridToPoint(m_moveTarget);
         setSpritePosition(pt);
     }
 }
 
 
 
-void CRole::onMoveEvent()
-{
-    
+
+bool CRole::changeState(int state)
+{    
+	return CSpriteObject::changeState(state);
 }
 
 
 
-bool CRole::changeState(const string& state, CComponentParameter* parameter, bool force)
+void CRole::setMoveTarget(const CCPoint& gridPos)
+{
+    m_moveTarget = gridPos;
+}
+
+
+
+const CCPoint& CRole::getMovetarget()
+{
+    return m_moveTarget;
+}
+
+
+
+bool CRole::playAnimation(const string& name)
 {
     string s = m_faceToPrefix[m_faceTo];
-    s += state;
+    s += name;
     
-	return CSpriteObject::changeState(s, parameter, force);
+    return CSpriteObject::playAnimation(s);
 }
+
+
+
+

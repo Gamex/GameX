@@ -56,8 +56,9 @@ public:
     
     ////////////////////
     virtual int getLevel();
-    
-    
+
+    virtual void addComponentForState(int state, const string& compName);
+
 #ifdef DEBUG
     virtual string whoAmI(){return "CObjectBase";}
 #endif
@@ -69,6 +70,15 @@ protected:
     
     bool m_isDead;
 private:
+    typedef set<string> SS;
+    typedef set<string>::iterator SS_IT;
+    typedef set<string>::const_iterator SS_CIT;
+    
+    typedef map<int, SS> VSS;
+    typedef map<int, SS>::iterator VSS_IT;
+    typedef map<int, SS>::const_iterator VSS_CIT;
+    
+    VSS m_stateComponentTable;
 };
 
 #endif /* defined(__TheForce__TFObject__) */

@@ -71,8 +71,8 @@ void CFormationLayer::update(float dt)
 
 void CFormationLayer::touchBegan(CCPoint position)
 {
-    CGridPos gp = BKG_MANAGER->pointToGrid(position);
-    if (gp != m_curSelGrid)
+    CCPoint gp = BKG_MANAGER->pointToGrid(position);
+    if (!gp.equals(m_curSelGrid))
     {
         BKG_MANAGER->hightlightGrid(m_curSelGrid, false);
         m_curSelGrid = gp;
@@ -89,7 +89,7 @@ void CFormationLayer::touchBegan(CCPoint position)
             m_curSelRole = grid->getGroundUnit();
             if (m_curSelRole)
             {
-                m_curSelRole->changeState("EditSel");
+                m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
             }
             
         }
@@ -100,8 +100,8 @@ void CFormationLayer::touchBegan(CCPoint position)
 
 void CFormationLayer::touchMoved(CCPoint position)
 {
-    CGridPos gp = BKG_MANAGER->pointToGrid(position);
-    if (gp != m_curSelGrid)
+    CCPoint gp = BKG_MANAGER->pointToGrid(position);
+    if (!gp.equals(m_curSelGrid))
     {
         BKG_MANAGER->hightlightGrid(m_curSelGrid, false);
         m_curSelGrid = gp;
@@ -118,7 +118,7 @@ void CFormationLayer::touchMoved(CCPoint position)
 
 void CFormationLayer::touchEnded(CCPoint position)
 {
-    CLogicGrid* grid = BKG_MANAGER->getGrid(position);
+    CLogicGrid* grid = BKG_MANAGER->getGridFromPt(position);
     if (m_curSelRole != NULL)
     {
         BKG_MANAGER->hightlightGrid(m_curSelGrid, false);
@@ -145,7 +145,7 @@ void CFormationLayer::touchEnded(CCPoint position)
             }
         }
         
-        m_curSelRole->changeState("Idle");
+        m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
         m_curSelRole = NULL;
     }
 }
@@ -154,7 +154,7 @@ void CFormationLayer::touchEnded(CCPoint position)
 
 void CFormationLayer::onFrameSel(const string& objName)
 {
-    CLogicGrid* grid = BKG_MANAGER->getEmptyGridNearby(CGridPos(BKG_MANAGER->getWidthInGrid() >> 1, BKG_MANAGER->getHeightInGrid() >> 1));
+    CLogicGrid* grid = BKG_MANAGER->getEmptyGridNearby(CCPoint(BKG_MANAGER->getWidthInGrid() >> 1, BKG_MANAGER->getHeightInGrid() >> 1));
     if (grid)
     {
         CCPoint pt = BKG_MANAGER->gridToPoint(grid->getGridPos());
@@ -176,7 +176,7 @@ void CFormationLayer::onSave(CFormation* fmt)
 {
     int x, y;
     CBackgroundManager* bkg = BKG_MANAGER;
-    CGridPos pos;
+    CCPoint pos;
     for (y = 0; y < bkg->getHeightInGrid(); ++y)
     {
         for (x = 0; x < bkg->getWidthInGrid(); ++x)
@@ -211,17 +211,13 @@ void CFormationLayer::onLoad(CFormation* fmt)
         for (int i = 0; i < sz; ++i)
         {
             CFormationElement* fe = fmt->m_elements[i];
-            CLogicGrid* grid = BKG_MANAGER->getEmptyGridNearby(fe->pos);
-            if (grid)
-            {
-                CCPoint pt = BKG_MANAGER->gridToPoint(grid->getGridPos());
-                CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(fe->objName));
-                CC_ASSERT(role);
-                role->setSpritePosition(pt);
-                role->attachSpriteTo();
-                grid->setGroundUnit(role);
-                m_roleNode->addChild(role);
-            }
+            CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(fe->objName));
+            CC_ASSERT(role);
+            role->placeOnGridPos(fe->pos);
+
+            role->attachSpriteTo();
+            m_roleNode->addChild(role);
+
         }
     }
     

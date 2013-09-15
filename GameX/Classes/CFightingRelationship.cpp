@@ -43,8 +43,8 @@ void CFightingRelationship::add(IFightingRelation* villain, IFightingRelation* v
     CC_ASSERT(villain);
     CC_ASSERT(victim);
     
-    IFightingRelation::_FIGHTING_RELATION_TYPE villainType = villain->getReationType();
-    IFightingRelation::_FIGHTING_RELATION_TYPE victimType = victim->getReationType();
+    IFightingRelation::_FIGHTING_RELATION_TYPE villainType = villain->getRelationType();
+    IFightingRelation::_FIGHTING_RELATION_TYPE victimType = victim->getRelationType();
     
     MRVR_IT villain_it = m_villains.find(villain);
     MRVR_IT victim_it = m_victims.find(victim);

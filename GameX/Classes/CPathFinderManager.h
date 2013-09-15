@@ -9,6 +9,7 @@
 #ifndef __GameX__CPathFinderManager__
 #define __GameX__CPathFinderManager__
 
+#include "cocos2d.h"
 #include "CSingleton.h"
 #include "CBackgroundManager.h"
 #include "CMemPool.h"
@@ -16,8 +17,15 @@
 #include <vector>
 #include <algorithm>
 
+USING_NS_CC;
 using namespace std;
 
+
+class IPathFinderDelegate
+{
+public:
+    virtual void onPathReady(const vector<CCPoint>& path) = 0;
+};
 
 class CPathFinderManager : public CSingleton<CPathFinderManager>
 {
@@ -27,13 +35,13 @@ public:
 
     virtual void update(float dt);
     
-    virtual void findPath(const CGridPos& startPos, const CGridPos& targetPos);
+    virtual void findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFinderDelegate* delegate = NULL);
 protected:
     
     class _PathNode
     {
     public:
-        MEM_POOL_DECLARE(_PathNode, 600);
+        MEM_POOL_DECLARE(_PathNode, 1200);
         
         _PathNode();
         
@@ -59,17 +67,17 @@ protected:
         class __IfNode
         {
         public:
-            __IfNode(const CGridPos& pos):m_pos(pos){}
+            __IfNode(const CCPoint& pos):m_pos(pos){}
             bool operator() (_PathNode* node)
             {
-                return node->grid->getGridPos() == m_pos;
+                return node->grid->getGridPos().equals(m_pos);
             }
             
         private:
-            CGridPos m_pos;
+            CCPoint m_pos;
         };
     public:
-        _PathNode* getInList(const CGridPos& pos)
+        _PathNode* getInList(const CCPoint& pos)
         {
             vector<_PathNode*>::iterator it = find_if(c.begin(), c.end(), __IfNode(pos));
             if (c.end() != it)
@@ -79,6 +87,19 @@ protected:
             
             return NULL;
         }
+        
+        void deleteVector()
+        {
+            for (int i = 0; i < c.size(); ++i)
+            {
+                delete c[i];
+            }
+        }
+        
+        virtual ~_HeapList()
+        {
+            deleteVector();
+        }
     protected:
     };
     
@@ -86,13 +107,16 @@ protected:
     class _FinderTask
     {
     public:
-        CGridPos start;
-        CGridPos target;
+        _FinderTask() : delegate(NULL){}
+        virtual ~_FinderTask();
+        CCPoint start;
+        CCPoint target;
+        IPathFinderDelegate* delegate;
         
         void doFind();
     protected:
         void findSurround(_PathNode* parent);
-        void checkF(const CGridPos& gridPos, int G, _PathNode* parent);
+        void checkF(const CCPoint& gridPos, int G, _PathNode* parent);
     private:
         _HeapList openList;
         _HeapList closeList;

@@ -9,15 +9,8 @@
 #ifndef __TheForce__TFStateBase__
 #define __TheForce__TFStateBase__
 
-#include <string>
-#include <vector>
-#include <set>
-#include <map>
 
-using namespace std;
-
-class CComponent;
-class CComponentParameter;
+#define STATE_NONE          -1
 
 class CState
 {
@@ -25,33 +18,19 @@ public:
 	CState();
 	virtual ~CState();
 	
-	virtual string getCurrentState() const;
-	virtual bool changeState(const string& state, CComponentParameter* parameter = NULL, bool force = false);
+	virtual int getCurrentState() const;
+	virtual bool changeState(int state);
     virtual void lockState();
     virtual void unlockState();
-
-    virtual void updateComponents(float dt);
-    virtual void addComponentForState(const string& state, CComponent* component);
-    virtual void removeState(const string& state);
-    virtual void removeComponentFromState(const string& state, CComponent* component);
-    virtual void setComponentParameter(CComponentParameter* pamaremter);
     
 protected:
-	virtual void onEnterState(const string& s);
-	virtual void onLeaveState(const string& s);
+	virtual void onEnterState(int state);
+	virtual void onLeaveState(int state);
 	virtual void clearState();
 private:
-    typedef set<CComponent*> SC;
-    typedef set<CComponent*>::iterator SC_IT;
-    typedef set<CComponent*>::const_iterator SC_CIT;
-    
-    typedef map<string, SC> MSC;
-    typedef map<string, SC>::iterator MSC_IT;
-    typedef map<string, SC>::const_iterator MSC_CIT;
-    
-    MSC components_;
-    string currentState_;
-    bool isStateLocked_;
+    int m_currentState;
+    int m_nextState;
+    bool m_isStateLocked;
 };
 
 #endif /* defined(__TheForce__TFStateBase__) */

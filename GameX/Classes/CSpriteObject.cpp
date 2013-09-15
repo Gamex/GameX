@@ -159,34 +159,19 @@ void CSpriteObject::clearThis()
 
 
 
-bool CSpriteObject::changeState(const string& s, CComponentParameter* parameter, bool force)
-{
-    if (!CVisibleObject::changeState(s, parameter, force))
-    {
-        return false;
-    }
-    
-    if (s.empty())
-    {
-        getInnerSprite()->stopAllActions();
-    }
-    else
-    {
-        forceRunAniamtion(s);
-    }
-    
-    return true;
-}
-
-
-
-bool CSpriteObject::forceRunAniamtion(const string& name)
+bool CSpriteObject::playAnimation(const string& name, bool forceReplay)
 {
     do
     {
         if (getCCBReader())
         {
             CCBAnimationManager* am = getCCBReader()->getAnimationManager();
+            
+            const char* runningAnimName = am->getRunningSequenceName();
+            if (runningAnimName)
+            {
+                BREAK_IF(name.compare(am->getRunningSequenceName()) == 0 && !forceReplay);
+            }
             CCArray* seq = am->getSequences();
             CCObject* pObj;
             CCARRAY_FOREACH(seq, pObj)
@@ -197,7 +182,6 @@ bool CSpriteObject::forceRunAniamtion(const string& name)
                     am->runAnimationsForSequenceIdTweenDuration(seq->getSequenceId(), 0);
                 }
             }
-//            getCCBReader()->getAnimationManager()->runAnimations(s.c_str());
         }
         return true;
     } while (false);
@@ -207,9 +191,26 @@ bool CSpriteObject::forceRunAniamtion(const string& name)
 
 
 
+//bool CSpriteObject::playAnimation(int id, bool forceReplay)
+//{
+//    do
+//    {
+//        if (getCCBReader())
+//        {
+//            CCBAnimationManager* am = getCCBReader()->getAnimationManager();
+//            am->runAnimationsForSequenceIdTweenDuration(id, 0);
+//        }
+//        return true;
+//    } while (false);
+//    
+//    return false;
+//}
+//
+
+
 void CSpriteObject::endState()
 {
-    this->changeState("");
+    this->changeState(STATE_NONE);
 }
 
 
@@ -251,7 +252,7 @@ void CSpriteObject::revive()
     CCString* initState = getInitStateFromDict();
     if (initState != NULL)
     {
-        changeState(getInitStateFromDict()->getCString());
+        changeState(0);     // zero for default state
     }
 
 }
@@ -269,32 +270,10 @@ void CSpriteObject::completedAnimationSequenceNamed(const char *name)
 
 
 
-void CSpriteObject::changeStateOnAnimationLoopEnd(const string& s)
-{
-    nextState_ = s;
-}
-
-
-
-void CSpriteObject::checkToChangeState()
-{
-    if (isAnimationLoopEnd_)
-    {
-        isAnimationLoopEnd_ = false;
-        if (!nextState_.empty())
-        {
-            changeState(nextState_);
-            nextState_.clear();
-        }
-    }
-}
-
-
 
 void CSpriteObject::update(float dt)
 {
     CVisibleObject::update(dt);
-    checkToChangeState();
 }
 
 

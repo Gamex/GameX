@@ -209,8 +209,8 @@ void CFormationPanelLayer::setFrameShowRole(int fromIdx)
             CCSize sz = m_frames[i]->getContentSize();
             role->setSpritePosition(ccp(sz.width / 2.f, sz.height / 2.f));
             role->attachSpriteTo(m_frames[i], 0, TAG_ROLE);
-            role->setfaceTo(FACE_TO_LEFT);
-            role->changeState(ROLE_STATE_IDLE);
+            role->setFaceTo(FACE_TO_LEFT);
+            role->playAnimation(ROLE_ANIMATION_IDLE);
         }
         else
         {

@@ -113,29 +113,5 @@ break;\
 #define D_TO_A(__x__)       (__x__ * CCBReader::getResolutionScale())
 
 
-class CGridPos
-{
-public:
-    CGridPos() : x(0), y(0){}
-    CGridPos(int _x, int _y) : x(_x), y(_y){}
-    CGridPos(const CGridPos& obj) : x(obj.x), y(obj.y){}
-    CGridPos& operator = (const CGridPos& obj)
-    {
-        x = obj.x;
-        y = obj.y;
-        return *this;
-    }
-    bool operator != (const CGridPos& obj)
-    {
-        return x != obj.x || y != obj.y;
-    }
-    bool operator == (const CGridPos& obj)
-    {
-        return x == obj.x && y == obj.y;
-    }
-    int x;
-    int y;
-};
-
 
 #endif

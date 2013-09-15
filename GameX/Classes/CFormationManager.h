@@ -9,16 +9,18 @@
 #ifndef __GameX__CFormationManager__
 #define __GameX__CFormationManager__
 
+#include "cocos2d.h"
 #include "Common.h"
 #include "CSingleton.h"
 #include <vector>
 
+USING_NS_CC;
 using namespace std;
 
 class CFormationElement
 {
 public:
-    CGridPos pos;
+    CCPoint pos;
     string objName;
 };
 

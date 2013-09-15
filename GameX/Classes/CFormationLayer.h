@@ -42,7 +42,7 @@ private:
     CFormationPanelLayer* m_panel;
     class CRole* m_curSelRole;
     
-    CGridPos m_curSelGrid;
+    CCPoint m_curSelGrid;
 };
 
 

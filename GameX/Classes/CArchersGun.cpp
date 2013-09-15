@@ -139,8 +139,8 @@ void CArchersGun::onSensor(CCObject* obj)
 
 void CArchersGun::completedAnimationSequenceNamed(const char *name)
 {
-    if (strcmp(name, ROLE_STATE_ATTACK) == 0)
-    {
-        changeState(ROLE_STATE_IDLE);
-    }
+//    if (strcmp(name, ROLE_STATE_ATTACK) == 0)
+//    {
+//        changeState(ROLE_STATE_IDLE);
+//    }
 }

@@ -9,8 +9,6 @@
 #include "CGunBase.h"
 #include "CDirectionBullet.h"
 #include "CRole.h"
-#include "CComponentParameter.h"
-#include "CMoveTowardComp.h"
 
 
 DEFINE_DICTFUNC_STR(CGunBase, BulletName);

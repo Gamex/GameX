@@ -25,6 +25,7 @@
 CBattleFieldLayer::CBattleFieldLayer()
 : m_isGameOver(false)
 , m_pGamePanelLayer(NULL)
+, m_hero(NULL)
 {
 }
 
@@ -89,24 +90,30 @@ void CBattleFieldLayer::update(float dt)
     COLLISION_MANAGER->update();
 
     FIGHT_RELATION->update(dt);
+    
+    PATH_FINDER->update(dt);
 }
 
 
- void CBattleFieldLayer::gbTouchesBegan(CCPoint position)
+void CBattleFieldLayer::touchBegan(CCPoint position)
+{
+    if (m_hero)
+    {
+        CCPoint gridPt = BKG_MANAGER->pointToGrid(position);
+        m_hero->setMoveTarget(gridPt);
+    }
+}
+
+
+
+void CBattleFieldLayer::touchMoved(CCPoint position)
 {
 }
 
 
 
-void CBattleFieldLayer::gbTouchesMoved(CCPoint position)
+void CBattleFieldLayer::touchEnded(CCPoint position)
 {
-}
-
-
-
-void CBattleFieldLayer::gbTouchesEnded(CCPoint position)
-{
-    PATH_FINDER->findPath(CGridPos(10, 10), CGridPos(25, 25));
 }
 
 
@@ -160,12 +167,14 @@ bool CBattleFieldLayer::loadFormation()
         CFormationElement* elem = (*it);
         CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(elem->objName));
         CC_ASSERT(role);
-
-        CLogicGrid* grid = BKG_MANAGER->getGrid(elem->pos);
-        grid->setGroundUnit(role);
-        role->setSpritePosition(BKG_MANAGER->gridToPoint(elem->pos));
+        role->placeOnGridPos(elem->pos);
         role->attachSpriteTo();
 
+        if (role->getNameFromDict()->compare("Unit0") == 0)
+        {
+            m_hero = role;
+        }
+        addChild(role);
     }
     
     return true;

@@ -39,10 +39,9 @@ public:
     virtual bool getSpriteFlipX();
     virtual bool getSpriteFlipY();
 
-    virtual bool changeState(const string& s, CComponentParameter* parameter = NULL, bool force = false);
-    virtual void changeStateOnAnimationLoopEnd(const string& s);
     virtual void endState();
-    virtual bool forceRunAniamtion(const string& name);
+    virtual bool playAnimation(const string& name, bool forceReplay = false);
+//    virtual bool playAnimation(int id, bool forceReplay = false);
 
 //    virtual CCNode* getCCBReaderRootNode() const;
 //    virtual void setContentSize(CCSize size);
@@ -61,7 +60,6 @@ protected:
     
     virtual void setInnerSprite(CCSprite* var);
     virtual void completedAnimationSequenceNamed(const char *name);
-    virtual void checkToChangeState();
     
     bool setSpriteFromCcbi(const char* name);
     bool setSprite(const char* name);
@@ -72,7 +70,6 @@ protected:
 private:
     CCSprite* pSprite_;
     bool isAnimationLoopEnd_;
-    string nextState_;
 };
 
 #endif /* defined(__TheForce__TFSpriteObject__) */

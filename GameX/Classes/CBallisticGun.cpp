@@ -102,7 +102,7 @@ void CBallisticGun::didShoot()
         pBullet->setShootTarget(shootTarget);
         pBullet->launch();
         
-        m_pRole->changeState(ROLE_STATE_ATTACK);
+//        m_pRole->changeState(ROLE_STATE_ATTACK);
     }
 }
 

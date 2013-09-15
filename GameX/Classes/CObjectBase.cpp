@@ -117,6 +117,8 @@ bool CObjectBase::isDead() const
 
 void CObjectBase::update(float dt)
 {
+    CCNode::update(dt);
+    
     if (checkDead())
     {
         die();
@@ -129,8 +131,6 @@ void CObjectBase::update(float dt)
     {
         pObj->update(dt);
     }
-    
-    updateComponents(dt);
 }
 
 
@@ -165,4 +165,13 @@ void CObjectBase::addCollisionHandlers()
 void CObjectBase::addComponentsForStates()
 {
     
+}
+
+
+
+void CObjectBase::addComponentForState(int state, const string& compName)
+{
+    CC_ASSERT(getComponent(compName.c_str()));
+    
+    m_stateComponentTable[state].insert(compName);
 }
