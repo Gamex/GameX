@@ -54,8 +54,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     this->setupConfigurationFiles();
     
     this->setupMultipleResolutionSupport();
-    
-    // create a scene. it's an autorelease object
+
     do
     {
         BREAK_IF_FAILED(DATA_CENTER->initialize());

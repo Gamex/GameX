@@ -58,29 +58,37 @@ void CMoveOnGridComp::update(float dt)
             if (m_paths.size() > 0)
             {
                 const CCPoint& pos = m_paths.back();
+                CLogicGrid* pTargetGrid = BKG_MANAGER->getGrid(pos);
                 CLogicGrid* pGrid = m_ownerRole->getGrid();
-                const CCPoint& curPos = pGrid->getGridPos();
-                CCPoint diff = pos - curPos;
-                CC_ASSERT(fabs(diff.x) <= 1 && fabs(diff.y) <= 1 && !curPos.equals(pos));
-                
-                if (diff.x > 0)
+                if (pTargetGrid->getGroundUnit())
                 {
-                    m_ownerRole->setFaceTo(FACE_TO_RIGHT);
+                    m_subState = SUB_STATE_IDLE;
                 }
-                else if (diff.x < 0)
+                else
                 {
-                    m_ownerRole->setFaceTo(FACE_TO_LEFT);
+                    const CCPoint& curPos = pGrid->getGridPos();
+                    CCPoint diff = pos - curPos;
+                    CC_ASSERT(fabs(diff.x) <= 1 && fabs(diff.y) <= 1 && !curPos.equals(pos));
+                    
+                    if (diff.x > 0)
+                    {
+                        m_ownerRole->setFaceTo(FACE_TO_RIGHT);
+                    }
+                    else if (diff.x < 0)
+                    {
+                        m_ownerRole->setFaceTo(FACE_TO_LEFT);
+                    }
+                    m_ownerRole->playAnimation(ROLE_ANIMATION_MOVE);
+                    m_ownerRole->lockState();
+                    
+                    float speed = 3.f;
+                    m_moveTotalTime = pos.getDistance(curPos) / speed;
+                    m_moveElapseTime = 0.f;
+                    m_moveFrom = BKG_MANAGER->gridToPoint(curPos);
+                    m_moveTo = BKG_MANAGER->gridToPoint(pos);
+                    
+                    m_subState = SUB_STATE_MOVING;
                 }
-                m_ownerRole->playAnimation(ROLE_ANIMATION_MOVE);
-                m_ownerRole->lockState();
-                
-                float speed = 3.f;
-                m_moveTotalTime = pos.getDistance(curPos) / speed;
-                m_moveElapseTime = 0.f;
-                m_moveFrom = BKG_MANAGER->gridToPoint(curPos);
-                m_moveTo = BKG_MANAGER->gridToPoint(pos);
-                
-                m_subState = SUB_STATE_MOVING;
             }
             else
             {
@@ -96,7 +104,7 @@ void CMoveOnGridComp::update(float dt)
             if (FLT_GE(alpha, 1.f))
             {
                 alpha = 1.f;
-                m_ownerRole->placeOnGridPos(m_paths.back());
+                m_ownerRole->placeOnGridPos(m_paths.back(), false);
                 m_paths.pop_back();
                 m_subState = SUB_STATE_PATH_FOUND;
             }

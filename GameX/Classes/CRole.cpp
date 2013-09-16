@@ -80,9 +80,12 @@ bool CRole::init(CCDictionary* pObjectDict)
 
 void CRole::addComponentsForStates()
 {
-    CMoveOnGridComp* moveComp = CMoveOnGridComp::create();
-    addComponent(moveComp);
-    addComponentForState(ROLE_STATE_MOVE, moveComp->getName());
+    if (getNameFromDict()->compare("Unit0") == 0)
+    {
+        CMoveOnGridComp* moveComp = CMoveOnGridComp::create();
+        addComponent(moveComp);
+        addComponentForState(ROLE_STATE_MOVE, moveComp->getName());
+    }
 }
 
 
@@ -198,7 +201,7 @@ void CRole::die()
 
 
 
-void CRole::placeOnGridPos(const CCPoint& gridPos)
+void CRole::placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos)
 {
     // first remove from old grid
     CLogicGrid* oldGrid = getGrid();
@@ -218,7 +221,10 @@ void CRole::placeOnGridPos(const CCPoint& gridPos)
     if (grid)
     {
         grid->setGroundUnit(this);
-        m_moveTarget = grid->getGridPos();
+        if (syncTargetPos)
+        {
+            m_moveTarget = grid->getGridPos();
+        }
         setGrid(grid);
         CCPoint pt = BKG_MANAGER->gridToPoint(m_moveTarget);
         setSpritePosition(pt);

@@ -129,7 +129,7 @@ void CPathFinderManager::_FinderTask::checkF(const CCPoint& gridPos, int G, CPat
         else
         {
             CLogicGrid* grid = BKG_MANAGER->getGrid(gridPos);
-            if (grid && grid->getGroundUnit() == NULL)
+            if (grid && (grid->getGroundUnit() == NULL || grid->getGridPos().equals(target)))
             {
                 pn = new _PathNode;
                 pn->parent = parent;

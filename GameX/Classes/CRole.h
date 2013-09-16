@@ -65,7 +65,7 @@ public:
     
     virtual CCPoint getShootDirection();
     
-    virtual void placeOnGridPos(const CCPoint& gridPos);
+    virtual void placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos = true);
     
     virtual bool playAnimation(const string& name);
     
