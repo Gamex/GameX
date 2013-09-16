@@ -200,6 +200,15 @@ void CRole::die()
 
 void CRole::placeOnGridPos(const CCPoint& gridPos)
 {
+    // first remove from old grid
+    CLogicGrid* oldGrid = getGrid();
+    if (oldGrid)
+    {
+        oldGrid->setGroundUnit(NULL);
+        setGrid(NULL);
+    }
+    
+    // place into new grid
     CLogicGrid* grid = BKG_MANAGER->getGrid(gridPos);
     if (grid->getGroundUnit() != NULL)
     {
