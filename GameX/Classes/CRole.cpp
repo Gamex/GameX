@@ -16,7 +16,6 @@ DEFINE_DICTFUNC_DICTIONARY(CRole, Gun);
 
 CRole::CRole()
 : m_pGun(NULL)
-, m_pGird(NULL)
 , m_faceTo(FACE_TO_RIGHT)
 {
 
@@ -201,34 +200,27 @@ void CRole::die()
 
 
 
-void CRole::placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos)
+bool CRole::placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos)
 {
-    // first remove from old grid
-    CLogicGrid* oldGrid = getGrid();
-    if (oldGrid)
+    do
     {
-        oldGrid->setGroundUnit(NULL);
-        setGrid(NULL);
-    }
-    
-    // place into new grid
-    CLogicGrid* grid = BKG_MANAGER->getGrid(gridPos);
-    if (grid->getGroundUnit() != NULL)
-    {
-        grid = BKG_MANAGER->getEmptyGridNearby(gridPos);
-    }
-    
-    if (grid)
-    {
-        grid->setGroundUnit(this);
+        BKG_MANAGER->removeRoleFromGrid(this);
+        BKG_MANAGER->addRoleToGrid(gridPos, this);
+        
+        CLogicGrid* grid = getLogicGrid();
+        CC_ASSERT(grid);
+        const CCPoint& gridPos = grid->getGridPos();
         if (syncTargetPos)
         {
-            m_moveTarget = grid->getGridPos();
+            m_moveTarget = gridPos;
         }
-        setGrid(grid);
-        CCPoint pt = BKG_MANAGER->gridToPoint(m_moveTarget);
+        CCPoint pt = BKG_MANAGER->gridToPoint(gridPos);
         setSpritePosition(pt);
-    }
+        setSpriteZOrder(getZ());
+        return true;
+    } while (false);
+    
+    return false;
 }
 
 

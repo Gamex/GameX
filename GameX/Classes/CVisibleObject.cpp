@@ -224,10 +224,7 @@ void CVisibleObject::setSpriteZOrder(int z)
         CCNode* pParent = getInnerSprite()->getParent();
         if (NULL != pParent)
         {
-            getInnerSprite()->retain();
-            pParent->removeChild(getInnerSprite(), false);
-            pParent->addChild(getInnerSprite(), z);
-            getInnerSprite()->release();
+            getInnerSprite()->setZOrder(z);
         }
     }
 }

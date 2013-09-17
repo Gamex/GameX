@@ -31,7 +31,7 @@ protected:
     virtual void touchMoved(CCPoint position);
     virtual void touchEnded(CCPoint position);
     
-    virtual void onFrameSel(const string& objName);
+    virtual void onFrameSel(const string& unitName);
     virtual void onSave(class CFormation* fmt);
     virtual void onLoad(class CFormation* fmt);
     

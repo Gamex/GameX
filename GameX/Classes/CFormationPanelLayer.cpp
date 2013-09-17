@@ -42,7 +42,7 @@ CFormationPanelLayer::CFormationPanelLayer()
 
 CFormationPanelLayer::~CFormationPanelLayer()
 {
-    
+    CC_SAFE_RELEASE(m_allRoles);
 }
 
 
@@ -51,6 +51,8 @@ bool CFormationPanelLayer::init()
 {
     do
     {
+//        setTouchEnabled(true);
+        
         m_editRoleNames.push_back("1");
         m_editRoleNames.push_back("2");
 //        m_editRoleNames.push_back("3");
@@ -65,12 +67,14 @@ bool CFormationPanelLayer::init()
 //        m_editRoleNames.push_back("12");
 
         m_allRoles = CCArray::createWithCapacity(m_editRoleNames.size());
+        CC_SAFE_RETAIN(m_allRoles);
         for (int i = 0; i < m_editRoleNames.size(); ++i)
         {
             CCDictionary* dict = DTUNIT->getData(m_editRoleNames[i]);
             CCString* name = DTUNIT->get_resourceID_Value(dict);
             CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(name->getCString()));
             CC_ASSERT(role);
+            role->setUnitName(name->getCString());
             m_allRoles->addObject(role);
         }
         return true;
@@ -199,7 +203,15 @@ void CFormationPanelLayer::setFrameShowRole(int fromIdx)
     int i;
     for (i = 0; i < FRAME_NUM; ++ i)
     {
+#ifdef DEBUG
+        if (m_frames[i]->getChildByTag(TAG_ROLE))
+        {
+#endif
         m_frames[i]->removeChildByTag(TAG_ROLE, false);
+            
+#ifdef DEBUG
+        }
+#endif
         int index = i + fromIdx;
         if (index < m_allRoles->count())
         {
@@ -220,4 +232,21 @@ void CFormationPanelLayer::setFrameShowRole(int fromIdx)
 
 }
 
+
+
+void CFormationPanelLayer::touchBegan(CCPoint position)
+{
+}
+
+
+
+void CFormationPanelLayer::touchMoved(CCPoint position)
+{
+}
+
+
+
+void CFormationPanelLayer::touchEnded(CCPoint position)
+{
+}
 

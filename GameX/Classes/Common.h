@@ -97,7 +97,6 @@ enum GameSettings
 #define BREAK_IF(__condi__) \
 if (__condi__)\
 {\
-    __CCLOGWITHFUNCTION("File: %s, Line: %d", __FILE__, __LINE__);\
     break;\
 }
 

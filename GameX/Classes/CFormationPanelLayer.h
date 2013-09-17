@@ -17,7 +17,7 @@
 class IFormationLayerDelegate
 {
 public:
-    virtual void onFrameSel(const string& objName) = 0;
+    virtual void onFrameSel(const string& unitName) = 0;
     virtual void onSave(class CFormation* fmt) = 0;
     virtual void onLoad(class CFormation* fmt) = 0;
 };
@@ -49,6 +49,10 @@ public:
     virtual void onNodeLoaded(CCNode * pNode, CCNodeLoader * pNodeLoader);
 
 protected:
+    virtual void touchBegan(CCPoint position);
+    virtual void touchMoved(CCPoint position);
+    virtual void touchEnded(CCPoint position);
+    
     virtual void onBack(CCObject *pSender);
     virtual void onSave(CCObject* pSender);
     virtual void onLoad(CCObject* pSender);

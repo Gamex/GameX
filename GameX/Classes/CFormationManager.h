@@ -21,7 +21,7 @@ class CFormationElement
 {
 public:
     CCPoint pos;
-    string objName;
+    string unitName;
 };
 
 class CFormation

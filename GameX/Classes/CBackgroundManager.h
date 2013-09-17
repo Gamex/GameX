@@ -18,24 +18,40 @@ using namespace std;
 USING_NS_CC;
 
 
-class CRole;
-
-enum GRID_REL
-{
-    REL_LEFT_DOWN,
-    REL_DOWN,
-    REL_RIGHT_DOWN,
-    REL_RIGHT,
-    REL_RIGHT_UP,
-    REL_UP,
-    REL_LEFT_UP,
-    REL_LEFT,
-    REL_NUM,
+enum{
+    DIRECTION_DOWN, // 搜索方向是朝下
+    DIRECTION_RIGHT, // 搜索方向是朝右
+    DIRECTION_UP, // 搜索方向是朝上
+    DIRECTION_LEFT, // 搜索方向是朝左
 };
+
+
+
+class IGridRole
+{
+    CC_SYNTHESIZE(class CLogicGrid*, m_pLogicGird, LogicGrid);
+    CC_SYNTHESIZE(int, m_gridWidth, GridWidth);
+    CC_SYNTHESIZE(int, m_gridHeight, GridHeight);
+    CC_SYNTHESIZE_PASS_BY_REF(CCPoint, m_moveTarget, MoveTarget);
+    CC_SYNTHESIZE(int, m_Z, Z);
+public:
+    IGridRole()
+    : m_pLogicGird(NULL)
+    , m_gridWidth(0)
+    , m_gridHeight(0)
+    {}
+    virtual ~IGridRole(){}
+    
+    virtual bool placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos = true) = 0;
+};
+
+
 
 
 class CLogicGrid
 {
+    friend class CBackgroundManager;
+    
     CC_SYNTHESIZE_READONLY(CCPoint, m_gridPos, GridPos);
     CC_SYNTHESIZE(class CSpriteObject*, m_gridBkg, GridBkg);
 public:
@@ -46,16 +62,16 @@ public:
     CLogicGrid& operator = (const CLogicGrid& obj);
     bool operator < (const CLogicGrid& obj);
     
-    virtual CRole* getGroundUnit() const;
-    virtual CRole* getAirUnit() const;
+    virtual IGridRole* getGroundUnit() const;
+    virtual IGridRole* getAirUnit() const;
     
-    virtual void setGroundUnit(CRole* var);
-    virtual void setAirUnit(CRole* var);
 protected:
+
 private:
-    CRole* m_groundUnit;
-    CRole* m_airUnit;
+    IGridRole* m_groundUnit;
+    IGridRole* m_airUnit;
 };
+
 
 
 class CBackgroundManager : public CSingleton<CBackgroundManager>
@@ -68,19 +84,21 @@ public:
     virtual ~CBackgroundManager();
     
     virtual bool initialize();
-    
-    // all param of CCPoint means in grid cooridnate. CPoint means position in screen coordinate.
-    virtual CLogicGrid* getGrid(const CCPoint& gridPos);
+
+    virtual CLogicGrid* getLogicGrid(const CCPoint& gridPos);
     virtual CLogicGrid* getGridFromPt(const CCPoint& pt);
     virtual CCPoint gridToPoint(const CCPoint& gridPos);
     virtual CCPoint pointToGrid(const CCPoint& pt);
     
-    virtual CLogicGrid* getNeighborGrid(const CCPoint& gridPos, GRID_REL rel);
-    virtual CLogicGrid* getEmptyGridNearby(const CCPoint& gridPos);
+    virtual CLogicGrid* getEmptyGridNearby(const CCPoint& gridPos, int width = 1, int height = 1,
+                                           int level = 1, int step = 0, int count = 0, int dir = DIRECTION_DOWN);
     
     virtual void hightlightGrid(const CCPoint& gridPos, bool onOff = true);
     virtual void hightlightGridInPoint(const CCPoint& pt, bool onOff = true);
     
+    virtual void addRoleToGrid(const CCPoint& gridPos, IGridRole* role);
+    virtual void removeRoleFromGrid(IGridRole* role);
+    virtual void removeRoleFromGrid(const CCPoint& gridPos);
     virtual void clearAllUnits();
 protected:
 

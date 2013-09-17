@@ -18,6 +18,7 @@
 #include "CFightingRelationship.h"
 #include "CFormationManager.h"
 #include "CRole.h"
+#include "CDataCenterManager.h"
 
 #define Z_ORDER_GAME_PANEL          1000
 
@@ -164,11 +165,17 @@ bool CBattleFieldLayer::loadFormation()
     CFormation::VFE_IT it = fmt->m_elements.begin();
     for (; it != fmt->m_elements.end(); ++it)
     {
-        CFormationElement* elem = (*it);
-        CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(elem->objName));
+        CFormationElement* fe = (*it);
+        
+        CCDictionary* dict = DTUNIT->getData(fe->unitName);
+        CCString* objName = DTUNIT->get_resourceID_Value(dict);
+        CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(objName->getCString()));
         CC_ASSERT(role);
-        role->placeOnGridPos(elem->pos);
-        role->attachSpriteTo();
+        role->setUnitName(fe->unitName);
+        role->setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
+        role->setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
+        role->placeOnGridPos(fe->pos);
+        role->attachSpriteTo(NULL, role->getZ());
 
         if (role->getNameFromDict()->compare("Unit0") == 0)
         {

@@ -74,33 +74,12 @@ bool CBackgroundManager::initialize()
 
 
 
-//bool CBackgroundManager::attachBkgTo(CCNode* parent, int zOrder, int tag)
-//{
-//    do
-//    {
-//        if (!parent)
-//        {
-//            bool isBatchNode;
-//            parent = BATCH_NODE_MANAGER->getNodeByName(BKG_BATCH_NODE_NAME, isBatchNode);
-//        }
-//        CC_ASSERT(parent);
-//        
-//        parent->addChild(m_pBkg, zOrder, tag);
-//        
-//        return true;
-//    } while (false);
-//    
-//    return false;
-//}
-
-
-
-CLogicGrid* CBackgroundManager::getGrid(const CCPoint& gridPos)
+CLogicGrid* CBackgroundManager::getLogicGrid(const CCPoint& gridPos)
 {
     do
     {
-        BREAK_IF_FAILED(gridPos.x >= 0 && gridPos.x < m_widthInGrid);
-        BREAK_IF_FAILED(gridPos.y >= 0 && gridPos.y < m_heightInGrid);
+        BREAK_IF(gridPos.x < 0 || gridPos.x >= m_widthInGrid);
+        BREAK_IF(gridPos.y < 0 || gridPos.y >= m_heightInGrid);
         
         return &(m_grids[gridPos.x + gridPos.y * m_widthInGrid]);
     } while (false);
@@ -128,7 +107,7 @@ CLogicGrid* CBackgroundManager::getGridFromPt(const CCPoint& pt)
 {
     const CCPoint& gridPos = pointToGrid(pt);
     
-    return getGrid(gridPos);
+    return getLogicGrid(gridPos);
 }
 
 
@@ -140,97 +119,87 @@ CCPoint CBackgroundManager::pointToGrid(const CCPoint& pt)
 
 
 
-CLogicGrid* CBackgroundManager::getNeighborGrid(const CCPoint& gridPos, GRID_REL rel)
+CLogicGrid* CBackgroundManager::getEmptyGridNearby(const CCPoint& gridPos, int width, int height,
+                                                   int level, int step, int count, int dir)
 {
-    int x = gridPos.x;
-    int y = gridPos.y;
-    switch (rel)
+    CLogicGrid* grid = NULL;
+    
+    int x, y;
+    for (y = 0; y < height; ++y)
     {
-        case REL_LEFT_DOWN:
-            x--;
+        for (x = 0; x < width; ++x)
+        {
+            CLogicGrid* tmp = getLogicGrid(CCPoint(gridPos.x + x, gridPos.y + y));
+            if (grid == NULL)
+            {
+                grid = tmp;
+            }
+            if (NULL == tmp || tmp->getGroundUnit())
+            {
+                grid = NULL;
+                break;
+            }
+        }
+        if (!grid)
+        {
+            break;
+        }
+    }
+    if (grid)
+    {
+        return grid;
+    }
+    
+
+    x = gridPos.x;
+    y = gridPos.y;
+    switch (dir)
+    {
+        case DIRECTION_DOWN:
             y--;
             break;
-        case REL_DOWN:
-            y--;
-            break;
-        case REL_RIGHT_DOWN:
-            x++;
-            y--;
-            break;
-        case REL_RIGHT:
+        case DIRECTION_RIGHT:
             x++;
             break;
-        case REL_RIGHT_UP:
-            x++;
+        case DIRECTION_UP:
             y++;
             break;
-        case REL_UP:
-            y++;
-            break;
-        case REL_LEFT_UP:
-            x--;
-            y++;
-            break;
-        case REL_LEFT:
+        case DIRECTION_LEFT:
             x--;
             break;
         default:
-            CC_ASSERT(false);
+            break;
     }
     
-    return getGrid(CCPoint(x, y));
-}
-
-
-
-CLogicGrid* CBackgroundManager::getEmptyGridNearby(const CCPoint& gridPos)
-{
-    CLogicGrid* grid = NULL;
-
-    
-    for (int i = 0; i < REL_NUM; ++i)
+    // clac next dir
+    count++;
+    if (count >= level)
     {
-        grid = getNeighborGrid(gridPos, (GRID_REL)i);
-        if (grid && NULL == grid->getGroundUnit()) return grid;
+        count = 0;
+        dir++;
+        if (dir > DIRECTION_LEFT) dir = DIRECTION_DOWN;
+        
+        if (step > 0)
+        {
+            level++;
+            step = 0;
+        }
+        else
+        {
+            step++;
+        }
+
     }
     
-    int x = gridPos.x;
-    int y = gridPos.y;
-    
-    grid = getEmptyGridNearby(CCPoint(x - 1, y - 1));        // LEFT DOWN
-    if (grid) return grid;
-    
-    grid = getEmptyGridNearby(CCPoint(x, y - 1));            // DOWN
-    if (grid) return grid;
-    
-    grid = getEmptyGridNearby(CCPoint(x + 1, y - 1));        // RIGHT DOWN
-    if (grid) return grid;
-    
-    grid = getEmptyGridNearby(CCPoint(x + 1, y));            // RIGHT
-    if (grid) return grid;
-    
-    grid = getEmptyGridNearby(CCPoint(x + 1, y + 1));        // RIGHT UP
-    if (grid) return grid;
-    
-    grid = getEmptyGridNearby(CCPoint(x, y + 1));            // UP
-    if (grid) return grid;
-    
-    grid = getEmptyGridNearby(CCPoint(x - 1, y + 1));        // LEFT UP
-    if (grid) return grid;
-    
-    grid = getEmptyGridNearby(CCPoint(x - 1, y));              // LEFT
-    if (grid) return grid;
-    
-    
-    return NULL;
-}
+    return getEmptyGridNearby(CCPoint(x, y), width, height, level, step, count, dir);
 
+}
 
 
 
 void CBackgroundManager::hightlightGrid(const CCPoint& gridPos, bool onOff)
 {
-    CLogicGrid* grid = getGrid(gridPos);
+    CLogicGrid* grid = getLogicGrid(gridPos);
     if (grid)
     {
         grid->getGridBkg()->playAnimation(onOff ? "Highlight" : "Ready");
@@ -254,21 +223,107 @@ void CBackgroundManager::clearAllUnits()
         for (x = 0; x < m_widthInGrid; ++x)
         {
             CLogicGrid& grid = m_grids[x + y * m_widthInGrid];
-            CRole* role = grid.getGroundUnit();
+            CRole* role = dynamic_cast<CRole*>(grid.getGroundUnit());
             if (role)
             {
                 role->die();        // 如何释放还没想清楚，直接调用die是不行的！！！
             }
-            role = grid.getAirUnit();
+            role = dynamic_cast<CRole*>(grid.getAirUnit());
             if (role)
             {
                 role->die();
             }
-            grid.setGroundUnit(NULL);
-            grid.setAirUnit(NULL);
+            
+            grid.m_groundUnit = NULL;
+            grid.m_airUnit = NULL;
         }
     }
 }
+
+
+void CBackgroundManager::addRoleToGrid(const CCPoint& gridPos, IGridRole* role)
+{
+    CLogicGrid* lgrid = getLogicGrid(gridPos);
+    if (role && lgrid)
+    {
+        role->setZ(10000 - gridPos.y * 100);
+        
+        int w = role->getGridWidth();
+        int h = role->getGridHeight();
+        CCPoint pt = gridPos;
+        int x, y;
+        for (y = 0; y < h; ++y)
+        {
+            
+            for (x = 0; x < w; ++x)
+            {
+                CLogicGrid* g = getLogicGrid(pt);
+
+                if (g)
+                {
+                    CC_ASSERT(g->m_groundUnit == NULL);
+                    g->m_groundUnit = role;
+                }
+                pt.x++;
+            }
+            
+            pt.y++;
+        }
+        
+        role->setLogicGrid(lgrid);
+    }
+}
+
+
+
+void CBackgroundManager::removeRoleFromGrid(IGridRole* role)
+{
+    CC_ASSERT(role);
+    CLogicGrid* grid = role->getLogicGrid();
+    if (grid)
+    {
+        removeRoleFromGrid(grid->getGridPos());
+    }
+}
+
+
+
+void CBackgroundManager::removeRoleFromGrid(const CCPoint& gridPos)
+{
+    CLogicGrid* lgrid = getLogicGrid(gridPos);
+    if (lgrid)
+    {
+        IGridRole* role = lgrid->getGroundUnit();
+        if (role)
+        {
+            lgrid = role->getLogicGrid();
+            CC_ASSERT(lgrid);
+            role->setZ(0);
+            role->setLogicGrid(NULL);
+            int w = role->getGridWidth();
+            int h = role->getGridHeight();
+            CCPoint pt = gridPos;
+            int x, y;
+            for (y = 0; y < h; ++y)
+            {
+                for (x = 0; x < w; ++x)
+                {
+                    CLogicGrid* g = BKG_MANAGER->getLogicGrid(pt);
+                    
+                    if (g)
+                    {
+                        CC_ASSERT(g->m_groundUnit != NULL);
+                        g->m_groundUnit = NULL;
+                    }
+                    pt.x++;
+                }
+                
+                pt.y++;
+            }
+        }
+    }
+}
+
 
 
 // -------------------- CLogicGrid
@@ -287,8 +342,8 @@ CLogicGrid::CLogicGrid(int x, int y)
 CLogicGrid::CLogicGrid(const CLogicGrid& obj)
 {
     m_gridPos = obj.getGridPos();
-    setGroundUnit(obj.getGroundUnit());
-    setAirUnit(obj.getAirUnit());
+    m_groundUnit = obj.getGroundUnit();
+    m_airUnit = obj.getAirUnit();
     setGridBkg(obj.getGridBkg());
 }
 
@@ -304,44 +359,23 @@ CLogicGrid::~CLogicGrid()
 CLogicGrid& CLogicGrid::operator = (const CLogicGrid& obj)
 {
     m_gridPos = obj.getGridPos();
-    setGroundUnit(obj.getGroundUnit());
-    setAirUnit(obj.getAirUnit());
+    m_groundUnit = obj.getGroundUnit();
+    m_airUnit = obj.getAirUnit();
     setGridBkg(obj.getGridBkg());
     return *this;
 }
 
 
-void CLogicGrid::setGroundUnit(CRole* var)
-{
-    if (var)
-    {
-        var->setSpriteZOrder(10000 - m_gridPos.y);
-        var->setGrid(this);
-    }
-    m_groundUnit = var;
-}
 
 
-CRole* CLogicGrid::getGroundUnit() const
+IGridRole* CLogicGrid::getGroundUnit() const
 {
     return m_groundUnit;
 }
 
 
 
-void CLogicGrid::setAirUnit(CRole* var)
-{
-    if (var)
-    {
-        var->setSpriteZOrder(10000 - m_gridPos.y);
-        var->setGrid(this);
-    }
-    m_airUnit = var;
-}
-
-
-
-CRole* CLogicGrid::getAirUnit() const
+IGridRole* CLogicGrid::getAirUnit() const
 {
     return m_airUnit;
 }

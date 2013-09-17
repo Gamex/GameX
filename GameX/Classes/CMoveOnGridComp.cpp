@@ -58,8 +58,8 @@ void CMoveOnGridComp::update(float dt)
             if (m_paths.size() > 0)
             {
                 const CCPoint& pos = m_paths.back();
-                CLogicGrid* pTargetGrid = BKG_MANAGER->getGrid(pos);
-                CLogicGrid* pGrid = m_ownerRole->getGrid();
+                CLogicGrid* pTargetGrid = BKG_MANAGER->getLogicGrid(pos);
+                CLogicGrid* pGrid = m_ownerRole->getLogicGrid();
                 if (pTargetGrid->getGroundUnit())
                 {
                     m_subState = SUB_STATE_IDLE;
@@ -130,7 +130,7 @@ void CMoveOnGridComp::onPathReady(const vector<CCPoint>& path)
     }
     else
     {
-        m_ownerRole->setMoveTarget(m_ownerRole->getGrid()->getGridPos());
+        m_ownerRole->setMoveTarget(m_ownerRole->getLogicGrid()->getGridPos());
         m_subState = SUB_STATE_IDLE;
     }
 }
@@ -140,7 +140,7 @@ void CMoveOnGridComp::onPathReady(const vector<CCPoint>& path)
 void CMoveOnGridComp::findPathIfNeeded()
 {
     const CCPoint& targetPos = m_ownerRole->getMovetarget();
-    CLogicGrid* pGrid = m_ownerRole->getGrid();
+    CLogicGrid* pGrid = m_ownerRole->getLogicGrid();
     const CCPoint& curPos = pGrid->getGridPos();
     
     if (!curPos.equals(targetPos))

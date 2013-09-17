@@ -13,6 +13,7 @@
 #include "CFightingRelationship.h"
 #include "CSpriteObject.h"
 #include "CGunBase.h"
+#include "CBackgroundManager.h"
 
 #define ROLE_FACE_TO_LEFT_PREFIX    "FL_"
 #define ROLE_FACE_TO_RIGHT_PREFIX    "FR_"
@@ -36,12 +37,15 @@ enum FACE_TO
     FACE_TO_MAX,
 };
 
-class CRole : public CSpriteObject, public IFightingRelation
+class CRole
+: public CSpriteObject
+, public IFightingRelation
+, public IGridRole
 {
     friend class CObjectBase;
     CC_SYNTHESIZE_RETAIN(CGunBase*, m_pGun, Gun);
-    CC_SYNTHESIZE(class CLogicGrid*, m_pGird, Grid);
     CC_SYNTHESIZE(FACE_TO, m_faceTo, FaceTo);
+    CC_SYNTHESIZE_PASS_BY_REF(string, m_unitName, UnitName);
 public:
     FACTORY_CREATE_FUNC(CRole);
     
@@ -65,7 +69,7 @@ public:
     
     virtual CCPoint getShootDirection();
     
-    virtual void placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos = true);
+    virtual bool placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos = true);
     
     virtual bool playAnimation(const string& name);
     
@@ -81,11 +85,8 @@ protected:
     
     virtual void addComponentsForStates();
 
-
 	CCPoint m_shootPoint;
     CCPoint m_shootPointInWorldSpace;
-    
-    CCPoint m_moveTarget;
 
     vector<string> m_faceToPrefix;
 private:

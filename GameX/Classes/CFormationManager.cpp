@@ -44,9 +44,9 @@ bool CFormation::saveToFile(const char* filename)
             CFormationElement* fe = m_elements[i];
             fwrite(&(fe->pos.x), sizeof(float), 1, fp);
             fwrite(&(fe->pos.y), sizeof(float), 1, fp);
-            int data = fe->objName.size() + 1;
+            int data = fe->unitName.size() + 1;
             fwrite(&data, sizeof(int), 1, fp);
-            fwrite(fe->objName.c_str(), data, 1, fp);
+            fwrite(fe->unitName.c_str(), data, 1, fp);
         }
         
         fclose(fp);
@@ -69,6 +69,8 @@ bool CFormation::loadFromFile(const char* filename)
         
         clearAll();
         
+        const int STR_LEN = 260;
+        char str[STR_LEN];
         int size;
         fread(&size, sizeof(int), 1, fp);
         m_elements.resize(size);
@@ -79,9 +81,10 @@ bool CFormation::loadFromFile(const char* filename)
             fread(&(fe->pos.y), sizeof(float), 1, fp);
             int data;
             fread(&data, sizeof(int), 1, fp);
-            fe->objName.resize(data, 0);
-            fread(&(fe->objName[0]), data, 1, fp);
-            
+            CC_ASSERT(data < STR_LEN);
+            fe->unitName.resize(data, 0);
+            fread(str, data, 1, fp);
+            fe->unitName = str;
             m_elements[i] = fe;
         }
         

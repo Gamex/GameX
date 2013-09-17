@@ -74,7 +74,7 @@ CPathFinderManager::_PathNode::_PathNode()
 // ----------------- _FinderTask
 void CPathFinderManager::_FinderTask::doFind()
 {
-    CLogicGrid* grid = BKG_MANAGER->getGrid(start);
+    CLogicGrid* grid = BKG_MANAGER->getLogicGrid(start);
     if (grid)
     {
         _PathNode* pn = new _PathNode;
@@ -128,7 +128,7 @@ void CPathFinderManager::_FinderTask::checkF(const CCPoint& gridPos, int G, CPat
         }
         else
         {
-            CLogicGrid* grid = BKG_MANAGER->getGrid(gridPos);
+            CLogicGrid* grid = BKG_MANAGER->getLogicGrid(gridPos);
             if (grid && (grid->getGroundUnit() == NULL || grid->getGridPos().equals(target)))
             {
                 pn = new _PathNode;

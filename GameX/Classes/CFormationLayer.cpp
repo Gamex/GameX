@@ -84,9 +84,9 @@ void CFormationLayer::touchBegan(CCPoint position)
         }
         else
         {
-            CLogicGrid* grid = BKG_MANAGER->getGrid(gp);
+            CLogicGrid* grid = BKG_MANAGER->getLogicGrid(gp);
 
-            m_curSelRole = grid->getGroundUnit();
+            m_curSelRole = dynamic_cast<CRole*>(grid->getGroundUnit());
             if (m_curSelRole)
             {
                 m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
@@ -109,7 +109,12 @@ void CFormationLayer::touchMoved(CCPoint position)
         
         if (m_curSelRole)
         {
-            m_curSelRole->setSpritePosition(BKG_MANAGER->gridToPoint(gp));
+            CLogicGrid* grid = BKG_MANAGER->getLogicGrid(m_curSelGrid);
+            CRole* role = dynamic_cast<CRole*>(grid->getGroundUnit());
+            if (role == NULL)       // this grid is not occupied, so place in it
+            {
+                m_curSelRole->placeOnGridPos(m_curSelGrid);
+            }
         }
     }
 }
@@ -125,24 +130,12 @@ void CFormationLayer::touchEnded(CCPoint position)
         m_curSelGrid.x = -1;
         m_curSelGrid.y = -1;
         
-        CLogicGrid* oldGrid = m_curSelRole->getGrid();
         
-        CRole* role = grid->getGroundUnit();
+        CRole* role = dynamic_cast<CRole*>(grid->getGroundUnit());
+
         if (role == NULL)       // this grid is not occupied, so place in it
         {
-            if (oldGrid)
-            {
-                oldGrid->setGroundUnit(NULL);
-            }
-            grid->setGroundUnit(m_curSelRole);
-            m_curSelRole->setSpritePosition(BKG_MANAGER->gridToPoint(grid->getGridPos()));
-        }
-        else
-        {
-            if (oldGrid)
-            {
-                m_curSelRole->setSpritePosition(BKG_MANAGER->gridToPoint(oldGrid->getGridPos()));
-            }
+            m_curSelRole->placeOnGridPos(grid->getGridPos());
         }
         
         m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
@@ -152,20 +145,20 @@ void CFormationLayer::touchEnded(CCPoint position)
 
 
 
-void CFormationLayer::onFrameSel(const string& objName)
+void CFormationLayer::onFrameSel(const string& unitName)
 {
     CLogicGrid* grid = BKG_MANAGER->getEmptyGridNearby(CCPoint(BKG_MANAGER->getWidthInGrid() >> 1, BKG_MANAGER->getHeightInGrid() >> 1));
     if (grid)
     {
-        CCPoint pt = BKG_MANAGER->gridToPoint(grid->getGridPos());
-        
-        CCDictionary* dict = DTUNIT->getData(objName);
+        CCDictionary* dict = DTUNIT->getData(unitName);
         CCString* name = DTUNIT->get_resourceID_Value(dict);
         CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(name->getCString()));
         CC_ASSERT(role);
-        role->setSpritePosition(pt);
-        role->attachSpriteTo();
-        grid->setGroundUnit(role);
+        role->setUnitName(unitName);
+        role->setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
+        role->setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
+        role->placeOnGridPos(grid->getGridPos());
+        role->attachSpriteTo(NULL, role->getZ());
         m_roleNode->addChild(role);
     }
 }
@@ -183,13 +176,13 @@ void CFormationLayer::onSave(CFormation* fmt)
         {
             pos.x = x;
             pos.y = y;
-            CLogicGrid* grid = bkg->getGrid(pos);
-            CRole* role = grid->getGroundUnit();
+            CLogicGrid* grid = bkg->getLogicGrid(pos);
+            CRole* role = dynamic_cast<CRole*>(grid->getGroundUnit());
             if (role)
             {
                 CFormationElement* fe = new CFormationElement;
                 fe->pos = pos;
-                fe->objName = role->getNameFromDict()->getCString();
+                fe->unitName = role->getUnitName();
                 
                 fmt->m_elements.push_back(fe);
             }
@@ -211,13 +204,16 @@ void CFormationLayer::onLoad(CFormation* fmt)
         for (int i = 0; i < sz; ++i)
         {
             CFormationElement* fe = fmt->m_elements[i];
-            CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(fe->objName));
+            CCDictionary* dict = DTUNIT->getData(fe->unitName);
+            CCString* objName = DTUNIT->get_resourceID_Value(dict);
+            CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(objName->getCString()));
             CC_ASSERT(role);
+            role->setUnitName(fe->unitName);
+            role->setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
+            role->setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
             role->placeOnGridPos(fe->pos);
-
-            role->attachSpriteTo();
+            role->attachSpriteTo(NULL, role->getZ());
             m_roleNode->addChild(role);
-
         }
     }
     
