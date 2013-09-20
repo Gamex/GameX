@@ -197,6 +197,17 @@ CLogicGrid* CBackgroundManager::getEmptyGridNearby(const CCPoint& gridPos, int w
 
 
 
+void CBackgroundManager::clearAllHightlightGrids()
+{
+    vector<CLogicGrid>::iterator it = m_grids.begin();
+    for (; it != m_grids.end(); ++it)
+    {
+        (*it).getGridBkg()->playAnimation("Ready");
+    }
+}
+
+
+
 void CBackgroundManager::hightlightGrid(const CCPoint& gridPos, bool onOff)
 {
     CLogicGrid* grid = getLogicGrid(gridPos);
@@ -250,24 +261,21 @@ void CBackgroundManager::addRoleToGrid(const CCPoint& gridPos, IGridRole* role)
         
         int w = role->getGridWidth();
         int h = role->getGridHeight();
-        CCPoint pt = gridPos;
+        CCPoint pt;
         int x, y;
         for (y = 0; y < h; ++y)
         {
-            
             for (x = 0; x < w; ++x)
             {
+                pt.x = gridPos.x + x;
+                pt.y = gridPos.y + y;
                 CLogicGrid* g = getLogicGrid(pt);
-
                 if (g)
                 {
                     CC_ASSERT(g->m_groundUnit == NULL);
                     g->m_groundUnit = role;
                 }
-                pt.x++;
             }
-            
-            pt.y++;
         }
         
         role->setLogicGrid(lgrid);
@@ -302,26 +310,63 @@ void CBackgroundManager::removeRoleFromGrid(const CCPoint& gridPos)
             role->setLogicGrid(NULL);
             int w = role->getGridWidth();
             int h = role->getGridHeight();
-            CCPoint pt = gridPos;
+            CCPoint pt;
             int x, y;
             for (y = 0; y < h; ++y)
             {
                 for (x = 0; x < w; ++x)
                 {
+                    pt.x = gridPos.x + x;
+                    pt.y = gridPos.y + y;
                     CLogicGrid* g = BKG_MANAGER->getLogicGrid(pt);
-                    
                     if (g)
                     {
                         CC_ASSERT(g->m_groundUnit != NULL);
                         g->m_groundUnit = NULL;
                     }
-                    pt.x++;
                 }
-                
-                pt.y++;
             }
         }
     }
+}
+
+
+
+bool CBackgroundManager::isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& gridPos)
+{
+    CC_ASSERT(role);
+    int width = role->getGridWidth();
+    int height = role->getGridHeight();
+
+    CCPoint pt;
+    int x, y;
+    for (y = 0; y < height; ++y)
+    {
+        for (x = 0; x <width; ++x)
+        {
+            pt.x = gridPos.x + x;
+            pt.y = gridPos.y + y;
+            CLogicGrid* g = getLogicGrid(pt);
+
+            bool condi = (g == NULL);
+            condi = (condi || (g != NULL && g->m_groundUnit != NULL && g->m_groundUnit != role));
+            if (condi)
+            {
+                return false;
+            }
+        }
+    }
+
+    
+	return true;
+}
+
+
+bool CBackgroundManager::isGridPosInGridRange(const CCPoint& gridPos, int width, int height, const CCPoint& testPos)
+{
+    CCRect rect(gridPos.x, gridPos.y, width - 1, height - 1);
+    
+    return rect.containsPoint(testPos);
 }
 
 

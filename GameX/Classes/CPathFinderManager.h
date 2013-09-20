@@ -35,7 +35,7 @@ public:
 
     virtual void update(float dt);
     
-    virtual void findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFinderDelegate* delegate = NULL);
+    virtual void findPath(const CCPoint& startPos, const CCPoint& targetPos, IGridRole* role = NULL, IPathFinderDelegate* delegate = NULL);
 protected:
     
     class _PathNode
@@ -107,10 +107,11 @@ protected:
     class _FinderTask
     {
     public:
-        _FinderTask() : delegate(NULL){}
+        _FinderTask() : delegate(NULL), role(NULL){}
         virtual ~_FinderTask();
         CCPoint start;
         CCPoint target;
+        IGridRole* role;
         IPathFinderDelegate* delegate;
         
         void doFind();

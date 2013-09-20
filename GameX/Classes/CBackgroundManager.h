@@ -60,7 +60,6 @@ public:
     virtual ~CLogicGrid();
     
     CLogicGrid& operator = (const CLogicGrid& obj);
-    bool operator < (const CLogicGrid& obj);
     
     virtual IGridRole* getGroundUnit() const;
     virtual IGridRole* getAirUnit() const;
@@ -93,9 +92,12 @@ public:
     virtual CLogicGrid* getEmptyGridNearby(const CCPoint& gridPos, int width = 1, int height = 1,
                                            int level = 1, int step = 0, int count = 0, int dir = DIRECTION_DOWN);
     
+    virtual void clearAllHightlightGrids();
     virtual void hightlightGrid(const CCPoint& gridPos, bool onOff = true);
     virtual void hightlightGridInPoint(const CCPoint& pt, bool onOff = true);
     
+    virtual bool isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& gridPos);
+    virtual bool isGridPosInGridRange(const CCPoint& gridPos, int width, int height, const CCPoint& testPos);
     virtual void addRoleToGrid(const CCPoint& gridPos, IGridRole* role);
     virtual void removeRoleFromGrid(IGridRole* role);
     virtual void removeRoleFromGrid(const CCPoint& gridPos);

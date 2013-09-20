@@ -45,10 +45,11 @@ void CPathFinderManager::update(float dt)
 
 
 
-void CPathFinderManager::findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFinderDelegate* delegate)
+void CPathFinderManager::findPath(const CCPoint& startPos, const CCPoint& targetPos, IGridRole* role, IPathFinderDelegate* delegate)
 {
     _FinderTask* task = new _FinderTask;
     
+    task->role = role;
     task->start = startPos;
     task->target = targetPos;
     task->delegate = delegate;
@@ -129,7 +130,14 @@ void CPathFinderManager::_FinderTask::checkF(const CCPoint& gridPos, int G, CPat
         else
         {
             CLogicGrid* grid = BKG_MANAGER->getLogicGrid(gridPos);
-            if (grid && (grid->getGroundUnit() == NULL || grid->getGridPos().equals(target)))
+            
+            bool canBePlace = BKG_MANAGER->isRoleCanBePlacedOnPos(role, gridPos);
+            if (!canBePlace && grid)
+            {
+                canBePlace = BKG_MANAGER->isGridPosInGridRange(gridPos, role->getGridWidth(), role->getGridHeight(), target);
+            }
+
+            if (canBePlace)
             {
                 pn = new _PathNode;
                 pn->parent = parent;
@@ -156,10 +164,10 @@ void CPathFinderManager::_FinderTask::findSurround(CPathFinderManager::_PathNode
     checkF(CCPoint(p.x    , p.y - 1 ), G + 10, parent);   // Down
     checkF(CCPoint(p.x + 1, p.y     ), G + 10, parent);   // Right
     checkF(CCPoint(p.x    , p.y + 1 ), G + 10, parent);   // Up
-    checkF(CCPoint(p.x + 1, p.y + 1 ), G + 14, parent);   // Right up
-    checkF(CCPoint(p.x - 1, p.y + 1 ), G + 14, parent);   // Left up
-    checkF(CCPoint(p.x - 1, p.y - 1 ), G + 14, parent);   // Left down
-    checkF(CCPoint(p.x + 1, p.y - 1 ), G + 14, parent);   // Right down
+//    checkF(CCPoint(p.x + 1, p.y + 1 ), G + 14, parent);   // Right up
+//    checkF(CCPoint(p.x - 1, p.y + 1 ), G + 14, parent);   // Left up
+//    checkF(CCPoint(p.x - 1, p.y - 1 ), G + 14, parent);   // Left down
+//    checkF(CCPoint(p.x + 1, p.y - 1 ), G + 14, parent);   // Right down
 }
 
 
