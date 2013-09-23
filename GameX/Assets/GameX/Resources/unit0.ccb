@@ -52,7 +52,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_idle_1.png</string>
+										<string>unit0/0_idle_b_1.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -70,7 +70,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_idle_2.png</string>
+										<string>unit0/0_idle_b_2.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -88,7 +88,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_idle_3.png</string>
+										<string>unit0/0_idle_b_3.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -106,7 +106,1983 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_idle_4.png</string>
+										<string>unit0/0_idle_b_4.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>displayFrame</string>
+							<key>type</key>
+							<integer>7</integer>
+						</dict>
+						<key>visible</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>visible</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>1</integer>
+									<key>value</key>
+									<true/>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>visible</string>
+							<key>type</key>
+							<integer>1</integer>
+						</dict>
+					</dict>
+					<key>10</key>
+					<dict/>
+					<key>3</key>
+					<dict/>
+				</dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>BR_Idle</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>baseValue</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>50</real>
+							<real>50</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.2914772629737854</real>
+							<real>0.21622596681118011</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>tag</string>
+						<key>type</key>
+						<string>Integer</string>
+						<key>value</key>
+						<integer>789</integer>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ignoreAnchorPointForPosition</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>baseValue</key>
+						<array>
+							<string>unit0/0_idle_b_1.png</string>
+							<string>Use regular file</string>
+						</array>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>unit0/0_atk_b_1.png</string>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>animatedProperties</key>
+				<dict>
+					<key>11</key>
+					<dict/>
+					<key>3</key>
+					<dict>
+						<key>displayFrame</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_1.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.10000000149011612</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_2.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.23333333432674408</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_3.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.36666667461395264</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_4.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.5</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_5.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.60000002384185791</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_6.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.73333334922790527</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_7.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.86666667461395264</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_8.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>displayFrame</string>
+							<key>type</key>
+							<integer>7</integer>
+						</dict>
+						<key>visible</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>visible</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>1</integer>
+									<key>value</key>
+									<true/>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>visible</string>
+							<key>type</key>
+							<integer>1</integer>
+						</dict>
+					</dict>
+				</dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>BR_Attack</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>baseValue</key>
+						<false/>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>50</real>
+							<real>50</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.21150808036327362</real>
+							<real>0.13174663484096527</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ignoreAnchorPointForPosition</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>baseValue</key>
+						<array>
+							<string>unit0/0_atk_b_1.png</string>
+							<string>Use regular file</string>
+						</array>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>unit0/0_atk_b_8.png</string>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>animatedProperties</key>
+				<dict>
+					<key>12</key>
+					<dict/>
+					<key>4</key>
+					<dict>
+						<key>displayFrame</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_dying_b_1.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.1666666716337204</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_dying_b_2.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.3333333432674408</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_dying_b_3.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.5</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_dying_b_4.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.66666668653488159</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_dying_b_5.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.83333331346511841</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_dying_b_6.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>displayFrame</string>
+							<key>type</key>
+							<integer>7</integer>
+						</dict>
+						<key>visible</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>visible</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>1</integer>
+									<key>value</key>
+									<true/>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>visible</string>
+							<key>type</key>
+							<integer>1</integer>
+						</dict>
+					</dict>
+				</dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>BR_Dying</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>baseValue</key>
+						<false/>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>50</real>
+							<real>50</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.1533203125</real>
+							<real>0.18611778318881989</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ignoreAnchorPointForPosition</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>baseValue</key>
+						<array>
+							<string>unit0/0_dying_b_1.png</string>
+							<string>Use regular file</string>
+						</array>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>unit0/0_dying_b_6.png</string>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>animatedProperties</key>
+				<dict>
+					<key>0</key>
+					<dict/>
+					<key>13</key>
+					<dict/>
+					<key>3</key>
+					<dict/>
+					<key>5</key>
+					<dict>
+						<key>displayFrame</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_idle_b_1.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.23333333432674408</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_idle_b_2.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.5</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_idle_b_3.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.73333334922790527</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_idle_b_4.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>displayFrame</string>
+							<key>type</key>
+							<integer>7</integer>
+						</dict>
+						<key>visible</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>visible</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>1</integer>
+									<key>value</key>
+									<true/>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>visible</string>
+							<key>type</key>
+							<integer>1</integer>
+						</dict>
+					</dict>
+				</dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>BL_Idle</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>baseValue</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>50</real>
+							<real>50</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.66278409957885742</real>
+							<real>0.21622596681118011</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>tag</string>
+						<key>type</key>
+						<string>Integer</string>
+						<key>value</key>
+						<integer>789</integer>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ignoreAnchorPointForPosition</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>baseValue</key>
+						<array>
+							<string>unit0/0_idle_b_1.png</string>
+							<string>Use regular file</string>
+						</array>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>unit0/0_atk_b_1.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>flip</string>
+						<key>type</key>
+						<string>Flip</string>
+						<key>value</key>
+						<array>
+							<true/>
+							<false/>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>animatedProperties</key>
+				<dict>
+					<key>14</key>
+					<dict/>
+					<key>3</key>
+					<dict/>
+					<key>6</key>
+					<dict>
+						<key>displayFrame</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_1.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.10000000149011612</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_2.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.23333333432674408</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_3.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.36666667461395264</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_4.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.5</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_5.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.60000002384185791</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_6.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.73333334922790527</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_7.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.86666667461395264</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_atk_b_8.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>displayFrame</string>
+							<key>type</key>
+							<integer>7</integer>
+						</dict>
+						<key>visible</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>visible</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>1</integer>
+									<key>value</key>
+									<true/>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>visible</string>
+							<key>type</key>
+							<integer>1</integer>
+						</dict>
+					</dict>
+				</dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>BL_Attack</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>baseValue</key>
+						<false/>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>50</real>
+							<real>50</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.79877597093582153</real>
+							<real>0.16044752299785614</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ignoreAnchorPointForPosition</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>baseValue</key>
+						<array>
+							<string>unit0/0_atk_b_1.png</string>
+							<string>Use regular file</string>
+						</array>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>unit0/0_atk_b_8.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>flip</string>
+						<key>type</key>
+						<string>Flip</string>
+						<key>value</key>
+						<array>
+							<true/>
+							<false/>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>animatedProperties</key>
+				<dict>
+					<key>15</key>
+					<dict/>
+					<key>4</key>
+					<dict/>
+					<key>7</key>
+					<dict>
+						<key>displayFrame</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_dying_b_1.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.1666666716337204</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_dying_b_2.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.3333333432674408</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_dying_b_3.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.5</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_dying_b_4.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.66666668653488159</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_dying_b_5.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.83333331346511841</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_dying_b_6.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>displayFrame</string>
+							<key>type</key>
+							<integer>7</integer>
+						</dict>
+						<key>visible</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>visible</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>1</integer>
+									<key>value</key>
+									<true/>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>visible</string>
+							<key>type</key>
+							<integer>1</integer>
+						</dict>
+					</dict>
+				</dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>BL_Dying</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>baseValue</key>
+						<false/>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>50</real>
+							<real>50</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.8344959020614624</real>
+							<real>0.1679999977350235</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ignoreAnchorPointForPosition</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>baseValue</key>
+						<array>
+							<string>unit0/0_dying_b_1.png</string>
+							<string>Use regular file</string>
+						</array>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>unit0/0_dying_b_6.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>flip</string>
+						<key>type</key>
+						<string>Flip</string>
+						<key>value</key>
+						<array>
+							<true/>
+							<false/>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>animatedProperties</key>
+				<dict>
+					<key>16</key>
+					<dict/>
+					<key>8</key>
+					<dict>
+						<key>displayFrame</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_move_b_1.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.066666670143604279</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_move_b_2.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.1666666716337204</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_move_b_3.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.26666668057441711</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_move_b_4.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.36666667461395264</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_move_b_5.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.43333333730697632</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_move_b_6.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>displayFrame</string>
+							<key>type</key>
+							<integer>7</integer>
+						</dict>
+						<key>visible</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>visible</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>1</integer>
+									<key>value</key>
+									<true/>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>visible</string>
+							<key>type</key>
+							<integer>1</integer>
+						</dict>
+					</dict>
+				</dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>BR_Move</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>baseValue</key>
+						<false/>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>50</real>
+							<real>50</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.28478154540061951</real>
+							<real>0.2400490790605545</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ignoreAnchorPointForPosition</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>baseValue</key>
+						<array>
+							<string>unit0/0_move_b_1.png</string>
+							<string>Use regular file</string>
+						</array>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>unit0/0_move_b_1.png</string>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>animatedProperties</key>
+				<dict>
+					<key>17</key>
+					<dict/>
+					<key>9</key>
+					<dict>
+						<key>displayFrame</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_move_b_1.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.066666670143604279</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_move_b_2.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.1666666716337204</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_move_b_3.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.26666668057441711</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_move_b_4.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.36666667461395264</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_move_b_5.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.43333333730697632</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_move_b_6.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>displayFrame</string>
+							<key>type</key>
+							<integer>7</integer>
+						</dict>
+						<key>visible</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>visible</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>1</integer>
+									<key>value</key>
+									<true/>
+								</dict>
+							</array>
+							<key>name</key>
+							<string>visible</string>
+							<key>type</key>
+							<integer>1</integer>
+						</dict>
+					</dict>
+				</dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>BL_Move</string>
+				<key>memberVarAssignmentName</key>
+				<string></string>
+				<key>memberVarAssignmentType</key>
+				<integer>0</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>baseValue</key>
+						<false/>
+						<key>name</key>
+						<string>visible</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>50</real>
+							<real>50</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.70583385229110718</real>
+							<real>0.25184544920921326</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ignoreAnchorPointForPosition</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>baseValue</key>
+						<array>
+							<string>unit0/0_move_b_1.png</string>
+							<string>Use regular file</string>
+						</array>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>unit0/0_move_b_6.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>flip</string>
+						<key>type</key>
+						<string>Flip</string>
+						<key>value</key>
+						<array>
+							<true/>
+							<false/>
+						</array>
+					</dict>
+				</array>
+			</dict>
+			<dict>
+				<key>animatedProperties</key>
+				<dict>
+					<key>0</key>
+					<dict/>
+					<key>10</key>
+					<dict>
+						<key>displayFrame</key>
+						<dict>
+							<key>keyframes</key>
+							<array>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.0</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_idle_f_1.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.23333333432674408</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_idle_f_2.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.5</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_idle_f_3.png</string>
+										<string>Use regular file</string>
+									</array>
+								</dict>
+								<dict>
+									<key>easing</key>
+									<dict>
+										<key>type</key>
+										<integer>0</integer>
+									</dict>
+									<key>name</key>
+									<string>displayFrame</string>
+									<key>time</key>
+									<real>0.73333334922790527</real>
+									<key>type</key>
+									<integer>7</integer>
+									<key>value</key>
+									<array>
+										<string>unit0/0_idle_f_4.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -188,8 +2164,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.2914772629737854</real>
-							<real>0.21622596681118011</real>
+							<real>0.40775331854820251</real>
+							<real>0.28895324468612671</real>
 						</array>
 					</dict>
 					<dict>
@@ -224,7 +2200,7 @@
 					<dict>
 						<key>baseValue</key>
 						<array>
-							<string>actors/0_idle_1.png</string>
+							<string>unit0/0_idle_f_1.png</string>
 							<string>Use regular file</string>
 						</array>
 						<key>name</key>
@@ -234,7 +2210,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>actors/0_atk_1.png</string>
+							<string>unit0/0_idle_f_4.png</string>
 						</array>
 					</dict>
 				</array>
@@ -242,7 +2218,7 @@
 			<dict>
 				<key>animatedProperties</key>
 				<dict>
-					<key>3</key>
+					<key>11</key>
 					<dict>
 						<key>displayFrame</key>
 						<dict>
@@ -262,7 +2238,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_1.png</string>
+										<string>unit0/0_atk_f_1.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -280,7 +2256,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_2.png</string>
+										<string>unit0/0_atk_f_2.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -298,7 +2274,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_3.png</string>
+										<string>unit0/0_atk_f_3.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -316,7 +2292,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_4.png</string>
+										<string>unit0/0_atk_f_4.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -334,7 +2310,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_5.png</string>
+										<string>unit0/0_atk_f_5.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -352,7 +2328,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_6.png</string>
+										<string>unit0/0_atk_f_6.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -370,7 +2346,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_7.png</string>
+										<string>unit0/0_atk_f_7.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -388,7 +2364,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_8.png</string>
+										<string>unit0/0_atk_f_8.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -424,6 +2400,8 @@
 							<integer>1</integer>
 						</dict>
 					</dict>
+					<key>3</key>
+					<dict/>
 				</dict>
 				<key>baseClass</key>
 				<string>CCSprite</string>
@@ -496,7 +2474,7 @@
 					<dict>
 						<key>baseValue</key>
 						<array>
-							<string>actors/0_atk_1.png</string>
+							<string>unit0/0_atk_f_1.png</string>
 							<string>Use regular file</string>
 						</array>
 						<key>name</key>
@@ -506,7 +2484,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>actors/0_atk_8.png</string>
+							<string>unit0/0_atk_f_8.png</string>
 						</array>
 					</dict>
 				</array>
@@ -514,7 +2492,7 @@
 			<dict>
 				<key>animatedProperties</key>
 				<dict>
-					<key>4</key>
+					<key>12</key>
 					<dict>
 						<key>displayFrame</key>
 						<dict>
@@ -534,7 +2512,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_dying_1.png</string>
+										<string>unit0/0_dying_f_1.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -552,7 +2530,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_dying_2.png</string>
+										<string>unit0/0_dying_f_2.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -570,7 +2548,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_dying_3.png</string>
+										<string>unit0/0_dying_f_3.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -588,7 +2566,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_dying_4.png</string>
+										<string>unit0/0_dying_f_4.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -606,7 +2584,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_dying_5.png</string>
+										<string>unit0/0_dying_f_5.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -624,7 +2602,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_dying_6.png</string>
+										<string>unit0/0_dying_f_6.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -660,6 +2638,8 @@
 							<integer>1</integer>
 						</dict>
 					</dict>
+					<key>4</key>
+					<dict/>
 				</dict>
 				<key>baseClass</key>
 				<string>CCSprite</string>
@@ -704,8 +2684,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.1533203125</real>
-							<real>0.18611778318881989</real>
+							<real>0.24881565570831299</real>
+							<real>0.36402970552444458</real>
 						</array>
 					</dict>
 					<dict>
@@ -732,7 +2712,7 @@
 					<dict>
 						<key>baseValue</key>
 						<array>
-							<string>actors/0_dying_1.png</string>
+							<string>unit0/0_dying_f_1.png</string>
 							<string>Use regular file</string>
 						</array>
 						<key>name</key>
@@ -742,7 +2722,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>actors/0_dying_6.png</string>
+							<string>unit0/0_dying_f_6.png</string>
 						</array>
 					</dict>
 				</array>
@@ -752,9 +2732,7 @@
 				<dict>
 					<key>0</key>
 					<dict/>
-					<key>3</key>
-					<dict/>
-					<key>5</key>
+					<key>13</key>
 					<dict>
 						<key>displayFrame</key>
 						<dict>
@@ -774,7 +2752,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_idle_1.png</string>
+										<string>unit0/0_idle_f_1.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -792,7 +2770,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_idle_2.png</string>
+										<string>unit0/0_idle_f_2.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -810,7 +2788,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_idle_3.png</string>
+										<string>unit0/0_idle_f_3.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -828,7 +2806,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_idle_4.png</string>
+										<string>unit0/0_idle_f_4.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -864,6 +2842,10 @@
 							<integer>1</integer>
 						</dict>
 					</dict>
+					<key>3</key>
+					<dict/>
+					<key>5</key>
+					<dict/>
 				</dict>
 				<key>baseClass</key>
 				<string>CCSprite</string>
@@ -908,8 +2890,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.66278409957885742</real>
-							<real>0.21622596681118011</real>
+							<real>0.61317473649978638</real>
+							<real>0.33881118893623352</real>
 						</array>
 					</dict>
 					<dict>
@@ -944,7 +2926,7 @@
 					<dict>
 						<key>baseValue</key>
 						<array>
-							<string>actors/0_idle_1.png</string>
+							<string>unit0/0_idle_f_1.png</string>
 							<string>Use regular file</string>
 						</array>
 						<key>name</key>
@@ -954,7 +2936,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>actors/0_atk_1.png</string>
+							<string>unit0/0_idle_f_4.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -973,9 +2955,7 @@
 			<dict>
 				<key>animatedProperties</key>
 				<dict>
-					<key>3</key>
-					<dict/>
-					<key>6</key>
+					<key>14</key>
 					<dict>
 						<key>displayFrame</key>
 						<dict>
@@ -995,7 +2975,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_1.png</string>
+										<string>unit0/0_atk_f_1.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1013,7 +2993,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_2.png</string>
+										<string>unit0/0_atk_f_2.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1031,7 +3011,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_3.png</string>
+										<string>unit0/0_atk_f_3.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1049,7 +3029,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_4.png</string>
+										<string>unit0/0_atk_f_4.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1067,7 +3047,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_5.png</string>
+										<string>unit0/0_atk_f_5.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1085,7 +3065,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_6.png</string>
+										<string>unit0/0_atk_f_6.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1103,7 +3083,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_7.png</string>
+										<string>unit0/0_atk_f_7.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1121,7 +3101,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_atk_8.png</string>
+										<string>unit0/0_atk_f_8.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1157,6 +3137,10 @@
 							<integer>1</integer>
 						</dict>
 					</dict>
+					<key>3</key>
+					<dict/>
+					<key>6</key>
+					<dict/>
 				</dict>
 				<key>baseClass</key>
 				<string>CCSprite</string>
@@ -1201,8 +3185,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.77655375003814697</real>
-							<real>0.26399999856948853</real>
+							<real>0.71687281131744385</real>
+							<real>0.31732845306396484</real>
 						</array>
 					</dict>
 					<dict>
@@ -1229,7 +3213,7 @@
 					<dict>
 						<key>baseValue</key>
 						<array>
-							<string>actors/0_atk_1.png</string>
+							<string>unit0/0_atk_f_1.png</string>
 							<string>Use regular file</string>
 						</array>
 						<key>name</key>
@@ -1239,7 +3223,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>actors/0_atk_8.png</string>
+							<string>unit0/0_atk_f_8.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1258,9 +3242,7 @@
 			<dict>
 				<key>animatedProperties</key>
 				<dict>
-					<key>4</key>
-					<dict/>
-					<key>7</key>
+					<key>15</key>
 					<dict>
 						<key>displayFrame</key>
 						<dict>
@@ -1280,7 +3262,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_dying_1.png</string>
+										<string>unit0/0_dying_f_1.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1298,7 +3280,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_dying_2.png</string>
+										<string>unit0/0_dying_f_2.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1316,7 +3298,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_dying_3.png</string>
+										<string>unit0/0_dying_f_3.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1334,7 +3316,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_dying_4.png</string>
+										<string>unit0/0_dying_f_4.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1352,7 +3334,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_dying_5.png</string>
+										<string>unit0/0_dying_f_5.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1370,7 +3352,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_dying_6.png</string>
+										<string>unit0/0_dying_f_6.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1406,6 +3388,10 @@
 							<integer>1</integer>
 						</dict>
 					</dict>
+					<key>4</key>
+					<dict/>
+					<key>7</key>
+					<dict/>
 				</dict>
 				<key>baseClass</key>
 				<string>CCSprite</string>
@@ -1438,7 +3424,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>50</real>
+							<real>37.804878234863281</real>
 							<real>50</real>
 							<integer>4</integer>
 						</array>
@@ -1450,8 +3436,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.8344959020614624</real>
-							<real>0.1679999977350235</real>
+							<real>0.73359829187393188</real>
+							<real>0.39527273178100586</real>
 						</array>
 					</dict>
 					<dict>
@@ -1478,7 +3464,7 @@
 					<dict>
 						<key>baseValue</key>
 						<array>
-							<string>actors/0_dying_1.png</string>
+							<string>unit0/0_dying_f_1.png</string>
 							<string>Use regular file</string>
 						</array>
 						<key>name</key>
@@ -1488,7 +3474,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>actors/0_dying_6.png</string>
+							<string>unit0/0_dying_f_6.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -1507,7 +3493,7 @@
 			<dict>
 				<key>animatedProperties</key>
 				<dict>
-					<key>8</key>
+					<key>16</key>
 					<dict>
 						<key>displayFrame</key>
 						<dict>
@@ -1527,7 +3513,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_move_1.png</string>
+										<string>unit0/0_move_f_1.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1545,7 +3531,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_move_2.png</string>
+										<string>unit0/0_move_f_2.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1563,7 +3549,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_move_3.png</string>
+										<string>unit0/0_move_f_3.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1581,7 +3567,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_move_4.png</string>
+										<string>unit0/0_move_f_4.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1599,7 +3585,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_move_5.png</string>
+										<string>unit0/0_move_f_5.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1617,7 +3603,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_move_6.png</string>
+										<string>unit0/0_move_f_6.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1653,6 +3639,8 @@
 							<integer>1</integer>
 						</dict>
 					</dict>
+					<key>8</key>
+					<dict/>
 				</dict>
 				<key>baseClass</key>
 				<string>CCSprite</string>
@@ -1697,8 +3685,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.41876593232154846</real>
-							<real>0.4115985631942749</real>
+							<real>0.4768388569355011</real>
+							<real>0.39341673254966736</real>
 						</array>
 					</dict>
 					<dict>
@@ -1725,7 +3713,7 @@
 					<dict>
 						<key>baseValue</key>
 						<array>
-							<string>actors/0_move_1.png</string>
+							<string>unit0/0_move_f_1.png</string>
 							<string>Use regular file</string>
 						</array>
 						<key>name</key>
@@ -1735,17 +3723,15 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>actors/0_move_1.png</string>
+							<string>unit0/0_move_f_6.png</string>
 						</array>
 					</dict>
 				</array>
-				<key>seqExpanded</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>animatedProperties</key>
 				<dict>
-					<key>9</key>
+					<key>17</key>
 					<dict>
 						<key>displayFrame</key>
 						<dict>
@@ -1765,7 +3751,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_move_1.png</string>
+										<string>unit0/0_move_f_1.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1783,7 +3769,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_move_2.png</string>
+										<string>unit0/0_move_f_2.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1801,7 +3787,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_move_3.png</string>
+										<string>unit0/0_move_f_3.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1819,7 +3805,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_move_4.png</string>
+										<string>unit0/0_move_f_4.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1837,7 +3823,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_move_5.png</string>
+										<string>unit0/0_move_f_5.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1855,7 +3841,7 @@
 									<integer>7</integer>
 									<key>value</key>
 									<array>
-										<string>actors/0_move_6.png</string>
+										<string>unit0/0_move_f_6.png</string>
 										<string>Use regular file</string>
 									</array>
 								</dict>
@@ -1891,6 +3877,8 @@
 							<integer>1</integer>
 						</dict>
 					</dict>
+					<key>9</key>
+					<dict/>
 				</dict>
 				<key>baseClass</key>
 				<string>CCSprite</string>
@@ -1914,7 +3902,7 @@
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<true/>
+						<false/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1936,7 +3924,7 @@
 						<key>value</key>
 						<array>
 							<real>0.56122446060180664</real>
-							<real>0.39230769872665405</real>
+							<real>0.36950939893722534</real>
 						</array>
 					</dict>
 					<dict>
@@ -1963,7 +3951,7 @@
 					<dict>
 						<key>baseValue</key>
 						<array>
-							<string>actors/0_move_1.png</string>
+							<string>unit0/0_move_f_1.png</string>
 							<string>Use regular file</string>
 						</array>
 						<key>name</key>
@@ -1973,7 +3961,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>actors/0_move_6.png</string>
+							<string>unit0/0_move_f_6.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -2040,7 +4028,7 @@
 				<key>value</key>
 				<array>
 					<string></string>
-					<string>actors/0_idle_1.png</string>
+					<string>unit0/0_idle_b_1.png</string>
 				</array>
 			</dict>
 			<dict>
@@ -2089,11 +4077,11 @@
 			<key>length</key>
 			<real>1</real>
 			<key>name</key>
-			<string>FR_Idle</string>
+			<string>BR_Idle</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>1</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -2123,7 +4111,7 @@
 			<key>length</key>
 			<real>1</real>
 			<key>name</key>
-			<string>FR_Attack</string>
+			<string>BR_Attack</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
@@ -2157,7 +4145,7 @@
 			<key>length</key>
 			<real>1</real>
 			<key>name</key>
-			<string>FR_Dying</string>
+			<string>BR_Dying</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
@@ -2191,7 +4179,7 @@
 			<key>length</key>
 			<real>1</real>
 			<key>name</key>
-			<string>FL_Idle</string>
+			<string>BL_Idle</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
@@ -2225,7 +4213,7 @@
 			<key>length</key>
 			<real>1</real>
 			<key>name</key>
-			<string>FL_Attack</string>
+			<string>BL_Attack</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
@@ -2259,7 +4247,7 @@
 			<key>length</key>
 			<real>1</real>
 			<key>name</key>
-			<string>FL_Dying</string>
+			<string>BL_Dying</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
@@ -2293,7 +4281,7 @@
 			<key>length</key>
 			<real>0.5</real>
 			<key>name</key>
-			<string>FR_Move</string>
+			<string>BR_Move</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
@@ -2327,7 +4315,7 @@
 			<key>length</key>
 			<real>0.5</real>
 			<key>name</key>
-			<string>FL_Move</string>
+			<string>BL_Move</string>
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
@@ -2338,6 +4326,278 @@
 			<real>370.57443237304688</real>
 			<key>sequenceId</key>
 			<integer>9</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>9</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>10</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>10</integer>
+			<key>length</key>
+			<real>1</real>
+			<key>name</key>
+			<string>FR_Idle</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.36666667461395264</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>128</real>
+			<key>sequenceId</key>
+			<integer>10</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>9</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>10</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>-1</integer>
+			<key>length</key>
+			<real>1</real>
+			<key>name</key>
+			<string>FR_Attack</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>1</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>311.90167236328125</real>
+			<key>sequenceId</key>
+			<integer>11</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>9</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>10</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>-1</integer>
+			<key>length</key>
+			<real>1</real>
+			<key>name</key>
+			<string>FR_Dying</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.0</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>306.27667236328125</real>
+			<key>sequenceId</key>
+			<integer>12</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>9</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>10</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>13</integer>
+			<key>length</key>
+			<real>1</real>
+			<key>name</key>
+			<string>FL_Idle</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.0</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>128</real>
+			<key>sequenceId</key>
+			<integer>13</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>9</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>10</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>-1</integer>
+			<key>length</key>
+			<real>1</real>
+			<key>name</key>
+			<string>FL_Attack</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.0</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>128</real>
+			<key>sequenceId</key>
+			<integer>14</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>9</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>10</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>-1</integer>
+			<key>length</key>
+			<real>1</real>
+			<key>name</key>
+			<string>FL_Dying</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.0</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>128</real>
+			<key>sequenceId</key>
+			<integer>15</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>9</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>10</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>16</integer>
+			<key>length</key>
+			<real>0.5</real>
+			<key>name</key>
+			<string>FR_Move</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.0</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>128</real>
+			<key>sequenceId</key>
+			<integer>16</integer>
+			<key>soundChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>9</integer>
+			</dict>
+		</dict>
+		<dict>
+			<key>autoPlay</key>
+			<false/>
+			<key>callbackChannel</key>
+			<dict>
+				<key>keyframes</key>
+				<array/>
+				<key>type</key>
+				<integer>10</integer>
+			</dict>
+			<key>chainedSequenceId</key>
+			<integer>17</integer>
+			<key>length</key>
+			<real>0.5</real>
+			<key>name</key>
+			<string>FL_Move</string>
+			<key>offset</key>
+			<real>0.0</real>
+			<key>position</key>
+			<real>0.0</real>
+			<key>resolution</key>
+			<real>30</real>
+			<key>scale</key>
+			<real>370.57443237304688</real>
+			<key>sequenceId</key>
+			<integer>17</integer>
 			<key>soundChannel</key>
 			<dict>
 				<key>keyframes</key>

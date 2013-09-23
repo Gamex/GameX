@@ -54,16 +54,13 @@ bool CBattleFieldLayer::init()
     
     loadConfig();
     
-    setGamePanelLayer(CGamePanelLayer::create());
-    addChild(m_pGamePanelLayer, Z_ORDER_GAME_PANEL);
+    BKG_MANAGER->attachBackgroundTo(this);
+//    setGamePanelLayer(CGamePanelLayer::create());
+//    addChild(m_pGamePanelLayer, Z_ORDER_GAME_PANEL);
 
-    BATCH_NODE_MANAGER->attachToParent(this, 0);
-    
-//    CASTLE_MANAGER->spawnAll();
-//
-//    addChild(CASTLE_MANAGER);
+//    BATCH_NODE_MANAGER->attachToParent(this, 10);
 
-    loadFormation();
+//    loadFormation();
     
     scheduleUpdate();
  

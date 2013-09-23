@@ -53,7 +53,7 @@ class CLogicGrid
     friend class CBackgroundManager;
     
     CC_SYNTHESIZE_READONLY(CCPoint, m_gridPos, GridPos);
-    CC_SYNTHESIZE(class CSpriteObject*, m_gridBkg, GridBkg);
+    CC_SYNTHESIZE_READONLY(IGridRole*, m_unit, Unit);
 public:
     CLogicGrid(int x, int y);
     CLogicGrid(const CLogicGrid& obj);
@@ -61,14 +61,9 @@ public:
     
     CLogicGrid& operator = (const CLogicGrid& obj);
     
-    virtual IGridRole* getGroundUnit() const;
-    virtual IGridRole* getAirUnit() const;
-    
 protected:
 
 private:
-    IGridRole* m_groundUnit;
-    IGridRole* m_airUnit;
 };
 
 
@@ -76,13 +71,15 @@ private:
 class CBackgroundManager : public CSingleton<CBackgroundManager>
 {
     CC_SYNTHESIZE_RETAIN(CCSprite*, m_pBkg, Bkg);
-    CC_SYNTHESIZE_READONLY(int, m_widthInGrid, WidthInGrid);
-    CC_SYNTHESIZE_READONLY(int, m_heightInGrid, HeightInGrid);
+    CC_SYNTHESIZE_READONLY(CCTMXLayer*, m_groundLayer, GroundLayer)
+    
 public:
     CBackgroundManager();
     virtual ~CBackgroundManager();
     
     virtual bool initialize();
+    
+    virtual void attachBackgroundTo(CCNode* parent);
 
     virtual CLogicGrid* getLogicGrid(const CCPoint& gridPos);
     virtual CLogicGrid* getGridFromPt(const CCPoint& pt);
@@ -102,10 +99,14 @@ public:
     virtual void removeRoleFromGrid(IGridRole* role);
     virtual void removeRoleFromGrid(const CCPoint& gridPos);
     virtual void clearAllUnits();
-protected:
+    
+    virtual void scaleMap(float s);
 
+protected:
+    CCTMXTiledMap* m_tiledMap;
 private:
     vector<CLogicGrid> m_grids;
+    CCPoint m_origMapPos;           // store the position of map that not scaled.
 };
 
 #define BKG_MANAGER         (CBackgroundManager::getInstance())

@@ -49,12 +49,12 @@ public:
 			elem->setObject(CCString::create(""), "skill5");
 
 			
-			m_pDictionary->setObject(elem, "1");
+			m_pDictionary->setObject(elem, "0");
 		}
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("unitname_2"), "name");
+			elem->setObject(CCString::create("unitname_1"), "name");
 			elem->setObject(CCString::create("0"), "type");
 			elem->setObject(CCString::create("Unit1"), "resourceID");
 			elem->setObject(CCString::create("-9"), "x");
@@ -63,6 +63,35 @@ public:
 			elem->setObject(CCString::create("35"), "hight");
 			elem->setObject(CCString::create("1"), "gridWidth");
 			elem->setObject(CCString::create("1"), "gridHeight");
+			elem->setObject(CCString::create("5000"), "hp");
+			elem->setObject(CCString::create("20"), "atk");
+			elem->setObject(CCString::create("2"), "def");
+			elem->setObject(CCString::create("1"), "dimension");
+			elem->setObject(CCString::create("0"), "target");
+			elem->setObject(CCString::create("0"), "radius");
+			elem->setObject(CCString::create("0"), "speed");
+			elem->setObject(CCString::create("1"), "skill0");
+			elem->setObject(CCString::create(""), "skill1");
+			elem->setObject(CCString::create(""), "skill2");
+			elem->setObject(CCString::create(""), "skill3");
+			elem->setObject(CCString::create(""), "skill4");
+			elem->setObject(CCString::create(""), "skill5");
+
+			
+			m_pDictionary->setObject(elem, "1");
+		}
+		{
+			CCDictionary* elem = CCDictionary::create();
+			
+			elem->setObject(CCString::create("unitname_2"), "name");
+			elem->setObject(CCString::create("0"), "type");
+			elem->setObject(CCString::create("Unit2"), "resourceID");
+			elem->setObject(CCString::create("-9"), "x");
+			elem->setObject(CCString::create("-15"), "y");
+			elem->setObject(CCString::create("19"), "width");
+			elem->setObject(CCString::create("35"), "hight");
+			elem->setObject(CCString::create("2"), "gridWidth");
+			elem->setObject(CCString::create("2"), "gridHeight");
 			elem->setObject(CCString::create("1000"), "hp");
 			elem->setObject(CCString::create("10"), "atk");
 			elem->setObject(CCString::create("1"), "def");

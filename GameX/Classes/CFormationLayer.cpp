@@ -44,6 +44,7 @@ bool CFormationLayer::init()
         m_curSelGrid.x = -1;
         m_curSelGrid.y = -1;
         
+        BKG_MANAGER->attachBackgroundTo(this);
         BATCH_NODE_MANAGER->attachToParent(this, 0);
         
         CCBReader* pReader = new CCBReader(CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary());
@@ -54,6 +55,7 @@ bool CFormationLayer::init()
         addChild(m_panel, Z_ORDER_PANEL);
         
         this->scheduleUpdate();
+
         return true;
     } while (false);
     
@@ -86,7 +88,7 @@ void CFormationLayer::touchBegan(CCPoint position)
         {
             CLogicGrid* grid = BKG_MANAGER->getLogicGrid(gp);
 
-            m_curSelRole = dynamic_cast<CRole*>(grid->getGroundUnit());
+            m_curSelRole = dynamic_cast<CRole*>(grid->getUnit());
             if (m_curSelRole)
             {
                 m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
@@ -110,13 +112,31 @@ void CFormationLayer::touchMoved(CCPoint position)
         if (m_curSelRole)
         {
             CLogicGrid* grid = BKG_MANAGER->getLogicGrid(m_curSelGrid);
-            CRole* role = dynamic_cast<CRole*>(grid->getGroundUnit());
+            CRole* role = dynamic_cast<CRole*>(grid->getUnit());
             if (role == NULL)       // this grid is not occupied, so place in it
             {
                 m_curSelRole->placeOnGridPos(m_curSelGrid);
             }
         }
     }
+    
+    static float s = 1.f;
+    static float oldx = position.x;
+    
+    if (position.x > oldx)
+    {
+        s += .01;
+        if (s >= 2) s = 2;
+        BKG_MANAGER->scaleMap(s);
+    }
+    else
+    {
+        s -= .01;
+        if (s <= .7) s = .7;
+        BKG_MANAGER->scaleMap(s);
+    }
+    
+    oldx = position.x;
 }
 
 
@@ -131,7 +151,7 @@ void CFormationLayer::touchEnded(CCPoint position)
         m_curSelGrid.y = -1;
         
         
-        CRole* role = dynamic_cast<CRole*>(grid->getGroundUnit());
+        CRole* role = dynamic_cast<CRole*>(grid->getUnit());
 
         if (role == NULL)       // this grid is not occupied, so place in it
         {
@@ -147,7 +167,8 @@ void CFormationLayer::touchEnded(CCPoint position)
 
 void CFormationLayer::onFrameSel(const string& unitName)
 {
-    CLogicGrid* grid = BKG_MANAGER->getEmptyGridNearby(CCPoint(BKG_MANAGER->getWidthInGrid() >> 1, BKG_MANAGER->getHeightInGrid() >> 1));
+//    CLogicGrid* grid = BKG_MANAGER->getEmptyGridNearby(CCPoint(BKG_MANAGER->getWidthInGrid() >> 1, BKG_MANAGER->getHeightInGrid() >> 1));
+    CLogicGrid* grid = NULL;
     if (grid)
     {
         CCDictionary* dict = DTUNIT->getData(unitName);
@@ -167,29 +188,29 @@ void CFormationLayer::onFrameSel(const string& unitName)
 
 void CFormationLayer::onSave(CFormation* fmt)
 {
-    int x, y;
-    CBackgroundManager* bkg = BKG_MANAGER;
-    CCPoint pos;
-    for (y = 0; y < bkg->getHeightInGrid(); ++y)
-    {
-        for (x = 0; x < bkg->getWidthInGrid(); ++x)
-        {
-            pos.x = x;
-            pos.y = y;
-            CLogicGrid* grid = bkg->getLogicGrid(pos);
-            CRole* role = dynamic_cast<CRole*>(grid->getGroundUnit());
-            if (role)
-            {
-                CFormationElement* fe = new CFormationElement;
-                fe->pos = pos;
-                fe->unitName = role->getUnitName();
-                
-                fmt->m_elements.push_back(fe);
-            }
-        }
-    }
-    
-    fmt->saveToFile("f.fmt");
+//    int x, y;
+//    CBackgroundManager* bkg = BKG_MANAGER;
+//    CCPoint pos;
+//    for (y = 0; y < bkg->getHeightInGrid(); ++y)
+//    {
+//        for (x = 0; x < bkg->getWidthInGrid(); ++x)
+//        {
+//            pos.x = x;
+//            pos.y = y;
+//            CLogicGrid* grid = bkg->getLogicGrid(pos);
+//            CRole* role = dynamic_cast<CRole*>(grid->getUnit());
+//            if (role)
+//            {
+//                CFormationElement* fe = new CFormationElement;
+//                fe->pos = pos;
+//                fe->unitName = role->getUnitName();
+//                
+//                fmt->m_elements.push_back(fe);
+//            }
+//        }
+//    }
+//    
+//    fmt->saveToFile("f.fmt");
 }
 
 
