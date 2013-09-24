@@ -33,7 +33,6 @@ class IGridRole
     CC_SYNTHESIZE(int, m_gridWidth, GridWidth);
     CC_SYNTHESIZE(int, m_gridHeight, GridHeight);
     CC_SYNTHESIZE_PASS_BY_REF(CCPoint, m_moveTarget, MoveTarget);
-    CC_SYNTHESIZE(int, m_Z, Z);
 public:
     IGridRole()
     : m_pLogicGird(NULL)
@@ -43,6 +42,7 @@ public:
     virtual ~IGridRole(){}
     
     virtual bool placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos = true) = 0;
+    virtual void updateVertexZ() = 0;
 };
 
 
@@ -70,9 +70,10 @@ private:
 
 class CBackgroundManager : public CSingleton<CBackgroundManager>
 {
-    CC_SYNTHESIZE_RETAIN(CCSprite*, m_pBkg, Bkg);
+    CC_SYNTHESIZE_READONLY(CCTMXTiledMap*, m_tiledMap, TiledMap);
     CC_SYNTHESIZE_READONLY(CCTMXLayer*, m_groundLayer, GroundLayer)
-    
+    CC_SYNTHESIZE(float, m_mapScaleThresholdMax, MapScaleThresholdMax);
+    CC_SYNTHESIZE(float, m_mapScaleThresholdMin, MapScaleThresholdMin);
 public:
     CBackgroundManager();
     virtual ~CBackgroundManager();
@@ -82,16 +83,19 @@ public:
     virtual void attachBackgroundTo(CCNode* parent);
 
     virtual CLogicGrid* getLogicGrid(const CCPoint& gridPos);
-    virtual CLogicGrid* getGridFromPt(const CCPoint& pt);
-    virtual CCPoint gridToPoint(const CCPoint& gridPos);
-    virtual CCPoint pointToGrid(const CCPoint& pt);
+    virtual CLogicGrid* getGridFromWorldPt(const CCPoint& pt);
+    
+    virtual CCPoint gridToWorldPoint(const CCPoint& gridPos);
+    virtual CCPoint worldPointToGrid(const CCPoint& pt);
+    virtual CCPoint screenPointToGrid(const CCPoint& pt);
+    virtual CCPoint worldPointToScreen(const CCPoint& pt);
+    virtual CCPoint screenPointToWorld(const CCPoint& pt);
     
     virtual CLogicGrid* getEmptyGridNearby(const CCPoint& gridPos, int width = 1, int height = 1,
                                            int level = 1, int step = 0, int count = 0, int dir = DIRECTION_DOWN);
     
     virtual void clearAllHightlightGrids();
     virtual void hightlightGrid(const CCPoint& gridPos, bool onOff = true);
-    virtual void hightlightGridInPoint(const CCPoint& pt, bool onOff = true);
     
     virtual bool isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& gridPos);
     virtual bool isGridPosInGridRange(const CCPoint& gridPos, int width, int height, const CCPoint& testPos);
@@ -101,9 +105,16 @@ public:
     virtual void clearAllUnits();
     
     virtual void scaleMap(float s);
+    virtual float getMapScale() const;
+    virtual void addMapScale(float scaleDelta);
 
+    virtual void moveMap(const CCPoint& offset);
+    virtual void moveMapTo(const CCPoint& pos);
+    
+    virtual float getWidthInGrid() const;
+    virtual float getHeightInGrid() const;
+    virtual const CCSize& getSizeInGrid() const;
 protected:
-    CCTMXTiledMap* m_tiledMap;
 private:
     vector<CLogicGrid> m_grids;
     CCPoint m_origMapPos;           // store the position of map that not scaled.

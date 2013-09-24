@@ -27,8 +27,9 @@ IMPLEMENT_SINGLETON(CBackgroundManager);
 
 
 CBackgroundManager::CBackgroundManager()
-: m_pBkg(NULL)
-, m_tiledMap(NULL)
+: m_tiledMap(NULL)
+, m_mapScaleThresholdMax(2.f)
+, m_mapScaleThresholdMin(.5)
 {
     
 }
@@ -37,12 +38,6 @@ CBackgroundManager::CBackgroundManager()
 
 CBackgroundManager::~CBackgroundManager()
 {
-    if (m_pBkg)
-    {
-        m_pBkg->removeFromParentAndCleanup(true);
-        setBkg(NULL);
-    }
-    
     CC_SAFE_RELEASE(m_tiledMap);
 }
 
@@ -73,9 +68,9 @@ bool CBackgroundManager::initialize()
         m_grids.clear();
         m_grids.reserve(layerSz.width * layerSz.height);
         
-        for (int y = 0; y < layerSz.width; ++y)
+        for (int y = 0; y < layerSz.height; ++y)
         {
-            for (int x = 0 ; x < layerSz.height; ++x)
+            for (int x = 0 ; x < layerSz.width; ++x)
             {
                 m_grids.push_back(CLogicGrid(x, y));
             }
@@ -107,27 +102,50 @@ CLogicGrid* CBackgroundManager::getLogicGrid(const CCPoint& gridPos)
 
 
 
-CCPoint CBackgroundManager::gridToPoint(const CCPoint& gridPos)
+
+CLogicGrid* CBackgroundManager::getGridFromWorldPt(const CCPoint& pt)
 {
-    CC_ASSERT(m_groundLayer);
-    return m_groundLayer->positionAt(gridPos) * m_tiledMap->getScale();
-}
-
-
-
-CLogicGrid* CBackgroundManager::getGridFromPt(const CCPoint& pt)
-{
-    const CCPoint& gridPos = pointToGrid(pt);
+    const CCPoint& gridPos = worldPointToGrid(pt);
     
     return getLogicGrid(gridPos);
 }
 
 
 
-CCPoint CBackgroundManager::pointToGrid(const CCPoint& pt)
+CCPoint CBackgroundManager::worldPointToScreen(const CCPoint& pt)
+{
+    return pt + m_tiledMap->getPosition();
+}
+
+
+
+CCPoint CBackgroundManager::screenPointToWorld(const CCPoint& pt)
+{
+    return pt - m_tiledMap->getPosition();
+}
+
+
+
+CCPoint CBackgroundManager::gridToWorldPoint(const CCPoint& gridPos)
+{
+    CC_ASSERT(m_groundLayer);
+    CCPoint pt = m_groundLayer->positionAt(gridPos) + m_groundLayer->getMapTileSize() / 2;
+    return pt;
+}
+
+
+
+CCPoint CBackgroundManager::screenPointToGrid(const CCPoint& pt)
+{
+    return worldPointToGrid(screenPointToWorld(pt));
+}
+
+
+
+CCPoint CBackgroundManager::worldPointToGrid(const CCPoint& pt)
 {
     float scale = m_tiledMap->getScale();
-    CCPoint pos = pt - m_tiledMap->getPosition();
+    CCPoint pos = pt;
     const CCSize& mapSize = m_tiledMap->getMapSize();
     float halfMapWidth =  mapSize.width * 0.5f;
     float mapHeight =  mapSize.height;
@@ -231,11 +249,15 @@ CLogicGrid* CBackgroundManager::getEmptyGridNearby(const CCPoint& gridPos, int w
 
 void CBackgroundManager::clearAllHightlightGrids()
 {
-//    vector<CLogicGrid>::iterator it = m_grids.begin();
-//    for (; it != m_grids.end(); ++it)
-//    {
-//        (*it).getGridBkg()->playAnimation("Ready");
-//    }
+    const CCSize& sz = m_groundLayer->getLayerSize();
+    CCPoint pt;
+    for (pt.y = 0; pt.y < sz.height; ++pt.y)
+    {
+        for (pt.x = 0; pt.x < sz.width; ++pt.x)
+        {
+            m_groundLayer->setTileGID(NORMAL_GID, pt);
+        }
+    }
 }
 
 
@@ -252,30 +274,24 @@ void CBackgroundManager::hightlightGrid(const CCPoint& gridPos, bool onOff)
 
 
 
-void CBackgroundManager::hightlightGridInPoint(const CCPoint& pt, bool onOff)
-{
-    hightlightGrid(pointToGrid(pt));
-}
-
-
-
 void CBackgroundManager::clearAllUnits()
 {
-//    int x, y;
-//    for (y = 0; y < m_heightInGrid; ++y)
-//    {
-//        for (x = 0; x < m_widthInGrid; ++x)
-//        {
-//            CLogicGrid& grid = m_grids[x + y * m_widthInGrid];
-//            CRole* role = dynamic_cast<CRole*>(grid.getUnit());
-//            if (role)
-//            {
-//                role->die();        // 如何释放还没想清楚，直接调用die是不行的！！！
-//            }
-//            
-//            grid.m_unit = NULL;
-//        }
-//    }
+    const CCSize& sz = m_groundLayer->getLayerSize();
+    CCPoint pt;
+    for (pt.y = 0; pt.y < sz.height; ++pt.y)
+    {
+        for (pt.x = 0; pt.x < sz.width; ++pt.x)
+        {
+            CLogicGrid& grid = m_grids[pt.x + pt.y * sz.width];
+            CRole* role = dynamic_cast<CRole*>(grid.getUnit());
+            if (role)
+            {
+                role->die();        // 如何释放还没想清楚，直接调用die是不行的！！！
+            }
+            
+            grid.m_unit = NULL;
+        }
+    }
 }
 
 
@@ -284,8 +300,6 @@ void CBackgroundManager::addRoleToGrid(const CCPoint& gridPos, IGridRole* role)
     CLogicGrid* lgrid = getLogicGrid(gridPos);
     if (role && lgrid)
     {
-        role->setZ(10000 - gridPos.y * 100);
-        
         int w = role->getGridWidth();
         int h = role->getGridHeight();
         CCPoint pt;
@@ -306,6 +320,7 @@ void CBackgroundManager::addRoleToGrid(const CCPoint& gridPos, IGridRole* role)
         }
         
         role->setLogicGrid(lgrid);
+        role->updateVertexZ();
     }
 }
 
@@ -333,7 +348,6 @@ void CBackgroundManager::removeRoleFromGrid(const CCPoint& gridPos)
         {
             lgrid = role->getLogicGrid();
             CC_ASSERT(lgrid);
-            role->setZ(0);
             role->setLogicGrid(NULL);
             int w = role->getGridWidth();
             int h = role->getGridHeight();
@@ -369,7 +383,7 @@ bool CBackgroundManager::isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& 
     int x, y;
     for (y = 0; y < height; ++y)
     {
-        for (x = 0; x <width; ++x)
+        for (x = 0; x < width; ++x)
         {
             pt.x = gridPos.x + x;
             pt.y = gridPos.y + y;
@@ -400,12 +414,75 @@ bool CBackgroundManager::isGridPosInGridRange(const CCPoint& gridPos, int width,
 
 void CBackgroundManager::scaleMap(float s)
 {
+    if (s < m_mapScaleThresholdMin)
+    {
+        s = m_mapScaleThresholdMin;
+    }
+    else if (s > m_mapScaleThresholdMax)
+    {
+        s = m_mapScaleThresholdMax;
+    }
     m_tiledMap->setScale(s);
     CCPoint center = CCDirector::sharedDirector()->getWinSize() / 2;
 
     CCPoint offset = (center - m_origMapPos) * (1 - s);
 
     m_tiledMap->setPosition(m_origMapPos + offset);
+}
+
+
+
+float CBackgroundManager::getMapScale() const
+{
+	return m_tiledMap->getScale();
+}
+
+
+
+void CBackgroundManager::addMapScale(float scaleDelta)
+{
+    scaleMap(getMapScale() + scaleDelta);
+}
+
+
+
+void CBackgroundManager::moveMap(const CCPoint& offset)
+{
+    CCPoint pt = m_tiledMap->getPosition() + offset;
+    m_origMapPos = m_origMapPos + offset;
+    
+    m_tiledMap->setPosition(pt);
+    
+}
+
+
+
+void CBackgroundManager::moveMapTo(const CCPoint& pos)
+{
+}
+
+
+
+float CBackgroundManager::getWidthInGrid() const
+{
+    CC_ASSERT(m_groundLayer);
+	return static_cast<int>(m_groundLayer->getLayerSize().width);
+}
+
+
+
+float CBackgroundManager::getHeightInGrid() const
+{
+    CC_ASSERT(m_groundLayer);
+	return static_cast<int>(m_groundLayer->getLayerSize().height);
+}
+
+
+
+const CCSize& CBackgroundManager::getSizeInGrid() const
+{
+    CC_ASSERT(m_groundLayer);
+	return m_groundLayer->getLayerSize();
 }
 
 

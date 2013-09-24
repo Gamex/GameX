@@ -16,7 +16,7 @@ DEFINE_DICTFUNC_DICTIONARY(CRole, Gun);
 
 CRole::CRole()
 : m_pGun(NULL)
-, m_faceTo(FACE_TO_RIGHT)
+, m_faceTo(FACE_TO_RIGHT_DOWN)
 {
 
 }
@@ -44,8 +44,10 @@ bool CRole::init(CCDictionary* pObjectDict)
     }
     
     m_faceToPrefix.resize(FACE_TO_MAX);
-    m_faceToPrefix[FACE_TO_LEFT] = ROLE_FACE_TO_LEFT_PREFIX;
-    m_faceToPrefix[FACE_TO_RIGHT] = ROLE_FACE_TO_RIGHT_PREFIX;
+    m_faceToPrefix[FACE_TO_LEFT_DOWN] = ROLE_FACE_TO_LEFT_PREFIX;
+    m_faceToPrefix[FACE_TO_RIGHT_DOWN] = ROLE_FACE_TO_RIGHT_PREFIX;
+    m_faceToPrefix[FACE_TO_LEFT_UP] = ROLE_BACK_TO_LEFT_PREFIX;
+    m_faceToPrefix[FACE_TO_RIGHT_UP] = ROLE_BACK_TO_RIGHT_PREFIX;
 
     CCDictionary* pGunDict = getGunFromDict();
     if (NULL != pGunDict )
@@ -79,12 +81,9 @@ bool CRole::init(CCDictionary* pObjectDict)
 
 void CRole::addComponentsForStates()
 {
-    if (getNameFromDict()->compare("Unit0") == 0)
-    {
-        CMoveOnGridComp* moveComp = CMoveOnGridComp::create();
-        addComponent(moveComp);
-        addComponentForState(ROLE_STATE_MOVE, moveComp->getName());
-    }
+    CMoveOnGridComp* moveComp = CMoveOnGridComp::create();
+    addComponent(moveComp);
+    addComponentForState(ROLE_STATE_MOVE, moveComp->getName());
 }
 
 
@@ -204,6 +203,8 @@ bool CRole::placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos)
 {
     do
     {
+        BREAK_IF(!BKG_MANAGER->isRoleCanBePlacedOnPos(this, gridPos));
+        
         BKG_MANAGER->removeRoleFromGrid(this);
         BKG_MANAGER->addRoleToGrid(gridPos, this);
         
@@ -214,15 +215,29 @@ bool CRole::placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos)
         {
             m_moveTarget = gridPos;
         }
-        CCPoint pt = BKG_MANAGER->gridToPoint(gridPos);
+        CCPoint pt = BKG_MANAGER->gridToWorldPoint(gridPos);
+
         setSpritePosition(pt);
-        setSpriteZOrder(getZ());
+
         return true;
     } while (false);
     
     return false;
 }
 
+
+
+void CRole::updateVertexZ()
+{
+    CCTMXTiledMap* map = BKG_MANAGER->getTiledMap();
+    const CCSize& szMap = map->getMapSize();
+    float lowestZ = -(szMap.width + szMap.height);
+    
+    const CCPoint& tilePos = getLogicGrid()->getGridPos();
+    float currentZ = tilePos.x + tilePos.y;
+    
+    setSpriteVertexZ(lowestZ + currentZ - 1);
+}
 
 
 

@@ -27,9 +27,9 @@ public:
 
     virtual void update(float dt);
 protected:
-    virtual void touchBegan(CCPoint position);
-    virtual void touchMoved(CCPoint position);
-    virtual void touchEnded(CCPoint position);
+    virtual void touchesBegan(CCSet* touches, CCEvent* event);
+    virtual void touchesMoved(CCSet* touches, CCEvent* event);
+    virtual void touchesEnded(CCSet* touches, CCEvent* event);
     
     virtual void onFrameSel(const string& unitName);
     virtual void onSave(class CFormation* fmt);
@@ -43,6 +43,9 @@ private:
     class CRole* m_curSelRole;
     
     CCPoint m_curSelGrid;
+    
+    CCPoint m_tapStartPoint;
+    float m_lastLength;
 };
 
 

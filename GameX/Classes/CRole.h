@@ -15,8 +15,10 @@
 #include "CGunBase.h"
 #include "CBackgroundManager.h"
 
-#define ROLE_FACE_TO_LEFT_PREFIX    "FL_"
-#define ROLE_FACE_TO_RIGHT_PREFIX    "FR_"
+#define ROLE_FACE_TO_LEFT_PREFIX        "FL_"
+#define ROLE_FACE_TO_RIGHT_PREFIX       "FR_"
+#define ROLE_BACK_TO_LEFT_PREFIX        "BL_"
+#define ROLE_BACK_TO_RIGHT_PREFIX       "BR_"
 
 #define ROLE_ANIMATION_IDLE         "Idle"
 #define ROLE_ANIMATION_MOVE         "Move"
@@ -32,8 +34,10 @@ USING_NS_CC;
 
 enum FACE_TO
 {
-    FACE_TO_LEFT,
-    FACE_TO_RIGHT,
+    FACE_TO_LEFT_DOWN,
+    FACE_TO_RIGHT_DOWN,
+    FACE_TO_LEFT_UP,
+    FACE_TO_RIGHT_UP,
     FACE_TO_MAX,
 };
 
@@ -70,6 +74,7 @@ public:
     virtual CCPoint getShootDirection();
     
     virtual bool placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos = true);
+    virtual void updateVertexZ();
     
     virtual bool playAnimation(const string& name);
     

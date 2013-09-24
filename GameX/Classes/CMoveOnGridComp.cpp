@@ -60,27 +60,41 @@ void CMoveOnGridComp::update(float dt)
                 const CCPoint& pos = m_paths.back();           
                 if (BKG_MANAGER->isRoleCanBePlacedOnPos(m_ownerRole, pos))
                 {
+                    
                     CLogicGrid* pGrid = m_ownerRole->getLogicGrid();
                     const CCPoint& curPos = pGrid->getGridPos();
-                    CCPoint diff = pos - curPos;
-                    CC_ASSERT(fabs(diff.x) <= 1 && fabs(diff.y) <= 1 && !curPos.equals(pos));
-                    
-                    if (diff.x > 0)
-                    {
-                        m_ownerRole->setFaceTo(FACE_TO_RIGHT);
-                    }
-                    else if (diff.x < 0)
-                    {
-                        m_ownerRole->setFaceTo(FACE_TO_LEFT);
-                    }
-                    m_ownerRole->playAnimation(ROLE_ANIMATION_MOVE);
-                    m_ownerRole->lockState();
-                    
+
                     float speed = 3.f;
                     m_moveTotalTime = pos.getDistance(curPos) / speed;
                     m_moveElapseTime = 0.f;
-                    m_moveFrom = BKG_MANAGER->gridToPoint(curPos);
-                    m_moveTo = BKG_MANAGER->gridToPoint(pos);
+                    m_moveFrom = BKG_MANAGER->gridToWorldPoint(curPos);
+                    m_moveTo = BKG_MANAGER->gridToWorldPoint(pos);
+                    
+                    CCPoint diff = m_moveTo - m_moveFrom;
+                    if (diff.x > 0)
+                    {
+                        if (diff.y > 0)
+                        {
+                            m_ownerRole->setFaceTo(FACE_TO_RIGHT_UP);
+                        }
+                        else
+                        {
+                            m_ownerRole->setFaceTo(FACE_TO_RIGHT_DOWN);
+                        }
+                    }
+                    else if (diff.x < 0)
+                    {
+                        if (diff.y > 0)
+                        {
+                            m_ownerRole->setFaceTo(FACE_TO_LEFT_UP);
+                        }
+                        else
+                        {
+                            m_ownerRole->setFaceTo(FACE_TO_LEFT_DOWN);
+                        }
+                    }
+                    m_ownerRole->playAnimation(ROLE_ANIMATION_MOVE);
+                    m_ownerRole->lockState();
                     
                     m_subState = SUB_STATE_MOVING;
                 }

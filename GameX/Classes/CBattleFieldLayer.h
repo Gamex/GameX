@@ -29,11 +29,9 @@ public:
     virtual bool init();
     void update(float dt);
 
-    virtual void touchBegan(CCPoint position);
-    virtual void touchMoved(CCPoint position);
-    virtual void touchEnded(CCPoint position);
-//	virtual void gbTapGesture(CCPoint position);
-
+    virtual void touchesBegan(CCSet* touches, CCEvent* event);
+    virtual void touchesMoved(CCSet* touches, CCEvent* event);
+    virtual void touchesEnded(CCSet* touches, CCEvent* event);
 protected:
 
     void initListener();
@@ -43,10 +41,10 @@ protected:
     bool loadConfig();
     bool loadFormation();
 private:
-    float wipeY_;
-    bool m_isGameOver;
-    
-    CRole* m_hero;
+    bool m_bMapMoved;
+    CCPoint m_tapStartPoint;
+    float m_lastLength;
+    CRole* m_curSelRole;
 };
 
 //#define BATTLE_FIELD_LAYER (CBattleFieldLayer::getInstance())

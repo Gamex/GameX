@@ -327,6 +327,22 @@ void CVisibleObject::setSpriteAnchorPoint(const CCPoint& point)
 
 
 
+void CVisibleObject::setSpriteVertexZ(float z)
+{
+    CC_ASSERT(getInnerSprite());
+    getInnerSprite()->setVertexZ(z);
+}
+
+
+
+float CVisibleObject::getSpriteVertexZ() const
+{
+    CC_ASSERT(getInnerSprite());
+    return getInnerSprite()->getVertexZ();
+}
+
+
+
 bool CVisibleObject::attachSpriteTo(CCNode* parent, int zOrder, int tag)
 {
     if (parent == NULL)

@@ -43,6 +43,9 @@ public:
     virtual bool runSpriteAction(CCAction* action);
     virtual void setSpriteAnchorPoint(const CCPoint& point);
     virtual void stopSpriteAllActions();
+    
+    virtual void setSpriteVertexZ(float z);
+    virtual float getSpriteVertexZ() const;
 
     virtual int getCollisionGroup();
     

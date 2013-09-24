@@ -24,9 +24,9 @@
 
 
 CBattleFieldLayer::CBattleFieldLayer()
-: m_isGameOver(false)
-, m_pGamePanelLayer(NULL)
-, m_hero(NULL)
+: m_pGamePanelLayer(NULL)
+, m_curSelRole(NULL)
+, m_bMapMoved(false)
 {
 }
 
@@ -45,22 +45,22 @@ CBattleFieldLayer::~CBattleFieldLayer()
 bool CBattleFieldLayer::init()
 {
     CTouchesLayer::init();
-
-    m_isGameOver = false;
     
     setTouchEnabled(true);
+    setTouchMode(kCCTouchesAllAtOnce);
     
     initListener();
     
     loadConfig();
     
     BKG_MANAGER->attachBackgroundTo(this);
+    
 //    setGamePanelLayer(CGamePanelLayer::create());
 //    addChild(m_pGamePanelLayer, Z_ORDER_GAME_PANEL);
 
-//    BATCH_NODE_MANAGER->attachToParent(this, 10);
+//    BATCH_NODE_MANAGER->attachToParent(BKG_MANAGER->getTiledMap(), 0);
 
-//    loadFormation();
+    loadFormation();
     
     scheduleUpdate();
  
@@ -72,11 +72,6 @@ bool CBattleFieldLayer::init()
 void CBattleFieldLayer::update(float dt)
 {
     GAME_TIME->update(dt);
-    
-    if (m_isGameOver)
-    {
-        return;
-    }
         
     CCArray* children = getChildren();
     CCObject* obj;
@@ -93,32 +88,150 @@ void CBattleFieldLayer::update(float dt)
 }
 
 
-void CBattleFieldLayer::touchBegan(CCPoint position)
+void CBattleFieldLayer::touchesBegan(CCSet* touches, CCEvent* event)
 {
-    if (m_hero)
+    switch (touches->count())
     {
-        CCPoint gridPt = BKG_MANAGER->pointToGrid(position);
-        m_hero->setMoveTarget(gridPt);
+        case 1:
+        {
+            CCArray* tch = allTouchesSet(touches);
+            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
+            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
+            m_tapStartPoint = this->convertToNodeSpace(point1);
+            break;
+        }
+        case 2:
+        {
+            
+            CCArray* tch = allTouchesSet(touches);
+            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
+            CCTouch* t2 = (CCTouch*)tch->objectAtIndex(1);
+            
+            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
+            CCPoint location1 = this->convertToNodeSpace(point1);
+            
+            CCPoint point2 = CCDirector::sharedDirector()->convertToUI(t2->getLocationInView());
+            CCPoint location2 = this->convertToNodeSpace(point2);
+            
+            m_lastLength = (location2 - location1).getLengthSq();
+            
+            break;
+        }
+    }
+
+}
+
+
+
+void CBattleFieldLayer::touchesMoved(CCSet* touches, CCEvent* event)
+{
+    switch (touches->count())
+    {
+        case 1:
+        {
+            CCArray* tch = allTouchesSet(touches);
+            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
+            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
+            CCPoint location1 = this->convertToNodeSpace(point1);
+            
+            CCPoint offset = location1 - m_tapStartPoint;
+            BKG_MANAGER->moveMap(offset);
+                
+            m_tapStartPoint = location1;
+            
+            m_bMapMoved = true;
+            break;
+        }
+        case 2:
+        {
+            CCArray* tch = allTouchesSet(touches);
+            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
+            CCTouch* t2 = (CCTouch*)tch->objectAtIndex(1);
+            
+            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
+            CCPoint location1 = this->convertToNodeSpace(point1);
+            
+            CCPoint point2 = CCDirector::sharedDirector()->convertToUI(t2->getLocationInView());
+            CCPoint location2 = this->convertToNodeSpace(point2);
+            
+            float len = (location2 - location1).getLengthSq();
+            
+            if (len > m_lastLength)
+            {
+                // zoom out
+                BKG_MANAGER->addMapScale(0.05);
+            }
+            else if (len < m_lastLength)
+            {
+                // zoom in
+                BKG_MANAGER->addMapScale(-0.05);
+            }
+            
+            m_lastLength = len;
+            break;
+        }
+        default:
+            break;
+    }
+
+}
+
+
+
+void CBattleFieldLayer::touchesEnded(CCSet* touches, CCEvent* event)
+{
+    switch (touches->count())
+    {
+        case 1:
+        {
+            if (m_bMapMoved)
+            {
+                m_bMapMoved = false;
+            }
+            else
+            {
+                CCArray* tch = allTouchesSet(touches);
+                CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
+                CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
+                CCPoint location1 = this->convertToNodeSpace(point1);
+
+                CCPoint gp = BKG_MANAGER->screenPointToGrid(location1);
+                
+                if (m_curSelRole == NULL)
+                {
+                    CLogicGrid* grid = BKG_MANAGER->getLogicGrid(gp);
+                    m_curSelRole = dynamic_cast<CRole*>(grid->getUnit());
+                    if (m_curSelRole)
+                    {
+                        BKG_MANAGER->hightlightGrid(grid->getGridPos());
+                        m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
+                    }
+                }
+                else    // move it
+                {
+                    m_curSelRole->setMoveTarget(gp);
+                    m_curSelRole = NULL;
+                }
+//            CLogicGrid* grid = BKG_MANAGER->getGridFromWorldPt(location1);
+            }
+            break;
+        }
+        case 2:
+        {
+            CCArray* tch = allTouchesSet(touches);
+            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
+            CCTouch* t2 = (CCTouch*)tch->objectAtIndex(1);
+            
+            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
+            CCPoint location1 = this->convertToNodeSpace(point1);
+            
+            CCPoint point2 = CCDirector::sharedDirector()->convertToUI(t2->getLocationInView());
+            CCPoint location2 = this->convertToNodeSpace(point2);
+            
+            break;
+        }
     }
 }
-
-
-
-void CBattleFieldLayer::touchMoved(CCPoint position)
-{
-}
-
-
-
-void CBattleFieldLayer::touchEnded(CCPoint position)
-{
-}
-
-
-//void CBattleFieldLayer::gbTapGesture(CCPoint position)
-//{
-//    m_pBaseGun->setAimPoint(position);
-//}
 
 
 void CBattleFieldLayer::initListener()
@@ -137,7 +250,6 @@ void CBattleFieldLayer::removeAllListener()
 
 void CBattleFieldLayer::onGameOver(CCObject* obj)
 {
-    m_isGameOver = true;
     removeAllListener();
 }
 
@@ -172,12 +284,8 @@ bool CBattleFieldLayer::loadFormation()
         role->setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
         role->setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
         role->placeOnGridPos(fe->pos);
-        role->attachSpriteTo(NULL, role->getZ());
+        role->attachSpriteTo();
 
-        if (role->getNameFromDict()->compare("Unit0") == 0)
-        {
-            m_hero = role;
-        }
         addChild(role);
     }
     
