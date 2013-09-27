@@ -54,6 +54,7 @@ class CLogicGrid
     
     CC_SYNTHESIZE_READONLY(CCPoint, m_gridPos, GridPos);
     CC_SYNTHESIZE_READONLY(IGridRole*, m_unit, Unit);
+    CC_SYNTHESIZE(bool, m_isPrimary, IsPrimary);
 public:
     CLogicGrid(int x, int y);
     CLogicGrid(const CLogicGrid& obj);
@@ -68,10 +69,13 @@ private:
 
 
 
-class CBackgroundManager : public CSingleton<CBackgroundManager>
+class CBackgroundManager
+: public CSingleton<CBackgroundManager>
+, public CCLayer
 {
     CC_SYNTHESIZE_READONLY(CCTMXTiledMap*, m_tiledMap, TiledMap);
-    CC_SYNTHESIZE_READONLY(CCTMXLayer*, m_groundLayer, GroundLayer)
+    CC_SYNTHESIZE_READONLY(CCTMXLayer*, m_groundLayer, GroundLayer);
+    CC_SYNTHESIZE_READONLY(CCTMXLayer*, m_objectLayer, ObjectLayer);
     CC_SYNTHESIZE(float, m_mapScaleThresholdMax, MapScaleThresholdMax);
     CC_SYNTHESIZE(float, m_mapScaleThresholdMin, MapScaleThresholdMin);
 public:
@@ -105,7 +109,7 @@ public:
     virtual void clearAllUnits();
     
     virtual void scaleMap(float s);
-    virtual float getMapScale() const;
+    virtual float getMapScale();
     virtual void addMapScale(float scaleDelta);
 
     virtual void moveMap(const CCPoint& offset);

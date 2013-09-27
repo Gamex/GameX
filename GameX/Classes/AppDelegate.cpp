@@ -20,7 +20,6 @@
 #include "CDataCenterManager.h"
 #include "CBackgroundManager.h"
 #include "CGameSceneManager.h"
-
 #include <time.h>
 
 #include <vector>
@@ -69,9 +68,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 
         BREAK_IF_FAILED(PATH_MANAGER->initialize());
         
-        BREAK_IF_FAILED(BATCH_NODE_MANAGER->initialize());
         
-        BREAK_IF_FAILED(BKG_MANAGER->initialize());
+        
+        
         
         BREAK_IF_FAILED(SCENE_MANAGER->initialize());
         

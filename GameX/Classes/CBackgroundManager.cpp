@@ -20,6 +20,7 @@
 
 #define TILE_MAP_NAME           "background.tmx"
 #define GROUND_LAYER_NAME       "ground"
+#define OBJECT_LAYER_NAME       "object"
 
 
 
@@ -44,8 +45,7 @@ CBackgroundManager::~CBackgroundManager()
 
 void CBackgroundManager::attachBackgroundTo(CCNode* parent)
 {
-    CC_ASSERT(m_tiledMap && parent);
-    parent->addChild(m_tiledMap);
+    parent->addChild(this);
 }
 
 
@@ -57,11 +57,13 @@ bool CBackgroundManager::initialize()
         m_tiledMap = CCTMXTiledMap::create(TILE_MAP_NAME);
         BREAK_IF_FAILED(m_tiledMap);
         CC_SAFE_RETAIN(m_tiledMap);
+
         CCSize sz = m_tiledMap->getContentSize();
-        m_tiledMap->setPosition(-(CCPoint(sz) / 2));
-        m_origMapPos = m_tiledMap->getPosition();
+        setPosition(-(CCPoint(sz) / 2));
+        m_origMapPos = getPosition();
 
         m_groundLayer = m_tiledMap->layerNamed(GROUND_LAYER_NAME);
+        m_objectLayer = m_tiledMap->layerNamed(OBJECT_LAYER_NAME);
         
         CCSize layerSz = m_groundLayer->getLayerSize();
         
@@ -76,6 +78,7 @@ bool CBackgroundManager::initialize()
             }
         }
 
+        addChild(m_tiledMap, -1);
         return true;
     } while (false);
     
@@ -114,14 +117,14 @@ CLogicGrid* CBackgroundManager::getGridFromWorldPt(const CCPoint& pt)
 
 CCPoint CBackgroundManager::worldPointToScreen(const CCPoint& pt)
 {
-    return pt + m_tiledMap->getPosition();
+    return pt + getPosition();
 }
 
 
 
 CCPoint CBackgroundManager::screenPointToWorld(const CCPoint& pt)
 {
-    return pt - m_tiledMap->getPosition();
+    return pt - getPosition();
 }
 
 
@@ -144,7 +147,7 @@ CCPoint CBackgroundManager::screenPointToGrid(const CCPoint& pt)
 
 CCPoint CBackgroundManager::worldPointToGrid(const CCPoint& pt)
 {
-    float scale = m_tiledMap->getScale();
+    float scale = getScale();
     CCPoint pos = pt;
     const CCSize& mapSize = m_tiledMap->getMapSize();
     float halfMapWidth =  mapSize.width * 0.5f;
@@ -315,10 +318,12 @@ void CBackgroundManager::addRoleToGrid(const CCPoint& gridPos, IGridRole* role)
                 {
                     CC_ASSERT(g->m_unit == NULL);
                     g->m_unit = role;
+                    g->m_isPrimary = false;
                 }
             }
         }
         
+        lgrid->m_isPrimary = true;
         role->setLogicGrid(lgrid);
         role->updateVertexZ();
     }
@@ -422,19 +427,19 @@ void CBackgroundManager::scaleMap(float s)
     {
         s = m_mapScaleThresholdMax;
     }
-    m_tiledMap->setScale(s);
+    setScale(s);
     CCPoint center = CCDirector::sharedDirector()->getWinSize() / 2;
 
     CCPoint offset = (center - m_origMapPos) * (1 - s);
 
-    m_tiledMap->setPosition(m_origMapPos + offset);
+    setPosition(m_origMapPos + offset);
 }
 
 
 
-float CBackgroundManager::getMapScale() const
+float CBackgroundManager::getMapScale()
 {
-	return m_tiledMap->getScale();
+	return getScale();
 }
 
 
@@ -448,11 +453,10 @@ void CBackgroundManager::addMapScale(float scaleDelta)
 
 void CBackgroundManager::moveMap(const CCPoint& offset)
 {
-    CCPoint pt = m_tiledMap->getPosition() + offset;
+    CCPoint pt = getPosition() + offset;
     m_origMapPos = m_origMapPos + offset;
     
-    m_tiledMap->setPosition(pt);
-    
+    setPosition(pt);
 }
 
 

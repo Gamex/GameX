@@ -155,7 +155,7 @@
 		<key>CateName</key>
 		<string>CWarriorRole</string>
 		<key>BatchNodeName</key>
-		<string>bn_actor</string>
+		<string>bn_unit1</string>
 		<key>FileType</key>
 		<string>ccbi</string>
 		<key>CollisionGroup</key>
@@ -180,7 +180,7 @@
 		<key>FileName</key>
 		<string>unit2</string>
 	</dict>
-		<key>Unit3</key>
+	<key>Unit3</key>
 	<dict>
 		<key>CateName</key>
 		<string>CWarriorRole</string>
@@ -315,6 +315,5 @@
 		<key>FileName</key>
 		<string>unit11</string>
 	</dict>
-
 </dict>
 </plist>

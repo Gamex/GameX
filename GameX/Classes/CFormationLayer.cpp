@@ -39,6 +39,17 @@ bool CFormationLayer::init()
     {
         setTouchEnabled(true);
         setTouchMode(kCCTouchesAllAtOnce);
+        CCDirector::sharedDirector()->setDepthTest(true);
+        
+        CCBReader* pReader = new CCBReader(CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary());
+        m_panel = dynamic_cast<CFormationPanelLayer*>(pReader->readNodeGraphFromFile("formation_layer.ccbi"));
+        delete pReader;
+        
+        m_panel->setDelegate(this);
+        addChild(m_panel, Z_ORDER_PANEL);
+
+        BREAK_IF_FAILED(BATCH_NODE_MANAGER->initialize());
+        BREAK_IF_FAILED(BKG_MANAGER->initialize());
         
         m_roleNode = CCNode::create();
         addChild(m_roleNode);
@@ -47,14 +58,8 @@ bool CFormationLayer::init()
         m_curSelGrid.y = -1;
         
         BKG_MANAGER->attachBackgroundTo(this);
-        BATCH_NODE_MANAGER->attachToParent(BKG_MANAGER->getTiledMap(), 0);
+        BATCH_NODE_MANAGER->attachToParent(BKG_MANAGER, 0);
         
-        CCBReader* pReader = new CCBReader(CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary());
-        m_panel = dynamic_cast<CFormationPanelLayer*>(pReader->readNodeGraphFromFile("formation_layer.ccbi"));
-        delete pReader;
-        
-        m_panel->setDelegate(this);
-        addChild(m_panel, Z_ORDER_PANEL);
         
         this->scheduleUpdate();
 
@@ -289,7 +294,7 @@ void CFormationLayer::onSave(CFormation* fmt)
             pos.y = y;
             CLogicGrid* grid = bkg->getLogicGrid(pos);
             CRole* role = dynamic_cast<CRole*>(grid->getUnit());
-            if (role)
+            if (role && grid->getIsPrimary())
             {
                 CFormationElement* fe = new CFormationElement;
                 fe->pos = pos;

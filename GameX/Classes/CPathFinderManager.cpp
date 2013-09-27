@@ -164,10 +164,10 @@ void CPathFinderManager::_FinderTask::findSurround(CPathFinderManager::_PathNode
     checkF(CCPoint(p.x    , p.y - 1 ), G + 10, parent);   // Down
     checkF(CCPoint(p.x + 1, p.y     ), G + 10, parent);   // Right
     checkF(CCPoint(p.x    , p.y + 1 ), G + 10, parent);   // Up
-//    checkF(CCPoint(p.x + 1, p.y + 1 ), G + 14, parent);   // Right up
-//    checkF(CCPoint(p.x - 1, p.y + 1 ), G + 14, parent);   // Left up
-//    checkF(CCPoint(p.x - 1, p.y - 1 ), G + 14, parent);   // Left down
-//    checkF(CCPoint(p.x + 1, p.y - 1 ), G + 14, parent);   // Right down
+    checkF(CCPoint(p.x + 1, p.y + 1 ), G + 14, parent);   // Right up
+    checkF(CCPoint(p.x - 1, p.y + 1 ), G + 14, parent);   // Left up
+    checkF(CCPoint(p.x - 1, p.y - 1 ), G + 14, parent);   // Left down
+    checkF(CCPoint(p.x + 1, p.y - 1 ), G + 14, parent);   // Right down
 }
 
 

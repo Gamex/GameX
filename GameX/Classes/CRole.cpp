@@ -73,7 +73,8 @@ bool CRole::init(CCDictionary* pObjectDict)
             return false;
         }
     }
-    
+
+    enableAlphaTest(0.5);
 	return true;
 }
 
@@ -204,13 +205,7 @@ bool CRole::placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos)
     do
     {
         BREAK_IF(!BKG_MANAGER->isRoleCanBePlacedOnPos(this, gridPos));
-        
-        BKG_MANAGER->removeRoleFromGrid(this);
-        BKG_MANAGER->addRoleToGrid(gridPos, this);
-        
-        CLogicGrid* grid = getLogicGrid();
-        CC_ASSERT(grid);
-        const CCPoint& gridPos = grid->getGridPos();
+
         if (syncTargetPos)
         {
             m_moveTarget = gridPos;
@@ -219,6 +214,8 @@ bool CRole::placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos)
 
         setSpritePosition(pt);
 
+        BKG_MANAGER->removeRoleFromGrid(this);
+        BKG_MANAGER->addRoleToGrid(gridPos, this);
         return true;
     } while (false);
     
@@ -226,18 +223,24 @@ bool CRole::placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos)
 }
 
 
-
 void CRole::updateVertexZ()
 {
-    CCTMXTiledMap* map = BKG_MANAGER->getTiledMap();
-    const CCSize& szMap = map->getMapSize();
-    float lowestZ = -(szMap.width + szMap.height);
-    
-    const CCPoint& tilePos = getLogicGrid()->getGridPos();
-    float currentZ = tilePos.x + tilePos.y;
-    
-    setSpriteVertexZ(lowestZ + currentZ - 1);
+    do
+    {
+        CCTMXTiledMap* map = BKG_MANAGER->getTiledMap();
+        BREAK_IF(NULL == map);
+        const CCSize& szMap = map->getMapSize();
+        float lowestZ = -(szMap.width + szMap.height);
+
+        const CCPoint& tilePos = getLogicGrid()->getGridPos();
+        float currentZ = tilePos.x + tilePos.y;
+        
+        
+        setSpriteVertexZ(lowestZ + currentZ - 1);
+        
+    } while (false);
 }
+
 
 
 
@@ -271,5 +274,17 @@ bool CRole::playAnimation(const string& name)
 }
 
 
+
+bool CRole::attachSpriteTo(CCNode* parent, int zOrder, int tag)
+{
+    do
+    {
+        BREAK_IF(!CSpriteObject::attachSpriteTo(parent, zOrder, tag));
+        updateVertexZ();
+        
+        return true;
+    } while (false);
+	return false;
+}
 
 

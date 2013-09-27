@@ -19,7 +19,8 @@ public:
     virtual ~CVisibleObject();
     
     virtual bool init(CCDictionary* pObjectDict); 
-    
+
+    virtual void enableAlphaTest(float value);
     virtual CCRect getSpriteBoundingBox() const;
     virtual CCRect getSpriteBoundingBoxInWorldSpace();
     virtual CCPoint getSpritePositionInWorldSpace();
@@ -73,6 +74,9 @@ public:
 protected:
     CVisibleObject();
     void clearThis();
+    
+    virtual void _setSpriteVertexZ_R(CCNode* node, float z);
+    virtual void _enableAlphaTestR(CCNode* node, float value);
     
     virtual void updateBoundingBoxInWorldSpace();
     virtual void onSensor(CCObject* obj);

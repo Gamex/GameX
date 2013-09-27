@@ -59,6 +59,7 @@ public:
     
     virtual bool init(CCDictionary* pObjectDict);
     virtual bool changeState(int state);
+    virtual bool attachSpriteTo(CCNode* parent = NULL, int zOrder=0, int tag=-1);
     
     virtual void die();
 

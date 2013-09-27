@@ -330,7 +330,31 @@ void CVisibleObject::setSpriteAnchorPoint(const CCPoint& point)
 void CVisibleObject::setSpriteVertexZ(float z)
 {
     CC_ASSERT(getInnerSprite());
-    getInnerSprite()->setVertexZ(z);
+    _setSpriteVertexZ_R(getInnerSprite(), z);
+}
+
+
+
+void CVisibleObject::_setSpriteVertexZ_R(CCNode* node, float z)
+{
+    CCSprite* spr = (CCSprite*)node;
+    if (spr->getAtlasIndex() != CCSpriteIndexNotInitialized)
+    {
+        spr->setVertexZ(z);
+        spr->setDirty(true);
+        spr->updateTransform();
+        CCArray* children = node->getChildren();
+        CCObject* obj;
+        CCARRAY_FOREACH(children, obj)
+        {
+            CC_ASSERT(obj);
+            _setSpriteVertexZ_R((CCNode*)obj, z);
+        }
+    }
+    else
+    {
+        node->setVertexZ(z);
+    }
 }
 
 
@@ -516,4 +540,36 @@ bool CVisibleObject::getSpriteFlipY()
 {
     CC_ASSERT(false);
 }
+
+
+void CVisibleObject::_enableAlphaTestR(CCNode* node, float value)
+{
+    CCGLProgram* program = CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColorAlphaTest);
+    node->setShaderProgram(program);
+        program->use();
+    
+    GLint alphaValueLocation = glGetUniformLocation(program->getProgram(), kCCUniformAlphaTestValue);
+    
+    // NOTE: alpha test shader is hard-coded to use the equivalent of a glAlphaFunc(GL_GREATER) comparison
+    program->setUniformLocationWith1f(alphaValueLocation, value);
+
+
+    CCArray* children = node->getChildren();
+    CCObject* obj;
+    CCARRAY_FOREACH(children, obj)
+    {
+        _enableAlphaTestR((CCNode*)obj, value);
+    }
+}
+
+
+
+void CVisibleObject::enableAlphaTest(float value)
+{
+    _enableAlphaTestR(getInnerSprite(), value);
+}
+
+
+
+
 

@@ -90,6 +90,14 @@ bool CBatchNodeManager::loadBatchNodeInitData()
             
             m_pBatchNodes[name] = sbn;
             
+            CCGLProgram* program = CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColorAlphaTest);
+            sbn->setShaderProgram(program);
+            
+            GLint alphaValueLocation = glGetUniformLocation(program->getProgram(), kCCUniformAlphaTestValue);
+            
+            // NOTE: alpha test shader is hard-coded to use the equivalent of a glAlphaFunc(GL_GREATER) comparison
+            program->setUniformLocationWith1f(alphaValueLocation, 0.5);
+            
             m_pBatchNodeHolder->addChild(sbn, z);
         }
         
