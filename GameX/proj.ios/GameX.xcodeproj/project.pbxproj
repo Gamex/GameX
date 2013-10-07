@@ -86,6 +86,7 @@
 		54607B821760D96400108571 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B811760D96400108571 /* Foundation.framework */; };
 		54607B841760D96400108571 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B831760D96400108571 /* CoreGraphics.framework */; };
 		547E835517F1BE4E001298EF /* object.png in Resources */ = {isa = PBXBuildFile; fileRef = 547E835417F1BE4E001298EF /* object.png */; };
+		5497E8A11800492100544B86 /* CBkgLayerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5497E89F1800492100544B86 /* CBkgLayerBase.cpp */; };
 		54D0CC3F17DC68DD0022A1E9 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54DFBAA017DB6F8C00B006F3 /* libcocos2dx.a */; };
 		54D0CC4017DC68DD0022A1E9 /* libCocosDenshion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 543EE12917DB82520096D97E /* libCocosDenshion.a */; };
 		54D0CC4317DC6D260022A1E9 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D0CC4117DC6D250022A1E9 /* libcurl.a */; };
@@ -344,6 +345,8 @@
 		54607B831760D96400108571 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		54607E101760D96800108571 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = ../Prefix.pch; sourceTree = "<group>"; };
 		547E835417F1BE4E001298EF /* object.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = object.png; path = ../Resources/object.png; sourceTree = "<group>"; };
+		5497E89F1800492100544B86 /* CBkgLayerBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBkgLayerBase.cpp; path = ../../Classes/CBkgLayerBase.cpp; sourceTree = "<group>"; };
+		5497E8A01800492100544B86 /* CBkgLayerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBkgLayerBase.h; path = ../../Classes/CBkgLayerBase.h; sourceTree = "<group>"; };
 		5499CACA17DB6E4B00A8E388 /* cocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2dx.xcodeproj; path = ../../cocos2dx/proj.ios/cocos2dx.xcodeproj; sourceTree = "<group>"; };
 		54D0CC4117DC6D250022A1E9 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		54D0CC4217DC6D260022A1E9 /* libwebp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebp.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libwebp.a; sourceTree = "<group>"; };
@@ -968,6 +971,8 @@
 				54DFBE2117DB747800B006F3 /* CBattleFieldLayer.h */,
 				54DFBE1A17DB747800B006F3 /* CBaseLayer.cpp */,
 				54DFBE1B17DB747800B006F3 /* CBaseLayer.h */,
+				5497E89F1800492100544B86 /* CBkgLayerBase.cpp */,
+				5497E8A01800492100544B86 /* CBkgLayerBase.h */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -1258,6 +1263,7 @@
 				543EE21917DB841B0096D97E /* CCComController.cpp in Sources */,
 				543EE21A17DB841B0096D97E /* CCInputDelegate.cpp in Sources */,
 				5411742E17E5B5750082E53C /* CMoveOnGridComp.cpp in Sources */,
+				5497E8A11800492100544B86 /* CBkgLayerBase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,12 +13,15 @@
 #include "CSingleton.h"
 #include "CBackgroundManager.h"
 #include "CGamePanelLayer.h"
+#include "CBkgLayerBase.h"
 
 USING_NS_CC;
 using namespace std;
 
 
-class CBattleFieldLayer : public CTouchesLayer
+class CBattleFieldLayer
+: public CTouchesLayer
+, public CBkgLayerBase
 {
     CC_SYNTHESIZE_RETAIN(CGamePanelLayer*, m_pGamePanelLayer, GamePanelLayer);
 public:
@@ -42,8 +45,6 @@ protected:
     bool loadFormation();
 private:
     bool m_bMapMoved;
-    CCPoint m_tapStartPoint;
-    float m_lastLength;
     CRole* m_curSelRole;
 };
 

@@ -68,7 +68,7 @@ public:
     virtual void swipeGesture(GBTouchDirection direction, float distance, float speed);
     
 protected:
-    CCArray* allTouchesSet(CCSet* touches);
+
 private:
     
     void tapHandler(CCObject* caller);

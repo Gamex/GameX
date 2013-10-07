@@ -10,7 +10,6 @@
 #define __GameX__CPathFinderManager__
 
 #include "cocos2d.h"
-#include "CSingleton.h"
 #include "CBackgroundManager.h"
 #include "CMemPool.h"
 #include <queue>
@@ -21,17 +20,23 @@ USING_NS_CC;
 using namespace std;
 
 
+
 class IPathFinderDelegate
 {
 public:
     virtual void onPathReady(const vector<CCPoint>& path) = 0;
 };
 
-class CPathFinderManager : public CSingleton<CPathFinderManager>
+class CPathFinderManager
 {
 public:
     CPathFinderManager();
     virtual ~CPathFinderManager();
+    
+    virtual void setBkg(CBackgroundManager* bkg)
+    {
+        m_bkg = bkg;
+    }
 
     virtual void update(float dt);
     
@@ -113,6 +118,7 @@ protected:
         CCPoint target;
         IGridRole* role;
         IPathFinderDelegate* delegate;
+        CBackgroundManager* m_bkg;
         
         void doFind();
     protected:
@@ -127,10 +133,9 @@ protected:
     
     QFT m_finderTaskQueue;
 private:
-
+    CBackgroundManager* m_bkg;
 };
 
 
-#define PATH_FINDER     (CPathFinderManager::getInstance())
 
 #endif /* defined(__GameX__CPathFinderManager__) */

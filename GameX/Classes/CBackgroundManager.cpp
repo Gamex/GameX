@@ -11,6 +11,7 @@
 #include "CBatchNodeManager.h"
 #include "CSpriteObject.h"
 #include "CRole.h"
+#include "CPathFinderManager.h"
 
 #define BKG_BATCH_NODE_NAME     "bn_scene"
 
@@ -24,11 +25,10 @@
 
 
 
-IMPLEMENT_SINGLETON(CBackgroundManager);
-
 
 CBackgroundManager::CBackgroundManager()
 : m_tiledMap(NULL)
+, m_pathFinder(NULL)
 , m_mapScaleThresholdMax(2.f)
 , m_mapScaleThresholdMin(.5)
 {
@@ -40,6 +40,7 @@ CBackgroundManager::CBackgroundManager()
 CBackgroundManager::~CBackgroundManager()
 {
     CC_SAFE_RELEASE(m_tiledMap);
+    CC_SAFE_DELETE(m_pathFinder);
 }
 
 
@@ -49,22 +50,46 @@ void CBackgroundManager::attachBackgroundTo(CCNode* parent)
 }
 
 
+void CBackgroundManager::centerTileMapOnTileCoord(CCPoint tilePos)
+{
+    // 获取屏幕大小和屏幕中心点
+    CCSize screenSize = CCDirector::sharedDirector()->getWinSize();
+    CCPoint screenCenter(screenSize.width * 0.5f, screenSize.height * 0.5f);
 
-bool CBackgroundManager::initialize()
+    // 仅在内部使用：瓷砖的Y坐标要减去1
+    tilePos.y -= 1;
+    // 获取瓷砖坐标处以像素表示的坐标信息
+    CCPoint scrollPosition =  m_groundLayer->positionAt(tilePos);
+    // 考虑到地图移动的情况，我将像素坐标信息乘以 -1，从而得到负值
+    scrollPosition = scrollPosition * -1;
+    // 为屏幕中央坐标添加位移值
+    scrollPosition = scrollPosition + screenCenter;
+    
+    // 移动瓷砖地图
+    setPosition(scrollPosition * getScale());
+//    CCAction* move = [CCMoveTo actionWithDuration:0.2f position:scrollPosition];
+//    [tileMap stopAllActions];
+//    [tileMap runAction:move];
+}
+
+
+bool CBackgroundManager::init()
 {
     do
     {
+        BREAK_IF_FAILED(CCLayer::init());
+        
         m_tiledMap = CCTMXTiledMap::create(TILE_MAP_NAME);
         BREAK_IF_FAILED(m_tiledMap);
         CC_SAFE_RETAIN(m_tiledMap);
-
-        CCSize sz = m_tiledMap->getContentSize();
-        setPosition(-(CCPoint(sz) / 2));
-        m_origMapPos = getPosition();
-
+        
         m_groundLayer = m_tiledMap->layerNamed(GROUND_LAYER_NAME);
         m_objectLayer = m_tiledMap->layerNamed(OBJECT_LAYER_NAME);
         
+        CCPoint centerTile = m_tiledMap->getMapSize();
+        centerTile = centerTile * 0.5f;
+        centerTileMapOnTileCoord(centerTile);
+
         CCSize layerSz = m_groundLayer->getLayerSize();
         
         m_grids.clear();
@@ -79,6 +104,10 @@ bool CBackgroundManager::initialize()
         }
 
         addChild(m_tiledMap, -1);
+        
+        m_pathFinder = new CPathFinderManager;
+        m_pathFinder->setBkg(this);
+        
         return true;
     } while (false);
     
@@ -117,13 +146,15 @@ CLogicGrid* CBackgroundManager::getGridFromWorldPt(const CCPoint& pt)
 
 CCPoint CBackgroundManager::worldPointToScreen(const CCPoint& pt)
 {
-    return pt + getPosition();
+    return convertToWorldSpace(pt);
+//    return pt + getPosition();
 }
 
 
 
 CCPoint CBackgroundManager::screenPointToWorld(const CCPoint& pt)
 {
+    return convertToNodeSpace(pt);
     return pt - getPosition();
 }
 
@@ -147,12 +178,11 @@ CCPoint CBackgroundManager::screenPointToGrid(const CCPoint& pt)
 
 CCPoint CBackgroundManager::worldPointToGrid(const CCPoint& pt)
 {
-    float scale = getScale();
     CCPoint pos = pt;
     const CCSize& mapSize = m_tiledMap->getMapSize();
     float halfMapWidth =  mapSize.width * 0.5f;
     float mapHeight =  mapSize.height;
-    const CCSize& tileSize = m_tiledMap->getTileSize() * scale;
+    const CCSize& tileSize = m_tiledMap->getTileSize();
     float tileWidth = tileSize.width;
     float tileHeight = tileSize.height;
     CCPoint tilePosDiv(pos.x / tileWidth, pos.y / tileHeight);
@@ -364,7 +394,7 @@ void CBackgroundManager::removeRoleFromGrid(const CCPoint& gridPos)
                 {
                     pt.x = gridPos.x + x;
                     pt.y = gridPos.y + y;
-                    CLogicGrid* g = BKG_MANAGER->getLogicGrid(pt);
+                    CLogicGrid* g = getLogicGrid(pt);
                     if (g)
                     {
                         CC_ASSERT(g->m_unit != NULL);
@@ -417,7 +447,7 @@ bool CBackgroundManager::isGridPosInGridRange(const CCPoint& gridPos, int width,
 
 
 
-void CBackgroundManager::scaleMap(float s)
+void CBackgroundManager::scaleMap(float s, CCPoint centerTilePos)
 {
     if (s < m_mapScaleThresholdMin)
     {
@@ -427,12 +457,10 @@ void CBackgroundManager::scaleMap(float s)
     {
         s = m_mapScaleThresholdMax;
     }
+    
     setScale(s);
-    CCPoint center = CCDirector::sharedDirector()->getWinSize() / 2;
-
-    CCPoint offset = (center - m_origMapPos) * (1 - s);
-
-    setPosition(m_origMapPos + offset);
+    
+    centerTileMapOnTileCoord(centerTilePos);
 }
 
 
@@ -444,9 +472,9 @@ float CBackgroundManager::getMapScale()
 
 
 
-void CBackgroundManager::addMapScale(float scaleDelta)
+void CBackgroundManager::addMapScale(float scaleDelta, CCPoint centerTilePos)
 {
-    scaleMap(getMapScale() + scaleDelta);
+    scaleMap(getMapScale() + scaleDelta, centerTilePos);
 }
 
 
@@ -454,8 +482,7 @@ void CBackgroundManager::addMapScale(float scaleDelta)
 void CBackgroundManager::moveMap(const CCPoint& offset)
 {
     CCPoint pt = getPosition() + offset;
-    m_origMapPos = m_origMapPos + offset;
-    
+   
     setPosition(pt);
 }
 
@@ -489,6 +516,46 @@ const CCSize& CBackgroundManager::getSizeInGrid() const
 	return m_groundLayer->getLayerSize();
 }
 
+
+
+bool CBackgroundManager::placeRole(IGridRole* role, const CCPoint& gridPos)
+{
+    do
+    {
+        BREAK_IF(!isRoleCanBePlacedOnPos(role, gridPos));
+
+        role->setBackGround(this);
+        
+        CCPoint pt = gridToWorldPoint(gridPos);
+        
+        role->onPlaceOnMap(gridPos, pt);
+
+        removeRoleFromGrid(role);
+        addRoleToGrid(gridPos, role);
+
+        return true;
+    } while (false);
+    
+    return false;
+}
+
+
+
+void CBackgroundManager::findPath(const CCPoint& startPos, const CCPoint& targetPos, IGridRole* role, IPathFinderDelegate* delegate)
+{
+    CC_ASSERT(m_pathFinder);
+    m_pathFinder->findPath(startPos, targetPos, role, delegate);
+}
+
+
+
+
+void CBackgroundManager::update(float dt)
+{
+    CCLayer::update(dt);
+    
+    m_pathFinder->update(dt);
+}
 
 
 // -------------------- CLogicGrid

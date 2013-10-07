@@ -59,7 +59,7 @@ public:
     
     virtual bool init(CCDictionary* pObjectDict);
     virtual bool changeState(int state);
-    virtual bool attachSpriteTo(CCNode* parent = NULL, int zOrder=0, int tag=-1);
+    virtual bool attachSpriteTo(CCNode* parent, int zOrder = 0, int tag = -1);
     
     virtual void die();
 
@@ -74,8 +74,9 @@ public:
     
     virtual CCPoint getShootDirection();
     
-    virtual bool placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos = true);
     virtual void updateVertexZ();
+    virtual void onPlaceOnMap(const CCPoint& gridPos, const CCPoint& position);
+    virtual void findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFinderDelegate* delegate = NULL);
     
     virtual bool playAnimation(const string& name);
     

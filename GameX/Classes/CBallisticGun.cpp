@@ -97,7 +97,7 @@ void CBallisticGun::didShoot()
     {
         pBullet->revive();
         pBullet->setSpritePosition(ccpAdd(shootPoint, CCPointZero));
-        pBullet->attachSpriteTo();
+//        pBullet->attachSpriteTo();
         
         pBullet->setShootTarget(shootTarget);
         pBullet->launch();

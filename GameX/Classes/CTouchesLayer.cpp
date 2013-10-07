@@ -7,6 +7,7 @@
 //
 
 #include "CTouchesLayer.h"
+#include "UtilityFunction.h"
 
 CTouchesLayer::CTouchesLayer()
 : m_swipeThreshold(10)
@@ -44,7 +45,7 @@ void CTouchesLayer::ccTouchesBegan(CCSet* _touches, CCEvent* event)
 {
     this->touchHasMoved_ = false;
     this->touchStart_ = this->millisecondNow();
-    CCArray *allTouches = allTouchesSet(_touches);
+    CCArray *allTouches = utility::allTouchesSet(_touches);
     
     CCTouch* fingerOne = (CCTouch *)allTouches->objectAtIndex(0);
     CCPoint  pointOne = CCDirector::sharedDirector()->convertToUI(fingerOne->getLocationInView());
@@ -68,7 +69,7 @@ void CTouchesLayer::ccTouchesMoved(CCSet* _touches, CCEvent* event)
     long deltaTime = endTime - this->touchStart_;
     
     this->touchHasMoved_ = true;
-    CCArray *allTouches = allTouchesSet(_touches);
+    CCArray *allTouches = utility::allTouchesSet(_touches);
     
     CCTouch* fingerOne = (CCTouch *)allTouches->objectAtIndex(0);
     CCPoint pointOne = CCDirector::sharedDirector()->convertToUI(fingerOne->getLocationInView());
@@ -142,7 +143,7 @@ void CTouchesLayer::ccTouchesEnded(CCSet* _touches, CCEvent* event)
     long endTime = this->millisecondNow();
     long deltaTime = endTime - this->touchStart_;
 //    CCLog("Deltatime %ld",deltaTime);
-    CCArray *allTouches = allTouchesSet(_touches);
+    CCArray *allTouches = utility::allTouchesSet(_touches);
     
     CCTouch* fingerOne = (CCTouch *)allTouches->objectAtIndex(0);
     CCPoint pointOne = CCDirector::sharedDirector()->convertToUI(fingerOne->getLocationInView());
@@ -171,21 +172,6 @@ void CTouchesLayer::ccTouchesEnded(CCSet* _touches, CCEvent* event)
     touchesEnded(_touches, event);
 }
 
-
-CCArray* CTouchesLayer::allTouchesSet(CCSet* touches)
-{
-    CCArray *arr = CCArray::create();
-    
-    CCSetIterator it;
-    
-	for( it = touches->begin(); it != touches->end(); it++)
-    {
-        arr->addObject((CCTouch *)*it);
-    }
-    
-    return arr;
-    
-}
 
 
 void CTouchesLayer::tapHandler(CCObject* caller)

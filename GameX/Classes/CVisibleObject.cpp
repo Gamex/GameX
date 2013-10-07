@@ -369,19 +369,6 @@ float CVisibleObject::getSpriteVertexZ() const
 
 bool CVisibleObject::attachSpriteTo(CCNode* parent, int zOrder, int tag)
 {
-    if (parent == NULL)
-    {
-        CCString* batchNodeName = getBatchNodeNameFromDict();
-        string name;
-        if (batchNodeName)
-        {
-            name = batchNodeName->getCString();
-        }
-
-        bool isBatchNode;
-        parent = BATCH_NODE_MANAGER->getNodeByName(name, isBatchNode);
-
-    }
     CC_ASSERT(parent);
     CC_ASSERT(getInnerSprite());
 
@@ -392,23 +379,11 @@ bool CVisibleObject::attachSpriteTo(CCNode* parent, int zOrder, int tag)
 
 
 
-bool CVisibleObject::dettachSpriteFrom(CCNode* parent, bool cleanup)
+bool CVisibleObject::dettachSpriteFrom(bool cleanup)
 {
-    if (parent == NULL)
-    {
-        CCString* batchNodeName = getBatchNodeNameFromDict();
-        string name;
-        if (batchNodeName)
-        {
-            name = batchNodeName->getCString();
-        }
-        
-        bool isBatchNode;
-        parent = BATCH_NODE_MANAGER->getNodeByName(name, isBatchNode);
-    }
-    CC_ASSERT(parent);
-    CC_ASSERT(getInnerSprite());
-    parent->removeChild(getInnerSprite(), cleanup);
+    CCNode* node = getInnerSprite();
+    CC_ASSERT(node);
+    node->removeFromParentAndCleanup(cleanup);
     
     return true;
 }
@@ -532,6 +507,7 @@ void CVisibleObject::setSpriteFlipY(bool f)
 bool CVisibleObject::getSpriteFlipX()
 {
     CC_ASSERT(false);
+    return false;
 }
 
 
@@ -539,6 +515,7 @@ bool CVisibleObject::getSpriteFlipX()
 bool CVisibleObject::getSpriteFlipY()
 {
     CC_ASSERT(false);
+    return false;
 }
 
 

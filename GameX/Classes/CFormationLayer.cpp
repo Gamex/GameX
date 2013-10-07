@@ -7,19 +7,19 @@
 //
 
 #include "CFormationLayer.h"
-#include "CBackgroundManager.h"
 #include "CFormationPanelLayer.h"
 #include "CGameSceneManager.h"
-#include "CBatchNodeManager.h"
 #include "CFormationManager.h"
 #include "CRole.h"
 #include "CDataCenterManager.h"
+#include "UtilityFunction.h"
+
+#define BATCHNODE_LIST          "BatchNodes.plist"
 
 #define Z_ORDER_PANEL           1000
 
 CFormationLayer::CFormationLayer()
 : m_curSelRole(NULL)
-, m_lastLength(0.f)
 {
     
 }
@@ -38,7 +38,6 @@ bool CFormationLayer::init()
     do
     {
         setTouchEnabled(true);
-        setTouchMode(kCCTouchesAllAtOnce);
         CCDirector::sharedDirector()->setDepthTest(true);
         
         CCBReader* pReader = new CCBReader(CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary());
@@ -48,19 +47,14 @@ bool CFormationLayer::init()
         m_panel->setDelegate(this);
         addChild(m_panel, Z_ORDER_PANEL);
 
-        BREAK_IF_FAILED(BATCH_NODE_MANAGER->initialize());
-        BREAK_IF_FAILED(BKG_MANAGER->initialize());
+        BREAK_IF_FAILED(initBkgLayerBase(BATCHNODE_LIST));
         
         m_roleNode = CCNode::create();
         addChild(m_roleNode);
 
         m_curSelGrid.x = -1;
         m_curSelGrid.y = -1;
-        
-        BKG_MANAGER->attachBackgroundTo(this);
-        BATCH_NODE_MANAGER->attachToParent(BKG_MANAGER, 0);
-        
-        
+
         this->scheduleUpdate();
 
         return true;
@@ -74,19 +68,23 @@ bool CFormationLayer::init()
 void CFormationLayer::update(float dt)
 {
     CBaseLayer::update(dt);
+    CBkgLayerBase::update(dt);
 }
 
 
 
 void CFormationLayer::onFrameSel(const string& unitName)
 {
+    CBackgroundManager* bkgGrd = getBkgGrd();
+    CC_ASSERT(bkgGrd);
+    
     CCDictionary* dict = DTUNIT->getData(unitName);
     int gridWidth = DTUNIT->get_gridWidth_Value(dict)->intValue();
     int gridHeight = DTUNIT->get_gridHeight_Value(dict)->intValue();
     
     CCPoint screenCenter = CCDirector::sharedDirector()->getWinSize() / 2;
-    CCPoint gridPos = BKG_MANAGER->screenPointToGrid(screenCenter);
-    CLogicGrid* grid = BKG_MANAGER->getEmptyGridNearby(gridPos, gridWidth, gridHeight);
+    CCPoint gridPos = bkgGrd->screenPointToGrid(screenCenter);
+    CLogicGrid* grid = bkgGrd->getEmptyGridNearby(gridPos, gridWidth, gridHeight);
     if (grid)
     {
         CCString* name = DTUNIT->get_resourceID_Value(dict);
@@ -95,11 +93,11 @@ void CFormationLayer::onFrameSel(const string& unitName)
         role->setUnitName(unitName);
         role->setGridWidth(gridWidth);
         role->setGridHeight(gridHeight);
-        role->placeOnGridPos(grid->getGridPos());
-        role->attachSpriteTo();
+        bkgGrd->placeRole(role, grid->getGridPos());
+        role->attachSpriteTo(bkgGrd);
         m_roleNode->addChild(role);
-        
-        BKG_MANAGER->hightlightGrid(grid->getGridPos());
+
+        bkgGrd->hightlightGrid(grid->getGridPos());
     }
 }
 
@@ -107,50 +105,45 @@ void CFormationLayer::onFrameSel(const string& unitName)
 
 void CFormationLayer::touchesBegan(CCSet* touches, CCEvent* event)
 {
+    
+    bool swallow = false;
+    
+    
     switch (touches->count())
     {
         case 1:
         {
-            CCArray* tch = allTouchesSet(touches);
+            CCArray* tch = utility::allTouchesSet(touches);
             CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
             CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
             CCPoint location1 = this->convertToNodeSpace(point1);
 
-            CCPoint gp = BKG_MANAGER->screenPointToGrid(location1);
-            BKG_MANAGER->hightlightGrid(m_curSelGrid, false);
+            CBackgroundManager* bkgGrd = getBkgGrd();
+            CC_ASSERT(bkgGrd);
+            
+            CCPoint gp = bkgGrd->screenPointToGrid(point1);
+            bkgGrd->hightlightGrid(m_curSelGrid, false);
             m_curSelGrid = gp;
-            BKG_MANAGER->hightlightGrid(m_curSelGrid, true);
+            bkgGrd->hightlightGrid(m_curSelGrid, true);
             
-            CLogicGrid* grid = BKG_MANAGER->getLogicGrid(gp);
-            m_curSelRole = dynamic_cast<CRole*>(grid->getUnit());
-            if (m_curSelRole)
+            CLogicGrid* grid = bkgGrd->getLogicGrid(gp);
+            if (grid)
             {
-                m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
+                m_curSelRole = dynamic_cast<CRole*>(grid->getUnit());
+                if (m_curSelRole)
+                {
+                    m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
+                    swallow = true;
+                }
             }
-            else
-            {
-                m_tapStartPoint = location1;
-            }
-            
-            break;
-        }
-        case 2:
-        {
 
-            CCArray* tch = allTouchesSet(touches);
-            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
-            CCTouch* t2 = (CCTouch*)tch->objectAtIndex(1);
-            
-            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
-            CCPoint location1 = this->convertToNodeSpace(point1);
-            
-            CCPoint point2 = CCDirector::sharedDirector()->convertToUI(t2->getLocationInView());
-            CCPoint location2 = this->convertToNodeSpace(point2);
-            
-            m_lastLength = (location2 - location1).getLengthSq();
-            
             break;
         }
+    }
+    
+    if (!swallow)
+    {
+        CBkgLayerBase::bkgLayerBaseTouchesBegan(touches, event);
     }
 }
 
@@ -158,69 +151,46 @@ void CFormationLayer::touchesBegan(CCSet* touches, CCEvent* event)
 
 void CFormationLayer::touchesMoved(CCSet* touches, CCEvent* event)
 {
+    bool swallow = false;
+    
+    CBackgroundManager* bkgGrd = getBkgGrd();
+    CC_ASSERT(bkgGrd);
+    
     switch (touches->count())
     {
         case 1:
         {
-            CCArray* tch = allTouchesSet(touches);
+            CCArray* tch = utility::allTouchesSet(touches);
             CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
             CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
             CCPoint location1 = this->convertToNodeSpace(point1);
             
-            CCPoint gp = BKG_MANAGER->screenPointToGrid(location1);
+            CCPoint gp = bkgGrd->screenPointToGrid(location1);
 
-            BKG_MANAGER->hightlightGrid(m_curSelGrid, false);
+            bkgGrd->hightlightGrid(m_curSelGrid, false);
             m_curSelGrid = gp;
-            BKG_MANAGER->hightlightGrid(m_curSelGrid, true);
+            bkgGrd->hightlightGrid(m_curSelGrid, true);
             
             if (m_curSelRole)
             {
-                CLogicGrid* grid = BKG_MANAGER->getLogicGrid(m_curSelGrid);
+                CLogicGrid* grid = bkgGrd->getLogicGrid(m_curSelGrid);
                 CRole* role = dynamic_cast<CRole*>(grid->getUnit());
                 if (role == NULL)       // this grid is not occupied, so place in it
                 {
-                    m_curSelRole->placeOnGridPos(m_curSelGrid);
+                    bkgGrd->placeRole(m_curSelRole, m_curSelGrid);
                 }
-            }
-            else
-            {
-                CCPoint offset = location1 - m_tapStartPoint;
-                BKG_MANAGER->moveMap(offset);
                 
-                m_tapStartPoint = location1;
+                swallow = true;
             }
-            break;
-        }
-        case 2:
-        {
-            CCArray* tch = allTouchesSet(touches);
-            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
-            CCTouch* t2 = (CCTouch*)tch->objectAtIndex(1);
-            
-            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
-            CCPoint location1 = this->convertToNodeSpace(point1);
-            
-            CCPoint point2 = CCDirector::sharedDirector()->convertToUI(t2->getLocationInView());
-            CCPoint location2 = this->convertToNodeSpace(point2);
-            
-            float len = (location2 - location1).getLengthSq();
-            
-            if (len > m_lastLength)
-            {
-                // zoom out
-                BKG_MANAGER->addMapScale(0.05);
-            }
-            else if (len < m_lastLength)
-            {
-                // zoom in
-                BKG_MANAGER->addMapScale(-0.05);
-            }
-            
-            m_lastLength = len;
             break;
         }
         default:
             break;
+    }
+    
+    if (!swallow)
+    {
+        CBkgLayerBase::bkgLayerBaseTouchesMoved(touches, event);
     }
 }
 
@@ -228,20 +198,25 @@ void CFormationLayer::touchesMoved(CCSet* touches, CCEvent* event)
 
 void CFormationLayer::touchesEnded(CCSet* touches, CCEvent* event)
 {
+    bool swallow = false;
+    
+    CBackgroundManager* bkgGrd = getBkgGrd();
+    CC_ASSERT(bkgGrd);
+    
     switch (touches->count())
     {
         case 1:
         {
-            CCArray* tch = allTouchesSet(touches);
+            CCArray* tch = utility::allTouchesSet(touches);
             CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
             CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
             CCPoint location1 = this->convertToNodeSpace(point1);
 
-            location1 = BKG_MANAGER->screenPointToWorld(location1);
-            CLogicGrid* grid = BKG_MANAGER->getGridFromWorldPt(location1);
+            location1 = bkgGrd->screenPointToWorld(location1);
+            CLogicGrid* grid = bkgGrd->getGridFromWorldPt(location1);
             if (m_curSelRole != NULL)
             {
-                BKG_MANAGER->hightlightGrid(m_curSelGrid, false);
+                bkgGrd->hightlightGrid(m_curSelGrid, false);
                 m_curSelGrid.x = -1;
                 m_curSelGrid.y = -1;
                 
@@ -250,32 +225,21 @@ void CFormationLayer::touchesEnded(CCSet* touches, CCEvent* event)
                 
                 if (role == NULL)       // this grid is not occupied, so place in it
                 {
-                    m_curSelRole->placeOnGridPos(grid->getGridPos());
+                    bkgGrd->placeRole(m_curSelRole, grid->getGridPos());
                 }
                 
                 m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
                 m_curSelRole = NULL;
-            }
-            else        // move map
-            {
                 
+                swallow = true;
             }
             break;
         }
-        case 2:
-        {
-            CCArray* tch = allTouchesSet(touches);
-            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
-            CCTouch* t2 = (CCTouch*)tch->objectAtIndex(1);
-            
-            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
-            CCPoint location1 = this->convertToNodeSpace(point1);
-            
-            CCPoint point2 = CCDirector::sharedDirector()->convertToUI(t2->getLocationInView());
-            CCPoint location2 = this->convertToNodeSpace(point2);
-            
-            break;
-        }
+    }
+    
+    if (!swallow)
+    {
+        CBkgLayerBase::bkgLayerBaseTouchesEnded(touches, event);
     }
 }
 
@@ -284,15 +248,16 @@ void CFormationLayer::touchesEnded(CCSet* touches, CCEvent* event)
 void CFormationLayer::onSave(CFormation* fmt)
 {
     int x, y;
-    CBackgroundManager* bkg = BKG_MANAGER;
+    CBackgroundManager* bkgGrd = getBkgGrd();
+    CC_ASSERT(bkgGrd);
     CCPoint pos;
-    for (y = 0; y < bkg->getHeightInGrid(); ++y)
+    for (y = 0; y < bkgGrd->getHeightInGrid(); ++y)
     {
-        for (x = 0; x < bkg->getWidthInGrid(); ++x)
+        for (x = 0; x < bkgGrd->getWidthInGrid(); ++x)
         {
             pos.x = x;
             pos.y = y;
-            CLogicGrid* grid = bkg->getLogicGrid(pos);
+            CLogicGrid* grid = bkgGrd->getLogicGrid(pos);
             CRole* role = dynamic_cast<CRole*>(grid->getUnit());
             if (role && grid->getIsPrimary())
             {
@@ -312,9 +277,12 @@ void CFormationLayer::onSave(CFormation* fmt)
 
 void CFormationLayer::onLoad(CFormation* fmt)
 {
+    
     if (fmt->loadFromFile("f.fmt"))
     {
         clearFormation();
+        CBackgroundManager* bkgGrd = getBkgGrd();
+        CC_ASSERT(bkgGrd);
         
         int sz = fmt->m_elements.size();
         for (int i = 0; i < sz; ++i)
@@ -327,8 +295,8 @@ void CFormationLayer::onLoad(CFormation* fmt)
             role->setUnitName(fe->unitName);
             role->setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
             role->setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
-            role->placeOnGridPos(fe->pos);
-            role->attachSpriteTo();
+            bkgGrd->placeRole(role, fe->pos);
+            role->attachSpriteTo(bkgGrd);
             m_roleNode->addChild(role);
         }
     }
@@ -346,7 +314,9 @@ void CFormationLayer::clearAll()
 
 void CFormationLayer::clearFormation()
 {
-    BKG_MANAGER->clearAllUnits();
+    CBackgroundManager* bkgGrd = getBkgGrd();
+    CC_ASSERT(bkgGrd);
+    bkgGrd->clearAllUnits();
     CCArray* roles = m_roleNode->getChildren();
     CCObject* obj;
     CCARRAY_FOREACH(roles, obj)

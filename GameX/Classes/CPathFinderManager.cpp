@@ -10,7 +10,7 @@
 #include "CBackgroundManager.h"
 #include <queue>
 
-IMPLEMENT_SINGLETON(CPathFinderManager);
+
 
 CPathFinderManager::CPathFinderManager()
 {
@@ -53,6 +53,7 @@ void CPathFinderManager::findPath(const CCPoint& startPos, const CCPoint& target
     task->start = startPos;
     task->target = targetPos;
     task->delegate = delegate;
+    task->m_bkg = m_bkg;
 
     m_finderTaskQueue.push(task);
 }
@@ -75,7 +76,7 @@ CPathFinderManager::_PathNode::_PathNode()
 // ----------------- _FinderTask
 void CPathFinderManager::_FinderTask::doFind()
 {
-    CLogicGrid* grid = BKG_MANAGER->getLogicGrid(start);
+    CLogicGrid* grid = m_bkg->getLogicGrid(start);
     if (grid)
     {
         _PathNode* pn = new _PathNode;
@@ -129,12 +130,12 @@ void CPathFinderManager::_FinderTask::checkF(const CCPoint& gridPos, int G, CPat
         }
         else
         {
-            CLogicGrid* grid = BKG_MANAGER->getLogicGrid(gridPos);
+            CLogicGrid* grid = m_bkg->getLogicGrid(gridPos);
             
-            bool canBePlace = BKG_MANAGER->isRoleCanBePlacedOnPos(role, gridPos);
+            bool canBePlace = m_bkg->isRoleCanBePlacedOnPos(role, gridPos);
             if (!canBePlace && grid)
             {
-                canBePlace = BKG_MANAGER->isGridPosInGridRange(gridPos, role->getGridWidth(), role->getGridHeight(), target);
+                canBePlace = m_bkg->isGridPosInGridRange(gridPos, role->getGridWidth(), role->getGridHeight(), target);
             }
 
             if (canBePlace)

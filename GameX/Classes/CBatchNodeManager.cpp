@@ -9,12 +9,10 @@
 #include "CBatchNodeManager.h"
 #include "Common.h"
 #include "CGlobalConfigration.h"
-
-IMPLEMENT_SINGLETON(CBatchNodeManager);
+#include "CVisibleObject.h"
 
 
 CBatchNodeManager::CBatchNodeManager()
-: m_pBatchNodeHolder(NULL)
 {
     
 }
@@ -27,11 +25,12 @@ CBatchNodeManager::~CBatchNodeManager()
 }
 
 
-bool CBatchNodeManager::initialize()
+bool CBatchNodeManager::init()
 {
     do
     {
-        BREAK_IF_FAILED(loadBatchNodeInitData());
+        BREAK_IF_FAILED(CCNode::init());
+        
         return true;
     } while(false);
     
@@ -39,16 +38,11 @@ bool CBatchNodeManager::initialize()
 }
 
 
-bool CBatchNodeManager::loadBatchNodeInitData()
+bool CBatchNodeManager::loadBatchNodeInitData(const char* filename)
 {
     do
     {
-        setBatchNodeHolder(CCNode::create());
-        CC_ASSERT(m_pBatchNodeHolder);
-        
-        const char* cp = "BatchNodes.plist";
-
-        CCArray* array = CCArray::createWithContentsOfFile(cp);
+        CCArray* array = CCArray::createWithContentsOfFile(filename);
         
         BREAK_IF_FAILED(array && array->data);
         
@@ -98,7 +92,7 @@ bool CBatchNodeManager::loadBatchNodeInitData()
             // NOTE: alpha test shader is hard-coded to use the equivalent of a glAlphaFunc(GL_GREATER) comparison
             program->setUniformLocationWith1f(alphaValueLocation, 0.5);
             
-            m_pBatchNodeHolder->addChild(sbn, z);
+            this->addChild(sbn, z);
         }
         
         return true;
@@ -112,7 +106,7 @@ bool CBatchNodeManager::loadBatchNodeInitData()
 void CBatchNodeManager::attachToParent(CCNode* parent, int z)
 {
     CC_ASSERT(parent);
-    parent->addChild(m_pBatchNodeHolder, z);
+    parent->addChild(this, z);
 }
 
 
@@ -124,7 +118,7 @@ CCNode* CBatchNodeManager::getNodeByName(const string& name, bool& isBatchNode)
     {
         isBatchNode = false;
         
-        return m_pBatchNodeHolder;
+        return this;
     }
     
     isBatchNode = true;
@@ -142,14 +136,30 @@ void CBatchNodeManager::clearAllChildren()
         (*it).second->retain();
         (*it).second->removeAllChildrenWithCleanup(true);
     }
-    m_pBatchNodeHolder->removeAllChildrenWithCleanup(true);
+    this->removeAllChildrenWithCleanup(true);
     
     it = m_pBatchNodes.begin();
     for (; it != m_pBatchNodes.end(); ++it)
     {
-        m_pBatchNodeHolder->addChild((*it).second);
+        this->addChild((*it).second);
         (*it).second->release();
     }
+}
+
+
+
+void CBatchNodeManager::attachToMe(CVisibleObject* vo, int zOrder, int tag)
+{
+    CC_ASSERT(vo);
+    CCString* batchNodeName = vo->getBatchNodeNameFromDict();
+    string name;
+    if (batchNodeName)
+    {
+        name = batchNodeName->getCString();
+    }
+    
+    bool isBatchNode;
+    vo->attachSpriteTo(getNodeByName(name, isBatchNode), zOrder, tag);
 }
 
 

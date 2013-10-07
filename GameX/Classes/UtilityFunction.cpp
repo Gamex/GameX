@@ -26,6 +26,22 @@ namespace utility
         CCPoint vec(p1.x - p2.x, p1.y - p2.y);
         return vec.getLengthSq();
     }
+    
+    
+    CCArray* allTouchesSet(CCSet* touches)
+    {
+        CCArray *arr = CCArray::create();
+        
+        CCSetIterator it;
+        
+        for( it = touches->begin(); it != touches->end(); it++)
+        {
+            arr->addObject((CCTouch *)*it);
+        }
+        
+        return arr;
+        
+    }
 }
 
 

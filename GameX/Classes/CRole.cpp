@@ -200,34 +200,20 @@ void CRole::die()
 
 
 
-bool CRole::placeOnGridPos(const CCPoint& gridPos, bool syncTargetPos)
+void CRole::onPlaceOnMap(const CCPoint& gridPos, const CCPoint& position)
 {
-    do
-    {
-        BREAK_IF(!BKG_MANAGER->isRoleCanBePlacedOnPos(this, gridPos));
-
-        if (syncTargetPos)
-        {
-            m_moveTarget = gridPos;
-        }
-        CCPoint pt = BKG_MANAGER->gridToWorldPoint(gridPos);
-
-        setSpritePosition(pt);
-
-        BKG_MANAGER->removeRoleFromGrid(this);
-        BKG_MANAGER->addRoleToGrid(gridPos, this);
-        return true;
-    } while (false);
-    
-    return false;
+    setSpritePosition(position);
 }
+
 
 
 void CRole::updateVertexZ()
 {
     do
     {
-        CCTMXTiledMap* map = BKG_MANAGER->getTiledMap();
+        CBackgroundManager* bkg = getBackGround();
+        BREAK_IF(NULL == bkg);
+        CCTMXTiledMap* map = bkg->getTiledMap();
         BREAK_IF(NULL == map);
         const CCSize& szMap = map->getMapSize();
         float lowestZ = -(szMap.width + szMap.height);
@@ -286,5 +272,16 @@ bool CRole::attachSpriteTo(CCNode* parent, int zOrder, int tag)
     } while (false);
 	return false;
 }
+
+
+
+void CRole::findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFinderDelegate* delegate)
+{
+    CBackgroundManager* bkg = getBackGround();
+    CC_ASSERT(bkg);
+    bkg->findPath(startPos, targetPos, this, delegate);
+}
+
+
 
 

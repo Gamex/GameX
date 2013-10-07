@@ -57,8 +57,10 @@ void CMoveOnGridComp::update(float dt)
         {
             if (m_paths.size() > 0)
             {
+                CBackgroundManager* bkg = m_ownerRole->getBackGround();
+                CC_ASSERT(bkg);
                 const CCPoint& pos = m_paths.back();           
-                if (BKG_MANAGER->isRoleCanBePlacedOnPos(m_ownerRole, pos))
+                if (bkg->isRoleCanBePlacedOnPos(m_ownerRole, pos))
                 {
                     
                     CLogicGrid* pGrid = m_ownerRole->getLogicGrid();
@@ -67,8 +69,8 @@ void CMoveOnGridComp::update(float dt)
                     float speed = 3.f;
                     m_moveTotalTime = pos.getDistance(curPos) / speed;
                     m_moveElapseTime = 0.f;
-                    m_moveFrom = BKG_MANAGER->gridToWorldPoint(curPos);
-                    m_moveTo = BKG_MANAGER->gridToWorldPoint(pos);
+                    m_moveFrom = bkg->gridToWorldPoint(curPos);
+                    m_moveTo = bkg->gridToWorldPoint(pos);
                     
                     CCPoint diff = m_moveTo - m_moveFrom;
                     if (diff.x > 0)
@@ -116,8 +118,10 @@ void CMoveOnGridComp::update(float dt)
             float alpha = m_moveElapseTime / m_moveTotalTime;
             if (FLT_GE(alpha, 1.f))
             {
+                CBackgroundManager* bkg = m_ownerRole->getBackGround();
+                CC_ASSERT(bkg);
                 alpha = 1.f;
-                m_ownerRole->placeOnGridPos(m_paths.back(), false);
+                bkg->placeRole(m_ownerRole, m_paths.back());
                 m_paths.pop_back();
                 m_subState = SUB_STATE_PATH_FOUND;
             }
@@ -140,11 +144,13 @@ void CMoveOnGridComp::onPathReady(const vector<CCPoint>& path)
         m_paths = path;
         m_subState = SUB_STATE_PATH_FOUND;
         
-        BKG_MANAGER->clearAllHightlightGrids();
+        CBackgroundManager* bkg = m_ownerRole->getBackGround();
+        CC_ASSERT(bkg);
+        bkg->clearAllHightlightGrids();
         vector<CCPoint>::reverse_iterator it = m_paths.rbegin();
         for (; it != m_paths.rend(); ++it)
         {
-            BKG_MANAGER->hightlightGrid(*it);
+            bkg->hightlightGrid(*it);
         }
         m_paths.pop_back();
     }
@@ -165,7 +171,7 @@ void CMoveOnGridComp::findPathIfNeeded()
     
     if (!curPos.equals(targetPos))
     {
-        PATH_FINDER->findPath(curPos, targetPos, m_ownerRole, this);
+        m_ownerRole->findPath(curPos, targetPos, this);
         m_subState = SUB_STATE_PATH_FINDING;
     }
 }

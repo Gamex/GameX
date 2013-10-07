@@ -11,11 +11,12 @@
 
 #include "CTouchesLayer.h"
 #include "CFormationPanelLayer.h"
-#include "CBackgroundManager.h"
+#include "CBkgLayerBase.h"
 
 class CFormationLayer
 : public CTouchesLayer
 , public IFormationLayerDelegate
+, public CBkgLayerBase
 {
 public:
     CREATE_FUNC(CFormationLayer);
@@ -37,15 +38,14 @@ protected:
     
     virtual void clearFormation();
     void clearAll();
+
 private:
     CCNode* m_roleNode;
     CFormationPanelLayer* m_panel;
     class CRole* m_curSelRole;
     
     CCPoint m_curSelGrid;
-    
-    CCPoint m_tapStartPoint;
-    float m_lastLength;
+
 };
 
 

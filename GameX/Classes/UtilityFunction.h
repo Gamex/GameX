@@ -19,6 +19,8 @@ namespace utility
 {
     float computeDistanceSquare(CVisibleObject* o1, CVisibleObject* o2);
     float computeDistanceSquare(const CCPoint& p1, const CCPoint& p2);
+    
+    CCArray* allTouchesSet(CCSet* touches);
 }
 
 #endif /* defined(__GameX__UtilityFunction__) */

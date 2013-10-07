@@ -10,7 +10,6 @@
 #define __GameX__CBatchNodeManager__
 
 #include "cocos2d.h"
-#include "CSingleton.h"
 #include <map>
 #include <string>
 
@@ -18,23 +17,27 @@ using namespace std;
 USING_NS_CC;
 
 
-class CBatchNodeManager : public CSingleton<CBatchNodeManager>
+class CBatchNodeManager
+: public CCNode
 {
-    CC_SYNTHESIZE_RETAIN(CCNode*, m_pBatchNodeHolder, BatchNodeHolder);
 public:
+    CREATE_FUNC(CBatchNodeManager);
+    
     CBatchNodeManager();
     virtual ~CBatchNodeManager();
     
-    virtual bool initialize();
+    virtual bool init();
+    virtual bool loadBatchNodeInitData(const char* filename);
     
     virtual void attachToParent(CCNode* parent, int z);
     
     virtual CCNode* getNodeByName(const string& name, bool& isBatchNode);
     
     virtual void clearAllChildren();
+    
+    virtual void attachToMe(class CVisibleObject* vo, int zOrder = 0, int tag = -1);
 protected:
     
-    virtual bool loadBatchNodeInitData();
 private:
     typedef map<string, CCSpriteBatchNode*> MSSBN;              // batch node name -> batch node object
     typedef map<string, CCSpriteBatchNode*>::iterator MSSBN_IT;
@@ -43,7 +46,5 @@ private:
     MSSBN m_pBatchNodes;
 };
 
-
-#define BATCH_NODE_MANAGER      (CBatchNodeManager::getInstance())
 
 #endif /* defined(__GameX__CBatchNodeManager__) */

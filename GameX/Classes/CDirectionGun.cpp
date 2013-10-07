@@ -82,7 +82,7 @@ void CDirectionGun::didShoot()
     {
         pBullet->revive();
         pBullet->setSpritePosition(ccpAdd(shootPoint, CCPointZero));
-        pBullet->attachSpriteTo();
+        pBullet->attachSpriteTo(this);  // majun ajdf
         pBullet->setShootDirection(direction);
         pBullet->launch();
     }
