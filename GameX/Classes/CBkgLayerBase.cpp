@@ -7,7 +7,6 @@
 //
 
 #include "CBkgLayerBase.h"
-#include "UtilityFunction.h"
 
 #define INVALIDE_TAP_POS        CCPoint(FLT_MAX, FLT_MAX)
 
@@ -90,7 +89,7 @@ void CBkgLayerBase::bkgLayerBaseTouchesMoved(CCSet* touches, CCEvent* event)
     {
         case 1:
         {
-            CCArray* tch = m_touches;//utility::allTouchesSet(touches);
+            CCArray* tch = m_touches;
             CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
             CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
             CCPoint location1 = m_layer->convertToNodeSpace(point1);
@@ -107,7 +106,7 @@ void CBkgLayerBase::bkgLayerBaseTouchesMoved(CCSet* touches, CCEvent* event)
 
         case 2:
         {
-            CCArray* tch = m_touches; //utility::allTouchesSet(touches);
+            CCArray* tch = m_touches;
             CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
             CCTouch* t2 = (CCTouch*)tch->objectAtIndex(1);
             
@@ -161,10 +160,8 @@ void CBkgLayerBase::bkgLayerBaseTouchesEnded(CCSet* touches, CCEvent* event)
     for( it = touches->begin(); it != touches->end(); it++)
     {
         CCTouch* tch = (CCTouch*)*it;
-        if (m_touches->containsObject(tch))
-        {
-            m_touches->removeObject(tch);
-        }
+
+        m_touches->removeObject(tch);
     }
 }
 

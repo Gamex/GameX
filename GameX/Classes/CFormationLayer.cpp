@@ -12,7 +12,7 @@
 #include "CFormationManager.h"
 #include "CRole.h"
 #include "CDataCenterManager.h"
-#include "UtilityFunction.h"
+
 
 #define BATCHNODE_LIST          "BatchNodes.plist"
 
@@ -113,8 +113,7 @@ void CFormationLayer::touchesBegan(CCSet* touches, CCEvent* event)
     {
         case 1:
         {
-            CCArray* tch = utility::allTouchesSet(touches);
-            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
+            CCTouch* t1 = (CCTouch*)touches->anyObject();
             CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
             CCPoint location1 = this->convertToNodeSpace(point1);
 
@@ -160,8 +159,7 @@ void CFormationLayer::touchesMoved(CCSet* touches, CCEvent* event)
     {
         case 1:
         {
-            CCArray* tch = utility::allTouchesSet(touches);
-            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
+            CCTouch* t1 = (CCTouch*)touches->anyObject();
             CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
             CCPoint location1 = this->convertToNodeSpace(point1);
             
@@ -207,8 +205,7 @@ void CFormationLayer::touchesEnded(CCSet* touches, CCEvent* event)
     {
         case 1:
         {
-            CCArray* tch = utility::allTouchesSet(touches);
-            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
+            CCTouch* t1 = (CCTouch*)touches->anyObject();
             CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
             CCPoint location1 = this->convertToNodeSpace(point1);
 

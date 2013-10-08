@@ -19,7 +19,6 @@
 #include "CFormationManager.h"
 #include "CRole.h"
 #include "CDataCenterManager.h"
-#include "UtilityFunction.h"
 
 
 #define BATCHNODE_LIST          "BatchNodes.plist"
@@ -99,18 +98,6 @@ void CBattleFieldLayer::touchesBegan(CCSet* touches, CCEvent* event)
 {
     bool swallow = false;
 
-//    switch (touches->count())
-//    {
-//        case 1:
-//        {
-//            CCArray* tch = utility::allTouchesSet(touches);
-//            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
-//            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
-//            m_helpPoint = this->convertToNodeSpace(point1);
-//            break;
-//        }
-//    }
-
     if (!swallow)
     {
         CBkgLayerBase::bkgLayerBaseTouchesBegan(touches, event);
@@ -122,56 +109,6 @@ void CBattleFieldLayer::touchesBegan(CCSet* touches, CCEvent* event)
 void CBattleFieldLayer::touchesMoved(CCSet* touches, CCEvent* event)
 {
     bool swallow = false;
-    
-//    switch (touches->count())
-//    {
-//        case 1:
-//        {
-//            CCArray* tch = utility::allTouchesSet(touches);
-//            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
-//            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
-//            CCPoint location1 = this->convertToNodeSpace(point1);
-//
-//            CCPoint offset = location1 -  m_helpPoint;
-//            BKG_MANAGER->moveMap(offset);
-//
-//             m_helpPoint = location1;
-//
-//            m_bMapMoved = true;
-//            break;
-//        }
-//        case 2:
-//        {
-//            CCArray* tch = utility::allTouchesSet(touches);
-//            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
-//            CCTouch* t2 = (CCTouch*)tch->objectAtIndex(1);
-//
-//            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
-//            CCPoint location1 = this->convertToNodeSpace(point1);
-//
-//            CCPoint point2 = CCDirector::sharedDirector()->convertToUI(t2->getLocationInView());
-//            CCPoint location2 = this->convertToNodeSpace(point2);
-//
-//            float len = (location2 - location1).getLengthSq();
-//
-//            if (len > m_lastLength)
-//            {
-//                // zoom out
-//                BKG_MANAGER->addMapScale(0.05);
-//            }
-//            else if (len < m_lastLength)
-//            {
-//                // zoom in
-//                BKG_MANAGER->addMapScale(-0.05);
-//            }
-//            
-//            m_lastLength = len;
-//            break;
-//        }
-//        default:
-//            break;
-//    }
-    
     
     if (!swallow)
     {
@@ -189,8 +126,7 @@ void CBattleFieldLayer::touchesEnded(CCSet* touches, CCEvent* event)
     {
         case 1:
         {
-            CCArray* tch = utility::allTouchesSet(touches);
-            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
+            CCTouch* t1 = (CCTouch*)touches->anyObject();
             CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
             CCPoint location1 = this->convertToNodeSpace(point1);
             
@@ -213,8 +149,6 @@ void CBattleFieldLayer::touchesEnded(CCSet* touches, CCEvent* event)
                 m_curSelRole->setMoveTarget(gp);
                 m_curSelRole = NULL;
             }
-//            CLogicGrid* grid = BKG_MANAGER->getGridFromWorldPt(location1);
-
             break;
         }
     }

@@ -558,7 +558,7 @@ void CBackgroundManager::update(float dt)
 }
 
 
-// -------------------- CLogicGrid
+#pragma mark  -- CLogicGrid
 
 CLogicGrid::CLogicGrid(int x, int y)
 : m_unit(NULL)
