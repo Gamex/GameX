@@ -24,14 +24,14 @@ CGlobalConfigration::~CGlobalConfigration()
 
 
 
-void CGlobalConfigration::setTextureSuffix(const string& suffix)
+void CGlobalConfigration::setTextureSuffix(const std::string& suffix)
 {
     m_textureSuffix = suffix;
 }
 
 
 
-const string& CGlobalConfigration::getTextureSuffix()
+const std::string& CGlobalConfigration::getTextureSuffix()
 {
     return m_textureSuffix;
 }

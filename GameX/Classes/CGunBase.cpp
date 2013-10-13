@@ -117,7 +117,7 @@ GameArts CGunBase::getBatchNodeName()
 
 
 
-bool CGunBase::changeBullet(const string& name)
+bool CGunBase::changeBullet(const std::string& name)
 {
     m_container.clear();
     if (!m_container.initCache(name, getCacheNumFromDict()))

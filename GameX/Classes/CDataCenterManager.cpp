@@ -23,6 +23,7 @@ CDataCenterManager::~CDataCenterManager()
     CC_SAFE_DELETE(m_DTLevel);
     CC_SAFE_DELETE(m_DTScene);
     CC_SAFE_DELETE(m_DTUnit);
+    CC_SAFE_DELETE(m_DTSkill);
 }
 
 
@@ -39,6 +40,9 @@ bool CDataCenterManager::initialize()
         
         m_DTUnit = new DTUnit;
         m_DTUnit->loadData2CCDictionary();
+        
+        m_DTSkill = new DTSkill;
+        m_DTSkill->loadData2CCDictionary();
         
         return true;
     } while (false);

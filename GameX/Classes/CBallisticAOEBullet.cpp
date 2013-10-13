@@ -45,7 +45,7 @@ void CBallisticAOEBullet::update(float dt)
 
 void CBallisticAOEBullet::onCollideWithTarget(TFCollisionProtocol* obj)
 {
-//    const string& state = getCurrentState();
+//    const std::string& state = getCurrentState();
 //    
 //    if (state.compare(BALLISTIC_AOE_BULLET_STATE_BOMB) == 0)
 //    {
@@ -61,7 +61,7 @@ void CBallisticAOEBullet::onCollideWithTarget(TFCollisionProtocol* obj)
 
 void CBallisticAOEBullet::updateBoundingBoxInWorldSpace()
 {
-//    const string& state = getCurrentState();
+//    const std::string& state = getCurrentState();
 //
 //    if (state.compare(BALLISTIC_AOE_BULLET_STATE_BOMB) == 0)
 //    {

@@ -8,7 +8,6 @@
 
 #include "AppDelegate.h"
 
-#include "cocos2d.h"
 #include "Common.h"
 #include "TFGameObjectManager.h"
 #include "CGlobalConfigration.h"
@@ -22,10 +21,6 @@
 #include "CGameSceneManager.h"
 #include <time.h>
 
-#include <vector>
-
-
-USING_NS_CC;
 
 AppDelegate::AppDelegate()
 {
@@ -52,6 +47,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60);
 
+    pDirector->setDepthTest(true);
+    
     this->setupConfigurationFiles();
     
     this->setupMultipleResolutionSupport();

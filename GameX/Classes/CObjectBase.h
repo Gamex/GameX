@@ -9,22 +9,13 @@
 #ifndef __TheForce__TFObject__
 #define __TheForce__TFObject__
 
-#include "cocos2d.h"
-#include "cocos-ext.h"
 
 #include "Common.h"
-
-#include <string>
 
 #include "CObjectFactory.h"
 #include "CState.h"
 #include "TFCollisionProtocol.h"
-
 #include "TFPListReaderHelper.h"
-
-using namespace std;
-USING_NS_CC;
-USING_NS_CC_EXT;
 
 class TFRoleData;
 
@@ -33,7 +24,7 @@ class CObjectBase : public CCNode, public CState, public TFCollisionProtocol
     CC_SYNTHESIZE_RETAIN(CCDictionary*, pObjectDictionary_, ObjectDictionary);
 public:
     // Param: name      the name in GameObject.plist
-    static CObjectBase* createObject(const string& name);
+    static CObjectBase* createObject(const std::string& name);
 
 	virtual ~CObjectBase();
 	
@@ -41,6 +32,9 @@ public:
 	virtual bool init(CCDictionary* pObjectDict);
 	virtual void update(float dt);
 
+    virtual void onEnterState(int state);
+	virtual void onLeaveState(int state);
+    
     virtual void die();
     virtual void revive();
     virtual bool isDead() const;
@@ -57,10 +51,10 @@ public:
     ////////////////////
     virtual int getLevel();
 
-    virtual void addComponentForState(int state, const string& compName);
+    virtual void addComponentForState(int state, CCComponent* comp);
 
 #ifdef DEBUG
-    virtual string whoAmI(){return "CObjectBase";}
+    virtual std::string whoAmI(){return "CObjectBase";}
 #endif
 protected:
     CObjectBase();
@@ -70,14 +64,6 @@ protected:
     
     bool m_isDead;
 private:
-    typedef set<string> SS;
-    typedef set<string>::iterator SS_IT;
-    typedef set<string>::const_iterator SS_CIT;
-    
-    typedef map<int, SS> VSS;
-    typedef map<int, SS>::iterator VSS_IT;
-    typedef map<int, SS>::const_iterator VSS_CIT;
-    
     VSS m_stateComponentTable;
 };
 

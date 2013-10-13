@@ -111,6 +111,100 @@ break;\
 
 #define D_TO_A(__x__)       (__x__ * CCBReader::getResolutionScale())
 
+#pragma mark -- Collision
+
+class CObjectBase;
+class TFCollisionProtocol;
+typedef void (CObjectBase::*COLLISION_HANDLER)(TFCollisionProtocol*);
+#define collision_handler_selector(_SELECTOR) (COLLISION_HANDLER)(&_SELECTOR)
+
+enum GBCollisionType {
+    CT_INVALID = -1,
+    CT_HERO = 0,
+    CT_MONSTER,
+    CT_COIN,
+    CT_BULLET,
+    CT_SENSOR,
+    CT_SOLDIER,
+};
+
+#pragma mark -- cocos2d-x headers
+#include "cocos2d.h"
+#include "cocos-ext.h"
+
+USING_NS_CC;
+USING_NS_CC_EXT;
+
+#pragma mark -- stl headers and typedefs for stl container
+#include <set>
+#include <vector>
+#include <queue>
+#include <map>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+typedef std::vector<unsigned int> VUI;
+typedef std::vector<unsigned int>::iterator VUI_IT;
+typedef std::vector<unsigned int>::const_iterator VUI_CIT;
+
+typedef std::vector<std::string> VS;
+typedef std::vector<std::string>::iterator VS_IT;
+typedef std::vector<std::string>::const_iterator VS_CIT;
+
+typedef std::set<std::string> SS;
+typedef std::set<std::string>::iterator SS_IT;
+typedef std::set<std::string>::const_iterator SS_CIT;
+
+typedef std::set<class CRole*> SR;
+typedef std::set<class CRole*>::iterator SR_IT;
+typedef std::set<class CRole*>::const_iterator SR_CIT;
+
+typedef std::queue<class CRole*> QR;
+
+typedef std::map<std::string, CCSpriteBatchNode*> MSSBN;              // batch node name -> batch node object
+typedef std::map<std::string, CCSpriteBatchNode*>::iterator MSSBN_IT;
+typedef std::map<std::string, CCSpriteBatchNode*>::const_iterator MSSBN_CIT;
+
+typedef std::vector<class IFightingRelation*> VR;
+typedef std::vector<class IFightingRelation*>::iterator VR_IT;
+typedef std::vector<class IFightingRelation*>::const_iterator VR_CIT;
+
+typedef std::map<class IFightingRelation*, VR> MRVR;
+typedef std::map<class IFightingRelation*, VR>::iterator MRVR_IT;
+typedef std::map<class IFightingRelation*, VR>::const_iterator MRVR_CIT;
+
+
+typedef std::vector<class CFormationElement*> VFE;
+typedef std::vector<class CFormationElement*>::iterator VFE_IT;
+typedef std::vector<class CFormationElement*>::const_iterator VFE_CIT;
+
+
+typedef std::map<int, SS> VSS;
+typedef std::map<int, SS>::iterator VSS_IT;
+typedef std::map<int, SS>::const_iterator VSS_CIT;
+
+
+typedef std::queue<class _FinderTask*> QFT;
+
+typedef std::set<class TFCollisionProtocol*> LRB;
+typedef std::set<class TFCollisionProtocol*>::iterator LRB_IT;
+typedef std::set<class TFCollisionProtocol*>::const_iterator LRB_CIT;
+
+typedef std::vector<LRB> MILRB;
+typedef std::vector<LRB>::iterator MILRB_IT;
+typedef std::vector<LRB>::const_iterator MILRB_CIT;
+
+
+typedef std::map<GBCollisionType, COLLISION_HANDLER> MICH;
+typedef std::map<GBCollisionType, COLLISION_HANDLER>::iterator MICH_IT;
+typedef std::map<GBCollisionType, COLLISION_HANDLER>::const_iterator MICH_CIT;
+
+
+typedef std::list<class CSkipWarriorRole*> QSWR;
+typedef std::list<class CSkipWarriorRole*>::iterator QSWR_IT;
+typedef std::list<class CSkipWarriorRole*>::const_iterator QSWR_CIT;
 
 
 #endif

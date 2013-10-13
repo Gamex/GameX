@@ -6,10 +6,10 @@
 //
 //
 
-#include "CState.h"
-#include "cocos2d.h"
+#include "Common.h"
 
-USING_NS_CC;
+#include "CState.h"
+
 
 CState::CState()
 : m_isStateLocked(false)
@@ -39,6 +39,7 @@ bool CState::changeState(int state)
 {
     if (m_isStateLocked)
     {
+        m_nextState = state;
         return false;
     }
     
@@ -79,6 +80,11 @@ void CState::lockState()
 void CState::unlockState()
 {
     m_isStateLocked = false;
+    if (m_nextState != STATE_NONE)
+    {
+        changeState(m_nextState);
+        m_nextState = STATE_NONE;
+    }
 }
 
 

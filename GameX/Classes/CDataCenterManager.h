@@ -13,6 +13,8 @@
 #include "DTLevel.h"
 #include "DTScene.h"
 #include "DTUnit.h"
+#include "DTSkill.h"
+
 
 class CDataCenterManager : public CSingleton<CDataCenterManager>
 {
@@ -25,11 +27,13 @@ public:
     DTLevel* getDTLevel(){return m_DTLevel;}
     DTScene* getDTScene(){return m_DTScene;}
     DTUnit* getDTUnit(){return m_DTUnit;}
+    DTSkill* getDTSkill(){return m_DTSkill;}
 protected:
 private:
     DTLevel* m_DTLevel;
     DTScene* m_DTScene;
     DTUnit* m_DTUnit;
+    DTSkill* m_DTSkill;
 };
 
 
@@ -37,4 +41,6 @@ private:
 #define DTLEVEL             (DATA_CENTER->getDTLevel())
 #define DTSCENE             (DATA_CENTER->getDTScene())
 #define DTUNIT              (DATA_CENTER->getDTUnit())
+#define DTSKILL             (DATA_CENTER->getDTSkill())
+
 #endif /* defined(__GameX__CDataCenterManager__) */

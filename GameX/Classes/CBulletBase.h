@@ -9,14 +9,10 @@
 #ifndef __TheForce__TFBulletBase__
 #define __TheForce__TFBulletBase__
 
-#include "cocos2d.h"
-#include <string>
-#include <vector>
+#include "Common.h"
 
 #include "CSpriteObject.h"
 
-USING_NS_CC;
-using namespace std;
 
 #define BULLET_STATE_MOVE       "Move"
 

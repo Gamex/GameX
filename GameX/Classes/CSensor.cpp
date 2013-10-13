@@ -12,6 +12,7 @@
 CSensor::CSensor()
 : m_pOwner(NULL)
 , m_TriggerHandler(NULL)
+, m_collisionGroup(0)
 {
     
 }
@@ -67,6 +68,10 @@ void CSensor::setOwnerAndTrigger(CVisibleObject* owner, SEL_CallFuncO trigger)
     m_pOwner = owner;
     m_TriggerHandler = trigger;
     
+    if (m_pOwner)
+    {
+        m_collisionGroup = m_pOwner->getCollisionGroup();
+    }
     turnOnCollision();
 }
 
@@ -74,12 +79,7 @@ void CSensor::setOwnerAndTrigger(CVisibleObject* owner, SEL_CallFuncO trigger)
 
 int CSensor::getCollisionGroup()
 {
-    if (m_pOwner)
-    {
-        return m_pOwner->getCollisionGroup();
-    }
-    
-    return 0;
+    return m_collisionGroup;
 }
 
 

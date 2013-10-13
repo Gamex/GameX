@@ -9,12 +9,7 @@
 #ifndef __TheForce__TFBatchNodeBase__
 #define __TheForce__TFBatchNodeBase__
 
-#include "cocos2d.h"
-
-#include <string>
-
-using namespace std;
-USING_NS_CC;
+#include "Common.h"
 
 class CObjectBase;
 
@@ -26,7 +21,7 @@ public:
     
     const CCArray* getInUseArray() const;
     unsigned int  getInUseCount();
-    virtual bool initCache(const string& name, int num);
+    virtual bool initCache(const std::string& name, int num);
     virtual CObjectBase* checkoutElement();
     virtual void checkinElement(CObjectBase* elem);
     virtual void clear();

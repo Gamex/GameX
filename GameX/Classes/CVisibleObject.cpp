@@ -35,15 +35,14 @@ bool CVisibleObject::init(CCDictionary* pObjectDict)
     do
     {
         BREAK_IF(!CObjectBase::init(pObjectDict));
-        
+
         CCString* sensorName = getSensorFromDict();
         if (sensorName)
         {
             setSensor(dynamic_cast<CSensor*>(CObjectBase::createObject(sensorName->getCString())));
             BREAK_IF(m_pSensor == NULL)
-
             m_pSensor->setOwnerAndTrigger(this, callfuncO_selector(CVisibleObject::onSensor));
-            setSensorType(m_pSensor);
+            onSetSensorType(m_pSensor);
         }
 
         return true;
@@ -442,7 +441,11 @@ void CVisibleObject::revive()
 void CVisibleObject::clearThis()
 {
     m_runningActions.removeAllObjects();
-    setSensor(NULL);
+    if (m_pSensor)
+    {
+        m_pSensor->clearAll();
+        setSensor(NULL);
+    }
 }
 
 
@@ -462,7 +465,7 @@ void CVisibleObject::onSensor(CCObject* obj)
 }
 
 
-void CVisibleObject::setSensorType(CSensor* pSensor)
+void CVisibleObject::onSetSensorType(CSensor* pSensor)
 {
     
 }

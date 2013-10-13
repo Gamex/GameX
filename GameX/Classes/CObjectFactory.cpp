@@ -22,9 +22,13 @@
 #include "CBallisticGun.h"
 #include "CBallisticAOEBullet.h"
 #include "CWarriorRole.h"
+#include "CWarriorUnit0.h"
+#include "CWarriorUnit1.h"
+#include "CWarriorUnit2.h"
+#include "CSkillComp.h"
 
-#define REGISTER_CLASS(__classname) if (!registerClass(#__classname, FACTOR_SEL(__classname::create))){return false;}
-#define FACTOR_SEL(__selector) (FACTORY_CREATE_FUNC)(&__selector)
+#define REGISTER_CLASS(__classname) if (!registerClass(#__classname, FACTORY_SEL(__classname::create))){return false;}
+#define FACTORY_SEL(__selector) (FACTORY_CREATE_FUNC)(&__selector)
 
 
 IMPLEMENT_SINGLETON(CObjectFactory)
@@ -58,12 +62,16 @@ bool CObjectFactory::Initialize()
     REGISTER_CLASS(CBallisticGun);
     REGISTER_CLASS(CBallisticAOEBullet);
     REGISTER_CLASS(CWarriorRole);
+    REGISTER_CLASS(CWarriorUnit0);
+    REGISTER_CLASS(CWarriorUnit1);
+    REGISTER_CLASS(CWarriorUnit2);
+    REGISTER_CLASS(CSkillComp);
     return true;
 }
 
 
 
-bool CObjectFactory::registerClass(const string&  className, FACTORY_CREATE_FUNC func)
+bool CObjectFactory::registerClass(const std::string&  className, FACTORY_CREATE_FUNC func)
 {
     if (!func)
     {
@@ -81,7 +89,7 @@ bool CObjectFactory::registerClass(const string&  className, FACTORY_CREATE_FUNC
 
 
 
-CObjectBase* CObjectFactory::createInstance(const string& className)
+CCObject* CObjectFactory::createInstance(const std::string& className)
 {
     MSCF_IT it = FactoryTable_.find(className);
     if (it == FactoryTable_.end())

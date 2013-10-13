@@ -9,7 +9,7 @@
 #ifndef __GameX__CMoveOnGridComp__
 #define __GameX__CMoveOnGridComp__
 
-#include "cocos2d.h"
+#include "CWarriorRoleCompBase.h"
 #include "CPathFinderManager.h"
 
 class CRole;
@@ -18,14 +18,15 @@ USING_NS_CC;
 
 enum
 {
-    SUB_STATE_IDLE,
-    SUB_STATE_PATH_FINDING,
-    SUB_STATE_PATH_FOUND,
-    SUB_STATE_MOVING,
+    MOVE_SUB_STATE_IDLE,
+    MOVE_SUB_STATE_PATH_FINDING,
+    MOVE_SUB_STATE_PATH_FOUND,
+    MOVE_SUB_STATE_MOVING,
+    MOVE_SUB_STATE_ROLL_BACK,
 };
 
 class CMoveOnGridComp
-: public CCComponent
+: public CWarriorRoleCompBase
 , public IPathFinderDelegate
 {
 public:
@@ -42,13 +43,13 @@ protected:
     virtual void findPathIfNeeded();
 private:
     vector<CCPoint> m_paths;
-    CRole* m_ownerRole;
     
     CCPoint m_moveFrom;
     CCPoint m_moveTo;
     float m_moveTotalTime;
     float m_moveElapseTime;
-    int m_subState;
+    
+    float m_idleSleepTime;
 };
 
 #endif /* defined(__GameX__CMoveOnGridComp__) */

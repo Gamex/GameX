@@ -30,7 +30,7 @@ public:
 
     virtual CCPoint getShootDirection();
 #ifdef DEBUG
-    virtual string whoAmI(){return "CArchersGun";}
+    virtual std::string whoAmI(){return "CArchersGun";}
 #endif
     
 protected:
@@ -38,7 +38,7 @@ protected:
     
     void clearThis();
     virtual void onSensor(CCObject* obj);
-    virtual void setSensorType(CSensor* pSensor);
+    virtual void onSetSensorType(CSensor* pSensor);
     
     virtual void completedAnimationSequenceNamed(const char *name);
 private:

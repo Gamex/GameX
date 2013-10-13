@@ -93,7 +93,7 @@ void CNodeContainer::clear()
 
 
 
-bool CNodeContainer::initCache(const string& name, int num)
+bool CNodeContainer::initCache(const std::string& name, int num)
 {
     for (int i = 0; i < num; ++i)
     {

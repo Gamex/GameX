@@ -30,6 +30,7 @@ protected:
 private:
     CVisibleObject* m_pOwner;
     SEL_CallFuncO m_TriggerHandler;
+    int m_collisionGroup;
 };
 
 #endif /* defined(__GameX__CSensor__) */

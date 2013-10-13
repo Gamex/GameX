@@ -6,10 +6,9 @@
 //
 //
 
-#include "cocos2d.h"
+#include "Common.h"
 #include "CFormationManager.h"
 
-USING_NS_CC;
 
 IMPLEMENT_SINGLETON(CFormationManager);
 
@@ -32,7 +31,12 @@ bool CFormation::saveToFile(const char* filename)
 {
     do
     {
-        string path = CCFileUtils::sharedFileUtils()->getWritablePath();
+        if (filename == NULL)
+        {
+            filename = m_filename.c_str();
+        }
+        
+        std::string path = CCFileUtils::sharedFileUtils()->getWritablePath();
         path += filename;
         FILE* fp = fopen(path.c_str(), "wb");
         BREAK_IF_FAILED(fp);
@@ -62,7 +66,12 @@ bool CFormation::loadFromFile(const char* filename)
 {
     do
     {
-        string path = CCFileUtils::sharedFileUtils()->getWritablePath();
+        if (filename == NULL)
+        {
+            filename = m_filename.c_str();
+        }
+        
+        std::string path = CCFileUtils::sharedFileUtils()->getWritablePath();
         path += filename;
         FILE* fp = fopen(path.c_str(), "rb");
         BREAK_IF_FAILED(fp);

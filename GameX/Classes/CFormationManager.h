@@ -9,34 +9,27 @@
 #ifndef __GameX__CFormationManager__
 #define __GameX__CFormationManager__
 
-#include "cocos2d.h"
 #include "Common.h"
 #include "CSingleton.h"
-#include <vector>
 
-USING_NS_CC;
-using namespace std;
 
 class CFormationElement
 {
 public:
     CCPoint pos;
-    string unitName;
+    std::string unitName;
 };
 
 class CFormation
 {
 public:
-    typedef vector<CFormationElement*> VFE;
-    typedef vector<CFormationElement*>::iterator VFE_IT;
-    typedef vector<CFormationElement*>::const_iterator VFE_CIT;
-    
-    virtual bool saveToFile(const char* filename);
-    virtual bool loadFromFile(const char* filename);
+    virtual bool saveToFile(const char* filename = NULL);
+    virtual bool loadFromFile(const char* filename = NULL);
     
     void clearAll();
     
     VFE m_elements;
+    std::string m_filename;
 };
 
 class CFormationManager : public CSingleton<CFormationManager>
@@ -50,9 +43,15 @@ public:
         return &m_formation;
     }
     
+    CFormation* getFormation1()
+    {
+        return &m_formation1;
+    }
+    
 protected:
 private:
     CFormation m_formation;
+    CFormation m_formation1;
 };
 
 #define FORMATION_MANAGER       (CFormationManager::getInstance())

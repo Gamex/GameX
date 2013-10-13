@@ -9,12 +9,9 @@
 #ifndef __EliminationPlane__TFPathManager__
 #define __EliminationPlane__TFPathManager__
 
-#include "cocos2d.h"
+#include "Common.h"
 #include "CSingleton.h"
-#include <string>
 
-using namespace std;
-USING_NS_CC;
 
 class CPath;
 
@@ -26,14 +23,14 @@ public:
     virtual ~CPathManager();
     virtual bool initialize();
     
-    virtual string makeRandomPath(const CCPoint& sp, const CCPoint& ep);
-    virtual void removePath(const string& name);
-    virtual CPath* getPathByName(const string& name);
+    virtual std::string makeRandomPath(const CCPoint& sp, const CCPoint& ep);
+    virtual void removePath(const std::string& name);
+    virtual CPath* getPathByName(const std::string& name);
 protected:
-    string makeTempPathName();
+    std::string makeTempPathName();
 private:
     int m_tempPathNameIdx;
-    const string m_tempPathNamePrefix;
+    const std::string m_tempPathNamePrefix;
 };
 
 

@@ -9,15 +9,9 @@
 #ifndef __GingyBattle__GBBaseLayer__
 #define __GingyBattle__GBBaseLayer__
 
-#include "cocos2d.h"
-#include "cocos-ext.h"
 #include "Common.h"
 
 class CCControlToggleButton;
-
-USING_NS_CC;
-USING_NS_CC_EXT;
-using namespace std;
 
 
 class CBaseLayer : public CCLayer

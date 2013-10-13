@@ -9,9 +9,8 @@
 #ifndef __GingyBattle__GBAnimationCache__
 #define __GingyBattle__GBAnimationCache__
 
-#include "cocos2d.h"
+#include "Common.h"
 
-USING_NS_CC;
 
 class CAnimationCache
 {

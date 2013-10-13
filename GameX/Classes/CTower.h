@@ -21,7 +21,7 @@ public:
     FACTORY_CREATE_FUNC(CTower);
 
 #ifdef DEBUG
-    virtual string whoAmI(){return "Tower";}
+    virtual std::string whoAmI(){return "Tower";}
 #endif
 
 protected:

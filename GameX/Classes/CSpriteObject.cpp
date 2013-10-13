@@ -69,7 +69,7 @@ bool CSpriteObject::init(CCDictionary* pObjectDict)
 bool CSpriteObject::setSpriteFromCcbi(const char* name)
 {
     // Create auto-release node loader
-    CCNodeLoaderLibrary* ccNodeLoaderLibrary = CCNodeLoaderLibrary::newDefaultCCNodeLoaderLibrary();
+    CCNodeLoaderLibrary* ccNodeLoaderLibrary = CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary();
 
     // Create a CCBReader, auto release.
     CCBReader * ccbReader = new CCBReader(ccNodeLoaderLibrary);
@@ -103,25 +103,6 @@ bool CSpriteObject::setSprite(const char* name)
 }
 
 
-//void CSpriteObject::setContentSize(CCSize size)
-//{
-//    CVisibleObject::setContentSize(size);
-//    
-//    if (m_pSprite)
-//    {
-//        m_pSprite->setContentSize(size);
-//    }
-//}
-
-
-//void CSpriteObject::setCCBReaderRootContainerSize(CCSize size)
-//{
-//    if (pCCBReader_)
-//    {
-////        pCCBReader_->getAnimationManager()->setRootContainerSize(size);
-//    }
-//}
-
 
 void CSpriteObject::setActionDelegate(CSpriteActionDelegate* pDelegate)
 {
@@ -133,7 +114,7 @@ void CSpriteObject::setActionDelegate(CSpriteActionDelegate* pDelegate)
 
 void CSpriteObject::clearAll()
 {
-    CObjectBase::clearAll();
+    CVisibleObject::clearAll();
  
     clearThis();
 }
@@ -159,7 +140,7 @@ void CSpriteObject::clearThis()
 
 
 
-bool CSpriteObject::playAnimation(const string& name, bool forceReplay)
+bool CSpriteObject::playAnimation(const std::string& name, bool forceReplay)
 {
     do
     {
@@ -188,6 +169,7 @@ bool CSpriteObject::playAnimation(const string& name, bool forceReplay)
     
     return false;
 }
+
 
 
 
@@ -230,18 +212,6 @@ void CSpriteObject::setInnerSprite(CCSprite* var)
         pSprite_ = var;
     } 
 }
-
-
-//CCNode* CSpriteObject::getCCBReaderRootNode() const
-//{
-//    if (pCCBReader_)
-//    {
-//        return pCCBReader_->getAnimationManager()->getRootNode();
-//    }
-//    
-//    return NULL;
-//}
-
 
 
 
@@ -334,4 +304,5 @@ bool CSpriteObject::getSpriteFlipY()
     CC_ASSERT(pSprite_);
     return pSprite_->isFlipY();
 }
+
 

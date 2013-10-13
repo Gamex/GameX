@@ -10,7 +10,9 @@
 #define __GameX__CMemPool__
 
 #include <list>
+#include <map>
 #include <algorithm>
+#include <assert.h>
 
 
 using namespace std;
@@ -40,8 +42,11 @@ public:
             m_usedCount++;
             T* p = m_pool.front();
             m_pool.pop_front();
-            m_pool.push_back(p);
             return p;
+        }
+        else
+        {
+            assert(false);
         }
         
         return NULL;
@@ -55,22 +60,23 @@ public:
             m_usedCount = 0;
             return;
         }
-        LC_IT it = find(m_pool.begin(), m_pool.end(), p);
-        if (it != m_pool.end())
-        {
-            m_usedCount--;
-            m_pool.erase(it);
-            m_pool.push_front(p);
-        }
+
+        m_usedCount--;
+        m_pool.push_front(p);
+
     }
 
 private:
     typedef list<T*> LC;
     typedef typename list<T*>::iterator LC_IT;
+    
+    typedef map<T*, LC_IT> MTIT;
+    typedef typename map<T*, LC_IT>::iterator MTIT_IT;
+    
     int m_usedCount;
     T* m_pBuffer;
     LC m_pool;
-    
+    MTIT m_usedPool;
 private:
 };
 

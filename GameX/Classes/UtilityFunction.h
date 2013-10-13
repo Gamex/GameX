@@ -9,11 +9,10 @@
 #ifndef __GameX__UtilityFunction__
 #define __GameX__UtilityFunction__
 
-#include "cocos2d.h"
+#include "Common.h"
 
 class CVisibleObject;
 
-USING_NS_CC;
 
 namespace utility
 {

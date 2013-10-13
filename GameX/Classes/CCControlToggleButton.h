@@ -9,10 +9,7 @@
 #ifndef __GingyBattle__CCControlToggleButton__
 #define __GingyBattle__CCControlToggleButton__
 
-#include "cocos2d.h"
-#include "cocos-ext.h"
-USING_NS_CC;
-USING_NS_CC_EXT;
+#include "Common.h"
 
 class CCControlToggleButton : public CCControlButton
 {

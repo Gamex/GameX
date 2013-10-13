@@ -9,14 +9,8 @@
 #ifndef __TheForce__TFCollisionMgr__
 #define __TheForce__TFCollisionMgr__
 
-#include "cocos2d.h"
+#include "Common.h"
 #include "CSingleton.h"
-
-#include <map>
-#include <set>
-
-USING_NS_CC;
-using namespace std;
 
 
 class TFCollisionProtocol;
@@ -45,19 +39,6 @@ public:
     virtual void clearAll();
     
 protected:
-    typedef set<TFCollisionProtocol*> LRB;
-    typedef set<TFCollisionProtocol*>::iterator LRB_IT;
-    typedef set<TFCollisionProtocol*>::const_iterator LRB_CIT;
-    
-    typedef vector<LRB> MILRB;
-    typedef vector<LRB>::iterator MILRB_IT;
-    typedef vector<LRB>::const_iterator MILRB_CIT;
-
-    typedef vector<unsigned int> VUI;
-    typedef vector<unsigned int>::iterator VUI_IT;
-    typedef vector<unsigned int>::const_iterator VUI_CIT;
-
-    
     MILRB m_ToBeAdded;
     MILRB m_ToBeDeleted;
     MILRB m_CollisionObjs;

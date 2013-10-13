@@ -9,18 +9,11 @@
 #ifndef __GameX__CGunBase__
 #define __GameX__CGunBase__
 
-#include "cocos2d.h"
-
-#include <vector>
-#include <string>
+#include "Common.h"
 
 #include "CNodeContainer.h"
 #include "CObjectBase.h"
 #include "CBatchNodeObject.h"
-
-
-using namespace std;
-USING_NS_CC;
 
 class CRole;
 
@@ -35,7 +28,7 @@ public:
     virtual void shoot() = 0;
     virtual void clearAll();
     
-    virtual bool changeBullet(const string& name);
+    virtual bool changeBullet(const std::string& name);
     
     DECLARE_DICTFUNC(CCString*, BulletName);
     DECLARE_DICTFUNC(int, CacheNum);

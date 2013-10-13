@@ -37,8 +37,9 @@ bool CFormationLayer::init()
 {
     do
     {
+        BREAK_IF_FAILED(CTouchesLayer::init());
+        
         setTouchEnabled(true);
-        CCDirector::sharedDirector()->setDepthTest(true);
         
         CCBReader* pReader = new CCBReader(CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary());
         m_panel = dynamic_cast<CFormationPanelLayer*>(pReader->readNodeGraphFromFile("formation_layer.ccbi"));
@@ -46,7 +47,8 @@ bool CFormationLayer::init()
         
         m_panel->setDelegate(this);
         addChild(m_panel, Z_ORDER_PANEL);
-
+        
+        // ccbi和tmx地图有冲突，所以必须在创建tmx之前先创建一次ccbi，否则真机上release版本会出错！！
         BREAK_IF_FAILED(initBkgLayerBase(BATCHNODE_LIST));
         
         m_roleNode = CCNode::create();
@@ -73,7 +75,7 @@ void CFormationLayer::update(float dt)
 
 
 
-void CFormationLayer::onFrameSel(const string& unitName)
+void CFormationLayer::onFrameSel(const std::string& unitName)
 {
     CBackgroundManager* bkgGrd = getBkgGrd();
     CC_ASSERT(bkgGrd);
@@ -267,7 +269,7 @@ void CFormationLayer::onSave(CFormation* fmt)
         }
     }
     
-    fmt->saveToFile("f.fmt");
+    fmt->saveToFile();
 }
 
 
@@ -275,7 +277,7 @@ void CFormationLayer::onSave(CFormation* fmt)
 void CFormationLayer::onLoad(CFormation* fmt)
 {
     
-    if (fmt->loadFromFile("f.fmt"))
+    if (fmt->loadFromFile())
     {
         clearFormation();
         CBackgroundManager* bkgGrd = getBkgGrd();

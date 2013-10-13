@@ -9,12 +9,10 @@
 #ifndef __GameX__CBkgLayerBase__
 #define __GameX__CBkgLayerBase__
 
-#include "cocos2d.h"
+#include "Common.h"
 #include "CBackgroundManager.h"
 #include "CBatchNodeManager.h"
 #include "CPathFinderManager.h"
-
-USING_NS_CC;
 
 class CBkgLayerBase
 {

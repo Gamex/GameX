@@ -48,11 +48,11 @@ bool CBatchNodeManager::loadBatchNodeInitData(const char* filename)
         
         CCObject* obj;
         
-        string name;
-        string texture;
+        std::string name;
+        std::string texture;
         int z;
         CCString* s;
-        const string& suffix = GLOBAL_CONFIG->getTextureSuffix();
+        const std::string& suffix = GLOBAL_CONFIG->getTextureSuffix();
         char buffer[260] = {0};
         
         CCARRAY_FOREACH(array, obj)
@@ -111,7 +111,7 @@ void CBatchNodeManager::attachToParent(CCNode* parent, int z)
 
 
 
-CCNode* CBatchNodeManager::getNodeByName(const string& name, bool& isBatchNode)
+CCNode* CBatchNodeManager::getNodeByName(const std::string& name, bool& isBatchNode)
 {
     MSSBN_IT it = m_pBatchNodes.find(name);
     if (it == m_pBatchNodes.end())
@@ -152,7 +152,7 @@ void CBatchNodeManager::attachToMe(CVisibleObject* vo, int zOrder, int tag)
 {
     CC_ASSERT(vo);
     CCString* batchNodeName = vo->getBatchNodeNameFromDict();
-    string name;
+    std::string name;
     if (batchNodeName)
     {
         name = batchNodeName->getCString();

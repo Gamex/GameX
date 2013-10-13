@@ -32,7 +32,7 @@ protected:
     virtual void touchesMoved(CCSet* touches, CCEvent* event);
     virtual void touchesEnded(CCSet* touches, CCEvent* event);
     
-    virtual void onFrameSel(const string& unitName);
+    virtual void onFrameSel(const std::string& unitName);
     virtual void onSave(class CFormation* fmt);
     virtual void onLoad(class CFormation* fmt);
     

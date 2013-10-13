@@ -43,6 +43,7 @@ protected:
 
     bool loadConfig();
     bool loadFormation();
+
 private:
     bool m_bMapMoved;
     CRole* m_curSelRole;

@@ -54,7 +54,7 @@
 		<key>CateName</key>
 		<string>CCircleSensor</string>
 		<key>Radius</key>
-		<integer>100</integer>
+		<integer>100000</integer>
 		<key>Name</key>
 		<string>Sensor0</string>
 	</dict>
@@ -138,37 +138,41 @@
 	<key>Unit0</key>
 	<dict>
 		<key>CateName</key>
-		<string>CWarriorRole</string>
+		<string>CWarriorUnit0</string>
 		<key>BatchNodeName</key>
 		<string>bn_actor</string>
 		<key>FileType</key>
 		<string>ccbi</string>
 		<key>CollisionGroup</key>
-		<string>0</string>
+		<string>1</string>
 		<key>Name</key>
 		<string>Unit0</string>
 		<key>FileName</key>
 		<string>unit0</string>
+		<key>Sensor</key>
+		<string>Sensor0</string>
 	</dict>
 	<key>Unit1</key>
 	<dict>
 		<key>CateName</key>
-		<string>CWarriorRole</string>
+		<string>CWarriorUnit1</string>
 		<key>BatchNodeName</key>
 		<string>bn_unit1</string>
 		<key>FileType</key>
 		<string>ccbi</string>
 		<key>CollisionGroup</key>
-		<string>0</string>
+		<string>1</string>
 		<key>Name</key>
 		<string>Unit1</string>
 		<key>FileName</key>
 		<string>unit1</string>
+		<key>Sensor</key>
+		<string>Sensor0</string>
 	</dict>
 	<key>Unit2</key>
 	<dict>
 		<key>CateName</key>
-		<string>CWarriorRole</string>
+		<string>CWarriorUnit2</string>
 		<key>BatchNodeName</key>
 		<string>bn_actor</string>
 		<key>FileType</key>
@@ -179,6 +183,8 @@
 		<string>Unit2</string>
 		<key>FileName</key>
 		<string>unit2</string>
+		<key>Sensor</key>
+		<string>Sensor0</string>
 	</dict>
 	<key>Unit3</key>
 	<dict>
@@ -194,6 +200,8 @@
 		<string>Unit3</string>
 		<key>FileName</key>
 		<string>unit3</string>
+		<key>Sensor</key>
+		<string>Sensor0</string>
 	</dict>
 	<key>Unit4</key>
 	<dict>
@@ -209,6 +217,8 @@
 		<string>Unit4</string>
 		<key>FileName</key>
 		<string>unit4</string>
+		<key>Sensor</key>
+		<string>Sensor0</string>
 	</dict>
 	<key>Unit5</key>
 	<dict>
@@ -224,6 +234,8 @@
 		<string>Unit5</string>
 		<key>FileName</key>
 		<string>unit5</string>
+		<key>Sensor</key>
+		<string>Sensor0</string>
 	</dict>
 	<key>Unit6</key>
 	<dict>

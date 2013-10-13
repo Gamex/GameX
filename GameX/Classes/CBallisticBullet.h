@@ -27,7 +27,7 @@ public:
     
     virtual void launch();
 #ifdef DEBUG
-    virtual string whoAmI(){return "CBallisticBullet";}
+    virtual std::string whoAmI(){return "CBallisticBullet";}
 #endif
 
     DECLARE_DICTFUNC(float, Damage);

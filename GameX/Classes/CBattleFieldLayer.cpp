@@ -19,6 +19,7 @@
 #include "CFormationManager.h"
 #include "CRole.h"
 #include "CDataCenterManager.h"
+#include "CAIManager.h"
 
 
 #define BATCHNODE_LIST          "BatchNodes.plist"
@@ -52,21 +53,23 @@ bool CBattleFieldLayer::init()
         BREAK_IF_FAILED(CTouchesLayer::init());
         
         setTouchEnabled(true);
-        setTouchMode(kCCTouchesAllAtOnce);
         
         initListener();
         
         loadConfig();
         
+        // ccbi和tmx地图有冲突，所以必须在创建tmx之前先创建一次ccbi，否则真机上release版本会出错！！
+        CObjectBase* ob = CObjectBase::createObject("Unit0");
+        ob->clearAll();
+
         BREAK_IF_FAILED(CBkgLayerBase::initBkgLayerBase(BATCHNODE_LIST));
-        
 //        setGamePanelLayer(CGamePanelLayer::create());
 //        addChild(m_pGamePanelLayer, Z_ORDER_GAME_PANEL);
 
+
         loadFormation();
-        
         scheduleUpdate();
-     
+
         return true;
     } while (false);
     
@@ -78,6 +81,8 @@ bool CBattleFieldLayer::init()
 void CBattleFieldLayer::update(float dt)
 {
     GAME_TIME->update(dt);
+    
+    AI_MANAGER->update(dt);
         
     CCArray* children = getChildren();
     CCObject* obj;
@@ -136,19 +141,24 @@ void CBattleFieldLayer::touchesEnded(CCSet* touches, CCEvent* event)
             
             if (m_curSelRole == NULL)
             {
+                bkg->clearAllHightlightGrids();
                 CLogicGrid* grid = bkg->getLogicGrid(gp);
                 m_curSelRole = dynamic_cast<CRole*>(grid->getUnit());
                 if (m_curSelRole)
                 {
                     bkg->hightlightGrid(grid->getGridPos());
-                    m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
+//                    m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
+                    
+                    bkg->hightlightGrid(m_curSelRole->getMovetarget());
                 }
-            }
-            else    // move it
-            {
-                m_curSelRole->setMoveTarget(gp);
+                
                 m_curSelRole = NULL;
             }
+//            else    // move it
+//            {
+//                m_curSelRole->setMoveTarget(gp);
+//                m_curSelRole = NULL;
+//            }
             break;
         }
     }
@@ -199,25 +209,45 @@ bool CBattleFieldLayer::loadFormation()
     CBackgroundManager* bkgGrd = getBkgGrd();
     CC_ASSERT(bkgGrd);
     bkgGrd->clearAllUnits();
+    
+
     CFormation* fmt = FORMATION_MANAGER->getFormation();
-    CFormation::VFE_IT it = fmt->m_elements.begin();
+    fmt->loadFromFile("f.fmt");
+    VFE_IT it = fmt->m_elements.begin();
     for (; it != fmt->m_elements.end(); ++it)
     {
         CFormationElement* fe = (*it);
         
         CCDictionary* dict = DTUNIT->getData(fe->unitName);
         CCString* objName = DTUNIT->get_resourceID_Value(dict);
+        
         CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(objName->getCString()));
         CC_ASSERT(role);
-        role->setUnitName(fe->unitName);
-        role->setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
-        role->setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
+        role->loadRoleData(fe->unitName);
         bkgGrd->placeRole(role, fe->pos);
         role->setMoveTarget(fe->pos);
         role->attachSpriteTo(bkgGrd);
-
+        role->setRoleGroup(ROLE_GROUP_ATTACK);
         addChild(role);
     }
-    
+
+    CFormation* fmt1 = FORMATION_MANAGER->getFormation1();
+    fmt1->loadFromFile("f1.fmt");
+    VFE_IT it1 = fmt1->m_elements.begin();
+    for (; it1 != fmt1->m_elements.end(); ++it1)
+    {
+        CFormationElement* fe = (*it1);
+        
+        CCDictionary* dict = DTUNIT->getData(fe->unitName);
+        CCString* objName = DTUNIT->get_resourceID_Value(dict);
+        CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(objName->getCString()));
+        CC_ASSERT(role);
+        role->loadRoleData(fe->unitName);
+        bkgGrd->placeRole(role, fe->pos);
+        role->setMoveTarget(fe->pos);
+        role->attachSpriteTo(bkgGrd);
+        role->setRoleGroup(ROLE_GROUP_DEFENDCE);
+        addChild(role);
+    }
     return true;
 }

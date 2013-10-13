@@ -54,7 +54,7 @@ bool TFGameObjectManager::init()
 
 
 
-CCDictionary* TFGameObjectManager::getObjectByName(const string& name)
+CCDictionary* TFGameObjectManager::getObjectByName(const std::string& name)
 {
     if (NULL == pGameObjects_)
     {

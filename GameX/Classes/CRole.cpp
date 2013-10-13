@@ -10,6 +10,8 @@
 #include "TFGameObjectManager.h"
 #include "CBackgroundManager.h"
 #include "CMoveOnGridComp.h"
+#include "CAIManager.h"
+#include "CDataCenterManager.h"
 
 DEFINE_DICTFUNC_DICTIONARY(CRole, Gun);
 
@@ -17,6 +19,7 @@ DEFINE_DICTFUNC_DICTIONARY(CRole, Gun);
 CRole::CRole()
 : m_pGun(NULL)
 , m_faceTo(FACE_TO_RIGHT_DOWN)
+, m_roleGroup(ROLE_GROUP_NA)
 {
 
 }
@@ -75,16 +78,31 @@ bool CRole::init(CCDictionary* pObjectDict)
     }
 
     enableAlphaTest(0.5);
+    
+    changeState(ROLE_STATE_MOVE);
+
 	return true;
 }
+
+
+
+void CRole::loadRoleData(const string& unitName)
+{
+    setUnitName(unitName);
+    
+    CCDictionary* dict = DTUNIT->getData(unitName);
+    setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
+    setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
+
+}
+
 
 
 
 void CRole::addComponentsForStates()
 {
     CMoveOnGridComp* moveComp = CMoveOnGridComp::create();
-    addComponent(moveComp);
-    addComponentForState(ROLE_STATE_MOVE, moveComp->getName());
+    addComponentForState(ROLE_STATE_MOVE, moveComp);
 }
 
 
@@ -125,7 +143,7 @@ void CRole::clearThis()
 
 
 
-bool CRole::createGun(const string& name)
+bool CRole::createGun(const std::string& name)
 {
     if (NULL != getGun())
     {
@@ -148,7 +166,7 @@ bool CRole::createGun(const string& name)
 
 
 
-bool CRole::changeBullet(const string& name)
+bool CRole::changeBullet(const std::string& name)
 {
     if (NULL == m_pGun)
     {
@@ -194,10 +212,18 @@ CRole* CRole::getAttackTarget()
 
 void CRole::die()
 {
+    AI_MANAGER->removeAI(this);
     FIGHT_RELATION->removeAllRelation(dynamic_cast<IFightingRelation*>(this));
     CSpriteObject::die();
 }
 
+
+
+void CRole::revive()
+{
+    CSpriteObject::revive();
+    AI_MANAGER->addAI(this);
+}
 
 
 void CRole::onPlaceOnMap(const CCPoint& gridPos, const CCPoint& position)
@@ -251,9 +277,9 @@ const CCPoint& CRole::getMovetarget()
 
 
 
-bool CRole::playAnimation(const string& name)
+bool CRole::playAnimation(const std::string& name)
 {
-    string s = m_faceToPrefix[m_faceTo];
+    std::string s = m_faceToPrefix[m_faceTo];
     s += name;
     
     return CSpriteObject::playAnimation(s);
@@ -284,4 +310,113 @@ void CRole::findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFin
 
 
 
+void CRole::think()
+{
+}
+
+
+
+void CRole::setFaceTo(CRole* role)
+{
+    do
+    {
+        CC_ASSERT(role);
+        CBackgroundManager* bkg = getBackGround();
+        CC_ASSERT(bkg);
+        CLogicGrid* l1 = getLogicGrid();
+        CLogicGrid* l2 = role->getLogicGrid();
+        BREAK_IF(l1 == NULL || l2 == NULL);
+        CCPoint p1 = l1->getGridPos();
+        CCPoint p2 = l2->getGridPos();
+        p1 = bkg->gridToWorldPoint(p1);
+        p2 = bkg->gridToWorldPoint(p2);
+        FACE_TO ft;
+
+        if (p2.x > p1.x)
+        {
+            if (p2.y > p1.y)
+            {
+                ft = FACE_TO_RIGHT_UP;
+            }
+            else
+            {
+                ft = FACE_TO_RIGHT_DOWN;
+            }
+        }
+        else
+        {
+            if (p2.y > p1.y)
+            {
+                ft = FACE_TO_LEFT_UP;
+            }
+            else
+            {
+                ft = FACE_TO_LEFT_DOWN;
+            }
+        }
+        
+        setFaceTo(ft);
+    } while (false);
+    
+    return;
+}
+
+
+
+float CRole::getDistanceSqInGrid(IGridRole* role)
+{
+    CCPoint p1 = getPositionInGrid();
+    CCPoint p2 = role->getPositionInGrid();
+    
+    int i,j,m,n;
+    float smallest = FLT_MAX;
+    
+    for (i = 0; i < getGridWidth(); ++i)
+    {
+        for (j = 0; j < getGridHeight(); ++j)
+        {
+            CCPoint pos1(p1.x + i, p1.y + j);
+            for (m = 0; m < role->getGridWidth(); ++m)
+            {
+                for (n = 0; n < role->getGridHeight(); ++n)
+                {
+                    CCPoint pos2(p2.x + m, p2.y + n);
+                    float dist = pos1.getDistanceSq(pos2);
+                    if (dist < smallest)
+                    {
+//                        CCLOG("(%f,%f --> %f, %f) %f", pos1.x, pos1.y, pos2.x, pos2.y, dist);
+                        smallest = dist;
+                    }
+                }
+            }
+        }
+    }
+    
+	return smallest;
+}
+
+
+
+bool CRole::checkInGridRadiusSq(IGridRole* role, float radiusInGrid)
+{
+	return FLT_LE(getDistanceSqInGrid(role), radiusInGrid);
+}
+
+
+
+CCPoint CRole::getPositionInGrid()
+{
+    CLogicGrid* lg = getLogicGrid();
+    
+    return lg->getGridPos();
+    
+    int w = getGridWidth();
+    int h = getGridHeight();
+    
+    CCPoint pos = lg->getGridPos();
+    pos.x += (w - 1) * 0.5f;
+    pos.y += (h - 1) * 0.5f;
+    
+    return pos;
+}
 

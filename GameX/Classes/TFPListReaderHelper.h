@@ -9,12 +9,7 @@
 #ifndef __TheForce__TFPListReaderHelper__
 #define __TheForce__TFPListReaderHelper__
 
-#include "cocos2d.h"
 #include "Common.h"
-#include <string>
-
-using namespace std;
-USING_NS_CC;
 
 class TFPListReaderHelper
 {

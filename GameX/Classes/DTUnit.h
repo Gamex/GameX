@@ -25,24 +25,26 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("unitname_1"), "name");
+			elem->setObject(CCString::create("kuangtu"), "name");
 			elem->setObject(CCString::create("0"), "type");
 			elem->setObject(CCString::create("Unit0"), "resourceID");
 			elem->setObject(CCString::create("-9"), "x");
 			elem->setObject(CCString::create("-15"), "y");
-			elem->setObject(CCString::create("19"), "width");
-			elem->setObject(CCString::create("35"), "hight");
+			elem->setObject(CCString::create("23"), "width");
+			elem->setObject(CCString::create("43"), "hight");
 			elem->setObject(CCString::create("1"), "gridWidth");
 			elem->setObject(CCString::create("1"), "gridHeight");
-			elem->setObject(CCString::create("5000"), "hp");
-			elem->setObject(CCString::create("20"), "atk");
-			elem->setObject(CCString::create("2"), "def");
+			elem->setObject(CCString::create("120"), "hp");
+			elem->setObject(CCString::create("10"), "atk");
+			elem->setObject(CCString::create("1"), "def");
+			elem->setObject(CCString::create("0"), "deftype");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("0"), "target");
 			elem->setObject(CCString::create("0"), "radius");
-			elem->setObject(CCString::create("0"), "speed");
+			elem->setObject(CCString::create("3"), "speed");
+			elem->setObject(CCString::create("1"), "rate");
 			elem->setObject(CCString::create("1"), "skill0");
-			elem->setObject(CCString::create(""), "skill1");
+			elem->setObject(CCString::create("10001"), "skill1");
 			elem->setObject(CCString::create(""), "skill2");
 			elem->setObject(CCString::create(""), "skill3");
 			elem->setObject(CCString::create(""), "skill4");
@@ -54,24 +56,26 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("unitname_1"), "name");
+			elem->setObject(CCString::create("jiqiangbing"), "name");
 			elem->setObject(CCString::create("0"), "type");
 			elem->setObject(CCString::create("Unit1"), "resourceID");
 			elem->setObject(CCString::create("-9"), "x");
 			elem->setObject(CCString::create("-15"), "y");
-			elem->setObject(CCString::create("19"), "width");
-			elem->setObject(CCString::create("35"), "hight");
+			elem->setObject(CCString::create("15"), "width");
+			elem->setObject(CCString::create("40"), "hight");
 			elem->setObject(CCString::create("1"), "gridWidth");
 			elem->setObject(CCString::create("1"), "gridHeight");
-			elem->setObject(CCString::create("5000"), "hp");
-			elem->setObject(CCString::create("20"), "atk");
-			elem->setObject(CCString::create("2"), "def");
+			elem->setObject(CCString::create("80"), "hp");
+			elem->setObject(CCString::create("8"), "atk");
+			elem->setObject(CCString::create("0"), "def");
+			elem->setObject(CCString::create("0"), "deftype");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("0"), "target");
 			elem->setObject(CCString::create("0"), "radius");
-			elem->setObject(CCString::create("0"), "speed");
-			elem->setObject(CCString::create("1"), "skill0");
-			elem->setObject(CCString::create(""), "skill1");
+			elem->setObject(CCString::create("3"), "speed");
+			elem->setObject(CCString::create("1"), "rate");
+			elem->setObject(CCString::create("2"), "skill0");
+			elem->setObject(CCString::create("10002"), "skill1");
 			elem->setObject(CCString::create(""), "skill2");
 			elem->setObject(CCString::create(""), "skill3");
 			elem->setObject(CCString::create(""), "skill4");
@@ -83,24 +87,26 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("unitname_2"), "name");
+			elem->setObject(CCString::create("mengma"), "name");
 			elem->setObject(CCString::create("0"), "type");
 			elem->setObject(CCString::create("Unit2"), "resourceID");
 			elem->setObject(CCString::create("-9"), "x");
 			elem->setObject(CCString::create("-15"), "y");
-			elem->setObject(CCString::create("19"), "width");
-			elem->setObject(CCString::create("35"), "hight");
+			elem->setObject(CCString::create("32"), "width");
+			elem->setObject(CCString::create("37"), "hight");
 			elem->setObject(CCString::create("2"), "gridWidth");
 			elem->setObject(CCString::create("2"), "gridHeight");
-			elem->setObject(CCString::create("1000"), "hp");
-			elem->setObject(CCString::create("10"), "atk");
-			elem->setObject(CCString::create("1"), "def");
+			elem->setObject(CCString::create("250"), "hp");
+			elem->setObject(CCString::create("32"), "atk");
+			elem->setObject(CCString::create("2"), "def");
+			elem->setObject(CCString::create("0"), "deftype");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("0"), "target");
 			elem->setObject(CCString::create("0"), "radius");
-			elem->setObject(CCString::create("0"), "speed");
-			elem->setObject(CCString::create("2"), "skill0");
-			elem->setObject(CCString::create(""), "skill1");
+			elem->setObject(CCString::create("2"), "speed");
+			elem->setObject(CCString::create("0.5"), "rate");
+			elem->setObject(CCString::create("3"), "skill0");
+			elem->setObject(CCString::create("10003"), "skill1");
 			elem->setObject(CCString::create(""), "skill2");
 			elem->setObject(CCString::create(""), "skill3");
 			elem->setObject(CCString::create(""), "skill4");
@@ -112,24 +118,26 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("unitname_3"), "name");
+			elem->setObject(CCString::create("huofu"), "name");
 			elem->setObject(CCString::create("0"), "type");
-			elem->setObject(CCString::create("Unit2"), "resourceID");
+			elem->setObject(CCString::create("Unit3"), "resourceID");
 			elem->setObject(CCString::create("-9"), "x");
 			elem->setObject(CCString::create("-15"), "y");
-			elem->setObject(CCString::create("19"), "width");
+			elem->setObject(CCString::create("47"), "width");
 			elem->setObject(CCString::create("35"), "hight");
 			elem->setObject(CCString::create("2"), "gridWidth");
 			elem->setObject(CCString::create("2"), "gridHeight");
-			elem->setObject(CCString::create("1000"), "hp");
-			elem->setObject(CCString::create("10"), "atk");
+			elem->setObject(CCString::create("100"), "hp");
+			elem->setObject(CCString::create("12"), "atk");
 			elem->setObject(CCString::create("1"), "def");
+			elem->setObject(CCString::create("0"), "deftype");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("0"), "target");
 			elem->setObject(CCString::create("0"), "radius");
-			elem->setObject(CCString::create("0"), "speed");
-			elem->setObject(CCString::create("0"), "skill0");
-			elem->setObject(CCString::create("10001"), "skill1");
+			elem->setObject(CCString::create("2"), "speed");
+			elem->setObject(CCString::create("0.6"), "rate");
+			elem->setObject(CCString::create("4"), "skill0");
+			elem->setObject(CCString::create("10004"), "skill1");
 			elem->setObject(CCString::create(""), "skill2");
 			elem->setObject(CCString::create(""), "skill3");
 			elem->setObject(CCString::create(""), "skill4");
@@ -272,6 +280,15 @@ public:
 		return getValueOf(subDict, "def");
 	}
 
+	CCString* get_deftype_Value(const string& key)
+	{
+		return getValueOf(key, "deftype");
+	}
+	CCString* get_deftype_Value(CCDictionary* subDict)
+	{
+		return getValueOf(subDict, "deftype");
+	}
+
 	CCString* get_dimension_Value(const string& key)
 	{
 		return getValueOf(key, "dimension");
@@ -306,6 +323,15 @@ public:
 	CCString* get_speed_Value(CCDictionary* subDict)
 	{
 		return getValueOf(subDict, "speed");
+	}
+
+	CCString* get_rate_Value(const string& key)
+	{
+		return getValueOf(key, "rate");
+	}
+	CCString* get_rate_Value(CCDictionary* subDict)
+	{
+		return getValueOf(subDict, "rate");
 	}
 
 	CCString* get_skill0_Value(const string& key)

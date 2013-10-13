@@ -38,7 +38,7 @@ bool CArchersGun::init(CCDictionary* pObjectDict)
 
 
 
-void CArchersGun::setSensorType(CSensor* pSensor)
+void CArchersGun::onSetSensorType(CSensor* pSensor)
 {
     pSensor->setSensorTargetType(CT_MONSTER);
 }

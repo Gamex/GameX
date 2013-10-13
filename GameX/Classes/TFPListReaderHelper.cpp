@@ -9,7 +9,7 @@
 #include "TFPListReaderHelper.h"
 
 
-// string toolkit
+// std::string toolkit
 void TFPListReaderHelper::split(std::string src, const char* token, CCArray& vect)
 {
     int nend=0;
@@ -31,8 +31,8 @@ void TFPListReaderHelper::split(std::string src, const char* token, CCArray& vec
     }
 }
 
-// first, judge whether the form of the string like this: {x,y}
-// if the form is right,the string will be split into the parameter strs;
+// first, judge whether the form of the std::string like this: {x,y}
+// if the form is right,the std::string will be split into the parameter strs;
 // or the parameter strs will be empty.
 // if the form is right return true,else return false.
 bool TFPListReaderHelper::splitWithForm(const char* pStr, CCArray& strs)
@@ -43,7 +43,7 @@ bool TFPListReaderHelper::splitWithForm(const char* pStr, CCArray& strs)
     {
         BREAK_IF(!pStr);
         
-        // string is empty
+        // std::string is empty
         std::string content = pStr;
         BREAK_IF(content.length() == 0);
         

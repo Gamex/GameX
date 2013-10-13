@@ -9,12 +9,10 @@
 #ifndef __EliminationPlane__CPListSaver__
 #define __EliminationPlane__CPListSaver__
 
-#include "cocos2d.h"
-
-USING_NS_CC;
+#include "Common.h"
 
 // USAGE:
-// string filename = cocos2d::CCFileUtils::sharedFileUtils()->getWriteablePath() + string("test.plist");
+// std::string filename = cocos2d::CCFileUtils::sharedFileUtils()->getWriteablePath() + std::string("test.plist");
 // CPListSaver::save2Plist(pDictToSave, filename.c_str());
 
 class CPListSaver

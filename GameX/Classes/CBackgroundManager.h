@@ -10,11 +10,7 @@
 #define __GameX__CBackgroundManager__
 
 #include "Common.h"
-#include "cocos2d.h"
-#include <vector>
 
-using namespace std;
-USING_NS_CC;
 
 class CPathFinderManager;
 class IPathFinderDelegate;
@@ -48,6 +44,10 @@ public:
     virtual void updateVertexZ() = 0;
     virtual void onPlaceOnMap(const CCPoint& gridPos, const CCPoint& position) = 0;
     virtual void findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFinderDelegate* delegate = NULL) = 0;
+    
+    virtual CCPoint getPositionInGrid() = 0;
+    virtual float getDistanceSqInGrid(IGridRole* role) = 0;
+    virtual bool checkInGridRadiusSq(IGridRole* role, float radiusInGrid) = 0;
 };
 
 
@@ -135,7 +135,7 @@ public:
 
 protected:
 private:
-    vector<CLogicGrid> m_grids;
+    std::vector<CLogicGrid> m_grids;
     CPathFinderManager* m_pathFinder;
 };
 

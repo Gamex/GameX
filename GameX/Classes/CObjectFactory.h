@@ -9,12 +9,9 @@
 #ifndef __EliminationPlane__TFObjectFactory__
 #define __EliminationPlane__TFObjectFactory__
 
+#include "Common.h"
 #include "CSingleton.h"
 
-#include <map>
-#include <string>
-
-class CObjectBase;
 
 using namespace std;
 
@@ -22,16 +19,16 @@ using namespace std;
 class CObjectFactory : public CSingleton<CObjectFactory>
 {
 public:
-    typedef CObjectBase* (*FACTORY_CREATE_FUNC)();
+    typedef CCObject* (*FACTORY_CREATE_FUNC)();
 
     CObjectFactory();
     virtual ~CObjectFactory();
     
     bool Initialize();
-    CObjectBase* createInstance(const string& className);
+    CCObject* createInstance(const std::string& className);
     
 protected:
-    bool registerClass(const string&  className, FACTORY_CREATE_FUNC func);
+    bool registerClass(const std::string&  className, FACTORY_CREATE_FUNC func);
 private:
     typedef map<string, FACTORY_CREATE_FUNC> MSCF;
     typedef map<string, FACTORY_CREATE_FUNC>::iterator MSCF_IT;
@@ -41,7 +38,7 @@ private:
     
 };
 
-#define FACTORY_CREATE_FUNC(__type) static CObjectBase* create() \
+#define FACTORY_CREATE_FUNC(__type) static CCObject* create() \
 { \
     __type *pRet = new __type(); \
     if (pRet) \

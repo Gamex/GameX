@@ -43,7 +43,7 @@ void TFItemInGame::update(float dt)
     {
         if (getSpritePosition().y <= -getSpriteBoundingBox().size.height/2.f)
         {
-//            changeState(string("Dead"), string());
+//            changeState(string("Dead"), std::string());
             die();
         }
         

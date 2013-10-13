@@ -31,7 +31,7 @@ TFCollisionMgr::~TFCollisionMgr()
 
 
 //                    Hero	Monster     Bullet
-//Hero                0     1           1
+//Hero                1     1           1
 //Monster/Item        1     0           0
 //Bullet              0     1           0
 

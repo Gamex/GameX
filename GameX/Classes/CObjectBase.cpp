@@ -15,7 +15,7 @@ DEFINE_DICTFUNC_STR(CObjectBase, CateName);
 DEFINE_DICTFUNC_STR(CObjectBase, Name);
 
 
-CObjectBase* CObjectBase::createObject(const string& name)
+CObjectBase* CObjectBase::createObject(const std::string& name)
 {
     CObjectBase* pObject = NULL;
     CCDictionary* pDict = GAME_OJBECT_MANAGER->getObjectByName(name);
@@ -30,7 +30,7 @@ CObjectBase* CObjectBase::createObject(const string& name)
         return NULL;
     }
 
-    pObject = OBJECT_FACTORY->createInstance(strCateName->getCString());
+    pObject = (CObjectBase*)OBJECT_FACTORY->createInstance(strCateName->getCString());
     
     if (pObject)
     {
@@ -68,7 +68,7 @@ bool CObjectBase::init(CCDictionary* pObjectDict)
     
     addComponentsForStates();
     
-    turnOnCollision();
+    revive();
     return true;
 }
 
@@ -84,7 +84,7 @@ void CObjectBase::clearAll()
 
 void CObjectBase::clearThis()
 {
-    turnOffCollision();
+    die();
     setObjectDictionary(NULL);
     removeAllChildrenWithCleanup(true);
     clearState();
@@ -169,9 +169,63 @@ void CObjectBase::addComponentsForStates()
 
 
 
-void CObjectBase::addComponentForState(int state, const string& compName)
+void CObjectBase::addComponentForState(int state, CCComponent* comp)
 {
-    CC_ASSERT(getComponent(compName.c_str()));
-    
-    m_stateComponentTable[state].insert(compName);
+    do
+    {
+        BREAK_IF(state < 0);
+        
+        CC_ASSERT(comp);
+        
+        comp->setEnabled(getCurrentState() == state);
+
+        m_stateComponentTable[state].insert(comp->getName());
+        
+        addComponent(comp);
+    } while (false);
 }
+
+
+
+
+void CObjectBase::onEnterState(int state)
+{
+    do
+    {
+        VSS_IT it = m_stateComponentTable.find(state);
+        BREAK_IF(it == m_stateComponentTable.end());
+        SS& ss = (*it).second;
+        SS_IT ss_it = ss.begin();
+        for (; ss_it != ss.end(); ++ss_it)
+        {
+            CCComponent* comp = getComponent((*ss_it).c_str());
+            CC_ASSERT(comp);
+            comp->setEnabled(true);
+            comp->onEnter();
+        }
+    } while (false);
+}
+
+
+
+void CObjectBase::onLeaveState(int state)
+{
+    do
+    {
+        VSS_IT it = m_stateComponentTable.find(state);
+        BREAK_IF(it == m_stateComponentTable.end());
+        SS& ss = (*it).second;
+        SS_IT ss_it = ss.begin();
+        for (; ss_it != ss.end(); ++ss_it)
+        {
+            CCComponent* comp = getComponent((*ss_it).c_str());
+            CC_ASSERT(comp);
+            comp->setEnabled(false);
+            comp->onExit();
+        }
+    } while (false);
+}
+
+
+
+

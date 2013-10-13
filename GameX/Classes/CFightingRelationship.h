@@ -10,20 +10,10 @@
 #define __GameX__CFightingRelationship__
 
 #include "CSingleton.h"
-#include <vector>
-#include <map>
-
-using namespace std;
+#include "Common.h"
 
 class IFightingRelation;
 
-typedef vector<IFightingRelation*> VR;
-typedef vector<IFightingRelation*>::iterator VR_IT;
-typedef vector<IFightingRelation*>::const_iterator VR_CIT;
-
-typedef map<IFightingRelation*, VR> MRVR;
-typedef map<IFightingRelation*, VR>::iterator MRVR_IT;
-typedef map<IFightingRelation*, VR>::const_iterator MRVR_CIT;
 
 class IFightingRelation
 {

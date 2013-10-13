@@ -80,7 +80,7 @@ bool CGameSceneManager::go(SCENE_TYPE st)
         CCDirector* pDirector = CCDirector::sharedDirector();
         if (pDirector->getRunningScene())
         {
-            CCTransitionFade* trans = CCTransitionFade::create(1.f, scene, ccc3(255, 255, 255));
+            CCTransitionFade* trans = CCTransitionFade::create(.2f, scene, ccc3(255, 255, 255));
             pDirector->replaceScene(trans);
         }
         else

@@ -12,11 +12,15 @@
 #include "CVisibleObject.h"
 #include "CSpriteActionDelegate.h"
 #include "CCBReader.h"
+#include <map>
 
 USING_NS_CC;
 USING_NS_CC_EXT;
 
-class CSpriteObject : public CVisibleObject, public CCBAnimationManagerDelegate
+class CSpriteObject
+: public CVisibleObject
+, public CCBAnimationManagerDelegate
+, public CCBSelectorResolver
 {
     CC_SYNTHESIZE_RETAIN(CCBReader*, pCCBReader_, CCBReader);
 public:
@@ -30,8 +34,15 @@ public:
 
     virtual void revive();
     
-    // Warning:DO NOT call changeState in the delegate function!
-    virtual void setActionDelegate(CSpriteActionDelegate* pDelegate);    
+    // Warning:DO NOT call playAnimation in the delegate function!
+    virtual void setActionDelegate(CSpriteActionDelegate* pDelegate);
+
+    virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char* pSelectorName)
+    { return NULL; };
+    virtual SEL_CallFuncN onResolveCCBCCCallFuncSelector(CCObject * pTarget, const char* pSelectorName)
+    { return NULL; };
+    virtual SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, const char* pSelectorName)
+    { return NULL; };
 
     virtual CCNode* getInnerSprite() const;
     virtual void setSpriteFlipX(bool f);
@@ -40,11 +51,8 @@ public:
     virtual bool getSpriteFlipY();
 
     virtual void endState();
-    virtual bool playAnimation(const string& name, bool forceReplay = false);
+    virtual bool playAnimation(const std::string& name, bool forceReplay = false);
 //    virtual bool playAnimation(int id, bool forceReplay = false);
-
-//    virtual CCNode* getCCBReaderRootNode() const;
-//    virtual void setContentSize(CCSize size);
     
     DECLARE_DICTFUNC(int, MaxLevel);
     DECLARE_DICTFUNC(CCString*, FileType);
@@ -53,6 +61,7 @@ public:
     DECLARE_DICTFUNC(CCString*, InitState);
     DECLARE_DICTFUNC(CCString*, FarmState);
     DECLARE_DICTFUNC(CCArray*, States);
+
     
 protected:
     CSpriteObject();

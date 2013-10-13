@@ -9,10 +9,9 @@
 #ifndef __GingerBread__CTouchesLayer__
 #define __GingerBread__CTouchesLayer__
 
-#include "cocos2d.h"
+#include "Common.h"
 #include "CBaseLayer.h"
 
-USING_NS_CC;
 
 class CTouchesLayer : public CBaseLayer
 {

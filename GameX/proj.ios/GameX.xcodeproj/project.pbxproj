@@ -10,6 +10,7 @@
 		5407D0C917DC994E0071A620 /* lobby_layer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5407D0C817DC994E0071A620 /* lobby_layer.ccbi */; };
 		5407D0CC17DCC5450071A620 /* formation_layer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5407D0CB17DCC5450071A620 /* formation_layer.ccbi */; };
 		5407D0CE17DCCCEE0071A620 /* background_grid.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5407D0CD17DCCCEE0071A620 /* background_grid.ccbi */; };
+		540E5BB71803B73F003C7510 /* CAIManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 540E5BB51803B73E003C7510 /* CAIManager.cpp */; };
 		5411741A17E203FE0082E53C /* unit0.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411740E17E203FE0082E53C /* unit0.ccbi */; };
 		5411741B17E203FE0082E53C /* unit1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411740F17E203FE0082E53C /* unit1.ccbi */; };
 		5411741C17E203FE0082E53C /* unit2.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411741017E203FE0082E53C /* unit2.ccbi */; };
@@ -77,6 +78,9 @@
 		543EE21817DB841B0096D97E /* CCComAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE21117DB841B0096D97E /* CCComAudio.cpp */; };
 		543EE21917DB841B0096D97E /* CCComController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE21317DB841B0096D97E /* CCComController.cpp */; };
 		543EE21A17DB841B0096D97E /* CCInputDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE21517DB841B0096D97E /* CCInputDelegate.cpp */; };
+		544F90A918064AFC0049139F /* CSkillComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544F90A718064AFC0049139F /* CSkillComp.cpp */; };
+		544F90AC18064B200049139F /* CWarriorRoleCompBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544F90AA18064B200049139F /* CWarriorRoleCompBase.cpp */; };
+		5456A7321804F72500DD392F /* CSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5456A7301804F72500DD392F /* CSkillManager.cpp */; };
 		54607B761760D96400108571 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B751760D96400108571 /* QuartzCore.framework */; };
 		54607B781760D96400108571 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B771760D96400108571 /* OpenGLES.framework */; };
 		54607B7A1760D96400108571 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B791760D96400108571 /* OpenAL.framework */; };
@@ -86,6 +90,9 @@
 		54607B821760D96400108571 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B811760D96400108571 /* Foundation.framework */; };
 		54607B841760D96400108571 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B831760D96400108571 /* CoreGraphics.framework */; };
 		547E835517F1BE4E001298EF /* object.png in Resources */ = {isa = PBXBuildFile; fileRef = 547E835417F1BE4E001298EF /* object.png */; };
+		54801F1C18059E2A00F3F68E /* CWarriorUnit0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54801F1A18059E2A00F3F68E /* CWarriorUnit0.cpp */; };
+		54801F211805A46800F3F68E /* CWarriorUnit1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54801F1D1805A46800F3F68E /* CWarriorUnit1.cpp */; };
+		54801F221805A46800F3F68E /* CWarriorUnit2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54801F1F1805A46800F3F68E /* CWarriorUnit2.cpp */; };
 		5497E8A11800492100544B86 /* CBkgLayerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5497E89F1800492100544B86 /* CBkgLayerBase.cpp */; };
 		54D0CC3F17DC68DD0022A1E9 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54DFBAA017DB6F8C00B006F3 /* libcocos2dx.a */; };
 		54D0CC4017DC68DD0022A1E9 /* libCocosDenshion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 543EE12917DB82520096D97E /* libCocosDenshion.a */; };
@@ -204,6 +211,8 @@
 		5407D0C817DC994E0071A620 /* lobby_layer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = lobby_layer.ccbi; sourceTree = "<group>"; };
 		5407D0CB17DCC5450071A620 /* formation_layer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = formation_layer.ccbi; sourceTree = "<group>"; };
 		5407D0CD17DCCCEE0071A620 /* background_grid.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = background_grid.ccbi; sourceTree = "<group>"; };
+		540E5BB51803B73E003C7510 /* CAIManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CAIManager.cpp; path = ../../Classes/CAIManager.cpp; sourceTree = "<group>"; };
+		540E5BB61803B73E003C7510 /* CAIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAIManager.h; path = ../../Classes/CAIManager.h; sourceTree = "<group>"; };
 		5411740E17E203FE0082E53C /* unit0.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit0.ccbi; sourceTree = "<group>"; };
 		5411740F17E203FE0082E53C /* unit1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit1.ccbi; sourceTree = "<group>"; };
 		5411741017E203FE0082E53C /* unit2.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit2.ccbi; sourceTree = "<group>"; };
@@ -334,6 +343,12 @@
 		543EE21417DB841B0096D97E /* CCComController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCComController.h; sourceTree = "<group>"; };
 		543EE21517DB841B0096D97E /* CCInputDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCInputDelegate.cpp; sourceTree = "<group>"; };
 		543EE21617DB841B0096D97E /* CCInputDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCInputDelegate.h; sourceTree = "<group>"; };
+		544F90A718064AFC0049139F /* CSkillComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CSkillComp.cpp; path = ../../Classes/CSkillComp.cpp; sourceTree = "<group>"; };
+		544F90A818064AFC0049139F /* CSkillComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSkillComp.h; path = ../../Classes/CSkillComp.h; sourceTree = "<group>"; };
+		544F90AA18064B200049139F /* CWarriorRoleCompBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorRoleCompBase.cpp; path = ../../Classes/CWarriorRoleCompBase.cpp; sourceTree = "<group>"; };
+		544F90AB18064B200049139F /* CWarriorRoleCompBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWarriorRoleCompBase.h; path = ../../Classes/CWarriorRoleCompBase.h; sourceTree = "<group>"; };
+		5456A7301804F72500DD392F /* CSkillManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CSkillManager.cpp; path = ../../Classes/CSkillManager.cpp; sourceTree = "<group>"; };
+		5456A7311804F72500DD392F /* CSkillManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSkillManager.h; path = ../../Classes/CSkillManager.h; sourceTree = "<group>"; };
 		54607B721760D96400108571 /* GameX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54607B751760D96400108571 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		54607B771760D96400108571 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -345,9 +360,16 @@
 		54607B831760D96400108571 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		54607E101760D96800108571 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = ../Prefix.pch; sourceTree = "<group>"; };
 		547E835417F1BE4E001298EF /* object.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = object.png; path = ../Resources/object.png; sourceTree = "<group>"; };
+		54801F1A18059E2A00F3F68E /* CWarriorUnit0.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorUnit0.cpp; path = ../../Classes/CWarriorUnit0.cpp; sourceTree = "<group>"; };
+		54801F1B18059E2A00F3F68E /* CWarriorUnit0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWarriorUnit0.h; path = ../../Classes/CWarriorUnit0.h; sourceTree = "<group>"; };
+		54801F1D1805A46800F3F68E /* CWarriorUnit1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorUnit1.cpp; path = ../../Classes/CWarriorUnit1.cpp; sourceTree = "<group>"; };
+		54801F1E1805A46800F3F68E /* CWarriorUnit1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWarriorUnit1.h; path = ../../Classes/CWarriorUnit1.h; sourceTree = "<group>"; };
+		54801F1F1805A46800F3F68E /* CWarriorUnit2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorUnit2.cpp; path = ../../Classes/CWarriorUnit2.cpp; sourceTree = "<group>"; };
+		54801F201805A46800F3F68E /* CWarriorUnit2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWarriorUnit2.h; path = ../../Classes/CWarriorUnit2.h; sourceTree = "<group>"; };
 		5497E89F1800492100544B86 /* CBkgLayerBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBkgLayerBase.cpp; path = ../../Classes/CBkgLayerBase.cpp; sourceTree = "<group>"; };
 		5497E8A01800492100544B86 /* CBkgLayerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBkgLayerBase.h; path = ../../Classes/CBkgLayerBase.h; sourceTree = "<group>"; };
 		5499CACA17DB6E4B00A8E388 /* cocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2dx.xcodeproj; path = ../../cocos2dx/proj.ios/cocos2dx.xcodeproj; sourceTree = "<group>"; };
+		549C19D01806F9D500649BD3 /* DTSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTSkill.h; path = ../../Classes/DTSkill.h; sourceTree = "<group>"; };
 		54D0CC4117DC6D250022A1E9 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		54D0CC4217DC6D260022A1E9 /* libwebp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebp.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libwebp.a; sourceTree = "<group>"; };
 		54D0CC4517DC6E510022A1E9 /* libwebsockets.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebsockets.a; path = ../../external/libwebsockets/ios/lib/libwebsockets.a; sourceTree = "<group>"; };
@@ -788,6 +810,19 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		54801F1918059DE600F3F68E /* UnitObjects */ = {
+			isa = PBXGroup;
+			children = (
+				54801F1A18059E2A00F3F68E /* CWarriorUnit0.cpp */,
+				54801F1B18059E2A00F3F68E /* CWarriorUnit0.h */,
+				54801F1D1805A46800F3F68E /* CWarriorUnit1.cpp */,
+				54801F1E1805A46800F3F68E /* CWarriorUnit1.h */,
+				54801F1F1805A46800F3F68E /* CWarriorUnit2.cpp */,
+				54801F201805A46800F3F68E /* CWarriorUnit2.h */,
+			);
+			name = UnitObjects;
+			sourceTree = "<group>";
+		};
 		5499CACB17DB6E4B00A8E388 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,6 +905,10 @@
 				54DFBE8E17DB747900B006F3 /* TFGameObjectManager.h */,
 				54DFBE1017DB747800B006F3 /* CBackgroundManager.cpp */,
 				54DFBE1117DB747800B006F3 /* CBackgroundManager.h */,
+				540E5BB51803B73E003C7510 /* CAIManager.cpp */,
+				540E5BB61803B73E003C7510 /* CAIManager.h */,
+				5456A7301804F72500DD392F /* CSkillManager.cpp */,
+				5456A7311804F72500DD392F /* CSkillManager.h */,
 			);
 			name = Manangers;
 			sourceTree = "<group>";
@@ -877,6 +916,7 @@
 		54D0CD8417DC90DE0022A1E9 /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
+				54801F1918059DE600F3F68E /* UnitObjects */,
 				54D0CD8617DC91070022A1E9 /* Components */,
 				54D0CD8517DC90FE0022A1E9 /* BaseClasses */,
 				54DFBE1217DB747800B006F3 /* CBallisticAOEBullet.cpp */,
@@ -944,6 +984,10 @@
 			children = (
 				5411742C17E5B5750082E53C /* CMoveOnGridComp.cpp */,
 				5411742D17E5B5750082E53C /* CMoveOnGridComp.h */,
+				544F90A718064AFC0049139F /* CSkillComp.cpp */,
+				544F90A818064AFC0049139F /* CSkillComp.h */,
+				544F90AA18064B200049139F /* CWarriorRoleCompBase.cpp */,
+				544F90AB18064B200049139F /* CWarriorRoleCompBase.h */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -980,6 +1024,7 @@
 		54D0CD8817DC92030022A1E9 /* DTs */ = {
 			isa = PBXGroup;
 			children = (
+				549C19D01806F9D500649BD3 /* DTSkill.h */,
 				54DFBE8417DB747800B006F3 /* DTLevel.h */,
 				54DFBE8517DB747800B006F3 /* DTScene.h */,
 				54DFBE8617DB747800B006F3 /* DTUnit.h */,
@@ -1264,6 +1309,13 @@
 				543EE21A17DB841B0096D97E /* CCInputDelegate.cpp in Sources */,
 				5411742E17E5B5750082E53C /* CMoveOnGridComp.cpp in Sources */,
 				5497E8A11800492100544B86 /* CBkgLayerBase.cpp in Sources */,
+				540E5BB71803B73F003C7510 /* CAIManager.cpp in Sources */,
+				5456A7321804F72500DD392F /* CSkillManager.cpp in Sources */,
+				54801F1C18059E2A00F3F68E /* CWarriorUnit0.cpp in Sources */,
+				54801F211805A46800F3F68E /* CWarriorUnit1.cpp in Sources */,
+				54801F221805A46800F3F68E /* CWarriorUnit2.cpp in Sources */,
+				544F90A918064AFC0049139F /* CSkillComp.cpp in Sources */,
+				544F90AC18064B200049139F /* CWarriorRoleCompBase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

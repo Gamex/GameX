@@ -9,12 +9,8 @@
 #ifndef __GameX__CBatchNodeManager__
 #define __GameX__CBatchNodeManager__
 
-#include "cocos2d.h"
-#include <map>
-#include <string>
+#include "Common.h"
 
-using namespace std;
-USING_NS_CC;
 
 
 class CBatchNodeManager
@@ -31,7 +27,7 @@ public:
     
     virtual void attachToParent(CCNode* parent, int z);
     
-    virtual CCNode* getNodeByName(const string& name, bool& isBatchNode);
+    virtual CCNode* getNodeByName(const std::string& name, bool& isBatchNode);
     
     virtual void clearAllChildren();
     
@@ -39,10 +35,6 @@ public:
 protected:
     
 private:
-    typedef map<string, CCSpriteBatchNode*> MSSBN;              // batch node name -> batch node object
-    typedef map<string, CCSpriteBatchNode*>::iterator MSSBN_IT;
-    typedef map<string, CCSpriteBatchNode*>::const_iterator MSSBN_CIT;
-    
     MSSBN m_pBatchNodes;
 };
 

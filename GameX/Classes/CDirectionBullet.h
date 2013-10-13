@@ -38,7 +38,7 @@ public:
     
     virtual void launch();
 #ifdef DEBUG
-    virtual string whoAmI(){return "CDirectionBullet";}
+    virtual std::string whoAmI(){return "CDirectionBullet";}
 #endif
     
     DECLARE_DICTFUNC(float, Damage);

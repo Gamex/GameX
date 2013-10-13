@@ -8,8 +8,6 @@
 
 #include "CPathFinderManager.h"
 #include "CBackgroundManager.h"
-#include <queue>
-
 
 
 CPathFinderManager::CPathFinderManager()
@@ -59,10 +57,10 @@ void CPathFinderManager::findPath(const CCPoint& startPos, const CCPoint& target
 }
 
 
-// -------------- _PathNode
-MEM_POOL_DEFINE(CPathFinderManager::_PathNode, 1200);
+#pragma mark -- _PathNode
+MEM_POOL_DEFINE(_PathNode, PATH_NODE_MEM_POOL_SIZE);
 
-CPathFinderManager::_PathNode::_PathNode()
+_PathNode::_PathNode()
 : grid(NULL)
 , parent(NULL)
 , H(0)
@@ -73,8 +71,8 @@ CPathFinderManager::_PathNode::_PathNode()
 
 
 
-// ----------------- _FinderTask
-void CPathFinderManager::_FinderTask::doFind()
+#pragma mark -- _FinderTask
+void _FinderTask::doFind()
 {
     CLogicGrid* grid = m_bkg->getLogicGrid(start);
     if (grid)
@@ -112,7 +110,7 @@ void CPathFinderManager::_FinderTask::doFind()
 
 
 
-void CPathFinderManager::_FinderTask::checkF(const CCPoint& gridPos, int G, CPathFinderManager::_PathNode* parent)
+void _FinderTask::checkF(const CCPoint& gridPos, int G, _PathNode* parent)
 {
     if (!closeList.getInList(gridPos))
     {
@@ -156,7 +154,7 @@ void CPathFinderManager::_FinderTask::checkF(const CCPoint& gridPos, int G, CPat
 
 
 
-void CPathFinderManager::_FinderTask::findSurround(CPathFinderManager::_PathNode* parent)
+void _FinderTask::findSurround(_PathNode* parent)
 {
     const CCPoint& p = parent->grid->getGridPos();
     int G = parent->G;
@@ -173,7 +171,7 @@ void CPathFinderManager::_FinderTask::findSurround(CPathFinderManager::_PathNode
 
 
 
-CPathFinderManager::_FinderTask::~_FinderTask()
+_FinderTask::~_FinderTask()
 {
     
 }

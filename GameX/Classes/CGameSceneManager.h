@@ -9,12 +9,9 @@
 #ifndef __GameX__CGameSceneManager__
 #define __GameX__CGameSceneManager__
 
-#include "cocos2d.h"
+#include "Common.h"
 #include "CSingleton.h"
 #include "CCBReader.h"
-
-USING_NS_CC;
-USING_NS_CC_EXT;
 
 enum SCENE_TYPE
 {

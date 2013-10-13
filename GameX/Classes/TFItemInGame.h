@@ -39,7 +39,7 @@ protected:
     CCPoint m_magnetPos;
     float m_timeToAttract;
 #ifdef DEBUG
-    string m_itemName;
+    std::string m_itemName;
 #endif
 private:
 };

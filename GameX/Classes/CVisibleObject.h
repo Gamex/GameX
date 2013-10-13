@@ -80,7 +80,7 @@ protected:
     
     virtual void updateBoundingBoxInWorldSpace();
     virtual void onSensor(CCObject* obj);
-    virtual void setSensorType(CSensor* pSensor);
+    virtual void onSetSensorType(CSensor* pSensor);
    
     CCRect m_boundingBoxInWorldSpace;
     CCPoint m_positionInWorldSpace;

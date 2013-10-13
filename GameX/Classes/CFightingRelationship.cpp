@@ -6,12 +6,8 @@
 //
 //
 
+#include "Common.h"
 #include "CFightingRelationship.h"
-#include "cocos2d.h"
-#include <algorithm>
-
-
-USING_NS_CC;
 
 IMPLEMENT_SINGLETON(CFightingRelationship);
 

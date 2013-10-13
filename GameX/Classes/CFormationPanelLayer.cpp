@@ -89,6 +89,8 @@ SEL_MenuHandler CFormationPanelLayer::onResolveCCBCCMenuItemSelector(CCObject * 
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onBack", CFormationPanelLayer::onBack);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onSave", CFormationPanelLayer::onSave);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onLoad", CFormationPanelLayer::onLoad);
+    CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onSave1", CFormationPanelLayer::onSave1);
+    CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onLoad1", CFormationPanelLayer::onLoad1);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onUp", CFormationPanelLayer::onUp);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onDown", CFormationPanelLayer::onDown);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onF0", CFormationPanelLayer::onFrame);
@@ -140,7 +142,7 @@ void CFormationPanelLayer:: onSave(CCObject *pSender)
 {
     CFormation* fmt = FORMATION_MANAGER->getFormation();
     fmt->m_elements.clear();
-    
+    fmt->m_filename = "f.fmt";
     if (m_delegate)
     {
         m_delegate->onSave(fmt);
@@ -154,13 +156,40 @@ void CFormationPanelLayer::onLoad(CCObject *pSender)
 {
     CFormation* fmt = FORMATION_MANAGER->getFormation();
     fmt->m_elements.clear();
-    
+    fmt->m_filename = "f.fmt";
     if (m_delegate)
     {
         m_delegate->onLoad(fmt);
     }
     
 }
+
+
+
+void CFormationPanelLayer::onSave1(CCObject* pSender)
+{
+    CFormation* fmt = FORMATION_MANAGER->getFormation1();
+    fmt->m_elements.clear();
+    fmt->m_filename = "f1.fmt";
+    if (m_delegate)
+    {
+        m_delegate->onSave(fmt);
+    }
+}
+
+
+
+void CFormationPanelLayer::onLoad1(CCObject* pSender)
+{
+    CFormation* fmt = FORMATION_MANAGER->getFormation1();
+    fmt->m_elements.clear();
+    fmt->m_filename = "f1.fmt";
+    if (m_delegate)
+    {
+        m_delegate->onLoad(fmt);
+    }
+}
+
 
 
 

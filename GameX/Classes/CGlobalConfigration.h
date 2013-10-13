@@ -21,11 +21,11 @@ public:
     CGlobalConfigration();
     virtual ~CGlobalConfigration();
 
-    void setTextureSuffix(const string& suffix);
-    const string& getTextureSuffix();
+    void setTextureSuffix(const std::string& suffix);
+    const std::string& getTextureSuffix();
 protected:
 private:
-    string m_textureSuffix;
+    std::string m_textureSuffix;
 };
 
 

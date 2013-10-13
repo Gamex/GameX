@@ -9,12 +9,7 @@
 #ifndef __GameX__CSoldierBuildTask__
 #define __GameX__CSoldierBuildTask__
 
-#include "cocos2d.h"
-#include <string>
-
-
-USING_NS_CC;
-using namespace std;
+#include "Common.h"
 
 class CSoldierBuildTask
 {
@@ -23,7 +18,7 @@ public:
     CSoldierBuildTask(const CSoldierBuildTask& obj);
     CSoldierBuildTask& operator= (const CSoldierBuildTask& obj);
     
-    string m_soldierName;
+    std::string m_soldierName;
     float m_buildTime;
     CCPoint m_bothPosition;
 protected:

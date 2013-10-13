@@ -19,7 +19,7 @@ public:
 	virtual ~CScale9SpriteObject();
 	
 	virtual bool init(CCDictionary* pObjectDict);
-    virtual bool init(const string& name);
+    virtual bool init(const std::string& name);
     
     virtual void clearAll();
     
@@ -34,7 +34,7 @@ protected:
     
     
     
-    bool createScale9Sprite(const string& name);
+    bool createScale9Sprite(const std::string& name);
     
     CCScale9Sprite* m_pSprite;
     

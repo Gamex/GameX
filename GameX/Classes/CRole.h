@@ -9,7 +9,7 @@
 #ifndef __TheForce__TFRole__
 #define __TheForce__TFRole__
 
-#include "cocos2d.h"
+#include "Common.h"
 #include "CFightingRelationship.h"
 #include "CSpriteObject.h"
 #include "CGunBase.h"
@@ -27,7 +27,7 @@
 enum ROLE_STATE
 {
     ROLE_STATE_MOVE,
-    ROLE_STATE_ATTACK,
+    ROLE_STATE_MAX,
 };
 
 USING_NS_CC;
@@ -41,6 +41,14 @@ enum FACE_TO
     FACE_TO_MAX,
 };
 
+
+enum ROLE_GROUP
+{
+    ROLE_GROUP_NA,
+    ROLE_GROUP_ATTACK,
+    ROLE_GROUP_DEFENDCE,
+};
+
 class CRole
 : public CSpriteObject
 , public IFightingRelation
@@ -50,6 +58,7 @@ class CRole
     CC_SYNTHESIZE_RETAIN(CGunBase*, m_pGun, Gun);
     CC_SYNTHESIZE(FACE_TO, m_faceTo, FaceTo);
     CC_SYNTHESIZE_PASS_BY_REF(string, m_unitName, UnitName);
+    CC_SYNTHESIZE(ROLE_GROUP, m_roleGroup, RoleGroup);
 public:
     FACTORY_CREATE_FUNC(CRole);
     
@@ -57,17 +66,19 @@ public:
 
     virtual _FIGHTING_RELATION_TYPE getRelationType();
     
+    virtual void loadRoleData(const string& unitName);
     virtual bool init(CCDictionary* pObjectDict);
     virtual bool changeState(int state);
     virtual bool attachSpriteTo(CCNode* parent, int zOrder = 0, int tag = -1);
     
     virtual void die();
+    virtual void revive();
 
 	virtual CCPoint getShootPoint();
 	virtual void update(float dt);
     virtual void clearAll();
-    virtual bool createGun(const string& name);
-    virtual bool changeBullet(const string& name);
+    virtual bool createGun(const std::string& name);
+    virtual bool changeBullet(const std::string& name);
 
     virtual void attack(CRole* pAt);
     virtual CRole* getAttackTarget();
@@ -78,12 +89,21 @@ public:
     virtual void onPlaceOnMap(const CCPoint& gridPos, const CCPoint& position);
     virtual void findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFinderDelegate* delegate = NULL);
     
-    virtual bool playAnimation(const string& name);
+    virtual bool playAnimation(const std::string& name);
     
     virtual void setMoveTarget(const CCPoint& gridPos);
     virtual const CCPoint& getMovetarget();
     
+    virtual void think();
+    
+    virtual void setFaceTo(CRole* role);
+    
+    virtual CCPoint getPositionInGrid();
+    virtual float getDistanceSqInGrid(IGridRole* role);
+    virtual bool checkInGridRadiusSq(IGridRole* role, float radiusInGrid);
+    
     DECLARE_DICTFUNC(CCDictionary*, Gun);
+
 protected:
 	CRole();
     void clearThis();
@@ -95,7 +115,7 @@ protected:
 	CCPoint m_shootPoint;
     CCPoint m_shootPointInWorldSpace;
 
-    vector<string> m_faceToPrefix;
+    VS m_faceToPrefix;
 private:
 };
 

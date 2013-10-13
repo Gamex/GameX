@@ -6,14 +6,8 @@
 //  Copyright (c) 2013年 Tencent. All rights reserved.
 //
 
-#include "TFHPBar.h"
-
-#include "cocos2d.h"
-#include "cocos-ext.h"
-
 #include "Common.h"
-
-USING_NS_CC;
+#include "TFHPBar.h"
 
 
 DEFINE_DICTFUNC_STR(TFHPBar, BarFileName);

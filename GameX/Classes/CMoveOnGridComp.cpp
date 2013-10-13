@@ -7,16 +7,15 @@
 //
 
 #include "CMoveOnGridComp.h"
-#include "CRole.h"
 #include "CBackgroundManager.h"
 #include "CPathFinderManager.h"
 
 
 CMoveOnGridComp::CMoveOnGridComp(void)
-: m_ownerRole(NULL)
-, m_subState(SUB_STATE_IDLE)
+: CWarriorRoleCompBase(MOVE_SUB_STATE_IDLE)
 , m_moveElapseTime(0.f)
 , m_moveTotalTime(0.f)
+, m_idleSleepTime(0.f)
 {
     m_strName = "MoveOnGridComp";
 }
@@ -25,35 +24,50 @@ CMoveOnGridComp::CMoveOnGridComp(void)
 
 bool CMoveOnGridComp::init()
 {
-	return true;
+    do
+    {
+        BREAK_IF_FAILED(CWarriorRoleCompBase::init());
+        return true;
+    } while (false);
+    
+	return false;
 }
 
 
 
 void CMoveOnGridComp::onEnter()
 {
-    m_ownerRole = dynamic_cast<CRole*>(getOwner());
-    CC_ASSERT(m_ownerRole);
+    CWarriorRoleCompBase::onEnter();
 }
 
 
 
 void CMoveOnGridComp::onExit()
 {
+    CWarriorRoleCompBase::onExit();
 }
 
 
 
 void CMoveOnGridComp::update(float dt)
 {
+    if (!isEnabled()) return;
+    
+    CWarriorRoleCompBase::update(dt);
+    
     switch (m_subState)
     {
-        case SUB_STATE_IDLE:
-            findPathIfNeeded();
+        case MOVE_SUB_STATE_IDLE:
+            m_ownerRole->unlockState();
+            m_idleSleepTime -= dt;
+            if (m_idleSleepTime < 0)
+            {
+                findPathIfNeeded();
+            }
             break;
-        case SUB_STATE_PATH_FINDING:
+        case MOVE_SUB_STATE_PATH_FINDING:
             break;
-        case SUB_STATE_PATH_FOUND:
+        case MOVE_SUB_STATE_PATH_FOUND:
         {
             if (m_paths.size() > 0)
             {
@@ -98,36 +112,57 @@ void CMoveOnGridComp::update(float dt)
                     m_ownerRole->playAnimation(ROLE_ANIMATION_MOVE);
                     m_ownerRole->lockState();
                     
-                    m_subState = SUB_STATE_MOVING;
+                    m_subState = MOVE_SUB_STATE_MOVING;
                 }
                 else
                 {
-                    m_subState = SUB_STATE_IDLE;
+                    m_subState = MOVE_SUB_STATE_IDLE;
                 }
             }
             else
             {
-                m_subState = SUB_STATE_IDLE;
+                m_subState = MOVE_SUB_STATE_IDLE;
                 m_ownerRole->playAnimation(ROLE_ANIMATION_IDLE);
             }
             break;
         }
-        case SUB_STATE_MOVING:
+        case MOVE_SUB_STATE_MOVING:
         {
             m_moveElapseTime += dt;
             float alpha = m_moveElapseTime / m_moveTotalTime;
+            
             if (FLT_GE(alpha, 1.f))
+            {
+                alpha = 1.f;
+                m_paths.pop_back();
+                m_subState = MOVE_SUB_STATE_PATH_FOUND;
+                
+                m_ownerRole->unlockState();
+            }
+            else if (FLT_GE(alpha, .5))
             {
                 CBackgroundManager* bkg = m_ownerRole->getBackGround();
                 CC_ASSERT(bkg);
-                alpha = 1.f;
-                bkg->placeRole(m_ownerRole, m_paths.back());
-                m_paths.pop_back();
-                m_subState = SUB_STATE_PATH_FOUND;
+                if (!bkg->placeRole(m_ownerRole, m_paths.back()))
+                {
+                    m_subState = MOVE_SUB_STATE_ROLL_BACK;
+                }
             }
-            CCPoint newPos = m_moveFrom.lerp(m_moveTo, m_moveElapseTime / m_moveTotalTime);
 
+
+            CCPoint newPos = m_moveFrom.lerp(m_moveTo, m_moveElapseTime / m_moveTotalTime);
             m_ownerRole->setSpritePosition(newPos);
+
+            break;
+        }
+        case MOVE_SUB_STATE_ROLL_BACK:
+        {
+            CBackgroundManager* bkg = m_ownerRole->getBackGround();
+            CC_ASSERT(bkg);
+            bkg->placeRole(m_ownerRole, m_ownerRole->getLogicGrid()->getGridPos());
+            m_ownerRole->playAnimation(ROLE_ANIMATION_IDLE);
+            m_subState = MOVE_SUB_STATE_IDLE;
+            m_ownerRole->unlockState();
             break;
         }
         default:
@@ -142,22 +177,32 @@ void CMoveOnGridComp::onPathReady(const vector<CCPoint>& path)
     if (path.size() > 0)
     {
         m_paths = path;
-        m_subState = SUB_STATE_PATH_FOUND;
+        m_subState = MOVE_SUB_STATE_PATH_FOUND;
         
-        CBackgroundManager* bkg = m_ownerRole->getBackGround();
-        CC_ASSERT(bkg);
-        bkg->clearAllHightlightGrids();
-        vector<CCPoint>::reverse_iterator it = m_paths.rbegin();
-        for (; it != m_paths.rend(); ++it)
-        {
-            bkg->hightlightGrid(*it);
-        }
+//        CBackgroundManager* bkg = m_ownerRole->getBackGround();
+//        CC_ASSERT(bkg);
+//        bkg->clearAllHightlightGrids();
+//        vector<CCPoint>::reverse_iterator it = m_paths.rbegin();
+//        for (; it != m_paths.rend(); ++it)
+//        {
+//            bkg->hightlightGrid(*it);
+//        }
         m_paths.pop_back();
     }
     else
     {
+        CCPoint pt = m_ownerRole->getMovetarget();
         m_ownerRole->setMoveTarget(m_ownerRole->getLogicGrid()->getGridPos());
-        m_subState = SUB_STATE_IDLE;
+        m_subState = MOVE_SUB_STATE_IDLE;
+        
+        CBackgroundManager* bkg = m_ownerRole->getBackGround();
+        CC_ASSERT(bkg);
+
+        CLogicGrid* lg = bkg->getLogicGrid(pt);
+        m_ownerRole->addToSkipList((CWarriorRole*)lg->getUnit());
+        
+        m_idleSleepTime = 2.f + CCRANDOM_MINUS1_1() * 2.f;
+//        m_idleSleepTime = FLT_MAX;
     }
 }
 
@@ -172,7 +217,7 @@ void CMoveOnGridComp::findPathIfNeeded()
     if (!curPos.equals(targetPos))
     {
         m_ownerRole->findPath(curPos, targetPos, this);
-        m_subState = SUB_STATE_PATH_FINDING;
+        m_subState = MOVE_SUB_STATE_PATH_FINDING;
     }
 }
 

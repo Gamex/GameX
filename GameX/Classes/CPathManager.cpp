@@ -84,7 +84,7 @@ bool CPathManager::initialize()
 
 
 
-CPath* CPathManager::getPathByName(const string& name)
+CPath* CPathManager::getPathByName(const std::string& name)
 {
     return dynamic_cast<CPath*>(paths_->objectForKey(name));
 }
@@ -99,14 +99,14 @@ string CPathManager::makeRandomPath(const CCPoint& sp, const CCPoint& ep)
         path->autorelease();
         path->initWithRandom(sp, ep);
         
-        string name = makeTempPathName();
+        std::string name = makeTempPathName();
         paths_->setObject(path, name);
         
         return name;
     } while (false);
     
     
-    return string();
+    return std::string();
 }
 
 
@@ -121,14 +121,14 @@ string CPathManager::makeTempPathName()
 
         if (paths_->objectForKey(name) == NULL)
         {
-            return string(name);
+            return std::string(name);
         }
     } while (true);
 }
 
 
 
-void CPathManager::removePath(const string& name)
+void CPathManager::removePath(const std::string& name)
 {
     if (!name.empty())
     {

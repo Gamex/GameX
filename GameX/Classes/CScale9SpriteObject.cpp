@@ -48,7 +48,7 @@ bool CScale9SpriteObject::init(CCDictionary* pObjectDict)
 
 
 
-bool CScale9SpriteObject::init(const string& name)
+bool CScale9SpriteObject::init(const std::string& name)
 {
     if (!CVisibleObject::init(NULL))
     {
@@ -65,11 +65,11 @@ bool CScale9SpriteObject::init(const string& name)
 
 
 
-bool CScale9SpriteObject::createScale9Sprite(const string& name)
+bool CScale9SpriteObject::createScale9Sprite(const std::string& name)
 {
-    string _name = name;
-    string::size_type pos = name.find(".png", 0);
-    if (pos != string::npos)
+    std::string _name = name;
+    std::string::size_type pos = name.find(".png", 0);
+    if (pos != std::string::npos)
     {
         _name = name.substr(0, pos);
     }

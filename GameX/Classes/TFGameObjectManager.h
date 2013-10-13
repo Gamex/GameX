@@ -9,13 +9,9 @@
 #ifndef __TheForce__TFGameObjectManager__
 #define __TheForce__TFGameObjectManager__
 
-#include "cocos2d.h"
+#include "Common.h"
 #include "CSingleton.h"
 
-#include <string>
-
-using namespace std;
-USING_NS_CC;
 
 class TFGameObjectManager : public CSingleton<TFGameObjectManager>
 {
@@ -27,7 +23,7 @@ public:
     bool init();
     void clearAll();
     
-    CCDictionary* getObjectByName(const string& name);
+    CCDictionary* getObjectByName(const std::string& name);
 
 protected:
 private:
