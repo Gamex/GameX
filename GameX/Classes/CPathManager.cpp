@@ -10,7 +10,7 @@
 #include "CPath.h"
 #include <vector>
 #include "Common.h"
-
+#if 0
 using namespace std;
 
 IMPLEMENT_SINGLETON(CPathManager);
@@ -135,3 +135,5 @@ void CPathManager::removePath(const std::string& name)
         paths_->removeObjectForKey(name);
     }
 }
+
+#endif

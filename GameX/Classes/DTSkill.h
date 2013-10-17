@@ -25,7 +25,7 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("gongji"), "name");
+			elem->setObject(CCString::create("skill_1"), "name");
 			elem->setObject(CCString::create("CSkillComp"), "className");
 			elem->setObject(CCString::create("0"), "cd");
 			elem->setObject(CCString::create("0"), "trigger");
@@ -33,13 +33,14 @@ public:
 			elem->setObject(CCString::create("1"), "target");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1.5"), "range");
+			elem->setObject(CCString::create("2.25"), "range");
 			elem->setObject(CCString::create("0"), "angle");
 			elem->setObject(CCString::create("0"), "bullet");
 			elem->setObject(CCString::create("0"), "speed");
 			elem->setObject(CCString::create("0"), "resourceID");
 			elem->setObject(CCString::create("atk"), "animation");
-			elem->setObject(CCString::create(""), "ase");
+			elem->setObject(CCString::create(""), "atk_se");
+			elem->setObject(CCString::create(""), "hit_eft");
 			elem->setObject(CCString::create(""), "buff1");
 			elem->setObject(CCString::create(""), "buff2");
 			elem->setObject(CCString::create(""), "buff3");
@@ -53,7 +54,7 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("gongji"), "name");
+			elem->setObject(CCString::create("skill_2"), "name");
 			elem->setObject(CCString::create("CSkillComp"), "className");
 			elem->setObject(CCString::create("0"), "cd");
 			elem->setObject(CCString::create("0"), "trigger");
@@ -61,13 +62,14 @@ public:
 			elem->setObject(CCString::create("1"), "target");
 			elem->setObject(CCString::create("3"), "dimension");
 			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("2"), "range");
+			elem->setObject(CCString::create("25"), "range");
 			elem->setObject(CCString::create("0"), "angle");
 			elem->setObject(CCString::create("2"), "bullet");
 			elem->setObject(CCString::create("100"), "speed");
 			elem->setObject(CCString::create("bullet_line_1.png"), "resourceID");
 			elem->setObject(CCString::create("atk"), "animation");
-			elem->setObject(CCString::create(""), "ase");
+			elem->setObject(CCString::create(""), "atk_se");
+			elem->setObject(CCString::create(""), "hit_eft");
 			elem->setObject(CCString::create(""), "buff1");
 			elem->setObject(CCString::create(""), "buff2");
 			elem->setObject(CCString::create(""), "buff3");
@@ -81,7 +83,7 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("gongji"), "name");
+			elem->setObject(CCString::create("skill_3"), "name");
 			elem->setObject(CCString::create("CSkillComp"), "className");
 			elem->setObject(CCString::create("0"), "cd");
 			elem->setObject(CCString::create("0"), "trigger");
@@ -89,13 +91,14 @@ public:
 			elem->setObject(CCString::create("1"), "target");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1.5"), "range");
+			elem->setObject(CCString::create("2.25"), "range");
 			elem->setObject(CCString::create("0"), "angle");
 			elem->setObject(CCString::create("0"), "bullet");
 			elem->setObject(CCString::create("0"), "speed");
 			elem->setObject(CCString::create("0"), "resourceID");
 			elem->setObject(CCString::create("atk"), "animation");
-			elem->setObject(CCString::create(""), "ase");
+			elem->setObject(CCString::create(""), "atk_se");
+			elem->setObject(CCString::create(""), "hit_eft");
 			elem->setObject(CCString::create(""), "buff1");
 			elem->setObject(CCString::create(""), "buff2");
 			elem->setObject(CCString::create(""), "buff3");
@@ -109,7 +112,7 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("gongji"), "name");
+			elem->setObject(CCString::create("skill_4"), "name");
 			elem->setObject(CCString::create("CSkillComp"), "className");
 			elem->setObject(CCString::create("0"), "cd");
 			elem->setObject(CCString::create("0"), "trigger");
@@ -117,13 +120,14 @@ public:
 			elem->setObject(CCString::create("1"), "target");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("3"), "type");
-			elem->setObject(CCString::create("2"), "range");
+			elem->setObject(CCString::create("9"), "range");
 			elem->setObject(CCString::create("90"), "angle");
 			elem->setObject(CCString::create("0"), "bullet");
 			elem->setObject(CCString::create("0"), "speed");
 			elem->setObject(CCString::create("0"), "resourceID");
 			elem->setObject(CCString::create("atk"), "animation");
-			elem->setObject(CCString::create(""), "ase");
+			elem->setObject(CCString::create(""), "atk_se");
+			elem->setObject(CCString::create(""), "hit_eft");
 			elem->setObject(CCString::create(""), "buff1");
 			elem->setObject(CCString::create(""), "buff2");
 			elem->setObject(CCString::create(""), "buff3");
@@ -137,7 +141,7 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("chongfeng"), "name");
+			elem->setObject(CCString::create("skill_10001"), "name");
 			elem->setObject(CCString::create("CSkillComp"), "className");
 			elem->setObject(CCString::create("0"), "cd");
 			elem->setObject(CCString::create("1"), "trigger");
@@ -151,7 +155,8 @@ public:
 			elem->setObject(CCString::create("0"), "speed");
 			elem->setObject(CCString::create("0"), "resourceID");
 			elem->setObject(CCString::create("skill1"), "animation");
-			elem->setObject(CCString::create(""), "ase");
+			elem->setObject(CCString::create(""), "atk_se");
+			elem->setObject(CCString::create(""), "hit_eft");
 			elem->setObject(CCString::create("24002"), "buff1");
 			elem->setObject(CCString::create(""), "buff2");
 			elem->setObject(CCString::create(""), "buff3");
@@ -165,7 +170,7 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("xingfenji"), "name");
+			elem->setObject(CCString::create("skill_10002"), "name");
 			elem->setObject(CCString::create("CSkillComp"), "className");
 			elem->setObject(CCString::create("10000"), "cd");
 			elem->setObject(CCString::create("0"), "trigger");
@@ -179,7 +184,8 @@ public:
 			elem->setObject(CCString::create("0"), "speed");
 			elem->setObject(CCString::create("0"), "resourceID");
 			elem->setObject(CCString::create("skill1"), "animation");
-			elem->setObject(CCString::create(""), "ase");
+			elem->setObject(CCString::create(""), "atk_se");
+			elem->setObject(CCString::create(""), "hit_eft");
 			elem->setObject(CCString::create("23001"), "buff1");
 			elem->setObject(CCString::create("24001"), "buff2");
 			elem->setObject(CCString::create(""), "buff3");
@@ -193,7 +199,7 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("zhanzhengjianta"), "name");
+			elem->setObject(CCString::create("skill_10003"), "name");
 			elem->setObject(CCString::create("CSkillComp"), "className");
 			elem->setObject(CCString::create("10000"), "cd");
 			elem->setObject(CCString::create("0"), "trigger");
@@ -201,13 +207,14 @@ public:
 			elem->setObject(CCString::create("1"), "target");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("2"), "type");
-			elem->setObject(CCString::create("2"), "range");
+			elem->setObject(CCString::create("4"), "range");
 			elem->setObject(CCString::create("0"), "angle");
 			elem->setObject(CCString::create("0"), "bullet");
 			elem->setObject(CCString::create("0"), "speed");
 			elem->setObject(CCString::create("0"), "resourceID");
 			elem->setObject(CCString::create("skill1"), "animation");
-			elem->setObject(CCString::create(""), "ase");
+			elem->setObject(CCString::create(""), "atk_se");
+			elem->setObject(CCString::create(""), "hit_eft");
 			elem->setObject(CCString::create(""), "buff1");
 			elem->setObject(CCString::create(""), "buff2");
 			elem->setObject(CCString::create(""), "buff3");
@@ -221,7 +228,7 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("zibao"), "name");
+			elem->setObject(CCString::create("skill_10004"), "name");
 			elem->setObject(CCString::create("CSkillComp"), "className");
 			elem->setObject(CCString::create("10000"), "cd");
 			elem->setObject(CCString::create("2"), "trigger");
@@ -229,13 +236,14 @@ public:
 			elem->setObject(CCString::create("1"), "target");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("2"), "type");
-			elem->setObject(CCString::create("2"), "range");
+			elem->setObject(CCString::create("9"), "range");
 			elem->setObject(CCString::create("0"), "angle");
 			elem->setObject(CCString::create("0"), "bullet");
 			elem->setObject(CCString::create("0"), "speed");
 			elem->setObject(CCString::create("0"), "resourceID");
 			elem->setObject(CCString::create("skill1"), "animation");
-			elem->setObject(CCString::create(""), "ase");
+			elem->setObject(CCString::create(""), "atk_se");
+			elem->setObject(CCString::create(""), "hit_eft");
 			elem->setObject(CCString::create(""), "buff1");
 			elem->setObject(CCString::create(""), "buff2");
 			elem->setObject(CCString::create(""), "buff3");
@@ -398,13 +406,22 @@ public:
 		return getValueOf(subDict, "animation");
 	}
 
-	CCString* get_ase_Value(const string& key)
+	CCString* get_atk_se_Value(const string& key)
 	{
-		return getValueOf(key, "ase");
+		return getValueOf(key, "atk_se");
 	}
-	CCString* get_ase_Value(CCDictionary* subDict)
+	CCString* get_atk_se_Value(CCDictionary* subDict)
 	{
-		return getValueOf(subDict, "ase");
+		return getValueOf(subDict, "atk_se");
+	}
+
+	CCString* get_hit_eft_Value(const string& key)
+	{
+		return getValueOf(key, "hit_eft");
+	}
+	CCString* get_hit_eft_Value(CCDictionary* subDict)
+	{
+		return getValueOf(subDict, "hit_eft");
 	}
 
 	CCString* get_buff1_Value(const string& key)

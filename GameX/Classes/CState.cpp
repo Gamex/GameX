@@ -96,3 +96,9 @@ void CState::clearState()
 }
 
 
+
+bool CState::isStateLocked() const
+{
+    return m_isStateLocked;
+}
+

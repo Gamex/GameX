@@ -9,14 +9,12 @@
 #include "CWarriorRole.h"
 #include "CSkillComp.h"
 #include "CDataCenterManager.h"
-
-DEFINE_DICTFUNC(CWarriorRole, float, MaxHP, 0);
-DEFINE_DICTFUNC(CWarriorRole, float, AttackRange, 0);
+#include "CBattleFiledManager.h"
 
 
 CWarriorRole::CWarriorRole()
 : m_pHPBar(NULL)
-, m_speed(180)
+, m_visionRadiusSq(0.f)
 {
     
 }
@@ -43,6 +41,30 @@ bool CWarriorRole::init(CCDictionary* pObjectDict)
 
 
 
+void CWarriorRole::setRoleGroup(ROLE_GROUP var)
+{
+    CRole::setRoleGroup(var);
+    if (m_roleGroup == ROLE_GROUP_ATTACK)
+    {
+        m_visionRadiusSq = FLT_MAX;
+    }
+    else
+    {
+        CCDictionary* dict = DTUNIT->getData(getUnitName());
+        if (dict)
+        {
+            CCString* str = DTUNIT->get_radius_Value(dict);
+            CC_ASSERT(str);
+            m_visionRadiusSq = str->floatValue();
+
+            m_visionRadiusSq *= m_visionRadiusSq;
+        }
+    }
+}
+
+
+
+
 SEL_CallFuncN CWarriorRole::onResolveCCBCCCallFuncSelector(CCObject * pTarget, const char* pSelectorName)
 {
     CCB_SELECTORRESOLVER_CALLFUNC_GLUE(this, "onSkillHit", CWarriorRole::onSkillHit);
@@ -64,9 +86,11 @@ void CWarriorRole::loadRoleData(const string& unitName)
     CRole::loadRoleData(unitName);
     
     CCDictionary* dict = DTUNIT->getData(unitName);
-    setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
-    setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
-    
+
+    CCString* str = DTUNIT->get_radius_Value(dict);
+    CC_ASSERT(str);
+    m_visionRadiusSq = str->floatValue();
+
     // load skills
     LOAD_SKILL(0);
     LOAD_SKILL(1);
@@ -83,8 +107,7 @@ void CWarriorRole::update(float dt)
     CRole::update(dt);
     
     updateSkipList(dt);
-    
-    m_enemyNearby.clear();
+
 }
 
 
@@ -119,42 +142,42 @@ bool CWarriorRole::createHPBar()
 
 
 
-void CWarriorRole::onSensor(CCObject* obj)
-{
-    CWarriorRole* wr = (CWarriorRole*)obj;
-    bool flag = false;
-    if (wr->getRoleGroup() != getRoleGroup())
-    {
-        QSWR_IT it = m_skipList.begin();
-        for (; it != m_skipList.end(); ++it)
-        {
-            if ((*it)->role == wr)
-            {
-                flag = true;
-                break;
-            }
-        }
-        
-        if (!flag)
-        {
-            m_enemyNearby.insert(wr);
-        }
-    }
-}
+//void CWarriorRole::onSensor(CCObject* obj)
+//{
+//    CWarriorRole* wr = (CWarriorRole*)obj;
+//    bool flag = false;
+//    if (wr->getRoleGroup() != getRoleGroup())
+//    {
+//        QSWR_IT it = m_skipList.begin();
+//        for (; it != m_skipList.end(); ++it)
+//        {
+//            if ((*it)->role == wr)
+//            {
+//                flag = true;
+//                break;
+//            }
+//        }
+//        
+//        if (!flag)
+//        {
+//            m_enemyNearby.insert(wr);
+//        }
+//    }
+//}
 
 
 
-void CWarriorRole::onSetSensorType(CSensor* pSensor)
-{
-    pSensor->setSensorTargetType(CT_SOLDIER);
-}
-
-
-
-GBCollisionType CWarriorRole::getCollisionType()
-{
-    return CT_SOLDIER;
-}
+//void CWarriorRole::onSetSensorType(CSensor* pSensor)
+//{
+//    pSensor->setSensorTargetType(CT_SOLDIER);
+//}
+//
+//
+//
+//GBCollisionType CWarriorRole::getCollisionType()
+//{
+//    return CT_SOLDIER;
+//}
 
 #pragma mark -- skills
 
@@ -223,29 +246,35 @@ void CWarriorRole::onSkillOver(CCNode* obj)
 
 void CWarriorRole::addToSkipList(CWarriorRole* role)
 {
-    CSkipWarriorRole* swr = new CSkipWarriorRole;
-    swr->role = role;
-    swr->time = 5.f;
-    m_skipList.push_back(swr);
+    MRF_IT it = m_skipList.find(role);
+    if (it == m_skipList.end())
+    {
+        m_skipList[role] = 5.f;
+    }
+    else
+    {
+        (*it).second = 5.f;
+    }
 }
 
 
 
 void CWarriorRole::updateSkipList(float dt)
 {
-    QSWR_IT it = m_skipList.begin();
-    for (; it != m_skipList.end(); )
+    vector<CRole*> toDel;
+    MRF_IT it = m_skipList.begin();
+    for (; it != m_skipList.end(); ++it)
     {
-        (*it)->time -= dt;
-        if ((*it)->time < 0.f)
+        (*it).second -= dt;
+        if ((*it).second < 0.f)
         {
-            delete *it;
-            it = m_skipList.erase(it);
+            toDel.push_back((*it).first);
         }
-        else
-        {
-            ++it;
-        }
+    }
+    
+    for (int i = 0; i < toDel.size(); ++i)
+    {
+        m_skipList.erase(toDel[i]);
     }
 }
 
@@ -253,49 +282,50 @@ void CWarriorRole::updateSkipList(float dt)
 
 #pragma mark -- think
 
-void CWarriorRole::thinkOfSkill()
-{
-    SS_IT it = m_skillNames.begin();
-    for (; it != m_skillNames.end(); ++it)
-    {
-        const string& name = *it;
-        CSkillComp* skill = getSkillCompByName(name);
-        CC_ASSERT(skill);
-        if (skill->checkDo())
-        {
-            changeState(skill->getStateId());
-            break;
-        }
-    }
-}
-
-
-
 void CWarriorRole::thinkOfVisionField()
 {
-    // first check if there is new target to attack
-    CCPoint myPos = getSpritePosition();
+    CC_ASSERT(m_roleGroup != ROLE_GROUP_NA);
     CWarriorRole* target = NULL;
-    float distance = FLT_MAX;
-    
-    SR_IT it = m_enemyNearby.begin();
-    for(; it != m_enemyNearby.end(); ++it)
+    float distance = m_visionRadiusSq;
+
+    SR& roles = BF_MANAGER->getRoles(m_roleGroup == ROLE_GROUP_ATTACK ? ROLE_GROUP_DEFENDCE : ROLE_GROUP_ATTACK);
+    SR_IT it = roles.begin();
+    for (; it != roles.end(); ++it)
     {
-        CWarriorRole* role = (CWarriorRole*)(*it);
-        CCPoint pos = role->getSpritePosition();
-        float dist = pos.getDistanceSq(myPos);
-        if (dist < distance)
+        if (m_skipList.find((*it)) == m_skipList.end())
         {
-            distance = dist;
-            target = role;
+            CWarriorRole* role = (CWarriorRole*)(*it);
+            float dist = getDistanceSqInGrid((*it));
+            if (dist < distance)
+            {
+                distance = dist;
+                target = role;
+            }
         }
     }
     
     if (target)
     {
+        SS_IT it = m_skillNames.begin();
+        for (; it != m_skillNames.end(); ++it)
+        {
+            const string& name = *it;
+            CSkillComp* skill = getSkillCompByName(name);
+            CC_ASSERT(skill);
+            if (skill->checkTarget(target, distance))
+            {
+                changeState(skill->getStateId());
+                break;
+            }
+        }
+
         CLogicGrid* lg = target->getLogicGrid();
         CC_ASSERT(lg);
         setMoveTarget(lg->getGridPos());
+    }
+    else
+    {
+        setMoveTarget(CCPoint(-1, -1));
     }
 }
 
@@ -303,9 +333,5 @@ void CWarriorRole::thinkOfVisionField()
 
 void CWarriorRole::think()
 {
-    thinkOfSkill();
-    if (getCurrentState() == ROLE_STATE_MOVE)
-    {
-        thinkOfVisionField();
-    }
+    thinkOfVisionField();
 }

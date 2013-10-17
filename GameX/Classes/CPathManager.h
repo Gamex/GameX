@@ -11,7 +11,7 @@
 
 #include "Common.h"
 #include "CSingleton.h"
-
+#if 0
 
 class CPath;
 
@@ -36,4 +36,5 @@ private:
 
 #define PATH_MANAGER (CPathManager::getInstance())
 
+#endif
 #endif /* defined(__EliminationPlane__TFPathManager__) */

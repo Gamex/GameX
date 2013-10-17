@@ -62,7 +62,6 @@ bool CSkillComp::loadSkill(const string& skillName)
         CCString* str = DTSKILL->get_range_Value(skillDict);
         CC_ASSERT(str);
         m_attackRadiusSq = str->floatValue();
-        m_attackRadiusSq *= m_attackRadiusSq;
 
         str = DTSKILL->get_cd_Value(skillDict);
         CC_ASSERT(str);
@@ -94,6 +93,7 @@ void CSkillComp::onEnter()
 void CSkillComp::onExit()
 {
     CWarriorRoleCompBase::onExit();
+    m_subState = SKILL_SUB_STATE_READY;
 }
 
 
@@ -113,9 +113,12 @@ void CSkillComp::update(float dt)
             }
         }
         
+        if (!isEnabled()) return;
+        
         switch (m_subState)
         {
             case SKILL_SUB_STATE_READY:
+                m_ownerRole->think();
                 break;
             case SKILL_SUB_STATE_PRE_CAST:
                 m_ownerRole->setFaceTo(m_skillTarget);
@@ -125,7 +128,6 @@ void CSkillComp::update(float dt)
             case SKILL_SUB_STATE_CASTING:
                 break;
             case SKILL_SUB_STATE_POST_CAST:
-                setEnabled(false);
                 m_subState = SKILL_SUB_STATE_READY;
                 break;
             default:
@@ -137,59 +139,16 @@ void CSkillComp::update(float dt)
 
 
 
-void CSkillComp::scanTarget()
+
+bool CSkillComp::checkTarget(CRole* target, float distance)
 {
     do
     {
-        const SR& enemies = m_ownerRole->getEnemyNearBy();
-
-        CCPoint ownerPos = m_ownerRole->getSpritePosition();
-        float shortestLen = FLT_MAX;
-        CWarriorRole* target = NULL;
-        
-        SR_IT it = enemies.begin();
-        for(; it != enemies.end(); ++it)
-        {
-            CWarriorRole* wr = (CWarriorRole*)(*it);
-            CCPoint pt = wr->getSpritePosition();
-            
-            float dist = pt.getDistanceSq(ownerPos);
-            if (dist < shortestLen)
-            {
-                shortestLen = dist;
-                target = wr;
-            }
-        }
-    } while (false);
-        
-}
-
-
-
-bool CSkillComp::checkDo()
-{
-    do
-    {
-        BREAK_IF(isEnabled());      // enable means the skill is casting.So no need to check again.
+        BREAK_IF(m_subState != SKILL_SUB_STATE_READY);
         BREAK_IF(getCDLeftTime() > 0);      // CDing...
-        
-        CCPoint ownerPos = m_ownerRole->getSpritePosition();
-        
-        SR enemies = m_ownerRole->getEnemyNearBy();
-        m_skillTarget = NULL;
-        float nearest_dist = FLT_MAX;
-        SR_IT it = enemies.begin();
-        for (; it != enemies.end(); ++it)
-        {
-            float dist = m_ownerRole->getDistanceSqInGrid(*it);
-            if (dist < nearest_dist)
-            {
-                nearest_dist = dist;
-                m_skillTarget = (CRole*)(*it);
-            }
-        }
-        BREAK_IF(nearest_dist > m_attackRadiusSq);
-        
+
+        BREAK_IF(distance > m_attackRadiusSq);
+        m_skillTarget = target;
         return true;
     } while (false);
     
@@ -210,6 +169,22 @@ void CSkillComp::action()
 
 void CSkillComp::onHit()
 {
+    float damage = m_ownerRole->getATK() - m_skillTarget->getDEF();
+    if (damage < 1.f)
+    {
+        damage = 1.f;
+    }
+    float curHP = m_skillTarget->getCurHP();
+    curHP = curHP - damage;
+    if (FLT_LE(curHP, 0.f))
+    {
+        m_skillTarget->setCurHP(0.f);
+        m_skillTarget->changeState(ROLE_STATE_DYING);
+    }
+    else
+    {
+        m_skillTarget->setCurHP(curHP);
+    }
 }
 
 
@@ -217,6 +192,10 @@ void CSkillComp::onHit()
 void CSkillComp::onOver()
 {
     m_subState = SKILL_SUB_STATE_POST_CAST;
+    if (m_skillTarget->isDead())
+    {
+        m_ownerRole->changeState(ROLE_STATE_MOVE);
+    }
 }
 
 

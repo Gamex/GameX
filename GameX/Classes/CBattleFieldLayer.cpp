@@ -19,7 +19,7 @@
 #include "CFormationManager.h"
 #include "CRole.h"
 #include "CDataCenterManager.h"
-#include "CAIManager.h"
+#include "CBattleFiledManager.h"
 
 
 #define BATCHNODE_LIST          "BatchNodes.plist"
@@ -42,6 +42,7 @@ CBattleFieldLayer::~CBattleFieldLayer()
     
     delete COLLISION_MANAGER;
 
+    delete BF_MANAGER;
 }
 
 
@@ -51,6 +52,9 @@ bool CBattleFieldLayer::init()
     do
     {
         BREAK_IF_FAILED(CTouchesLayer::init());
+        
+        CCDirector *pDirector = CCDirector::sharedDirector();
+        pDirector->setDepthTest(true);
         
         setTouchEnabled(true);
         
@@ -63,8 +67,8 @@ bool CBattleFieldLayer::init()
         ob->clearAll();
 
         BREAK_IF_FAILED(CBkgLayerBase::initBkgLayerBase(BATCHNODE_LIST));
-//        setGamePanelLayer(CGamePanelLayer::create());
-//        addChild(m_pGamePanelLayer, Z_ORDER_GAME_PANEL);
+        setGamePanelLayer(CGamePanelLayer::create());
+        addChild(m_pGamePanelLayer, Z_ORDER_GAME_PANEL);
 
 
         loadFormation();
@@ -82,7 +86,7 @@ void CBattleFieldLayer::update(float dt)
 {
     GAME_TIME->update(dt);
     
-    AI_MANAGER->update(dt);
+    BF_MANAGER->update(dt);
         
     CCArray* children = getChildren();
     CCObject* obj;

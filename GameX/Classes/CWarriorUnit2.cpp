@@ -18,3 +18,16 @@ CWarriorUnit2::~CWarriorUnit2()
 {
 }
 
+
+
+void CWarriorUnit2::think()
+{
+    CWarriorRole::think();
+}
+
+
+
+bool CWarriorUnit2::playAnimation(const std::string& name)
+{
+    CWarriorRole::playAnimation(name);
+}

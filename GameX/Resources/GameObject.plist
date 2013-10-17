@@ -149,8 +149,6 @@
 		<string>Unit0</string>
 		<key>FileName</key>
 		<string>unit0</string>
-		<key>Sensor</key>
-		<string>Sensor0</string>
 	</dict>
 	<key>Unit1</key>
 	<dict>
@@ -166,8 +164,6 @@
 		<string>Unit1</string>
 		<key>FileName</key>
 		<string>unit1</string>
-		<key>Sensor</key>
-		<string>Sensor0</string>
 	</dict>
 	<key>Unit2</key>
 	<dict>
@@ -183,8 +179,6 @@
 		<string>Unit2</string>
 		<key>FileName</key>
 		<string>unit2</string>
-		<key>Sensor</key>
-		<string>Sensor0</string>
 	</dict>
 	<key>Unit3</key>
 	<dict>

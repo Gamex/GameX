@@ -19,6 +19,7 @@ USING_NS_CC;
 enum
 {
     MOVE_SUB_STATE_IDLE,
+    MOVE_SUB_STATE_PATH_FIND,
     MOVE_SUB_STATE_PATH_FINDING,
     MOVE_SUB_STATE_PATH_FOUND,
     MOVE_SUB_STATE_MOVING,
@@ -40,10 +41,11 @@ protected:
     CMoveOnGridComp(void);
     
     virtual void onPathReady(const vector<CCPoint>& path);
-    virtual void findPathIfNeeded();
+    virtual void findPathIfNeeded(bool briefFind);
 private:
     vector<CCPoint> m_paths;
     
+    CCPoint m_moveTarget;
     CCPoint m_moveFrom;
     CCPoint m_moveTo;
     float m_moveTotalTime;

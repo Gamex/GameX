@@ -10,8 +10,9 @@
 #include "TFGameObjectManager.h"
 #include "CBackgroundManager.h"
 #include "CMoveOnGridComp.h"
-#include "CAIManager.h"
+#include "CBattleFiledManager.h"
 #include "CDataCenterManager.h"
+#include "CWarriorDyingComp.h"
 
 DEFINE_DICTFUNC_DICTIONARY(CRole, Gun);
 
@@ -94,6 +95,12 @@ void CRole::loadRoleData(const string& unitName)
     setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
     setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
 
+    setSpeed(DTUNIT->get_speed_Value(dict)->floatValue());
+    setMaxHP(DTUNIT->get_hp_Value(dict)->floatValue());
+    setCurHP(getMaxHP());
+    setATK(DTUNIT->get_atk_Value(dict)->floatValue());
+    setDEF(DTUNIT->get_def_Value(dict)->floatValue());
+    setAtkSpeed(DTUNIT->get_rate_Value(dict)->floatValue());
 }
 
 
@@ -103,6 +110,9 @@ void CRole::addComponentsForStates()
 {
     CMoveOnGridComp* moveComp = CMoveOnGridComp::create();
     addComponentForState(ROLE_STATE_MOVE, moveComp);
+    
+    CWarriorDyingComp* dyingComp = CWarriorDyingComp::create();
+    addComponentForState(ROLE_STATE_DYING, dyingComp);
 }
 
 
@@ -210,9 +220,25 @@ CRole* CRole::getAttackTarget()
 
 
 
+void CRole::setRoleGroup(ROLE_GROUP var)
+{
+    BF_MANAGER->removeRole(this);
+    m_roleGroup = var;
+    BF_MANAGER->addRole(this);
+}
+
+
+
+ROLE_GROUP CRole::getRoleGroup()
+{
+    return m_roleGroup;
+}
+
+
+
 void CRole::die()
 {
-    AI_MANAGER->removeAI(this);
+    BF_MANAGER->removeRole(this);
     FIGHT_RELATION->removeAllRelation(dynamic_cast<IFightingRelation*>(this));
     CSpriteObject::die();
 }
@@ -222,7 +248,7 @@ void CRole::die()
 void CRole::revive()
 {
     CSpriteObject::revive();
-    AI_MANAGER->addAI(this);
+    BF_MANAGER->addRole(this);
 }
 
 
@@ -307,6 +333,46 @@ void CRole::findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFin
     CC_ASSERT(bkg);
     bkg->findPath(startPos, targetPos, this, delegate);
 }
+
+
+
+bool CRole::findPathBrief(const CCPoint& startPos, const CCPoint& targetPos, vector<CCPoint>& path)
+{
+    path.clear();
+    CCPoint pt = startPos;
+    CCPoint diff = targetPos - startPos;
+    int xSign = FLT_GE(diff.x, 0) ? 1 : -1;
+    int ySign = FLT_GE(diff.y, 0) ? 1 : -1;
+    diff.x = fabsf(diff.x);
+    diff.y = fabsf(diff.y);
+    
+    int delta = diff.x - diff.y;
+    
+    while (!pt.equals(targetPos))
+    {
+        path.push_back(pt);
+        
+        if (delta > 0)
+        {
+            pt.x += xSign;
+            delta--;
+        }
+        else if (delta < 0)
+        {
+            pt.y += ySign;
+            delta++;
+        }
+        else
+        {
+            pt.x += xSign;
+            pt.y += ySign;
+        }
+    }
+    std::reverse(path.begin(), path.end());
+	return true;
+}
+
+
 
 
 

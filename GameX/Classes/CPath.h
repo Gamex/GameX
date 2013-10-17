@@ -10,7 +10,7 @@
 #define __EliminationPlane__TFPath__
 
 #include "Common.h"
-
+#if 0
 class CPath : public CCObject
 {
 public:    
@@ -27,5 +27,5 @@ private:
     CCArray* spline_;
     std::string pathName_;
 };
-
+#endif
 #endif /* defined(__EliminationPlane__TFPath__) */

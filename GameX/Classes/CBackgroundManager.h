@@ -38,13 +38,14 @@ public:
     , m_background(NULL)
     , m_gridWidth(0)
     , m_gridHeight(0)
+    , m_moveTarget(-1.f, -1.f)
     {}
     virtual ~IGridRole(){}
     
     virtual void updateVertexZ() = 0;
     virtual void onPlaceOnMap(const CCPoint& gridPos, const CCPoint& position) = 0;
     virtual void findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFinderDelegate* delegate = NULL) = 0;
-    
+    virtual bool findPathBrief(const CCPoint& startPos, const CCPoint& targetPos, vector<CCPoint>& path) = 0;
     virtual CCPoint getPositionInGrid() = 0;
     virtual float getDistanceSqInGrid(IGridRole* role) = 0;
     virtual bool checkInGridRadiusSq(IGridRole* role, float radiusInGrid) = 0;

@@ -14,7 +14,7 @@
 #include "CMemPool.h"
 
 
-#define PATH_NODE_MEM_POOL_SIZE     3000
+#define PATH_NODE_MEM_POOL_SIZE     5000
 
 class IPathFinderDelegate
 {

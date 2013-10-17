@@ -53,9 +53,9 @@ bool CFormationPanelLayer::init()
     {
 //        setTouchEnabled(true);
         
-        m_editRoleNames.push_back("0");
         m_editRoleNames.push_back("1");
         m_editRoleNames.push_back("2");
+        m_editRoleNames.push_back("3");
 //        m_editRoleNames.push_back("4");
 //        m_editRoleNames.push_back("5");
 //        m_editRoleNames.push_back("6");

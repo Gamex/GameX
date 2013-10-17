@@ -39,6 +39,9 @@ bool CFormationLayer::init()
     {
         BREAK_IF_FAILED(CTouchesLayer::init());
         
+        CCDirector *pDirector = CCDirector::sharedDirector();
+        pDirector->setDepthTest(true);
+        
         setTouchEnabled(true);
         
         CCBReader* pReader = new CCBReader(CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary());

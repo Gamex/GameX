@@ -25,7 +25,7 @@ public:
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("kuangtu"), "name");
+			elem->setObject(CCString::create("unit_1"), "name");
 			elem->setObject(CCString::create("0"), "type");
 			elem->setObject(CCString::create("Unit0"), "resourceID");
 			elem->setObject(CCString::create("-9"), "x");
@@ -34,13 +34,13 @@ public:
 			elem->setObject(CCString::create("43"), "hight");
 			elem->setObject(CCString::create("1"), "gridWidth");
 			elem->setObject(CCString::create("1"), "gridHeight");
-			elem->setObject(CCString::create("120"), "hp");
+			elem->setObject(CCString::create("10"), "hp");
 			elem->setObject(CCString::create("10"), "atk");
 			elem->setObject(CCString::create("1"), "def");
 			elem->setObject(CCString::create("0"), "deftype");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("0"), "target");
-			elem->setObject(CCString::create("0"), "radius");
+			elem->setObject(CCString::create("4"), "radius");
 			elem->setObject(CCString::create("3"), "speed");
 			elem->setObject(CCString::create("1"), "rate");
 			elem->setObject(CCString::create("1"), "skill0");
@@ -51,12 +51,12 @@ public:
 			elem->setObject(CCString::create(""), "skill5");
 
 			
-			m_pDictionary->setObject(elem, "0");
+			m_pDictionary->setObject(elem, "1");
 		}
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("jiqiangbing"), "name");
+			elem->setObject(CCString::create("unit_2"), "name");
 			elem->setObject(CCString::create("0"), "type");
 			elem->setObject(CCString::create("Unit1"), "resourceID");
 			elem->setObject(CCString::create("-9"), "x");
@@ -71,7 +71,7 @@ public:
 			elem->setObject(CCString::create("0"), "deftype");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("0"), "target");
-			elem->setObject(CCString::create("0"), "radius");
+			elem->setObject(CCString::create("4"), "radius");
 			elem->setObject(CCString::create("3"), "speed");
 			elem->setObject(CCString::create("1"), "rate");
 			elem->setObject(CCString::create("2"), "skill0");
@@ -82,12 +82,12 @@ public:
 			elem->setObject(CCString::create(""), "skill5");
 
 			
-			m_pDictionary->setObject(elem, "1");
+			m_pDictionary->setObject(elem, "2");
 		}
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("mengma"), "name");
+			elem->setObject(CCString::create("unit_3"), "name");
 			elem->setObject(CCString::create("0"), "type");
 			elem->setObject(CCString::create("Unit2"), "resourceID");
 			elem->setObject(CCString::create("-9"), "x");
@@ -102,7 +102,7 @@ public:
 			elem->setObject(CCString::create("0"), "deftype");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("0"), "target");
-			elem->setObject(CCString::create("0"), "radius");
+			elem->setObject(CCString::create("4"), "radius");
 			elem->setObject(CCString::create("2"), "speed");
 			elem->setObject(CCString::create("0.5"), "rate");
 			elem->setObject(CCString::create("3"), "skill0");
@@ -113,12 +113,12 @@ public:
 			elem->setObject(CCString::create(""), "skill5");
 
 			
-			m_pDictionary->setObject(elem, "2");
+			m_pDictionary->setObject(elem, "3");
 		}
 		{
 			CCDictionary* elem = CCDictionary::create();
 			
-			elem->setObject(CCString::create("huofu"), "name");
+			elem->setObject(CCString::create("unit_4"), "name");
 			elem->setObject(CCString::create("0"), "type");
 			elem->setObject(CCString::create("Unit3"), "resourceID");
 			elem->setObject(CCString::create("-9"), "x");
@@ -133,7 +133,7 @@ public:
 			elem->setObject(CCString::create("0"), "deftype");
 			elem->setObject(CCString::create("1"), "dimension");
 			elem->setObject(CCString::create("0"), "target");
-			elem->setObject(CCString::create("0"), "radius");
+			elem->setObject(CCString::create("4"), "radius");
 			elem->setObject(CCString::create("2"), "speed");
 			elem->setObject(CCString::create("0.6"), "rate");
 			elem->setObject(CCString::create("4"), "skill0");
@@ -144,7 +144,7 @@ public:
 			elem->setObject(CCString::create(""), "skill5");
 
 			
-			m_pDictionary->setObject(elem, "3");
+			m_pDictionary->setObject(elem, "4");
 		}
 
     }

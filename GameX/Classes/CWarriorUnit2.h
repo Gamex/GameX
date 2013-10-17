@@ -19,6 +19,8 @@ public:
     virtual ~CWarriorUnit2();
     
 
+    virtual bool playAnimation(const std::string& name);
+    virtual void think();
 protected:
     CWarriorUnit2();
     

@@ -38,6 +38,7 @@ bool CMoveOnGridComp::init()
 void CMoveOnGridComp::onEnter()
 {
     CWarriorRoleCompBase::onEnter();
+    m_subState = MOVE_SUB_STATE_IDLE;
 }
 
 
@@ -62,13 +63,31 @@ void CMoveOnGridComp::update(float dt)
             m_idleSleepTime -= dt;
             if (m_idleSleepTime < 0)
             {
-                findPathIfNeeded();
+                m_ownerRole->think();
+                findPathIfNeeded(true);
             }
             break;
+        case MOVE_SUB_STATE_PATH_FIND:
+        {
+            m_ownerRole->unlockState();
+            m_idleSleepTime -= dt;
+            if (m_idleSleepTime < 0)
+            {
+                m_ownerRole->think();
+                findPathIfNeeded(false);
+            }
+            break;
+        }
         case MOVE_SUB_STATE_PATH_FINDING:
             break;
         case MOVE_SUB_STATE_PATH_FOUND:
         {
+            m_ownerRole->think();
+            if (!m_ownerRole->getMovetarget().equals(m_moveTarget))
+            {
+                m_subState = MOVE_SUB_STATE_IDLE;
+                break;
+            }
             if (m_paths.size() > 0)
             {
                 CBackgroundManager* bkg = m_ownerRole->getBackGround();
@@ -80,7 +99,7 @@ void CMoveOnGridComp::update(float dt)
                     CLogicGrid* pGrid = m_ownerRole->getLogicGrid();
                     const CCPoint& curPos = pGrid->getGridPos();
 
-                    float speed = 3.f;
+                    float speed = m_ownerRole->getSpeed();
                     m_moveTotalTime = pos.getDistance(curPos) / speed;
                     m_moveElapseTime = 0.f;
                     m_moveFrom = bkg->gridToWorldPoint(curPos);
@@ -116,7 +135,7 @@ void CMoveOnGridComp::update(float dt)
                 }
                 else
                 {
-                    m_subState = MOVE_SUB_STATE_IDLE;
+                    m_subState = MOVE_SUB_STATE_PATH_FIND;
                 }
             }
             else
@@ -161,7 +180,7 @@ void CMoveOnGridComp::update(float dt)
             CC_ASSERT(bkg);
             bkg->placeRole(m_ownerRole, m_ownerRole->getLogicGrid()->getGridPos());
             m_ownerRole->playAnimation(ROLE_ANIMATION_IDLE);
-            m_subState = MOVE_SUB_STATE_IDLE;
+            m_subState = MOVE_SUB_STATE_PATH_FIND;
             m_ownerRole->unlockState();
             break;
         }
@@ -201,23 +220,42 @@ void CMoveOnGridComp::onPathReady(const vector<CCPoint>& path)
         CLogicGrid* lg = bkg->getLogicGrid(pt);
         m_ownerRole->addToSkipList((CWarriorRole*)lg->getUnit());
         
-        m_idleSleepTime = 2.f + CCRANDOM_MINUS1_1() * 2.f;
-//        m_idleSleepTime = FLT_MAX;
+//        m_idleSleepTime = 2.f + CCRANDOM_MINUS1_1() * 2.f;
     }
 }
 
 
 
-void CMoveOnGridComp::findPathIfNeeded()
+void CMoveOnGridComp::findPathIfNeeded(bool briefFind)
 {
-    const CCPoint& targetPos = m_ownerRole->getMovetarget();
+    m_moveTarget = m_ownerRole->getMovetarget();
+    if (m_moveTarget.equals(CCPoint(-1, -1)))
+    {
+        m_subState = MOVE_SUB_STATE_IDLE;
+        return;
+    }
     CLogicGrid* pGrid = m_ownerRole->getLogicGrid();
     const CCPoint& curPos = pGrid->getGridPos();
     
-    if (!curPos.equals(targetPos))
+    if (!curPos.equals(m_moveTarget))
     {
-        m_ownerRole->findPath(curPos, targetPos, this);
-        m_subState = MOVE_SUB_STATE_PATH_FINDING;
+        if (briefFind)
+        {
+            m_ownerRole->findPathBrief(curPos, m_moveTarget, m_paths);
+            if (m_paths.size() > 0)
+            {
+                m_subState = MOVE_SUB_STATE_PATH_FOUND;
+            }
+            else
+            {
+                m_subState = MOVE_SUB_STATE_IDLE;
+            }
+        }
+        else
+        {
+            m_ownerRole->findPath(curPos, m_moveTarget, this);
+            m_subState = MOVE_SUB_STATE_PATH_FINDING;
+        }
     }
 }
 

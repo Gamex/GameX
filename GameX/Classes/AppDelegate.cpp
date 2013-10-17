@@ -63,7 +63,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         
         BREAK_IF_FAILED(COLLISION_MANAGER->init());
 
-        BREAK_IF_FAILED(PATH_MANAGER->initialize());
+//        BREAK_IF_FAILED(PATH_MANAGER->initialize());
 
         BREAK_IF_FAILED(SCENE_MANAGER->initialize());
         

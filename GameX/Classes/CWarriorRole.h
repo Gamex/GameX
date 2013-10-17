@@ -31,13 +31,6 @@ enum WARRIOR_ROLE_STATE
     WARRIOR_ROLE_STATE_MAX,
 };
 
-class CSkipWarriorRole
-{
-public:
-    float time;
-    class CWarriorRole* role;
-};
-
 class CWarriorRole : public CRole
 {
     CC_SYNTHESIZE_RETAIN(TFHPBar*, m_pHPBar, HPBar);
@@ -52,7 +45,8 @@ public:
     
     virtual void update(float dt);
     
-    virtual const SR& getEnemyNearBy() const {return m_enemyNearby;};
+    virtual void setRoleGroup(ROLE_GROUP var);
+
     virtual const SS& getSkillNames() const {return m_skillNames;};
     
     virtual void addSkillByName(const string& skillName, int skillIdx);
@@ -65,35 +59,23 @@ public:
     virtual void addToSkipList(CWarriorRole* role);
     virtual void updateSkipList(float dt);
     
-    DECLARE_DICTFUNC(float, MaxHP);
-    DECLARE_DICTFUNC(float, AttackRange);
+    virtual void think();
 protected:
     CWarriorRole();
 
     virtual bool createHPBar();
     virtual void findNearestMonsterToAttack(){};
-    
-    virtual void onSensor(CCObject* obj);
-    virtual void onSetSensorType(CSensor* pSensor);
-    
-    virtual GBCollisionType getCollisionType();
-    
-    virtual void think();
-    virtual void thinkOfSkill();
+
     virtual void thinkOfVisionField();
     
     virtual void onSkillHit(CCNode* obj);
     virtual void onSkillOver(CCNode* obj);
-    
-    int m_hitPoint;
-    int m_maxHitPoint;
-    float m_hitTime;
-    float m_speed;
 
-    SR m_enemyNearby;
+    float m_visionRadiusSq;
+
     SS m_skillNames;
     
-    QSWR m_skipList;
+    MRF m_skipList;
 private:
 
 };

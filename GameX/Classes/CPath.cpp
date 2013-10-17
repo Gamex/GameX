@@ -9,7 +9,7 @@
 #include "CPath.h"
 #include <math.h>
 #include "Common.h"
-
+#if 0
 #define B_SPLINE(u, u_2, u_3, cntrl0, cntrl1, cntrl2, cntrl3) \
 ( \
 ( \
@@ -246,3 +246,5 @@ bool CPath::initWithRandom(const CCPoint& sp, const CCPoint& ep)
     
     return makeSpline(controlPoints);
 }
+
+#endif

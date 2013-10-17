@@ -22,7 +22,7 @@ public:
 	virtual bool changeState(int state);
     virtual void lockState();
     virtual void unlockState();
-    
+    virtual bool isStateLocked() const;
 protected:
 	virtual void onEnterState(int state);
 	virtual void onLeaveState(int state);

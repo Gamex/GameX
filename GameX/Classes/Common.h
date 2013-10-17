@@ -202,9 +202,8 @@ typedef std::map<GBCollisionType, COLLISION_HANDLER>::iterator MICH_IT;
 typedef std::map<GBCollisionType, COLLISION_HANDLER>::const_iterator MICH_CIT;
 
 
-typedef std::list<class CSkipWarriorRole*> QSWR;
-typedef std::list<class CSkipWarriorRole*>::iterator QSWR_IT;
-typedef std::list<class CSkipWarriorRole*>::const_iterator QSWR_CIT;
-
+typedef std::map<class CRole*, float> MRF;
+typedef std::map<class CRole*, float>::iterator MRF_IT;
+typedef std::map<class CRole*, float>::const_iterator MRF_CIT;
 
 #endif

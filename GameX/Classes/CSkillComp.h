@@ -37,15 +37,13 @@ public:
     virtual void onExit();
     virtual void update(float dt);
     
-    virtual bool checkDo();
+    virtual bool checkTarget(CRole* target, float distance);
     virtual void action();
     
     virtual void onHit();
     virtual void onOver();
 protected:
     CSkillComp(void);
-
-    virtual void scanTarget();
 
     float m_attackRadiusSq;
     CRole* m_skillTarget;
