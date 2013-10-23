@@ -51,13 +51,15 @@ void CWarriorDyingComp::update(float dt)
     switch (m_subState)
     {
         case DYING_SUB_STATE_START:
-            m_ownerRole->playAnimation(ROLE_ANIMATION_DYING);
-            m_ownerRole->die();
+        {
+            m_ownerRole->prepareToDie();
             m_subState = DYING_SUB_STATE_DYING;
             break;
+        }
         case DYING_SUB_STATE_DYING:
             break;
         case DYING_SUB_STATE_OVER:
+            m_ownerRole->die();
             break;
         default:
             break;
@@ -65,4 +67,13 @@ void CWarriorDyingComp::update(float dt)
 }
 
 
+
+void CWarriorDyingComp::onDyingOver(CCNode* obj)
+{
+    if (!isEnabled())
+    {
+        return;
+    }
+    m_subState = DYING_SUB_STATE_OVER;
+}
 

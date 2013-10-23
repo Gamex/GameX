@@ -33,6 +33,7 @@ void CWarriorRoleCompBase::onEnter()
 {
     CCComponent::onEnter();
     m_ownerRole = dynamic_cast<CWarriorRole*>(getOwner());
+    m_ownerRole->addCCBAnimationDelegate(this);
 }
 
 

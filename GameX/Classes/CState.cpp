@@ -43,6 +43,11 @@ bool CState::changeState(int state)
         return false;
     }
     
+    if (state == m_currentState)
+    {
+        return true;
+    }
+    
 	if(m_currentState != STATE_NONE)
     {
         onLeaveState(m_currentState);

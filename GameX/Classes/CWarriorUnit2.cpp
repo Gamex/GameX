@@ -29,5 +29,5 @@ void CWarriorUnit2::think()
 
 bool CWarriorUnit2::playAnimation(const std::string& name)
 {
-    CWarriorRole::playAnimation(name);
+    return CWarriorRole::playAnimation(name);
 }

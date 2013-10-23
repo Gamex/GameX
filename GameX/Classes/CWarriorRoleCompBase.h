@@ -11,10 +11,17 @@
 
 #include "Common.h"
 #include "CWarriorRole.h"
+#include "ICCBAnimationDelegate.h"
 
+
+#define THINK_AND_BREAK()\
+m_ownerRole->think();\
+if (this->isEnabled() == false)\
+{ break;}
 
 class CWarriorRoleCompBase
 : public CCComponent
+, public ICCBAnimationDelegate
 {
 public:
     virtual ~CWarriorRoleCompBase();

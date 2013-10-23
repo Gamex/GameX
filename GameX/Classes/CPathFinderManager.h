@@ -126,6 +126,8 @@ public:
 protected:
         
     QFT m_finderTaskQueue;
+    
+    float m_cdTime;
 private:
     CBackgroundManager* m_bkg;
 };

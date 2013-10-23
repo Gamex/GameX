@@ -8,6 +8,7 @@
 
 #include "CGamePanelLayer.h"
 #include "CGameSceneManager.h"
+#include "CTimeProfile.h"
 
 CGamePanelLayer::CGamePanelLayer()
 {
@@ -58,6 +59,8 @@ void CGamePanelLayer::popMenu()
 void CGamePanelLayer::onBuild(CCObject* sender, CCControlEvent event)
 {
     SCENE_MANAGER->go(ST_LOBBY);
+    
+    TP_LOG_FLUSH();
 //    SOLDIER_MANAGER->buildSoldier(0, "Soldier0");
 }
 

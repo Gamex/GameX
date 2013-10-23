@@ -61,6 +61,7 @@ class CLogicGrid
     CC_SYNTHESIZE_READONLY(CCPoint, m_gridPos, GridPos);
     CC_SYNTHESIZE_READONLY(IGridRole*, m_unit, Unit);
     CC_SYNTHESIZE(bool, m_isPrimary, IsPrimary);
+    CC_SYNTHESIZE(bool, m_locked, Lock);
 public:
     CLogicGrid(int x, int y);
     CLogicGrid(const CLogicGrid& obj);
@@ -110,7 +111,7 @@ public:
     virtual void clearAllHightlightGrids();
     virtual void hightlightGrid(const CCPoint& gridPos, bool onOff = true);
     
-    virtual bool isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& gridPos);
+    virtual bool isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& gridPos, bool lock = false);
     virtual bool isGridPosInGridRange(const CCPoint& gridPos, int width, int height, const CCPoint& testPos);
     virtual void addRoleToGrid(const CCPoint& gridPos, IGridRole* role);
     virtual void removeRoleFromGrid(IGridRole* role);

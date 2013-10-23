@@ -19,6 +19,7 @@
 #include "CDataCenterManager.h"
 #include "CBackgroundManager.h"
 #include "CGameSceneManager.h"
+#include "CTimeProfile.h"
 #include <time.h>
 
 
@@ -67,6 +68,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
         BREAK_IF_FAILED(SCENE_MANAGER->initialize());
         
+        TP_INIT();
         
         SCENE_MANAGER->go(ST_LOBBY);
         

@@ -11,6 +11,7 @@
 
 #include "CWarriorRoleCompBase.h"
 
+
 enum
 {
     DYING_SUB_STATE_START,
@@ -31,6 +32,7 @@ public:
     virtual void onExit();
     virtual void update(float dt);
 
+    virtual void onDyingOver(CCNode* obj);
 protected:
     CWarriorDyingComp(void);
 private:

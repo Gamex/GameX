@@ -11,6 +11,7 @@
 
 #include "CWarriorRoleCompBase.h"
 
+
 enum
 {
     SKILL_SUB_STATE_READY,
@@ -40,8 +41,8 @@ public:
     virtual bool checkTarget(CRole* target, float distance);
     virtual void action();
     
-    virtual void onHit();
-    virtual void onOver();
+    virtual void onSkillHit(CCNode* obj);
+    virtual void onSkillOver(CCNode* obj);
 protected:
     CSkillComp(void);
 

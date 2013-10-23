@@ -21,6 +21,9 @@ CRole::CRole()
 : m_pGun(NULL)
 , m_faceTo(FACE_TO_RIGHT_DOWN)
 , m_roleGroup(ROLE_GROUP_NA)
+#ifdef DEBUG
+, m_mark(false)
+#endif
 {
 
 }
@@ -238,9 +241,16 @@ ROLE_GROUP CRole::getRoleGroup()
 
 void CRole::die()
 {
+    CBackgroundManager* bkg = getBackGround();
+    if (bkg)
+    {
+        bkg->removeRoleFromGrid(this);
+    }
     BF_MANAGER->removeRole(this);
     FIGHT_RELATION->removeAllRelation(dynamic_cast<IFightingRelation*>(this));
     CSpriteObject::die();
+    
+    setSpriteVisible(false);
 }
 
 
@@ -276,6 +286,7 @@ void CRole::updateVertexZ()
         
         setSpriteVertexZ(lowestZ + currentZ - 1);
         
+//        setSpriteZOrder(lowestZ + currentZ - 1);
     } while (false);
 }
 
@@ -307,7 +318,7 @@ bool CRole::playAnimation(const std::string& name)
 {
     std::string s = m_faceToPrefix[m_faceTo];
     s += name;
-    
+
     return CSpriteObject::playAnimation(s);
 }
 

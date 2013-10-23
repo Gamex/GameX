@@ -7,7 +7,7 @@
 	<key>currentResolution</key>
 	<integer>0</integer>
 	<key>currentSequenceId</key>
-	<integer>14</integer>
+	<integer>15</integer>
 	<key>fileType</key>
 	<string>CocosBuilder</string>
 	<key>fileVersion</key>
@@ -3164,7 +3164,7 @@
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<true/>
+						<false/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3415,7 +3415,7 @@
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -4169,7 +4169,24 @@
 			<key>callbackChannel</key>
 			<dict>
 				<key>keyframes</key>
-				<array/>
+				<array>
+					<dict>
+						<key>easing</key>
+						<dict>
+							<key>type</key>
+							<integer>0</integer>
+						</dict>
+						<key>time</key>
+						<real>1</real>
+						<key>type</key>
+						<integer>10</integer>
+						<key>value</key>
+						<array>
+							<string>onDyingOver</string>
+							<integer>2</integer>
+						</array>
+					</dict>
+				</array>
 				<key>type</key>
 				<integer>10</integer>
 			</dict>
@@ -4182,7 +4199,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>1</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -4304,7 +4321,24 @@
 			<key>callbackChannel</key>
 			<dict>
 				<key>keyframes</key>
-				<array/>
+				<array>
+					<dict>
+						<key>easing</key>
+						<dict>
+							<key>type</key>
+							<integer>0</integer>
+						</dict>
+						<key>time</key>
+						<real>1</real>
+						<key>type</key>
+						<integer>10</integer>
+						<key>value</key>
+						<array>
+							<string>onDyingOver</string>
+							<integer>2</integer>
+						</array>
+					</dict>
+				</array>
 				<key>type</key>
 				<integer>10</integer>
 			</dict>
@@ -4317,7 +4351,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>1</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -4541,7 +4575,24 @@
 			<key>callbackChannel</key>
 			<dict>
 				<key>keyframes</key>
-				<array/>
+				<array>
+					<dict>
+						<key>easing</key>
+						<dict>
+							<key>type</key>
+							<integer>0</integer>
+						</dict>
+						<key>time</key>
+						<real>1</real>
+						<key>type</key>
+						<integer>10</integer>
+						<key>value</key>
+						<array>
+							<string>onDyingOver</string>
+							<integer>2</integer>
+						</array>
+					</dict>
+				</array>
 				<key>type</key>
 				<integer>10</integer>
 			</dict>
@@ -4554,7 +4605,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>1</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -4676,7 +4727,24 @@
 			<key>callbackChannel</key>
 			<dict>
 				<key>keyframes</key>
-				<array/>
+				<array>
+					<dict>
+						<key>easing</key>
+						<dict>
+							<key>type</key>
+							<integer>0</integer>
+						</dict>
+						<key>time</key>
+						<real>1</real>
+						<key>type</key>
+						<integer>10</integer>
+						<key>value</key>
+						<array>
+							<string>onDyingOver</string>
+							<integer>2</integer>
+						</array>
+					</dict>
+				</array>
 				<key>type</key>
 				<integer>10</integer>
 			</dict>
@@ -4689,7 +4757,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>0.0</real>
+			<real>1</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>

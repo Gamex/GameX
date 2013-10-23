@@ -25,7 +25,6 @@
 		5411742417E203FE0082E53C /* unit10.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411741817E203FE0082E53C /* unit10.ccbi */; };
 		5411742517E203FE0082E53C /* unit11.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411741917E203FE0082E53C /* unit11.ccbi */; };
 		5411742E17E5B5750082E53C /* CMoveOnGridComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5411742C17E5B5750082E53C /* CMoveOnGridComp.cpp */; };
-		5438481917EC389900326371 /* background.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5438481717EC389900326371 /* background.tmx */; };
 		543EE19C17DB838F0096D97E /* CCBAnimationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE12C17DB838F0096D97E /* CCBAnimationManager.cpp */; };
 		543EE19D17DB838F0096D97E /* CCBFileLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE12E17DB838F0096D97E /* CCBFileLoader.cpp */; };
 		543EE19E17DB838F0096D97E /* CCBKeyframe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE13017DB838F0096D97E /* CCBKeyframe.cpp */; };
@@ -81,6 +80,8 @@
 		543EE21A17DB841B0096D97E /* CCInputDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE21517DB841B0096D97E /* CCInputDelegate.cpp */; };
 		544F90A918064AFC0049139F /* CSkillComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544F90A718064AFC0049139F /* CSkillComp.cpp */; };
 		544F90AC18064B200049139F /* CWarriorRoleCompBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544F90AA18064B200049139F /* CWarriorRoleCompBase.cpp */; };
+		545589EC18162C3600560A3B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 545589E918162C3600560A3B /* background.png */; };
+		545589ED18162C3600560A3B /* background.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 545589EA18162C3600560A3B /* background.tmx */; };
 		5456A7321804F72500DD392F /* CSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5456A7301804F72500DD392F /* CSkillManager.cpp */; };
 		54607B761760D96400108571 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B751760D96400108571 /* QuartzCore.framework */; };
 		54607B781760D96400108571 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B771760D96400108571 /* OpenGLES.framework */; };
@@ -90,11 +91,12 @@
 		54607B801760D96400108571 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B7F1760D96400108571 /* UIKit.framework */; };
 		54607B821760D96400108571 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B811760D96400108571 /* Foundation.framework */; };
 		54607B841760D96400108571 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B831760D96400108571 /* CoreGraphics.framework */; };
-		547E835517F1BE4E001298EF /* object.png in Resources */ = {isa = PBXBuildFile; fileRef = 547E835417F1BE4E001298EF /* object.png */; };
+		5471E1E618164E6200F60DED /* objects.png in Resources */ = {isa = PBXBuildFile; fileRef = 5471E1E518164E6200F60DED /* objects.png */; };
 		54801F1C18059E2A00F3F68E /* CWarriorUnit0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54801F1A18059E2A00F3F68E /* CWarriorUnit0.cpp */; };
 		54801F211805A46800F3F68E /* CWarriorUnit1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54801F1D1805A46800F3F68E /* CWarriorUnit1.cpp */; };
 		54801F221805A46800F3F68E /* CWarriorUnit2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54801F1F1805A46800F3F68E /* CWarriorUnit2.cpp */; };
 		5497E8A11800492100544B86 /* CBkgLayerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5497E89F1800492100544B86 /* CBkgLayerBase.cpp */; };
+		549FC92D1816123E000319A0 /* CTimeProfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549FC92B1816123E000319A0 /* CTimeProfile.cpp */; };
 		54D0CC3F17DC68DD0022A1E9 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54DFBAA017DB6F8C00B006F3 /* libcocos2dx.a */; };
 		54D0CC4017DC68DD0022A1E9 /* libCocosDenshion.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 543EE12917DB82520096D97E /* libCocosDenshion.a */; };
 		54D0CC4317DC6D260022A1E9 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D0CC4117DC6D250022A1E9 /* libcurl.a */; };
@@ -131,7 +133,6 @@
 		54DFBEA517DB747900B006F3 /* CBattleFieldLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2017DB747800B006F3 /* CBattleFieldLayer.cpp */; };
 		54DFBEA617DB747900B006F3 /* CBulletBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2217DB747800B006F3 /* CBulletBase.cpp */; };
 		54DFBEA817DB747900B006F3 /* CCControlToggleButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2617DB747800B006F3 /* CCControlToggleButton.cpp */; };
-		54DFBEA917DB747900B006F3 /* CPListSaver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2817DB747800B006F3 /* CPListSaver.cpp */; };
 		54DFBEAA17DB747900B006F3 /* CCircleSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2A17DB747800B006F3 /* CCircleSensor.cpp */; };
 		54DFBEAD17DB747900B006F3 /* CDataCenterManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE3017DB747800B006F3 /* CDataCenterManager.cpp */; };
 		54DFBEAE17DB747900B006F3 /* CDirectionBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE3217DB747800B006F3 /* CDirectionBullet.cpp */; };
@@ -174,7 +175,6 @@
 		54DFBEDD17DB747900B006F3 /* TFPListReaderHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE9517DB747900B006F3 /* TFPListReaderHelper.cpp */; };
 		54DFBEDE17DB747900B006F3 /* UtilityFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE9717DB747900B006F3 /* UtilityFunction.cpp */; };
 		54DFBEE017DB77CC00B006F3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54DFBEDF17DB77CC00B006F3 /* Info.plist */; };
-		54FCC8E917F094AB0007EA1D /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 54FCC8E817F094AB0007EA1D /* background.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -230,7 +230,7 @@
 		5411741917E203FE0082E53C /* unit11.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit11.ccbi; sourceTree = "<group>"; };
 		5411742C17E5B5750082E53C /* CMoveOnGridComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CMoveOnGridComp.cpp; path = ../../Classes/CMoveOnGridComp.cpp; sourceTree = "<group>"; };
 		5411742D17E5B5750082E53C /* CMoveOnGridComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMoveOnGridComp.h; path = ../../Classes/CMoveOnGridComp.h; sourceTree = "<group>"; };
-		5438481717EC389900326371 /* background.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = background.tmx; path = ../Resources/background.tmx; sourceTree = "<group>"; };
+		5435A2621816CA85009B4D81 /* ICCBAnimationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ICCBAnimationDelegate.h; path = ../../Classes/ICCBAnimationDelegate.h; sourceTree = "<group>"; };
 		543EE12C17DB838F0096D97E /* CCBAnimationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCBAnimationManager.cpp; sourceTree = "<group>"; };
 		543EE12D17DB838F0096D97E /* CCBAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBAnimationManager.h; sourceTree = "<group>"; };
 		543EE12E17DB838F0096D97E /* CCBFileLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCBFileLoader.cpp; sourceTree = "<group>"; };
@@ -350,6 +350,8 @@
 		544F90A818064AFC0049139F /* CSkillComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSkillComp.h; path = ../../Classes/CSkillComp.h; sourceTree = "<group>"; };
 		544F90AA18064B200049139F /* CWarriorRoleCompBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorRoleCompBase.cpp; path = ../../Classes/CWarriorRoleCompBase.cpp; sourceTree = "<group>"; };
 		544F90AB18064B200049139F /* CWarriorRoleCompBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWarriorRoleCompBase.h; path = ../../Classes/CWarriorRoleCompBase.h; sourceTree = "<group>"; };
+		545589E918162C3600560A3B /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../Resources/background.png; sourceTree = "<group>"; };
+		545589EA18162C3600560A3B /* background.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = background.tmx; path = ../Resources/background.tmx; sourceTree = "<group>"; };
 		5456A7301804F72500DD392F /* CSkillManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CSkillManager.cpp; path = ../../Classes/CSkillManager.cpp; sourceTree = "<group>"; };
 		5456A7311804F72500DD392F /* CSkillManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSkillManager.h; path = ../../Classes/CSkillManager.h; sourceTree = "<group>"; };
 		54607B721760D96400108571 /* GameX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameX.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -362,7 +364,7 @@
 		54607B811760D96400108571 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		54607B831760D96400108571 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		54607E101760D96800108571 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = ../Prefix.pch; sourceTree = "<group>"; };
-		547E835417F1BE4E001298EF /* object.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = object.png; path = ../Resources/object.png; sourceTree = "<group>"; };
+		5471E1E518164E6200F60DED /* objects.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = objects.png; path = ../Resources/objects.png; sourceTree = "<group>"; };
 		54801F1A18059E2A00F3F68E /* CWarriorUnit0.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorUnit0.cpp; path = ../../Classes/CWarriorUnit0.cpp; sourceTree = "<group>"; };
 		54801F1B18059E2A00F3F68E /* CWarriorUnit0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWarriorUnit0.h; path = ../../Classes/CWarriorUnit0.h; sourceTree = "<group>"; };
 		54801F1D1805A46800F3F68E /* CWarriorUnit1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorUnit1.cpp; path = ../../Classes/CWarriorUnit1.cpp; sourceTree = "<group>"; };
@@ -373,6 +375,8 @@
 		5497E8A01800492100544B86 /* CBkgLayerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBkgLayerBase.h; path = ../../Classes/CBkgLayerBase.h; sourceTree = "<group>"; };
 		5499CACA17DB6E4B00A8E388 /* cocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2dx.xcodeproj; path = ../../cocos2dx/proj.ios/cocos2dx.xcodeproj; sourceTree = "<group>"; };
 		549C19D01806F9D500649BD3 /* DTSkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTSkill.h; path = ../../Classes/DTSkill.h; sourceTree = "<group>"; };
+		549FC92B1816123E000319A0 /* CTimeProfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CTimeProfile.cpp; path = ../../Classes/CTimeProfile.cpp; sourceTree = "<group>"; };
+		549FC92C1816123E000319A0 /* CTimeProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTimeProfile.h; path = ../../Classes/CTimeProfile.h; sourceTree = "<group>"; };
 		54D0CC4117DC6D250022A1E9 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		54D0CC4217DC6D260022A1E9 /* libwebp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebp.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libwebp.a; sourceTree = "<group>"; };
 		54D0CC4517DC6E510022A1E9 /* libwebsockets.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebsockets.a; path = ../../external/libwebsockets/ios/lib/libwebsockets.a; sourceTree = "<group>"; };
@@ -422,8 +426,6 @@
 		54DFBE2317DB747800B006F3 /* CBulletBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBulletBase.h; path = ../../Classes/CBulletBase.h; sourceTree = "<group>"; };
 		54DFBE2617DB747800B006F3 /* CCControlToggleButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCControlToggleButton.cpp; path = ../../Classes/CCControlToggleButton.cpp; sourceTree = "<group>"; };
 		54DFBE2717DB747800B006F3 /* CCControlToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCControlToggleButton.h; path = ../../Classes/CCControlToggleButton.h; sourceTree = "<group>"; };
-		54DFBE2817DB747800B006F3 /* CPListSaver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CPListSaver.cpp; path = ../../Classes/CPListSaver.cpp; sourceTree = "<group>"; };
-		54DFBE2917DB747800B006F3 /* CPListSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPListSaver.h; path = ../../Classes/CPListSaver.h; sourceTree = "<group>"; };
 		54DFBE2A17DB747800B006F3 /* CCircleSensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCircleSensor.cpp; path = ../../Classes/CCircleSensor.cpp; sourceTree = "<group>"; };
 		54DFBE2B17DB747800B006F3 /* CCircleSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCircleSensor.h; path = ../../Classes/CCircleSensor.h; sourceTree = "<group>"; };
 		54DFBE3017DB747800B006F3 /* CDataCenterManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CDataCenterManager.cpp; path = ../../Classes/CDataCenterManager.cpp; sourceTree = "<group>"; };
@@ -513,7 +515,6 @@
 		54DFBE9817DB747900B006F3 /* UtilityFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UtilityFunction.h; path = ../../Classes/UtilityFunction.h; sourceTree = "<group>"; };
 		54DFBEDF17DB77CC00B006F3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		54DFBEE917DB819200B006F3 /* CocosDenshion.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocosDenshion.xcodeproj; path = ../../CocosDenshion/proj.ios/CocosDenshion.xcodeproj; sourceTree = "<group>"; };
-		54FCC8E817F094AB0007EA1D /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../Resources/background.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -783,9 +784,9 @@
 		54607B861760D96400108571 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				547E835417F1BE4E001298EF /* object.png */,
-				54FCC8E817F094AB0007EA1D /* background.png */,
-				5438481717EC389900326371 /* background.tmx */,
+				5471E1E518164E6200F60DED /* objects.png */,
+				545589E918162C3600560A3B /* background.png */,
+				545589EA18162C3600560A3B /* background.tmx */,
 				5407D0CA17DC99570071A620 /* ccbi */,
 				54D0CD7217DC8E9A0022A1E9 /* Icons */,
 				54D0CD6B17DC8BDB0022A1E9 /* Configs */,
@@ -837,8 +838,6 @@
 		54D0CC3817DC5DE50022A1E9 /* cocos2dxExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				54DFBE2817DB747800B006F3 /* CPListSaver.cpp */,
-				54DFBE2917DB747800B006F3 /* CPListSaver.h */,
 			);
 			name = cocos2dxExtensions;
 			sourceTree = "<group>";
@@ -912,6 +911,8 @@
 				540E5BB61803B73E003C7510 /* CBattleFiledManager.h */,
 				5456A7301804F72500DD392F /* CSkillManager.cpp */,
 				5456A7311804F72500DD392F /* CSkillManager.h */,
+				549FC92B1816123E000319A0 /* CTimeProfile.cpp */,
+				549FC92C1816123E000319A0 /* CTimeProfile.h */,
 			);
 			name = Manangers;
 			sourceTree = "<group>";
@@ -978,6 +979,7 @@
 				54DFBE1F17DB747800B006F3 /* CBatchNodeObject.h */,
 				54DFBE6917DB747800B006F3 /* CScale9SpriteObject.cpp */,
 				54DFBE6A17DB747800B006F3 /* CScale9SpriteObject.h */,
+				5435A2621816CA85009B4D81 /* ICCBAnimationDelegate.h */,
 			);
 			name = BaseClasses;
 			sourceTree = "<group>";
@@ -1188,9 +1190,9 @@
 				5411742317E203FE0082E53C /* unit9.ccbi in Resources */,
 				5411742417E203FE0082E53C /* unit10.ccbi in Resources */,
 				5411742517E203FE0082E53C /* unit11.ccbi in Resources */,
-				5438481917EC389900326371 /* background.tmx in Resources */,
-				54FCC8E917F094AB0007EA1D /* background.png in Resources */,
-				547E835517F1BE4E001298EF /* object.png in Resources */,
+				545589EC18162C3600560A3B /* background.png in Resources */,
+				545589ED18162C3600560A3B /* background.tmx in Resources */,
+				5471E1E618164E6200F60DED /* objects.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1217,7 +1219,6 @@
 				54DFBEA517DB747900B006F3 /* CBattleFieldLayer.cpp in Sources */,
 				54DFBEA617DB747900B006F3 /* CBulletBase.cpp in Sources */,
 				54DFBEA817DB747900B006F3 /* CCControlToggleButton.cpp in Sources */,
-				54DFBEA917DB747900B006F3 /* CPListSaver.cpp in Sources */,
 				54DFBEAA17DB747900B006F3 /* CCircleSensor.cpp in Sources */,
 				54DFBEAD17DB747900B006F3 /* CDataCenterManager.cpp in Sources */,
 				54DFBEAE17DB747900B006F3 /* CDirectionBullet.cpp in Sources */,
@@ -1322,6 +1323,7 @@
 				544F90A918064AFC0049139F /* CSkillComp.cpp in Sources */,
 				544F90AC18064B200049139F /* CWarriorRoleCompBase.cpp in Sources */,
 				540E4CAC180ED184000BA7D4 /* CWarriorDyingComp.cpp in Sources */,
+				549FC92D1816123E000319A0 /* CTimeProfile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

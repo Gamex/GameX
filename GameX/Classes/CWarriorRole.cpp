@@ -69,6 +69,7 @@ SEL_CallFuncN CWarriorRole::onResolveCCBCCCallFuncSelector(CCObject * pTarget, c
 {
     CCB_SELECTORRESOLVER_CALLFUNC_GLUE(this, "onSkillHit", CWarriorRole::onSkillHit);
     CCB_SELECTORRESOLVER_CALLFUNC_GLUE(this, "onSkillOver", CWarriorRole::onSkillOver);
+    CCB_SELECTORRESOLVER_CALLFUNC_GLUE(this, "onDyingOver", CWarriorRole::onDyingOver);
     return NULL;
 }
 
@@ -93,11 +94,11 @@ void CWarriorRole::loadRoleData(const string& unitName)
 
     // load skills
     LOAD_SKILL(0);
-    LOAD_SKILL(1);
-    LOAD_SKILL(2);
-    LOAD_SKILL(3);
-    LOAD_SKILL(4);
-    LOAD_SKILL(5);
+//    LOAD_SKILL(1);
+//    LOAD_SKILL(2);
+//    LOAD_SKILL(3);
+//    LOAD_SKILL(4);
+//    LOAD_SKILL(5);
 }
 
 
@@ -119,6 +120,21 @@ void CWarriorRole::die()
     {
         m_pHPBar->setSpriteVisible(false);
     }
+    
+    m_ccbAnimatonDelegates.clear();
+}
+
+
+
+void CWarriorRole::prepareToDie()
+{
+    playAnimation(ROLE_ANIMATION_DYING);
+    CBackgroundManager* bkg = getBackGround();
+    CC_ASSERT(bkg);
+    bkg->removeRoleFromGrid(this);
+    setRoleGroup(ROLE_GROUP_NA);
+    
+    setSpriteVertexZ(-900);
 }
 
 
@@ -210,18 +226,30 @@ CSkillComp* CWarriorRole::getSkillCompByName(const string& skillName)
 
 
 
+void CWarriorRole::addCCBAnimationDelegate(ICCBAnimationDelegate* delegate)
+{
+    m_ccbAnimatonDelegates.insert(delegate);
+}
+
+
 
 void CWarriorRole::onSkillHit(CCNode* obj)
 {
-    SS_IT it = m_skillNames.begin();
-    for (; it != m_skillNames.end(); ++it)
+//    SS_IT it = m_skillNames.begin();
+//    for (; it != m_skillNames.end(); ++it)
+//    {
+//        CSkillComp* skill = getSkillCompByName(*it);
+//        CC_ASSERT(skill);
+//        if (skill->isEnabled())
+//        {
+//            skill->onHit();
+//        }
+//    }
+    
+    SAD_IT it = m_ccbAnimatonDelegates.begin();
+    for ( ;it != m_ccbAnimatonDelegates.end(); ++it)
     {
-        CSkillComp* skill = getSkillCompByName(*it);
-        CC_ASSERT(skill);
-        if (skill->isEnabled())
-        {
-            skill->onHit();
-        }
+        (*it)->onSkillHit(obj);
     }
 }
 
@@ -229,15 +257,32 @@ void CWarriorRole::onSkillHit(CCNode* obj)
 
 void CWarriorRole::onSkillOver(CCNode* obj)
 {
-    SS_IT it = m_skillNames.begin();
-    for (; it != m_skillNames.end(); ++it)
+//    SS_IT it = m_skillNames.begin();
+//    for (; it != m_skillNames.end(); ++it)
+//    {
+//        CSkillComp* skill = getSkillCompByName(*it);
+//        CC_ASSERT(skill);
+//        if (skill->isEnabled())
+//        {
+//            skill->onOver();
+//        }
+//    }
+    
+    SAD_IT it = m_ccbAnimatonDelegates.begin();
+    for ( ;it != m_ccbAnimatonDelegates.end(); ++it)
     {
-        CSkillComp* skill = getSkillCompByName(*it);
-        CC_ASSERT(skill);
-        if (skill->isEnabled())
-        {
-            skill->onOver();
-        }
+        (*it)->onSkillOver(obj);
+    }
+}
+
+
+
+void CWarriorRole::onDyingOver(CCNode* obj)
+{
+    SAD_IT it = m_ccbAnimatonDelegates.begin();
+    for ( ;it != m_ccbAnimatonDelegates.end(); ++it)
+    {
+        (*it)->onDyingOver(obj);
     }
 }
 
@@ -333,5 +378,14 @@ void CWarriorRole::thinkOfVisionField()
 
 void CWarriorRole::think()
 {
-    thinkOfVisionField();
+#ifdef DEBUG
+    if (getMark())
+    {
+        thinkOfVisionField();
+    }
+    else
+#endif
+    {
+        thinkOfVisionField();
+    }
 }

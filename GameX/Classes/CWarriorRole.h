@@ -11,7 +11,7 @@
 
 #include "CRole.h"
 #include "TFHPBar.h"
-
+#include "ICCBAnimationDelegate.h"
 
 class CSkillComp;
 
@@ -59,7 +59,11 @@ public:
     virtual void addToSkipList(CWarriorRole* role);
     virtual void updateSkipList(float dt);
     
+    virtual void prepareToDie();
+    
     virtual void think();
+    
+    virtual void addCCBAnimationDelegate(ICCBAnimationDelegate* delegate);
 protected:
     CWarriorRole();
 
@@ -70,12 +74,15 @@ protected:
     
     virtual void onSkillHit(CCNode* obj);
     virtual void onSkillOver(CCNode* obj);
+    virtual void onDyingOver(CCNode* obj);
 
     float m_visionRadiusSq;
 
     SS m_skillNames;
     
     MRF m_skipList;
+    
+    SAD m_ccbAnimatonDelegates;
 private:
 
 };

@@ -84,7 +84,16 @@ void CSkillComp::onEnter()
     {
         CC_BREAK_IF(isEnabled() == false);
 
-        action();
+#ifdef DEBUG
+        if (m_ownerRole->getMark())
+        {
+            action();
+        }
+        else
+#endif
+        {
+            action();
+        }
     } while (false);
 }
 
@@ -102,7 +111,16 @@ void CSkillComp::update(float dt)
 {
     do
     {
-        CWarriorRoleCompBase::update(dt);
+#ifdef DEBUG
+        if (m_ownerRole->getMark())
+        {
+            CWarriorRoleCompBase::update(dt);
+        }
+        else
+#endif
+        {
+            CWarriorRoleCompBase::update(dt);
+        }
         
         if (m_CDLeftTime > 0)
         {
@@ -118,7 +136,7 @@ void CSkillComp::update(float dt)
         switch (m_subState)
         {
             case SKILL_SUB_STATE_READY:
-                m_ownerRole->think();
+                THINK_AND_BREAK();
                 break;
             case SKILL_SUB_STATE_PRE_CAST:
                 m_ownerRole->setFaceTo(m_skillTarget);
@@ -147,7 +165,11 @@ bool CSkillComp::checkTarget(CRole* target, float distance)
         BREAK_IF(m_subState != SKILL_SUB_STATE_READY);
         BREAK_IF(getCDLeftTime() > 0);      // CDing...
 
-        BREAK_IF(distance > m_attackRadiusSq);
+        if (distance > m_attackRadiusSq)
+        {
+            m_ownerRole->changeState(ROLE_STATE_MOVE);
+            break;
+        }
         m_skillTarget = target;
         return true;
     } while (false);
@@ -167,8 +189,13 @@ void CSkillComp::action()
 
 
 
-void CSkillComp::onHit()
+void CSkillComp::onSkillHit(CCNode* obj)
 {
+    if (!isEnabled())
+    {
+        return;
+    }
+    
     float damage = m_ownerRole->getATK() - m_skillTarget->getDEF();
     if (damage < 1.f)
     {
@@ -189,13 +216,26 @@ void CSkillComp::onHit()
 
 
 
-void CSkillComp::onOver()
+void CSkillComp::onSkillOver(CCNode* obj)
 {
-    m_subState = SKILL_SUB_STATE_POST_CAST;
-    if (m_skillTarget->isDead())
+    if (!isEnabled())
     {
-        m_ownerRole->changeState(ROLE_STATE_MOVE);
+        return;
     }
+#ifdef DEBUG
+    if (m_ownerRole->getMark())
+    {
+        m_subState = SKILL_SUB_STATE_POST_CAST;
+    }
+    else
+#endif
+    {
+        m_subState = SKILL_SUB_STATE_POST_CAST;
+    }
+
+
+    m_ownerRole->changeState(ROLE_STATE_MOVE);
+
 }
 
 

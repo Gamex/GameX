@@ -178,7 +178,7 @@ void CFormationLayer::touchesMoved(CCSet* touches, CCEvent* event)
             {
                 CLogicGrid* grid = bkgGrd->getLogicGrid(m_curSelGrid);
                 CRole* role = dynamic_cast<CRole*>(grid->getUnit());
-                if (role == NULL)       // this grid is not occupied, so place in it
+                if (role == NULL && bkgGrd->isRoleCanBePlacedOnPos(m_curSelRole, m_curSelGrid))      // this grid is not occupied, so place in it
                 {
                     bkgGrd->placeRole(m_curSelRole, m_curSelGrid);
                 }

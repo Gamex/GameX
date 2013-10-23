@@ -34,7 +34,7 @@ public:
 			elem->setObject(CCString::create("43"), "hight");
 			elem->setObject(CCString::create("1"), "gridWidth");
 			elem->setObject(CCString::create("1"), "gridHeight");
-			elem->setObject(CCString::create("10"), "hp");
+			elem->setObject(CCString::create("100"), "hp");
 			elem->setObject(CCString::create("10"), "atk");
 			elem->setObject(CCString::create("1"), "def");
 			elem->setObject(CCString::create("0"), "deftype");
@@ -97,7 +97,7 @@ public:
 			elem->setObject(CCString::create("2"), "gridWidth");
 			elem->setObject(CCString::create("2"), "gridHeight");
 			elem->setObject(CCString::create("250"), "hp");
-			elem->setObject(CCString::create("32"), "atk");
+			elem->setObject(CCString::create("12"), "atk");
 			elem->setObject(CCString::create("2"), "def");
 			elem->setObject(CCString::create("0"), "deftype");
 			elem->setObject(CCString::create("1"), "dimension");

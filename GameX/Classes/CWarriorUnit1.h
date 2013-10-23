@@ -18,6 +18,8 @@ public:
     FACTORY_CREATE_FUNC(CWarriorUnit1);
     virtual ~CWarriorUnit1();
 
+    virtual void loadRoleData(const string& unitName);
+    virtual void think();
 protected:
     CWarriorUnit1();
 

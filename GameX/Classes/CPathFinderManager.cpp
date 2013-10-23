@@ -9,8 +9,11 @@
 #include "CPathFinderManager.h"
 #include "CBackgroundManager.h"
 
+#define CD_TIME        0.1f
+
 
 CPathFinderManager::CPathFinderManager()
+: m_cdTime(0)
 {
     
 }
@@ -30,8 +33,12 @@ CPathFinderManager::~CPathFinderManager()
 
 void CPathFinderManager::update(float dt)
 {
-    if (m_finderTaskQueue.size() > 0)
+    m_cdTime -= dt;
+    
+    if (m_finderTaskQueue.size() > 0 && m_cdTime < 0)
     {
+        m_cdTime = CD_TIME;
+        
         _FinderTask* ft = m_finderTaskQueue.front();
         m_finderTaskQueue.pop();
         

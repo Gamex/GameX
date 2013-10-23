@@ -18,3 +18,17 @@ CWarriorUnit1::~CWarriorUnit1()
 {
 }
 
+
+void CWarriorUnit1::loadRoleData(const string& unitName)
+{
+    CRole::loadRoleData(unitName);
+}
+
+
+
+void CWarriorUnit1::think()
+{
+}
+
+
+

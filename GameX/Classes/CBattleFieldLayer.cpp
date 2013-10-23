@@ -20,6 +20,7 @@
 #include "CRole.h"
 #include "CDataCenterManager.h"
 #include "CBattleFiledManager.h"
+#include "CTimeProfile.h"
 
 
 #define BATCHNODE_LIST          "BatchNodes.plist"
@@ -84,22 +85,37 @@ bool CBattleFieldLayer::init()
 
 void CBattleFieldLayer::update(float dt)
 {
+    TP_LOG_BEGIN(0);
+    TP_LOG("begin", 0);
+    
     GAME_TIME->update(dt);
     
     BF_MANAGER->update(dt);
-        
+    
+    TP_LOG("1", 0);
+    
     CCArray* children = getChildren();
     CCObject* obj;
     CCARRAY_FOREACH(children, obj)
     {
         obj->update(dt);
     }
+    
+    TP_LOG("2", 0);
 
     COLLISION_MANAGER->update();
 
+    TP_LOG("3", 0);
+    
     FIGHT_RELATION->update(dt);
 
+    TP_LOG("4", 0);
+    
     CBkgLayerBase::update(dt);
+    
+    TP_LOG("5", 0);
+    
+    TP_LOG_COMMIT(.005);
 }
 
 
@@ -152,17 +168,16 @@ void CBattleFieldLayer::touchesEnded(CCSet* touches, CCEvent* event)
                 {
                     bkg->hightlightGrid(grid->getGridPos());
 //                    m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
-                    
+                    MARK_ROLE(m_curSelRole);
                     bkg->hightlightGrid(m_curSelRole->getMovetarget());
                 }
-                
+            }
+            else    // move it
+            {
+//                m_curSelRole->setMoveTarget(gp);
+                UNMARK_ROLE(m_curSelRole);
                 m_curSelRole = NULL;
             }
-//            else    // move it
-//            {
-//                m_curSelRole->setMoveTarget(gp);
-//                m_curSelRole = NULL;
-//            }
             break;
         }
     }

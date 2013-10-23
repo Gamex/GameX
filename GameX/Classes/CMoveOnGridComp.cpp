@@ -54,35 +54,49 @@ void CMoveOnGridComp::update(float dt)
 {
     if (!isEnabled()) return;
     
-    CWarriorRoleCompBase::update(dt);
+#ifdef DEBUG
+    if (m_ownerRole->getMark())
+    {
+        CWarriorRoleCompBase::update(dt);
+    }
+    else
+#endif
+    {
+        CWarriorRoleCompBase::update(dt);
+    }
+    m_idleSleepTime -= dt;
+
     
     switch (m_subState)
     {
         case MOVE_SUB_STATE_IDLE:
+            m_ownerRole->playAnimation(ROLE_ANIMATION_IDLE);
             m_ownerRole->unlockState();
-            m_idleSleepTime -= dt;
+
             if (m_idleSleepTime < 0)
             {
-                m_ownerRole->think();
+                THINK_AND_BREAK();
                 findPathIfNeeded(true);
             }
             break;
         case MOVE_SUB_STATE_PATH_FIND:
         {
+            m_ownerRole->playAnimation(ROLE_ANIMATION_IDLE);
             m_ownerRole->unlockState();
-            m_idleSleepTime -= dt;
+
             if (m_idleSleepTime < 0)
             {
-                m_ownerRole->think();
+                THINK_AND_BREAK();
                 findPathIfNeeded(false);
             }
             break;
         }
         case MOVE_SUB_STATE_PATH_FINDING:
+            m_ownerRole->playAnimation(ROLE_ANIMATION_IDLE);
             break;
         case MOVE_SUB_STATE_PATH_FOUND:
         {
-            m_ownerRole->think();
+            THINK_AND_BREAK();
             if (!m_ownerRole->getMovetarget().equals(m_moveTarget))
             {
                 m_subState = MOVE_SUB_STATE_IDLE;
@@ -92,8 +106,14 @@ void CMoveOnGridComp::update(float dt)
             {
                 CBackgroundManager* bkg = m_ownerRole->getBackGround();
                 CC_ASSERT(bkg);
-                const CCPoint& pos = m_paths.back();           
-                if (bkg->isRoleCanBePlacedOnPos(m_ownerRole, pos))
+                const CCPoint& pos = m_paths.back();
+                if (pos.equals(m_ownerRole->getLogicGrid()->getGridPos()))
+                {
+                    m_paths.pop_back();
+                    break;
+                }
+
+                if (bkg->isRoleCanBePlacedOnPos(m_ownerRole, pos, true))
                 {
                     
                     CLogicGrid* pGrid = m_ownerRole->getLogicGrid();
@@ -101,6 +121,7 @@ void CMoveOnGridComp::update(float dt)
 
                     float speed = m_ownerRole->getSpeed();
                     m_moveTotalTime = pos.getDistance(curPos) / speed;
+                    CC_ASSERT(!FLT_EQUAL(m_moveTotalTime, 0.f));
                     m_moveElapseTime = 0.f;
                     m_moveFrom = bkg->gridToWorldPoint(curPos);
                     m_moveTo = bkg->gridToWorldPoint(pos);
@@ -135,13 +156,14 @@ void CMoveOnGridComp::update(float dt)
                 }
                 else
                 {
+                    bkg->isRoleCanBePlacedOnPos(m_ownerRole, pos, true);
                     m_subState = MOVE_SUB_STATE_PATH_FIND;
+//                    m_idleSleepTime = 2.f;
                 }
             }
             else
             {
                 m_subState = MOVE_SUB_STATE_IDLE;
-                m_ownerRole->playAnimation(ROLE_ANIMATION_IDLE);
             }
             break;
         }
@@ -169,7 +191,7 @@ void CMoveOnGridComp::update(float dt)
             }
 
 
-            CCPoint newPos = m_moveFrom.lerp(m_moveTo, m_moveElapseTime / m_moveTotalTime);
+            CCPoint newPos = m_moveFrom.lerp(m_moveTo, alpha);
             m_ownerRole->setSpritePosition(newPos);
 
             break;
@@ -193,6 +215,11 @@ void CMoveOnGridComp::update(float dt)
 
 void CMoveOnGridComp::onPathReady(const vector<CCPoint>& path)
 {
+    if (!isEnabled())
+    {
+        return;
+    }
+    
     if (path.size() > 0)
     {
         m_paths = path;
@@ -213,7 +240,7 @@ void CMoveOnGridComp::onPathReady(const vector<CCPoint>& path)
         CCPoint pt = m_ownerRole->getMovetarget();
         m_ownerRole->setMoveTarget(m_ownerRole->getLogicGrid()->getGridPos());
         m_subState = MOVE_SUB_STATE_IDLE;
-        
+
         CBackgroundManager* bkg = m_ownerRole->getBackGround();
         CC_ASSERT(bkg);
 
@@ -228,6 +255,11 @@ void CMoveOnGridComp::onPathReady(const vector<CCPoint>& path)
 
 void CMoveOnGridComp::findPathIfNeeded(bool briefFind)
 {
+    if (!isEnabled())
+    {
+        return;
+    }
+    
     m_moveTarget = m_ownerRole->getMovetarget();
     if (m_moveTarget.equals(CCPoint(-1, -1)))
     {

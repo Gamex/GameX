@@ -206,4 +206,31 @@ typedef std::map<class CRole*, float> MRF;
 typedef std::map<class CRole*, float>::iterator MRF_IT;
 typedef std::map<class CRole*, float>::const_iterator MRF_CIT;
 
+
+typedef std::map<int, string> MIS;
+typedef std::map<int, string>::iterator MIS_IT;
+typedef std::map<int, string>::const_iterator MIS_CIT;
+
+
+typedef std::map<int, cc_timeval> MIT;
+typedef std::map<int, cc_timeval>::iterator MIT_IT;
+typedef std::map<int, cc_timeval>::const_iterator MIT_CIT;
+
+
+typedef std::set<class ICCBAnimationDelegate*> SAD;
+typedef std::set<class ICCBAnimationDelegate*>::iterator SAD_IT;
+typedef std::set<class ICCBAnimationDelegate*>::const_iterator SAD_CIT;
+
+#pragma mark --debug
+
+#ifdef DEBUG
+#define MARK_ROLE(__R__) (__R__)->setMark(true);
+#define UNMARK_ROLE(__R__) (__R__)->setMark(false);
+
+#else
+
+#define MARK_ROLE(__R__)
+#define UNMARK_ROLE(__R__)
+
+#endif
 #endif

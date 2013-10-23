@@ -68,6 +68,9 @@ class CRole
     CC_SYNTHESIZE(float, m_ATK, ATK);
     CC_SYNTHESIZE(float, m_DEF, DEF);
     CC_SYNTHESIZE(float, m_AtkSpeed, AtkSpeed);
+#if DEBUG
+    CC_SYNTHESIZE(bool, m_mark, Mark);
+#endif
 public:
     FACTORY_CREATE_FUNC(CRole);
     

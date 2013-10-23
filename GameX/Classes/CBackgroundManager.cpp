@@ -349,6 +349,7 @@ void CBackgroundManager::addRoleToGrid(const CCPoint& gridPos, IGridRole* role)
                     CC_ASSERT(g->m_unit == NULL);
                     g->m_unit = role;
                     g->m_isPrimary = false;
+                    g->m_locked = false;
                 }
             }
         }
@@ -408,7 +409,7 @@ void CBackgroundManager::removeRoleFromGrid(const CCPoint& gridPos)
 
 
 
-bool CBackgroundManager::isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& gridPos)
+bool CBackgroundManager::isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& gridPos, bool lock)
 {
     CC_ASSERT(role);
     int width = role->getGridWidth();
@@ -425,7 +426,7 @@ bool CBackgroundManager::isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& 
             CLogicGrid* g = getLogicGrid(pt);
 
             bool condi = (g == NULL);
-            condi = (condi || (g != NULL && g->m_unit != NULL && g->m_unit != role));
+            condi = (condi || g->m_locked == true || (g != NULL && g->m_unit != NULL && g->m_unit != role));
             if (condi)
             {
                 return false;
@@ -433,6 +434,20 @@ bool CBackgroundManager::isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& 
         }
     }
 
+    if (lock)
+    {
+        for (y = 0; y < height; ++y)
+        {
+            for (x = 0; x < width; ++x)
+            {
+                pt.x = gridPos.x + x;
+                pt.y = gridPos.y + y;
+                CLogicGrid* g = getLogicGrid(pt);
+                
+                g->setLock(true);
+            }
+        }
+    }
     
 	return true;
 }
@@ -522,8 +537,6 @@ bool CBackgroundManager::placeRole(IGridRole* role, const CCPoint& gridPos)
 {
     do
     {
-        BREAK_IF(!isRoleCanBePlacedOnPos(role, gridPos));
-
         role->setBackGround(this);
         
         CCPoint pt = gridToWorldPoint(gridPos);
@@ -563,6 +576,7 @@ void CBackgroundManager::update(float dt)
 CLogicGrid::CLogicGrid(int x, int y)
 : m_unit(NULL)
 , m_gridPos(x, y)
+, m_locked(false)
 {
     
 }
@@ -573,6 +587,7 @@ CLogicGrid::CLogicGrid(const CLogicGrid& obj)
 {
     m_gridPos = obj.getGridPos();
     m_unit = obj.getUnit();
+    m_locked = obj.getLock();
 }
 
 
