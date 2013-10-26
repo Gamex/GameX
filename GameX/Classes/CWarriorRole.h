@@ -39,8 +39,7 @@ public:
     
     virtual ~CWarriorRole();
 
-    virtual void loadRoleData(const string& unitName);
-    virtual bool init(CCDictionary* pObjectDict);
+    virtual bool init(const string& unitId);
     virtual void die();
     
     virtual void update(float dt);

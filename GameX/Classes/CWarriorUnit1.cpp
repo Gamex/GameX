@@ -19,15 +19,16 @@ CWarriorUnit1::~CWarriorUnit1()
 }
 
 
-void CWarriorUnit1::loadRoleData(const string& unitName)
+bool CWarriorUnit1::init(const string& unitId)
 {
-    CRole::loadRoleData(unitName);
+    return CWarriorRole::init(unitId);
 }
 
 
 
 void CWarriorUnit1::think()
 {
+    CWarriorRole::think();
 }
 
 

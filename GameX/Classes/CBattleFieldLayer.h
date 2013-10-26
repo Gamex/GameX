@@ -9,7 +9,6 @@
 #define __TheForce__TFBattleFieldLayer__
 
 #include "CTouchesLayer.h"
-#include "CArchersGun.h"
 #include "CSingleton.h"
 #include "CBackgroundManager.h"
 #include "CGamePanelLayer.h"

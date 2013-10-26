@@ -27,14 +27,15 @@ public:
 			
 			elem->setObject(CCString::create("unit_1"), "name");
 			elem->setObject(CCString::create("0"), "type");
-			elem->setObject(CCString::create("Unit0"), "resourceID");
+			elem->setObject(CCString::create("unit0"), "resourceID");
+			elem->setObject(CCString::create("CWarriorUnit0"), "className");
 			elem->setObject(CCString::create("-9"), "x");
 			elem->setObject(CCString::create("-15"), "y");
 			elem->setObject(CCString::create("23"), "width");
 			elem->setObject(CCString::create("43"), "hight");
 			elem->setObject(CCString::create("1"), "gridWidth");
 			elem->setObject(CCString::create("1"), "gridHeight");
-			elem->setObject(CCString::create("100"), "hp");
+			elem->setObject(CCString::create("120"), "hp");
 			elem->setObject(CCString::create("10"), "atk");
 			elem->setObject(CCString::create("1"), "def");
 			elem->setObject(CCString::create("0"), "deftype");
@@ -58,7 +59,8 @@ public:
 			
 			elem->setObject(CCString::create("unit_2"), "name");
 			elem->setObject(CCString::create("0"), "type");
-			elem->setObject(CCString::create("Unit1"), "resourceID");
+			elem->setObject(CCString::create("unit1"), "resourceID");
+			elem->setObject(CCString::create("CWarriorUnit1"), "className");
 			elem->setObject(CCString::create("-9"), "x");
 			elem->setObject(CCString::create("-15"), "y");
 			elem->setObject(CCString::create("15"), "width");
@@ -89,7 +91,8 @@ public:
 			
 			elem->setObject(CCString::create("unit_3"), "name");
 			elem->setObject(CCString::create("0"), "type");
-			elem->setObject(CCString::create("Unit2"), "resourceID");
+			elem->setObject(CCString::create("unit2"), "resourceID");
+			elem->setObject(CCString::create("CWarriorUnit2"), "className");
 			elem->setObject(CCString::create("-9"), "x");
 			elem->setObject(CCString::create("-15"), "y");
 			elem->setObject(CCString::create("32"), "width");
@@ -97,7 +100,7 @@ public:
 			elem->setObject(CCString::create("2"), "gridWidth");
 			elem->setObject(CCString::create("2"), "gridHeight");
 			elem->setObject(CCString::create("250"), "hp");
-			elem->setObject(CCString::create("12"), "atk");
+			elem->setObject(CCString::create("32"), "atk");
 			elem->setObject(CCString::create("2"), "def");
 			elem->setObject(CCString::create("0"), "deftype");
 			elem->setObject(CCString::create("1"), "dimension");
@@ -120,7 +123,8 @@ public:
 			
 			elem->setObject(CCString::create("unit_4"), "name");
 			elem->setObject(CCString::create("0"), "type");
-			elem->setObject(CCString::create("Unit3"), "resourceID");
+			elem->setObject(CCString::create("unit3"), "resourceID");
+			elem->setObject(CCString::create("CWarriorUnit3"), "className");
 			elem->setObject(CCString::create("-9"), "x");
 			elem->setObject(CCString::create("-15"), "y");
 			elem->setObject(CCString::create("47"), "width");
@@ -197,6 +201,15 @@ public:
 	CCString* get_resourceID_Value(CCDictionary* subDict)
 	{
 		return getValueOf(subDict, "resourceID");
+	}
+
+	CCString* get_className_Value(const string& key)
+	{
+		return getValueOf(key, "className");
+	}
+	CCString* get_className_Value(CCDictionary* subDict)
+	{
+		return getValueOf(subDict, "className");
 	}
 
 	CCString* get_x_Value(const string& key)

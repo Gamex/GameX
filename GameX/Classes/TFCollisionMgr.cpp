@@ -8,7 +8,6 @@
 
 #include "TFCollisionMgr.h"
 #include "TFCollisionProtocol.h"
-#include "CBulletBase.h"
 #include "CCircleSensor.h"
 
 IMPLEMENT_SINGLETON(TFCollisionMgr);

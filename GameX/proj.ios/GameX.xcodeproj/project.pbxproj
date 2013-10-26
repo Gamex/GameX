@@ -78,6 +78,8 @@
 		543EE21817DB841B0096D97E /* CCComAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE21117DB841B0096D97E /* CCComAudio.cpp */; };
 		543EE21917DB841B0096D97E /* CCComController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE21317DB841B0096D97E /* CCComController.cpp */; };
 		543EE21A17DB841B0096D97E /* CCInputDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 543EE21517DB841B0096D97E /* CCInputDelegate.cpp */; };
+		54467E0E1817F2680028B700 /* effect0.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 54467E0D1817F2680028B700 /* effect0.ccbi */; };
+		54467E121817F4040028B700 /* CGameEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54467E101817F4040028B700 /* CGameEffect.cpp */; };
 		544F90A918064AFC0049139F /* CSkillComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544F90A718064AFC0049139F /* CSkillComp.cpp */; };
 		544F90AC18064B200049139F /* CWarriorRoleCompBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544F90AA18064B200049139F /* CWarriorRoleCompBase.cpp */; };
 		545589EC18162C3600560A3B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 545589E918162C3600560A3B /* background.png */; };
@@ -109,7 +111,6 @@
 		54D0CD5417DC7C8A0022A1E9 /* resources-iphonehd in Resources */ = {isa = PBXBuildFile; fileRef = 54D0CD5017DC7C8A0022A1E9 /* resources-iphonehd */; };
 		54D0CD6F17DC8BF20022A1E9 /* BatchNodes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54D0CD6C17DC8BF20022A1E9 /* BatchNodes.plist */; };
 		54D0CD7017DC8BF20022A1E9 /* GameCollision.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54D0CD6D17DC8BF20022A1E9 /* GameCollision.plist */; };
-		54D0CD7117DC8BF20022A1E9 /* GameObject.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54D0CD6E17DC8BF20022A1E9 /* GameObject.plist */; };
 		54D0CD7B17DC8EAA0022A1E9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D0CD7317DC8EAA0022A1E9 /* Default.png */; };
 		54D0CD7D17DC8EAA0022A1E9 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D0CD7517DC8EAA0022A1E9 /* Icon-72.png */; };
 		54D0CD7E17DC8EAA0022A1E9 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D0CD7617DC8EAA0022A1E9 /* Icon-Small-50.png */; };
@@ -122,21 +123,14 @@
 		54DFBAA817DB6FBE00B006F3 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBAA517DB6FBE00B006F3 /* RootViewController.mm */; };
 		54DFBE9917DB747900B006F3 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE0817DB747800B006F3 /* AppDelegate.cpp */; };
 		54DFBE9A17DB747900B006F3 /* CAnimationCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE0A17DB747800B006F3 /* CAnimationCache.cpp */; };
-		54DFBE9C17DB747900B006F3 /* CArchersGun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE0E17DB747800B006F3 /* CArchersGun.cpp */; };
 		54DFBE9D17DB747900B006F3 /* CBackgroundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1017DB747800B006F3 /* CBackgroundManager.cpp */; };
-		54DFBE9E17DB747900B006F3 /* CBallisticAOEBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1217DB747800B006F3 /* CBallisticAOEBullet.cpp */; };
-		54DFBE9F17DB747900B006F3 /* CBallisticBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1417DB747800B006F3 /* CBallisticBullet.cpp */; };
-		54DFBEA017DB747900B006F3 /* CBallisticGun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1617DB747800B006F3 /* CBallisticGun.cpp */; };
 		54DFBEA217DB747900B006F3 /* CBaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1A17DB747800B006F3 /* CBaseLayer.cpp */; };
 		54DFBEA317DB747900B006F3 /* CBatchNodeManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1C17DB747800B006F3 /* CBatchNodeManager.cpp */; };
 		54DFBEA417DB747900B006F3 /* CBatchNodeObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE1E17DB747800B006F3 /* CBatchNodeObject.cpp */; };
 		54DFBEA517DB747900B006F3 /* CBattleFieldLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2017DB747800B006F3 /* CBattleFieldLayer.cpp */; };
-		54DFBEA617DB747900B006F3 /* CBulletBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2217DB747800B006F3 /* CBulletBase.cpp */; };
 		54DFBEA817DB747900B006F3 /* CCControlToggleButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2617DB747800B006F3 /* CCControlToggleButton.cpp */; };
 		54DFBEAA17DB747900B006F3 /* CCircleSensor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE2A17DB747800B006F3 /* CCircleSensor.cpp */; };
 		54DFBEAD17DB747900B006F3 /* CDataCenterManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE3017DB747800B006F3 /* CDataCenterManager.cpp */; };
-		54DFBEAE17DB747900B006F3 /* CDirectionBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE3217DB747800B006F3 /* CDirectionBullet.cpp */; };
-		54DFBEAF17DB747900B006F3 /* CDirectionGun.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE3417DB747800B006F3 /* CDirectionGun.cpp */; };
 		54DFBEB017DB747900B006F3 /* CFightingRelationship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE3617DB747800B006F3 /* CFightingRelationship.cpp */; };
 		54DFBEB117DB747900B006F3 /* CFormationLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE3817DB747800B006F3 /* CFormationLayer.cpp */; };
 		54DFBEB217DB747900B006F3 /* CFormationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE3A17DB747800B006F3 /* CFormationManager.cpp */; };
@@ -145,7 +139,6 @@
 		54DFBEB517DB747900B006F3 /* CGameSceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE4017DB747800B006F3 /* CGameSceneManager.cpp */; };
 		54DFBEB617DB747900B006F3 /* CGameTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE4217DB747800B006F3 /* CGameTime.cpp */; };
 		54DFBEB717DB747900B006F3 /* CGlobalConfigration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE4417DB747800B006F3 /* CGlobalConfigration.cpp */; };
-		54DFBEB817DB747900B006F3 /* CGunBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE4617DB747800B006F3 /* CGunBase.cpp */; };
 		54DFBEB917DB747900B006F3 /* CHudLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE4817DB747800B006F3 /* CHudLayer.cpp */; };
 		54DFBEBA17DB747900B006F3 /* CLobbyLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE4A17DB747800B006F3 /* CLobbyLayer.cpp */; };
 		54DFBEBC17DB747900B006F3 /* CMemPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE4E17DB747800B006F3 /* CMemPool.cpp */; };
@@ -163,7 +156,6 @@
 		54DFBECF17DB747900B006F3 /* CSpriteObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE7617DB747800B006F3 /* CSpriteObject.cpp */; };
 		54DFBED017DB747900B006F3 /* CState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE7817DB747800B006F3 /* CState.cpp */; };
 		54DFBED117DB747900B006F3 /* CTouchesLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE7A17DB747800B006F3 /* CTouchesLayer.cpp */; };
-		54DFBED217DB747900B006F3 /* CTower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE7C17DB747800B006F3 /* CTower.cpp */; };
 		54DFBED317DB747900B006F3 /* CTransitLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE7E17DB747800B006F3 /* CTransitLayer.cpp */; };
 		54DFBED417DB747900B006F3 /* CVisibleObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE8017DB747800B006F3 /* CVisibleObject.cpp */; };
 		54DFBED517DB747900B006F3 /* CWarriorRole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE8217DB747800B006F3 /* CWarriorRole.cpp */; };
@@ -171,7 +163,6 @@
 		54DFBED817DB747900B006F3 /* TFCollisionProtocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE8B17DB747900B006F3 /* TFCollisionProtocol.cpp */; };
 		54DFBED917DB747900B006F3 /* TFGameObjectManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE8D17DB747900B006F3 /* TFGameObjectManager.cpp */; };
 		54DFBEDA17DB747900B006F3 /* TFHPBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE8F17DB747900B006F3 /* TFHPBar.cpp */; };
-		54DFBEDB17DB747900B006F3 /* TFItemInGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE9117DB747900B006F3 /* TFItemInGame.cpp */; };
 		54DFBEDD17DB747900B006F3 /* TFPListReaderHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE9517DB747900B006F3 /* TFPListReaderHelper.cpp */; };
 		54DFBEDE17DB747900B006F3 /* UtilityFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE9717DB747900B006F3 /* UtilityFunction.cpp */; };
 		54DFBEE017DB77CC00B006F3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54DFBEDF17DB77CC00B006F3 /* Info.plist */; };
@@ -346,6 +337,9 @@
 		543EE21417DB841B0096D97E /* CCComController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCComController.h; sourceTree = "<group>"; };
 		543EE21517DB841B0096D97E /* CCInputDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCInputDelegate.cpp; sourceTree = "<group>"; };
 		543EE21617DB841B0096D97E /* CCInputDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCInputDelegate.h; sourceTree = "<group>"; };
+		54467E0D1817F2680028B700 /* effect0.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = effect0.ccbi; sourceTree = "<group>"; };
+		54467E101817F4040028B700 /* CGameEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CGameEffect.cpp; path = ../../Classes/CGameEffect.cpp; sourceTree = "<group>"; };
+		54467E111817F4040028B700 /* CGameEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGameEffect.h; path = ../../Classes/CGameEffect.h; sourceTree = "<group>"; };
 		544F90A718064AFC0049139F /* CSkillComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CSkillComp.cpp; path = ../../Classes/CSkillComp.cpp; sourceTree = "<group>"; };
 		544F90A818064AFC0049139F /* CSkillComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSkillComp.h; path = ../../Classes/CSkillComp.h; sourceTree = "<group>"; };
 		544F90AA18064B200049139F /* CWarriorRoleCompBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorRoleCompBase.cpp; path = ../../Classes/CWarriorRoleCompBase.cpp; sourceTree = "<group>"; };
@@ -387,7 +381,6 @@
 		54D0CD5017DC7C8A0022A1E9 /* resources-iphonehd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "resources-iphonehd"; sourceTree = "<group>"; };
 		54D0CD6C17DC8BF20022A1E9 /* BatchNodes.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = BatchNodes.plist; path = ../Resources/BatchNodes.plist; sourceTree = "<group>"; };
 		54D0CD6D17DC8BF20022A1E9 /* GameCollision.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = GameCollision.plist; path = ../Resources/GameCollision.plist; sourceTree = "<group>"; };
-		54D0CD6E17DC8BF20022A1E9 /* GameObject.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = GameObject.plist; path = ../Resources/GameObject.plist; sourceTree = "<group>"; };
 		54D0CD7317DC8EAA0022A1E9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		54D0CD7517DC8EAA0022A1E9 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		54D0CD7617DC8EAA0022A1E9 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -404,16 +397,8 @@
 		54DFBE0917DB747800B006F3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../Classes/AppDelegate.h; sourceTree = "<group>"; };
 		54DFBE0A17DB747800B006F3 /* CAnimationCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CAnimationCache.cpp; path = ../../Classes/CAnimationCache.cpp; sourceTree = "<group>"; };
 		54DFBE0B17DB747800B006F3 /* CAnimationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CAnimationCache.h; path = ../../Classes/CAnimationCache.h; sourceTree = "<group>"; };
-		54DFBE0E17DB747800B006F3 /* CArchersGun.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CArchersGun.cpp; path = ../../Classes/CArchersGun.cpp; sourceTree = "<group>"; };
-		54DFBE0F17DB747800B006F3 /* CArchersGun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CArchersGun.h; path = ../../Classes/CArchersGun.h; sourceTree = "<group>"; };
 		54DFBE1017DB747800B006F3 /* CBackgroundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBackgroundManager.cpp; path = ../../Classes/CBackgroundManager.cpp; sourceTree = "<group>"; };
 		54DFBE1117DB747800B006F3 /* CBackgroundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBackgroundManager.h; path = ../../Classes/CBackgroundManager.h; sourceTree = "<group>"; };
-		54DFBE1217DB747800B006F3 /* CBallisticAOEBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBallisticAOEBullet.cpp; path = ../../Classes/CBallisticAOEBullet.cpp; sourceTree = "<group>"; };
-		54DFBE1317DB747800B006F3 /* CBallisticAOEBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBallisticAOEBullet.h; path = ../../Classes/CBallisticAOEBullet.h; sourceTree = "<group>"; };
-		54DFBE1417DB747800B006F3 /* CBallisticBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBallisticBullet.cpp; path = ../../Classes/CBallisticBullet.cpp; sourceTree = "<group>"; };
-		54DFBE1517DB747800B006F3 /* CBallisticBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBallisticBullet.h; path = ../../Classes/CBallisticBullet.h; sourceTree = "<group>"; };
-		54DFBE1617DB747800B006F3 /* CBallisticGun.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBallisticGun.cpp; path = ../../Classes/CBallisticGun.cpp; sourceTree = "<group>"; };
-		54DFBE1717DB747800B006F3 /* CBallisticGun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBallisticGun.h; path = ../../Classes/CBallisticGun.h; sourceTree = "<group>"; };
 		54DFBE1A17DB747800B006F3 /* CBaseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBaseLayer.cpp; path = ../../Classes/CBaseLayer.cpp; sourceTree = "<group>"; };
 		54DFBE1B17DB747800B006F3 /* CBaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBaseLayer.h; path = ../../Classes/CBaseLayer.h; sourceTree = "<group>"; };
 		54DFBE1C17DB747800B006F3 /* CBatchNodeManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBatchNodeManager.cpp; path = ../../Classes/CBatchNodeManager.cpp; sourceTree = "<group>"; };
@@ -422,18 +407,12 @@
 		54DFBE1F17DB747800B006F3 /* CBatchNodeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBatchNodeObject.h; path = ../../Classes/CBatchNodeObject.h; sourceTree = "<group>"; };
 		54DFBE2017DB747800B006F3 /* CBattleFieldLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBattleFieldLayer.cpp; path = ../../Classes/CBattleFieldLayer.cpp; sourceTree = "<group>"; };
 		54DFBE2117DB747800B006F3 /* CBattleFieldLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBattleFieldLayer.h; path = ../../Classes/CBattleFieldLayer.h; sourceTree = "<group>"; };
-		54DFBE2217DB747800B006F3 /* CBulletBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBulletBase.cpp; path = ../../Classes/CBulletBase.cpp; sourceTree = "<group>"; };
-		54DFBE2317DB747800B006F3 /* CBulletBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBulletBase.h; path = ../../Classes/CBulletBase.h; sourceTree = "<group>"; };
 		54DFBE2617DB747800B006F3 /* CCControlToggleButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCControlToggleButton.cpp; path = ../../Classes/CCControlToggleButton.cpp; sourceTree = "<group>"; };
 		54DFBE2717DB747800B006F3 /* CCControlToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCControlToggleButton.h; path = ../../Classes/CCControlToggleButton.h; sourceTree = "<group>"; };
 		54DFBE2A17DB747800B006F3 /* CCircleSensor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CCircleSensor.cpp; path = ../../Classes/CCircleSensor.cpp; sourceTree = "<group>"; };
 		54DFBE2B17DB747800B006F3 /* CCircleSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCircleSensor.h; path = ../../Classes/CCircleSensor.h; sourceTree = "<group>"; };
 		54DFBE3017DB747800B006F3 /* CDataCenterManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CDataCenterManager.cpp; path = ../../Classes/CDataCenterManager.cpp; sourceTree = "<group>"; };
 		54DFBE3117DB747800B006F3 /* CDataCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDataCenterManager.h; path = ../../Classes/CDataCenterManager.h; sourceTree = "<group>"; };
-		54DFBE3217DB747800B006F3 /* CDirectionBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CDirectionBullet.cpp; path = ../../Classes/CDirectionBullet.cpp; sourceTree = "<group>"; };
-		54DFBE3317DB747800B006F3 /* CDirectionBullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDirectionBullet.h; path = ../../Classes/CDirectionBullet.h; sourceTree = "<group>"; };
-		54DFBE3417DB747800B006F3 /* CDirectionGun.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CDirectionGun.cpp; path = ../../Classes/CDirectionGun.cpp; sourceTree = "<group>"; };
-		54DFBE3517DB747800B006F3 /* CDirectionGun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CDirectionGun.h; path = ../../Classes/CDirectionGun.h; sourceTree = "<group>"; };
 		54DFBE3617DB747800B006F3 /* CFightingRelationship.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFightingRelationship.cpp; path = ../../Classes/CFightingRelationship.cpp; sourceTree = "<group>"; };
 		54DFBE3717DB747800B006F3 /* CFightingRelationship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CFightingRelationship.h; path = ../../Classes/CFightingRelationship.h; sourceTree = "<group>"; };
 		54DFBE3817DB747800B006F3 /* CFormationLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFormationLayer.cpp; path = ../../Classes/CFormationLayer.cpp; sourceTree = "<group>"; };
@@ -450,8 +429,6 @@
 		54DFBE4317DB747800B006F3 /* CGameTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGameTime.h; path = ../../Classes/CGameTime.h; sourceTree = "<group>"; };
 		54DFBE4417DB747800B006F3 /* CGlobalConfigration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CGlobalConfigration.cpp; path = ../../Classes/CGlobalConfigration.cpp; sourceTree = "<group>"; };
 		54DFBE4517DB747800B006F3 /* CGlobalConfigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGlobalConfigration.h; path = ../../Classes/CGlobalConfigration.h; sourceTree = "<group>"; };
-		54DFBE4617DB747800B006F3 /* CGunBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CGunBase.cpp; path = ../../Classes/CGunBase.cpp; sourceTree = "<group>"; };
-		54DFBE4717DB747800B006F3 /* CGunBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGunBase.h; path = ../../Classes/CGunBase.h; sourceTree = "<group>"; };
 		54DFBE4817DB747800B006F3 /* CHudLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CHudLayer.cpp; path = ../../Classes/CHudLayer.cpp; sourceTree = "<group>"; };
 		54DFBE4917DB747800B006F3 /* CHudLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHudLayer.h; path = ../../Classes/CHudLayer.h; sourceTree = "<group>"; };
 		54DFBE4A17DB747800B006F3 /* CLobbyLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CLobbyLayer.cpp; path = ../../Classes/CLobbyLayer.cpp; sourceTree = "<group>"; };
@@ -488,8 +465,6 @@
 		54DFBE7917DB747800B006F3 /* CState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CState.h; path = ../../Classes/CState.h; sourceTree = "<group>"; };
 		54DFBE7A17DB747800B006F3 /* CTouchesLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CTouchesLayer.cpp; path = ../../Classes/CTouchesLayer.cpp; sourceTree = "<group>"; };
 		54DFBE7B17DB747800B006F3 /* CTouchesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTouchesLayer.h; path = ../../Classes/CTouchesLayer.h; sourceTree = "<group>"; };
-		54DFBE7C17DB747800B006F3 /* CTower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CTower.cpp; path = ../../Classes/CTower.cpp; sourceTree = "<group>"; };
-		54DFBE7D17DB747800B006F3 /* CTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTower.h; path = ../../Classes/CTower.h; sourceTree = "<group>"; };
 		54DFBE7E17DB747800B006F3 /* CTransitLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CTransitLayer.cpp; path = ../../Classes/CTransitLayer.cpp; sourceTree = "<group>"; };
 		54DFBE7F17DB747800B006F3 /* CTransitLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CTransitLayer.h; path = ../../Classes/CTransitLayer.h; sourceTree = "<group>"; };
 		54DFBE8017DB747800B006F3 /* CVisibleObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CVisibleObject.cpp; path = ../../Classes/CVisibleObject.cpp; sourceTree = "<group>"; };
@@ -507,8 +482,6 @@
 		54DFBE8E17DB747900B006F3 /* TFGameObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFGameObjectManager.h; path = ../../Classes/TFGameObjectManager.h; sourceTree = "<group>"; };
 		54DFBE8F17DB747900B006F3 /* TFHPBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TFHPBar.cpp; path = ../../Classes/TFHPBar.cpp; sourceTree = "<group>"; };
 		54DFBE9017DB747900B006F3 /* TFHPBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHPBar.h; path = ../../Classes/TFHPBar.h; sourceTree = "<group>"; };
-		54DFBE9117DB747900B006F3 /* TFItemInGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TFItemInGame.cpp; path = ../../Classes/TFItemInGame.cpp; sourceTree = "<group>"; };
-		54DFBE9217DB747900B006F3 /* TFItemInGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFItemInGame.h; path = ../../Classes/TFItemInGame.h; sourceTree = "<group>"; };
 		54DFBE9517DB747900B006F3 /* TFPListReaderHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TFPListReaderHelper.cpp; path = ../../Classes/TFPListReaderHelper.cpp; sourceTree = "<group>"; };
 		54DFBE9617DB747900B006F3 /* TFPListReaderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFPListReaderHelper.h; path = ../../Classes/TFPListReaderHelper.h; sourceTree = "<group>"; };
 		54DFBE9717DB747900B006F3 /* UtilityFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UtilityFunction.cpp; path = ../../Classes/UtilityFunction.cpp; sourceTree = "<group>"; };
@@ -544,6 +517,7 @@
 		5407D0CA17DC99570071A620 /* ccbi */ = {
 			isa = PBXGroup;
 			children = (
+				54467E0D1817F2680028B700 /* effect0.ccbi */,
 				5411740E17E203FE0082E53C /* unit0.ccbi */,
 				5411740F17E203FE0082E53C /* unit1.ccbi */,
 				5411741017E203FE0082E53C /* unit2.ccbi */,
@@ -743,6 +717,15 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		54467E0F1817F2890028B700 /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				54467E101817F4040028B700 /* CGameEffect.cpp */,
+				54467E111817F4040028B700 /* CGameEffect.h */,
+			);
+			name = Effects;
+			sourceTree = "<group>";
+		};
 		54607B691760D96400108571 = {
 			isa = PBXGroup;
 			children = (
@@ -857,7 +840,6 @@
 			children = (
 				54D0CD6C17DC8BF20022A1E9 /* BatchNodes.plist */,
 				54D0CD6D17DC8BF20022A1E9 /* GameCollision.plist */,
-				54D0CD6E17DC8BF20022A1E9 /* GameObject.plist */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -920,31 +902,16 @@
 		54D0CD8417DC90DE0022A1E9 /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
+				54467E0F1817F2890028B700 /* Effects */,
 				54801F1918059DE600F3F68E /* UnitObjects */,
 				54D0CD8617DC91070022A1E9 /* Components */,
 				54D0CD8517DC90FE0022A1E9 /* BaseClasses */,
-				54DFBE1217DB747800B006F3 /* CBallisticAOEBullet.cpp */,
-				54DFBE1317DB747800B006F3 /* CBallisticAOEBullet.h */,
-				54DFBE1417DB747800B006F3 /* CBallisticBullet.cpp */,
-				54DFBE1517DB747800B006F3 /* CBallisticBullet.h */,
-				54DFBE1617DB747800B006F3 /* CBallisticGun.cpp */,
-				54DFBE1717DB747800B006F3 /* CBallisticGun.h */,
-				54DFBE0E17DB747800B006F3 /* CArchersGun.cpp */,
-				54DFBE0F17DB747800B006F3 /* CArchersGun.h */,
 				54DFBE2A17DB747800B006F3 /* CCircleSensor.cpp */,
 				54DFBE2B17DB747800B006F3 /* CCircleSensor.h */,
-				54DFBE3217DB747800B006F3 /* CDirectionBullet.cpp */,
-				54DFBE3317DB747800B006F3 /* CDirectionBullet.h */,
-				54DFBE3417DB747800B006F3 /* CDirectionGun.cpp */,
-				54DFBE3517DB747800B006F3 /* CDirectionGun.h */,
 				54DFBE5F17DB747800B006F3 /* CPath.cpp */,
 				54DFBE6017DB747800B006F3 /* CPath.h */,
-				54DFBE7C17DB747800B006F3 /* CTower.cpp */,
-				54DFBE7D17DB747800B006F3 /* CTower.h */,
 				54DFBE8F17DB747900B006F3 /* TFHPBar.cpp */,
 				54DFBE9017DB747900B006F3 /* TFHPBar.h */,
-				54DFBE9117DB747900B006F3 /* TFItemInGame.cpp */,
-				54DFBE9217DB747900B006F3 /* TFItemInGame.h */,
 			);
 			name = GameObjects;
 			sourceTree = "<group>";
@@ -971,10 +938,6 @@
 				54DFBE5B17DB747800B006F3 /* CObjectBase.h */,
 				54DFBE5C17DB747800B006F3 /* CObjectFactory.cpp */,
 				54DFBE5D17DB747800B006F3 /* CObjectFactory.h */,
-				54DFBE4617DB747800B006F3 /* CGunBase.cpp */,
-				54DFBE4717DB747800B006F3 /* CGunBase.h */,
-				54DFBE2217DB747800B006F3 /* CBulletBase.cpp */,
-				54DFBE2317DB747800B006F3 /* CBulletBase.h */,
 				54DFBE1E17DB747800B006F3 /* CBatchNodeObject.cpp */,
 				54DFBE1F17DB747800B006F3 /* CBatchNodeObject.h */,
 				54DFBE6917DB747800B006F3 /* CScale9SpriteObject.cpp */,
@@ -1167,7 +1130,6 @@
 				54D0CD5417DC7C8A0022A1E9 /* resources-iphonehd in Resources */,
 				54D0CD6F17DC8BF20022A1E9 /* BatchNodes.plist in Resources */,
 				54D0CD7017DC8BF20022A1E9 /* GameCollision.plist in Resources */,
-				54D0CD7117DC8BF20022A1E9 /* GameObject.plist in Resources */,
 				54D0CD7B17DC8EAA0022A1E9 /* Default.png in Resources */,
 				54D0CD7D17DC8EAA0022A1E9 /* Icon-72.png in Resources */,
 				54D0CD7E17DC8EAA0022A1E9 /* Icon-Small-50.png in Resources */,
@@ -1193,6 +1155,7 @@
 				545589EC18162C3600560A3B /* background.png in Resources */,
 				545589ED18162C3600560A3B /* background.tmx in Resources */,
 				5471E1E618164E6200F60DED /* objects.png in Resources */,
+				54467E0E1817F2680028B700 /* effect0.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1208,21 +1171,14 @@
 				54DFBAA817DB6FBE00B006F3 /* RootViewController.mm in Sources */,
 				54DFBE9917DB747900B006F3 /* AppDelegate.cpp in Sources */,
 				54DFBE9A17DB747900B006F3 /* CAnimationCache.cpp in Sources */,
-				54DFBE9C17DB747900B006F3 /* CArchersGun.cpp in Sources */,
 				54DFBE9D17DB747900B006F3 /* CBackgroundManager.cpp in Sources */,
-				54DFBE9E17DB747900B006F3 /* CBallisticAOEBullet.cpp in Sources */,
-				54DFBE9F17DB747900B006F3 /* CBallisticBullet.cpp in Sources */,
-				54DFBEA017DB747900B006F3 /* CBallisticGun.cpp in Sources */,
 				54DFBEA217DB747900B006F3 /* CBaseLayer.cpp in Sources */,
 				54DFBEA317DB747900B006F3 /* CBatchNodeManager.cpp in Sources */,
 				54DFBEA417DB747900B006F3 /* CBatchNodeObject.cpp in Sources */,
 				54DFBEA517DB747900B006F3 /* CBattleFieldLayer.cpp in Sources */,
-				54DFBEA617DB747900B006F3 /* CBulletBase.cpp in Sources */,
 				54DFBEA817DB747900B006F3 /* CCControlToggleButton.cpp in Sources */,
 				54DFBEAA17DB747900B006F3 /* CCircleSensor.cpp in Sources */,
 				54DFBEAD17DB747900B006F3 /* CDataCenterManager.cpp in Sources */,
-				54DFBEAE17DB747900B006F3 /* CDirectionBullet.cpp in Sources */,
-				54DFBEAF17DB747900B006F3 /* CDirectionGun.cpp in Sources */,
 				54DFBEB017DB747900B006F3 /* CFightingRelationship.cpp in Sources */,
 				54DFBEB117DB747900B006F3 /* CFormationLayer.cpp in Sources */,
 				54DFBEB217DB747900B006F3 /* CFormationManager.cpp in Sources */,
@@ -1231,7 +1187,6 @@
 				54DFBEB517DB747900B006F3 /* CGameSceneManager.cpp in Sources */,
 				54DFBEB617DB747900B006F3 /* CGameTime.cpp in Sources */,
 				54DFBEB717DB747900B006F3 /* CGlobalConfigration.cpp in Sources */,
-				54DFBEB817DB747900B006F3 /* CGunBase.cpp in Sources */,
 				54DFBEB917DB747900B006F3 /* CHudLayer.cpp in Sources */,
 				54DFBEBA17DB747900B006F3 /* CLobbyLayer.cpp in Sources */,
 				54DFBEBC17DB747900B006F3 /* CMemPool.cpp in Sources */,
@@ -1249,7 +1204,6 @@
 				54DFBECF17DB747900B006F3 /* CSpriteObject.cpp in Sources */,
 				54DFBED017DB747900B006F3 /* CState.cpp in Sources */,
 				54DFBED117DB747900B006F3 /* CTouchesLayer.cpp in Sources */,
-				54DFBED217DB747900B006F3 /* CTower.cpp in Sources */,
 				54DFBED317DB747900B006F3 /* CTransitLayer.cpp in Sources */,
 				54DFBED417DB747900B006F3 /* CVisibleObject.cpp in Sources */,
 				54DFBED517DB747900B006F3 /* CWarriorRole.cpp in Sources */,
@@ -1257,7 +1211,6 @@
 				54DFBED817DB747900B006F3 /* TFCollisionProtocol.cpp in Sources */,
 				54DFBED917DB747900B006F3 /* TFGameObjectManager.cpp in Sources */,
 				54DFBEDA17DB747900B006F3 /* TFHPBar.cpp in Sources */,
-				54DFBEDB17DB747900B006F3 /* TFItemInGame.cpp in Sources */,
 				54DFBEDD17DB747900B006F3 /* TFPListReaderHelper.cpp in Sources */,
 				54DFBEDE17DB747900B006F3 /* UtilityFunction.cpp in Sources */,
 				543EE19C17DB838F0096D97E /* CCBAnimationManager.cpp in Sources */,
@@ -1324,6 +1277,7 @@
 				544F90AC18064B200049139F /* CWarriorRoleCompBase.cpp in Sources */,
 				540E4CAC180ED184000BA7D4 /* CWarriorDyingComp.cpp in Sources */,
 				549FC92D1816123E000319A0 /* CTimeProfile.cpp in Sources */,
+				54467E121817F4040028B700 /* CGameEffect.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

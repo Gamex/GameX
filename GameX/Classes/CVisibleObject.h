@@ -17,8 +17,6 @@ class CVisibleObject : public CObjectBase
     CC_SYNTHESIZE_RETAIN(CSensor*, m_pSensor, Sensor);
 public:
     virtual ~CVisibleObject();
-    
-    virtual bool init(CCDictionary* pObjectDict); 
 
     virtual void enableAlphaTest(float value);
     virtual CCRect getSpriteBoundingBox() const;
@@ -47,8 +45,6 @@ public:
     
     virtual void setSpriteVertexZ(float z);
     virtual float getSpriteVertexZ() const;
-
-    virtual int getCollisionGroup();
     
     virtual bool attachSpriteTo(CCNode* parent, int zOrder = 0, int tag = -1);
     virtual bool dettachSpriteFrom(bool cleanup = true);
@@ -68,9 +64,6 @@ public:
     
     virtual CCNode* getInnerSprite() const=0;
  
-    DECLARE_DICTFUNC(int, CollisionGroup);
-    DECLARE_DICTFUNC(CCString*, Sensor);
-    DECLARE_DICTFUNC(CCString*, BatchNodeName);
 protected:
     CVisibleObject();
     void clearThis();

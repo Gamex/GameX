@@ -21,15 +21,11 @@ class TFRoleData;
 
 class CObjectBase : public CCNode, public CState, public TFCollisionProtocol
 {
-    CC_SYNTHESIZE_RETAIN(CCDictionary*, pObjectDictionary_, ObjectDictionary);
 public:
-    // Param: name      the name in GameObject.plist
-    static CObjectBase* createObject(const std::string& name);
-
 	virtual ~CObjectBase();
 	
     //
-	virtual bool init(CCDictionary* pObjectDict);
+	virtual bool init();
 	virtual void update(float dt);
 
     virtual void onEnterState(int state);
@@ -44,13 +40,7 @@ public:
     
     virtual bool isNeedCheckCollision();
     
-    // functions for read data from pObjectDictionary_
-    DECLARE_DICTFUNC(CCString*, CateName);
-    DECLARE_DICTFUNC(CCString*, Name);
-    
     ////////////////////
-    virtual int getLevel();
-
     virtual void addComponentForState(int state, CCComponent* comp);
 
 #ifdef DEBUG

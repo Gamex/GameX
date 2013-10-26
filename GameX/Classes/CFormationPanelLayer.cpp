@@ -53,28 +53,29 @@ bool CFormationPanelLayer::init()
     {
 //        setTouchEnabled(true);
         
-        m_editRoleNames.push_back("1");
-        m_editRoleNames.push_back("2");
-        m_editRoleNames.push_back("3");
-//        m_editRoleNames.push_back("4");
-//        m_editRoleNames.push_back("5");
-//        m_editRoleNames.push_back("6");
-//        m_editRoleNames.push_back("7");
-//        m_editRoleNames.push_back("8");
-//        m_editRoleNames.push_back("9");
-//        m_editRoleNames.push_back("10");
-//        m_editRoleNames.push_back("11");
-//        m_editRoleNames.push_back("12");
+        m_editRoleIds.push_back("1");
+        m_editRoleIds.push_back("2");
+        m_editRoleIds.push_back("3");
+//        m_editRoleIds.push_back("4");
+//        m_editRoleIds.push_back("5");
+//        m_editRoleIds.push_back("6");
+//        m_editRoleIds.push_back("7");
+//        m_editRoleIds.push_back("8");
+//        m_editRoleIds.push_back("9");
+//        m_editRoleIds.push_back("10");
+//        m_editRoleIds.push_back("11");
+//        m_editRoleIds.push_back("12");
 
-        m_allRoles = CCArray::createWithCapacity(m_editRoleNames.size());
+        m_allRoles = CCArray::createWithCapacity(m_editRoleIds.size());
         CC_SAFE_RETAIN(m_allRoles);
-        for (int i = 0; i < m_editRoleNames.size(); ++i)
+        for (int i = 0; i < m_editRoleIds.size(); ++i)
         {
-            CCDictionary* dict = DTUNIT->getData(m_editRoleNames[i]);
-            CCString* name = DTUNIT->get_resourceID_Value(dict);
-            CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(name->getCString()));
+            CCDictionary* dict = DTUNIT->getData(m_editRoleIds[i]);
+            CCString* class_name = DTUNIT->get_className_Value(dict);
+            CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_name->getCString()));
             CC_ASSERT(role);
-            role->setUnitName(name->getCString());
+            role->init(m_editRoleIds[i]);
+
             m_allRoles->addObject(role);
         }
         return true;
@@ -217,8 +218,8 @@ void CFormationPanelLayer:: onFrame(CCObject *pSender)
     if (m_delegate)
     {
         int index = m_curSel + m_firstShownIdx;
-        CC_ASSERT(index < m_editRoleNames.size());
-        m_delegate->onFrameSel(m_editRoleNames[index]);
+        CC_ASSERT(index < m_editRoleIds.size());
+        m_delegate->onFrameSel(m_editRoleIds[index]);
     }
 }
 

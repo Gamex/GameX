@@ -26,18 +26,6 @@ CSensor::~CSensor()
 
 
 
-bool CSensor::init(CCDictionary* pObjectDict)
-{
-    do
-    {
-        BREAK_IF(!CObjectBase::init(pObjectDict));
-        return true;
-    } while (false);
-    
-    return false;
-}
-
-
 
 void CSensor::collideWithObject(TFCollisionProtocol* obj)
 {

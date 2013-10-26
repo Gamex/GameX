@@ -10,9 +10,6 @@
 #include "CBatchNodeManager.h"
 
 
-DEFINE_DICTFUNC(CVisibleObject, int, CollisionGroup, 0);
-DEFINE_DICTFUNC_STR(CVisibleObject, Sensor);
-DEFINE_DICTFUNC_STR(CVisibleObject, BatchNodeName);
 
 CVisibleObject::CVisibleObject() :
 m_isCachePosition(false)
@@ -26,29 +23,6 @@ m_isCachePosition(false)
 CVisibleObject::~CVisibleObject()
 {
     clearThis();
-}
-
-
-
-bool CVisibleObject::init(CCDictionary* pObjectDict)
-{
-    do
-    {
-        BREAK_IF(!CObjectBase::init(pObjectDict));
-
-        CCString* sensorName = getSensorFromDict();
-        if (sensorName)
-        {
-            setSensor(dynamic_cast<CSensor*>(CObjectBase::createObject(sensorName->getCString())));
-            BREAK_IF(m_pSensor == NULL)
-            m_pSensor->setOwnerAndTrigger(this, callfuncO_selector(CVisibleObject::onSensor));
-            onSetSensorType(m_pSensor);
-        }
-
-        return true;
-    } while (false);
-    
-    return false;
 }
 
 
@@ -389,13 +363,6 @@ bool CVisibleObject::dettachSpriteFrom(bool cleanup)
 
 
 
-int CVisibleObject::getCollisionGroup()
-{
-    return getCollisionGroupFromDict();
-}
-
-
-
 
 void CVisibleObject::turnOffCollision()
 {
@@ -524,6 +491,7 @@ bool CVisibleObject::getSpriteFlipY()
 
 void CVisibleObject::_enableAlphaTestR(CCNode* node, float value)
 {
+    CC_ASSERT(node);
     CCGLProgram* program = CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColorAlphaTest);
     node->setShaderProgram(program);
         program->use();

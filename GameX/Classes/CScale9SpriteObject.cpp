@@ -8,7 +8,6 @@
 
 #include "CScale9SpriteObject.h"
 
-DEFINE_DICTFUNC_STR(CScale9SpriteObject, FileName);
 
 
 CScale9SpriteObject::CScale9SpriteObject() :
@@ -26,31 +25,10 @@ CScale9SpriteObject::~CScale9SpriteObject()
 
 
 
-bool CScale9SpriteObject::init(CCDictionary* pObjectDict)
-{
-    if (!CVisibleObject::init(pObjectDict))
-    {
-        return false;
-    }
-    
-    CCString* filename = getFileNameFromDict();
-    if (NULL == filename)
-    {
-        return false;
-    }
-    
-    if (!createScale9Sprite(filename->getCString()))
-    {
-        return false;
-    }
-    return true;
-}
-
-
 
 bool CScale9SpriteObject::init(const std::string& name)
 {
-    if (!CVisibleObject::init(NULL))
+    if (!CVisibleObject::init())
     {
         return false;
     }

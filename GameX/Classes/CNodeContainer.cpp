@@ -97,7 +97,7 @@ bool CNodeContainer::initCache(const std::string& name, int num)
 {
     for (int i = 0; i < num; ++i)
     {
-        CObjectBase* pObj = CObjectBase::createObject(name);
+        CObjectBase* pObj = (CObjectBase*)OBJECT_FACTORY->createInstance(name);
         if (NULL != pObj)
         {
             pObj->die();

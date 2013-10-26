@@ -9,13 +9,7 @@
 #include "CSpriteObject.h"
 #include "CBatchNodeManager.h"
 
-DEFINE_DICTFUNC(CSpriteObject, int, MaxLevel, 0);
-DEFINE_DICTFUNC_STR(CSpriteObject, FileType);
-DEFINE_DICTFUNC_STR(CSpriteObject, FileName);
-DEFINE_DICTFUNC_STR(CSpriteObject, FileNameInFarm);
-DEFINE_DICTFUNC_STR(CSpriteObject, InitState);
-DEFINE_DICTFUNC_STR(CSpriteObject, FarmState);
-DEFINE_DICTFUNC_ARRAY(CSpriteObject, States);
+
 
 CSpriteObject::CSpriteObject()
 : pSprite_(NULL)
@@ -33,37 +27,6 @@ CSpriteObject::~CSpriteObject()
     clearThis();
 }
 
-
-
-bool CSpriteObject::init(CCDictionary* pObjectDict)
-{
-    do {
-        BREAK_IF(!CVisibleObject::init(pObjectDict));
-        CCString* fileType = getFileTypeFromDict();
-        BREAK_IF(NULL == fileType);
-        CCString* fileName = getFileNameFromDict();
-        BREAK_IF(NULL == fileName);
-        
-        if (getMaxLevelFromDict() > 0)
-        {
-            fileName = CCString::createWithFormat("%s%d", fileName->getCString(), getLevel() - 1);
-        }
-        
-        if (fileType->compare("ccbi") == 0)
-        {
-            fileName = CCString::createWithFormat("%s.ccbi", fileName->getCString());
-            BREAK_IF(!setSpriteFromCcbi(fileName->getCString()));
-        }
-        else
-        {
-            BREAK_IF(!setSprite(fileName->getCString()));
-        }
-
-        return true;
-    } while (false);
-    
-    return false;
-}
 
 
 bool CSpriteObject::setSpriteFromCcbi(const char* name)
@@ -219,12 +182,7 @@ void CSpriteObject::revive()
 {
     CVisibleObject::revive();
     
-    CCString* initState = getInitStateFromDict();
-    if (initState != NULL)
-    {
-        changeState(0);     // zero for default state
-    }
-
+    changeState(STATE_NONE);
 }
 
 void CSpriteObject::completedAnimationSequenceNamed(const char *name)

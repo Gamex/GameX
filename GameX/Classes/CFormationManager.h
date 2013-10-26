@@ -17,7 +17,7 @@ class CFormationElement
 {
 public:
     CCPoint pos;
-    std::string unitName;
+    std::string unitId;
 };
 
 class CFormation

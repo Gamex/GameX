@@ -12,7 +12,6 @@
 #include "Common.h"
 #include "CFightingRelationship.h"
 #include "CSpriteObject.h"
-#include "CGunBase.h"
 #include "CBackgroundManager.h"
 
 #define ROLE_FACE_TO_LEFT_PREFIX        "FL_"
@@ -58,9 +57,8 @@ class CRole
 , public IGridRole
 {
     friend class CObjectBase;
-    CC_SYNTHESIZE_RETAIN(CGunBase*, m_pGun, Gun);
     CC_SYNTHESIZE(FACE_TO, m_faceTo, FaceTo);
-    CC_SYNTHESIZE_PASS_BY_REF(string, m_unitName, UnitName);
+    CC_SYNTHESIZE_PASS_BY_REF(string, m_unitId, UnitId);
     CC_PROPERTY(ROLE_GROUP, m_roleGroup, RoleGroup);
     CC_SYNTHESIZE(float, m_speed, Speed);
     CC_SYNTHESIZE(float, m_maxHP, MaxHP);
@@ -78,24 +76,21 @@ public:
 
     virtual _FIGHTING_RELATION_TYPE getRelationType();
     
-    virtual void loadRoleData(const string& unitName);
-    virtual bool init(CCDictionary* pObjectDict);
+    virtual bool init(const string& unitId);
+    virtual bool init();
     virtual bool changeState(int state);
     virtual bool attachSpriteTo(CCNode* parent, int zOrder = 0, int tag = -1);
     
     virtual void die();
     virtual void revive();
     
-	virtual CCPoint getShootPoint();
 	virtual void update(float dt);
     virtual void clearAll();
-    virtual bool createGun(const std::string& name);
-    virtual bool changeBullet(const std::string& name);
+
 
     virtual void attack(CRole* pAt);
     virtual CRole* getAttackTarget();
-    
-    virtual CCPoint getShootDirection();
+
     
     virtual void updateVertexZ();
     virtual void onPlaceOnMap(const CCPoint& gridPos, const CCPoint& position);
@@ -114,19 +109,13 @@ public:
     virtual CCPoint getPositionInGrid();
     virtual float getDistanceSqInGrid(IGridRole* role);
     virtual bool checkInGridRadiusSq(IGridRole* role, float radiusInGrid);
-    
-    DECLARE_DICTFUNC(CCDictionary*, Gun);
 
 protected:
 	CRole();
     void clearThis();
-
-    void updateShootPointInWorldSpace();
     
+    virtual void setInnerSprite(CCSprite* var);
     virtual void addComponentsForStates();
-
-	CCPoint m_shootPoint;
-    CCPoint m_shootPointInWorldSpace;
 
     VS m_faceToPrefix;
 private:

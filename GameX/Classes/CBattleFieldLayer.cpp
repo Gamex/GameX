@@ -64,7 +64,7 @@ bool CBattleFieldLayer::init()
         loadConfig();
         
         // ccbi和tmx地图有冲突，所以必须在创建tmx之前先创建一次ccbi，否则真机上release版本会出错！！
-        CObjectBase* ob = CObjectBase::createObject("Unit0");
+        CObjectBase* ob = (CObjectBase*)OBJECT_FACTORY->createInstance("CRole");
         ob->clearAll();
 
         BREAK_IF_FAILED(CBkgLayerBase::initBkgLayerBase(BATCHNODE_LIST));
@@ -237,12 +237,12 @@ bool CBattleFieldLayer::loadFormation()
     {
         CFormationElement* fe = (*it);
         
-        CCDictionary* dict = DTUNIT->getData(fe->unitName);
-        CCString* objName = DTUNIT->get_resourceID_Value(dict);
+        CCDictionary* dict = DTUNIT->getData(fe->unitId);
+        CCString* class_Name = DTUNIT->get_className_Value(dict);
         
-        CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(objName->getCString()));
+        CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_Name->getCString()));
         CC_ASSERT(role);
-        role->loadRoleData(fe->unitName);
+        role->init(fe->unitId);
         bkgGrd->placeRole(role, fe->pos);
         role->setMoveTarget(fe->pos);
         role->attachSpriteTo(bkgGrd);
@@ -257,11 +257,11 @@ bool CBattleFieldLayer::loadFormation()
     {
         CFormationElement* fe = (*it1);
         
-        CCDictionary* dict = DTUNIT->getData(fe->unitName);
-        CCString* objName = DTUNIT->get_resourceID_Value(dict);
-        CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(objName->getCString()));
+        CCDictionary* dict = DTUNIT->getData(fe->unitId);
+        CCString* class_name = DTUNIT->get_className_Value(dict);
+        CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_name->getCString()));
         CC_ASSERT(role);
-        role->loadRoleData(fe->unitName);
+        role->init(fe->unitId);
         bkgGrd->placeRole(role, fe->pos);
         role->setMoveTarget(fe->pos);
         role->attachSpriteTo(bkgGrd);

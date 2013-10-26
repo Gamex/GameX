@@ -17,8 +17,7 @@ class CSensor : public CObjectBase
 {
 public:
     virtual ~CSensor();
-    
-    virtual bool init(CCDictionary* pObjectDict);
+
     virtual void setOwnerAndTrigger(CVisibleObject* owner, SEL_CallFuncO trigger);
     virtual void setSensorTargetType(GBCollisionType type);
     virtual CVisibleObject* getOwner(){return m_pOwner;}

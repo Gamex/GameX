@@ -78,12 +78,12 @@ void CFormationLayer::update(float dt)
 
 
 
-void CFormationLayer::onFrameSel(const std::string& unitName)
+void CFormationLayer::onFrameSel(const std::string& unitId)
 {
     CBackgroundManager* bkgGrd = getBkgGrd();
     CC_ASSERT(bkgGrd);
     
-    CCDictionary* dict = DTUNIT->getData(unitName);
+    CCDictionary* dict = DTUNIT->getData(unitId);
     int gridWidth = DTUNIT->get_gridWidth_Value(dict)->intValue();
     int gridHeight = DTUNIT->get_gridHeight_Value(dict)->intValue();
     
@@ -92,12 +92,10 @@ void CFormationLayer::onFrameSel(const std::string& unitName)
     CLogicGrid* grid = bkgGrd->getEmptyGridNearby(gridPos, gridWidth, gridHeight);
     if (grid)
     {
-        CCString* name = DTUNIT->get_resourceID_Value(dict);
-        CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(name->getCString()));
+        CCString* class_name = DTUNIT->get_className_Value(dict);
+        CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_name->getCString()));
         CC_ASSERT(role);
-        role->setUnitName(unitName);
-        role->setGridWidth(gridWidth);
-        role->setGridHeight(gridHeight);
+        role->init(unitId);
         bkgGrd->placeRole(role, grid->getGridPos());
         role->attachSpriteTo(bkgGrd);
         m_roleNode->addChild(role);
@@ -265,7 +263,7 @@ void CFormationLayer::onSave(CFormation* fmt)
             {
                 CFormationElement* fe = new CFormationElement;
                 fe->pos = pos;
-                fe->unitName = role->getUnitName();
+                fe->unitId = role->getUnitId();
                 
                 fmt->m_elements.push_back(fe);
             }
@@ -290,11 +288,11 @@ void CFormationLayer::onLoad(CFormation* fmt)
         for (int i = 0; i < sz; ++i)
         {
             CFormationElement* fe = fmt->m_elements[i];
-            CCDictionary* dict = DTUNIT->getData(fe->unitName);
+            CCDictionary* dict = DTUNIT->getData(fe->unitId);
             CCString* objName = DTUNIT->get_resourceID_Value(dict);
-            CRole* role = dynamic_cast<CRole*>(CObjectBase::createObject(objName->getCString()));
+            CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(objName->getCString()));
             CC_ASSERT(role);
-            role->setUnitName(fe->unitName);
+            role->setUnitId(fe->unitId);
             role->setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
             role->setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
             bkgGrd->placeRole(role, fe->pos);

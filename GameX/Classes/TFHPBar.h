@@ -23,11 +23,10 @@ public:
 
     virtual void setPercentage(float percentage);
     virtual void setSpriteVisible(bool visible);
-    virtual bool init(CCDictionary* pObjectDict);
+    virtual bool init();
     virtual void update(float dt);
     virtual void clearAll();
-    
-    DECLARE_DICTFUNC(CCString*, BarFileName);
+
 protected:
     TFHPBar();
     void clearThis();

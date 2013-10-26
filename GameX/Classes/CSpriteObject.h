@@ -26,15 +26,13 @@ class CSpriteObject
 public:
     FACTORY_CREATE_FUNC(CSpriteObject);
 	virtual ~CSpriteObject();
-	
-	virtual bool init(CCDictionary* pObjectDict);
+
     virtual void update(float dt);
     
     virtual void clearAll();
 
     virtual void revive();
     
-    // Warning:DO NOT call playAnimation in the delegate function!
     virtual void setActionDelegate(CSpriteActionDelegate* pDelegate);
 
     virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char* pSelectorName)
@@ -53,14 +51,6 @@ public:
     virtual void endState();
     virtual bool playAnimation(const std::string& name, bool forceReplay = false);
 //    virtual bool playAnimation(int id, bool forceReplay = false);
-    
-    DECLARE_DICTFUNC(int, MaxLevel);
-    DECLARE_DICTFUNC(CCString*, FileType);
-    DECLARE_DICTFUNC(CCString*, FileName);
-    DECLARE_DICTFUNC(CCString*, FileNameInFarm);
-    DECLARE_DICTFUNC(CCString*, InitState);
-    DECLARE_DICTFUNC(CCString*, FarmState);
-    DECLARE_DICTFUNC(CCArray*, States);
 
     
 protected:

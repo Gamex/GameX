@@ -17,8 +17,7 @@ class CScale9SpriteObject : public CVisibleObject
 public:
     FACTORY_CREATE_FUNC(CScale9SpriteObject);
 	virtual ~CScale9SpriteObject();
-	
-	virtual bool init(CCDictionary* pObjectDict);
+
     virtual bool init(const std::string& name);
     
     virtual void clearAll();
@@ -26,8 +25,7 @@ public:
     virtual CCNode* getInnerSprite() const;
  
     virtual void setSpritePreferredSize(const CCSize& size);
-    
-    DECLARE_DICTFUNC(CCString*, FileName);
+
 protected:
     CScale9SpriteObject();
     void clearThis();

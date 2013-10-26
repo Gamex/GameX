@@ -27,20 +27,6 @@ CWarriorRole::~CWarriorRole()
 
 
 
-bool CWarriorRole::init(CCDictionary* pObjectDict)
-{
-    do
-    {
-        BREAK_IF_FAILED(CRole::init(pObjectDict));
-
-        return true;
-    } while (false);
-    
-    return false;
-}
-
-
-
 void CWarriorRole::setRoleGroup(ROLE_GROUP var)
 {
     CRole::setRoleGroup(var);
@@ -50,7 +36,7 @@ void CWarriorRole::setRoleGroup(ROLE_GROUP var)
     }
     else
     {
-        CCDictionary* dict = DTUNIT->getData(getUnitName());
+        CCDictionary* dict = DTUNIT->getData(getUnitId());
         if (dict)
         {
             CCString* str = DTUNIT->get_radius_Value(dict);
@@ -82,23 +68,30 @@ CC_ASSERT(str);\
 addSkillByName(str->getCString(), __SKILL_IDX__);\
 }
 
-void CWarriorRole::loadRoleData(const string& unitName)
+bool CWarriorRole::init(const string& unitId)
 {
-    CRole::loadRoleData(unitName);
+    do
+    {
+        BREAK_IF(!CRole::init(unitId));
+        
+        CCDictionary* dict = DTUNIT->getData(unitId);
+
+        CCString* str = DTUNIT->get_radius_Value(dict);
+        CC_ASSERT(str);
+        m_visionRadiusSq = str->floatValue();
+
+        // load skills
+        LOAD_SKILL(0);
+        LOAD_SKILL(1);
+        LOAD_SKILL(2);
+        LOAD_SKILL(3);
+        LOAD_SKILL(4);
+        LOAD_SKILL(5);
+        
+        return true;
+    } while (false);
     
-    CCDictionary* dict = DTUNIT->getData(unitName);
-
-    CCString* str = DTUNIT->get_radius_Value(dict);
-    CC_ASSERT(str);
-    m_visionRadiusSq = str->floatValue();
-
-    // load skills
-    LOAD_SKILL(0);
-//    LOAD_SKILL(1);
-//    LOAD_SKILL(2);
-//    LOAD_SKILL(3);
-//    LOAD_SKILL(4);
-//    LOAD_SKILL(5);
+    return false;
 }
 
 

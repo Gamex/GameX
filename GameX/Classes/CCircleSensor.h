@@ -17,9 +17,7 @@ class CCircleSensor : public CSensor
 public:
     virtual ~CCircleSensor();
     FACTORY_CREATE_FUNC(CCircleSensor);
-    DECLARE_DICTFUNC(float, Radius);
-    
-    virtual bool init(CCDictionary* pObjectDict);
+
     virtual bool isCollsionWith(TFCollisionProtocol* object);
 protected:
     CCircleSensor();

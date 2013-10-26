@@ -9,23 +9,16 @@
 #include "CObjectFactory.h"
 #include "CObjectBase.h"
 #include "CRole.h"
-#include "CDirectionBullet.h"
-#include "TFItemInGame.h"
 #include "TFHPBar.h"
-#include "CDirectionGun.h"
 #include "CScale9SpriteObject.h"
 #include "CSpriteObject.h"
-#include "CArchersGun.h"
 #include "CCircleSensor.h"
-#include "CTower.h"
-#include "CBallisticBullet.h"
-#include "CBallisticGun.h"
-#include "CBallisticAOEBullet.h"
 #include "CWarriorRole.h"
 #include "CWarriorUnit0.h"
 #include "CWarriorUnit1.h"
 #include "CWarriorUnit2.h"
 #include "CSkillComp.h"
+#include "CGameEffect.h"
 
 #define REGISTER_CLASS(__classname) if (!registerClass(#__classname, FACTORY_SEL(__classname::create))){return false;}
 #define FACTORY_SEL(__selector) (FACTORY_CREATE_FUNC)(&__selector)
@@ -49,23 +42,16 @@ CObjectFactory::~CObjectFactory()
 bool CObjectFactory::Initialize()
 {
     REGISTER_CLASS(CRole);
-    REGISTER_CLASS(CDirectionBullet);
-    REGISTER_CLASS(TFItemInGame);
     REGISTER_CLASS(TFHPBar);
-    REGISTER_CLASS(CDirectionGun);
     REGISTER_CLASS(CSpriteObject);
     REGISTER_CLASS(CScale9SpriteObject);
-    REGISTER_CLASS(CArchersGun);
     REGISTER_CLASS(CCircleSensor);
-    REGISTER_CLASS(CTower);
-    REGISTER_CLASS(CBallisticBullet);
-    REGISTER_CLASS(CBallisticGun);
-    REGISTER_CLASS(CBallisticAOEBullet);
     REGISTER_CLASS(CWarriorRole);
     REGISTER_CLASS(CWarriorUnit0);
     REGISTER_CLASS(CWarriorUnit1);
     REGISTER_CLASS(CWarriorUnit2);
     REGISTER_CLASS(CSkillComp);
+    REGISTER_CLASS(CGameEffect);
     return true;
 }
 

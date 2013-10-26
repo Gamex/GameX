@@ -10,8 +10,6 @@
 #include "TFHPBar.h"
 
 
-DEFINE_DICTFUNC_STR(TFHPBar, BarFileName);
-
 
 TFHPBar::TFHPBar() :
 m_percentage(.25f)
@@ -37,14 +35,15 @@ void TFHPBar::setPercentage(float percentage)
 
 
 
-bool TFHPBar::init(CCDictionary* pObjectDict)
+bool TFHPBar::init()
 {
-    if (!CSpriteObject::init(pObjectDict))
+    if (!CSpriteObject::init())
     {
         return false;
     }
     
-    CCString* barFileName = getBarFileNameFromDict();
+    // to be modified...
+    CCString* barFileName = NULL;//getBarFileNameFromDict();
     
     setBar(dynamic_cast<CScale9SpriteObject*>(OBJECT_FACTORY->createInstance("CScale9SpriteObject")));
     if (!getBar() || !m_pBar->init(barFileName->getCString()))

@@ -10,40 +10,8 @@
 #include "TFGameObjectManager.h"
 
 
-
-DEFINE_DICTFUNC_STR(CObjectBase, CateName);
-DEFINE_DICTFUNC_STR(CObjectBase, Name);
-
-
-CObjectBase* CObjectBase::createObject(const std::string& name)
-{
-    CObjectBase* pObject = NULL;
-    CCDictionary* pDict = GAME_OJBECT_MANAGER->getObjectByName(name);
-    if (!pDict)
-    {
-        return NULL;
-    }
-    
-    CCString* strCateName = dynamic_cast<CCString*>(pDict->objectForKey("CateName"));
-    if (NULL == strCateName)
-    {
-        return NULL;
-    }
-
-    pObject = (CObjectBase*)OBJECT_FACTORY->createInstance(strCateName->getCString());
-    
-    if (pObject)
-    {
-        pObject->init(pDict);
-    }
-    return pObject;
-}
-
-
-
-CObjectBase::CObjectBase() :
-pObjectDictionary_(NULL)
-, m_isDead(false)
+CObjectBase::CObjectBase()
+: m_isDead(false)
 {
     
 }
@@ -57,12 +25,9 @@ CObjectBase::~CObjectBase()
 
 
 
-bool CObjectBase::init(CCDictionary* pObjectDict)
+bool CObjectBase::init()
 {
-//    CCAssert(NULL != pObjectDict, "pObjectDict can't be NULL");
     clearAll();
-    
-    setObjectDictionary(pObjectDict);
 
     addCollisionHandlers();
     
@@ -85,7 +50,6 @@ void CObjectBase::clearAll()
 void CObjectBase::clearThis()
 {
     die();
-    setObjectDictionary(NULL);
     removeAllChildrenWithCleanup(true);
     clearState();
 }
@@ -131,13 +95,6 @@ void CObjectBase::update(float dt)
     {
         pObj->update(dt);
     }
-}
-
-
-
-int CObjectBase::getLevel()
-{
-    return 1;
 }
 
 

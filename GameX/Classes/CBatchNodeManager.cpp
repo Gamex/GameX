@@ -151,7 +151,8 @@ void CBatchNodeManager::clearAllChildren()
 void CBatchNodeManager::attachToMe(CVisibleObject* vo, int zOrder, int tag)
 {
     CC_ASSERT(vo);
-    CCString* batchNodeName = vo->getBatchNodeNameFromDict();
+    // to be modifed...
+    CCString* batchNodeName = NULL;// vo->getBatchNodeNameFromDict();
     std::string name;
     if (batchNodeName)
     {

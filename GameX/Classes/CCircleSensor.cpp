@@ -10,10 +10,6 @@
 #include "CVisibleObject.h"
 
 
-DEFINE_DICTFUNC(CCircleSensor, float, Radius, 0);
-
-
-
 CCircleSensor::CCircleSensor()
 : m_radiusSquare(0.f)
 , m_radius(0.f)
@@ -26,22 +22,6 @@ CCircleSensor::CCircleSensor()
 CCircleSensor::~CCircleSensor()
 {
     
-}
-
-
-
-bool CCircleSensor::init(CCDictionary* pObjectDict)
-{
-    do
-    {
-        BREAK_IF_FAILED(CSensor::init(pObjectDict));
-        m_radius = getRadiusFromDict();
-        m_radiusSquare = m_radius * m_radius;
-        
-        return true;
-    } while (false);
-    
-    return false;
 }
 
 
