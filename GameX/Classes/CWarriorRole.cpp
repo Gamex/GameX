@@ -82,11 +82,11 @@ bool CWarriorRole::init(const string& unitId)
 
         // load skills
         LOAD_SKILL(0);
-        LOAD_SKILL(1);
-        LOAD_SKILL(2);
-        LOAD_SKILL(3);
-        LOAD_SKILL(4);
-        LOAD_SKILL(5);
+//        LOAD_SKILL(1);
+//        LOAD_SKILL(2);
+//        LOAD_SKILL(3);
+//        LOAD_SKILL(4);
+//        LOAD_SKILL(5);
         
         return true;
     } while (false);
@@ -150,44 +150,6 @@ bool CWarriorRole::createHPBar()
 }
 
 
-
-//void CWarriorRole::onSensor(CCObject* obj)
-//{
-//    CWarriorRole* wr = (CWarriorRole*)obj;
-//    bool flag = false;
-//    if (wr->getRoleGroup() != getRoleGroup())
-//    {
-//        QSWR_IT it = m_skipList.begin();
-//        for (; it != m_skipList.end(); ++it)
-//        {
-//            if ((*it)->role == wr)
-//            {
-//                flag = true;
-//                break;
-//            }
-//        }
-//        
-//        if (!flag)
-//        {
-//            m_enemyNearby.insert(wr);
-//        }
-//    }
-//}
-
-
-
-//void CWarriorRole::onSetSensorType(CSensor* pSensor)
-//{
-//    pSensor->setSensorTargetType(CT_SOLDIER);
-//}
-//
-//
-//
-//GBCollisionType CWarriorRole::getCollisionType()
-//{
-//    return CT_SOLDIER;
-//}
-
 #pragma mark -- skills
 
 void CWarriorRole::addSkillByName(const string& skillName, int skillIdx)
@@ -197,9 +159,9 @@ void CWarriorRole::addSkillByName(const string& skillName, int skillIdx)
         CC_ASSERT(m_skillNames.find(skillName) == m_skillNames.end());
         CCString* s = DTSKILL->get_className_Value(skillName);
         BREAK_IF(NULL == s);
-        CSkillComp* skill = CSkillComp::createObject(s->getCString());
+        CSkillComp* skill = (CSkillComp*)OBJECT_FACTORY->createInstance(s->getCString());
         BREAK_IF(NULL == skill);
-        BREAK_IF_FAILED(skill->loadSkill(skillName));
+        BREAK_IF_FAILED(skill->init(skillName));
         
         skill->setStateId(WARRIOR_ROLE_STATE_SKILL_0 + skillIdx);
         m_skillNames.insert(skill->getName());
@@ -219,30 +181,12 @@ CSkillComp* CWarriorRole::getSkillCompByName(const string& skillName)
 
 
 
-void CWarriorRole::addCCBAnimationDelegate(ICCBAnimationDelegate* delegate)
-{
-    m_ccbAnimatonDelegates.insert(delegate);
-}
-
-
-
 void CWarriorRole::onSkillHit(CCNode* obj)
 {
-//    SS_IT it = m_skillNames.begin();
-//    for (; it != m_skillNames.end(); ++it)
-//    {
-//        CSkillComp* skill = getSkillCompByName(*it);
-//        CC_ASSERT(skill);
-//        if (skill->isEnabled())
-//        {
-//            skill->onHit();
-//        }
-//    }
-    
     SAD_IT it = m_ccbAnimatonDelegates.begin();
     for ( ;it != m_ccbAnimatonDelegates.end(); ++it)
     {
-        (*it)->onSkillHit(obj);
+        (*it)->onSkillHit(this);
     }
 }
 
@@ -250,21 +194,10 @@ void CWarriorRole::onSkillHit(CCNode* obj)
 
 void CWarriorRole::onSkillOver(CCNode* obj)
 {
-//    SS_IT it = m_skillNames.begin();
-//    for (; it != m_skillNames.end(); ++it)
-//    {
-//        CSkillComp* skill = getSkillCompByName(*it);
-//        CC_ASSERT(skill);
-//        if (skill->isEnabled())
-//        {
-//            skill->onOver();
-//        }
-//    }
-    
     SAD_IT it = m_ccbAnimatonDelegates.begin();
     for ( ;it != m_ccbAnimatonDelegates.end(); ++it)
     {
-        (*it)->onSkillOver(obj);
+        (*it)->onSkillOver(this);
     }
 }
 
@@ -275,7 +208,7 @@ void CWarriorRole::onDyingOver(CCNode* obj)
     SAD_IT it = m_ccbAnimatonDelegates.begin();
     for ( ;it != m_ccbAnimatonDelegates.end(); ++it)
     {
-        (*it)->onDyingOver(obj);
+        (*it)->onDyingOver(this);
     }
 }
 

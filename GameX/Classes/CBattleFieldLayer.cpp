@@ -9,7 +9,6 @@
 
 #include "CBattleFieldLayer.h"
 //#include "SimpleAudioEngine.h"
-#include "TFGameObjectManager.h"
 #include "TFCollisionMgr.h"
 
 #include "CGameTime.h"
@@ -21,6 +20,7 @@
 #include "CDataCenterManager.h"
 #include "CBattleFiledManager.h"
 #include "CTimeProfile.h"
+#include "CEffectManager.h"
 
 
 #define BATCHNODE_LIST          "BatchNodes.plist"
@@ -71,6 +71,7 @@ bool CBattleFieldLayer::init()
         setGamePanelLayer(CGamePanelLayer::create());
         addChild(m_pGamePanelLayer, Z_ORDER_GAME_PANEL);
 
+        BREAK_IF_FAILED(EFFECT_MANAGER->init(getBkgGrd()));
 
         loadFormation();
         scheduleUpdate();
@@ -91,6 +92,8 @@ void CBattleFieldLayer::update(float dt)
     GAME_TIME->update(dt);
     
     BF_MANAGER->update(dt);
+    
+    EFFECT_MANAGER->update(dt);
     
     TP_LOG("1", 0);
     

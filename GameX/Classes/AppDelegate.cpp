@@ -9,7 +9,6 @@
 #include "AppDelegate.h"
 
 #include "Common.h"
-#include "TFGameObjectManager.h"
 #include "CGlobalConfigration.h"
 #include "CObjectFactory.h"
 #include "CPathManager.h"
@@ -59,8 +58,6 @@ bool AppDelegate::applicationDidFinishLaunching()
         BREAK_IF_FAILED(DATA_CENTER->initialize());
         
         BREAK_IF_FAILED(OBJECT_FACTORY->Initialize());
-
-        BREAK_IF_FAILED(GAME_OJBECT_MANAGER->init());
         
         BREAK_IF_FAILED(COLLISION_MANAGER->init());
 

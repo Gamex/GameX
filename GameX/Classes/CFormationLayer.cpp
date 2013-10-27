@@ -289,12 +289,10 @@ void CFormationLayer::onLoad(CFormation* fmt)
         {
             CFormationElement* fe = fmt->m_elements[i];
             CCDictionary* dict = DTUNIT->getData(fe->unitId);
-            CCString* objName = DTUNIT->get_resourceID_Value(dict);
-            CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(objName->getCString()));
+            CCString* className = DTUNIT->get_className_Value(dict);
+            CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(className->getCString()));
             CC_ASSERT(role);
-            role->setUnitId(fe->unitId);
-            role->setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
-            role->setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
+            role->init(fe->unitId);
             bkgGrd->placeRole(role, fe->pos);
             role->attachSpriteTo(bkgGrd);
             m_roleNode->addChild(role);

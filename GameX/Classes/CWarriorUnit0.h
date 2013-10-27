@@ -24,7 +24,7 @@ class CWarriorUnit0
 public:
     FACTORY_CREATE_FUNC(CWarriorUnit0);
     virtual ~CWarriorUnit0();
-
+    virtual void think();
 protected:
     CWarriorUnit0();
 

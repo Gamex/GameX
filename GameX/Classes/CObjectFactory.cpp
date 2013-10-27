@@ -17,7 +17,8 @@
 #include "CWarriorUnit0.h"
 #include "CWarriorUnit1.h"
 #include "CWarriorUnit2.h"
-#include "CSkillComp.h"
+#include "CSkillMeleeAttack.h"
+#include "CSkillMarineGunAttack.h"
 #include "CGameEffect.h"
 
 #define REGISTER_CLASS(__classname) if (!registerClass(#__classname, FACTORY_SEL(__classname::create))){return false;}
@@ -50,7 +51,8 @@ bool CObjectFactory::Initialize()
     REGISTER_CLASS(CWarriorUnit0);
     REGISTER_CLASS(CWarriorUnit1);
     REGISTER_CLASS(CWarriorUnit2);
-    REGISTER_CLASS(CSkillComp);
+    REGISTER_CLASS(CSkillMeleeAttack);
+    REGISTER_CLASS(CSkillMarineGunAttack);
     REGISTER_CLASS(CGameEffect);
     return true;
 }

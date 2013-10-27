@@ -221,6 +221,15 @@ typedef std::set<class ICCBAnimationDelegate*> SAD;
 typedef std::set<class ICCBAnimationDelegate*>::iterator SAD_IT;
 typedef std::set<class ICCBAnimationDelegate*>::const_iterator SAD_CIT;
 
+
+typedef std::set<class CObjectBase*> SOB;
+typedef std::set<class CObjectBase*>::iterator SOB_IT;
+typedef std::set<class CObjectBase*>::const_iterator SOB_CIT;
+
+typedef std::vector<class CNodeContainer*> VNC;
+typedef std::vector<class CNodeContainer*>::iterator VNC_IT;
+typedef std::vector<class CNodeContainer*>::const_iterator VNC_CIT;
+
 #pragma mark --debug
 
 #ifdef DEBUG

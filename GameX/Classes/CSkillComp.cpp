@@ -11,21 +11,6 @@
 #include "CDataCenterManager.h"
 
 
-CSkillComp* CSkillComp::createObject(const std::string& name)
-{
-    CSkillComp* pObject;
-    
-    pObject = (CSkillComp*)OBJECT_FACTORY->createInstance(name);
-    
-    if (pObject)
-    {
-        pObject->init();
-    }
-    return pObject;
-}
-
-
-
 CSkillComp::CSkillComp(void)
 : CWarriorRoleCompBase(SKILL_SUB_STATE_READY)
 , m_CDTotalTime(0.f)
@@ -38,24 +23,12 @@ CSkillComp::CSkillComp(void)
 
 
 
-bool CSkillComp::init()
+bool CSkillComp::init(const string& skillName)
 {
     do
     {
         BREAK_IF_FAILED(CWarriorRoleCompBase::init());
         
-        return true;
-    } while (false);
-    
-	return false;
-}
-
-
-
-bool CSkillComp::loadSkill(const string& skillName)
-{
-    do
-    {
         CCDictionary* skillDict = DTSKILL->getData(skillName);
         CC_ASSERT(skillDict);
         
@@ -191,27 +164,6 @@ void CSkillComp::action()
 
 void CSkillComp::onSkillHit(CCNode* obj)
 {
-    if (!isEnabled())
-    {
-        return;
-    }
-    
-    float damage = m_ownerRole->getATK() - m_skillTarget->getDEF();
-    if (damage < 1.f)
-    {
-        damage = 1.f;
-    }
-    float curHP = m_skillTarget->getCurHP();
-    curHP = curHP - damage;
-    if (FLT_LE(curHP, 0.f))
-    {
-        m_skillTarget->setCurHP(0.f);
-        m_skillTarget->changeState(ROLE_STATE_DYING);
-    }
-    else
-    {
-        m_skillTarget->setCurHP(curHP);
-    }
 }
 
 

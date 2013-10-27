@@ -13,23 +13,25 @@
 
 class CObjectBase;
 
+typedef bool (CCObject::*NODE_CONTAINER_INIT_CALL_BACK)(SOB& unUseArrray, CObjectBase* curObj, void* pUserData);
+
 class CNodeContainer
 {
 public:
     CNodeContainer();
     virtual ~CNodeContainer();
     
-    const CCArray* getInUseArray() const;
+    const SOB& getInUseArray() const;
     unsigned int  getInUseCount();
-    virtual bool initCache(const std::string& name, int num);
+    virtual bool initCache(const std::string& name, int num, CCObject* target = NULL, NODE_CONTAINER_INIT_CALL_BACK callback = NULL, void* pUserData = NULL);
     virtual CObjectBase* checkoutElement();
     virtual void checkinElement(CObjectBase* elem);
     virtual void clear();
 
 protected:
 private:
-    CCArray containerInUseArray_;
-    CCArray containerUnUseArray_;
+    SOB m_containerInUseArray;
+    SOB m_containerUnUseArray;
 };
 
 #endif /* defined(__TheForce__TFBatchNodeBase__) */

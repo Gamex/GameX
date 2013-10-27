@@ -27,21 +27,18 @@ CNodeContainer::~CNodeContainer()
 
 CObjectBase* CNodeContainer::checkoutElement()
 {
-    if (containerUnUseArray_.count() == 0)
+    if (m_containerUnUseArray.size() == 0)
     {
         return NULL;
     }
     
-    CObjectBase* pObj = static_cast<CObjectBase*>(containerUnUseArray_.lastObject());
+    SOB_IT it = m_containerUnUseArray.begin();
+    CObjectBase* pObj = (CObjectBase*)*it;
     
-    containerInUseArray_.addObject(pObj);
-    containerUnUseArray_.removeLastObject();
     
-//    if (dynamic_cast<TFItemInGame*>(pObj))
-//    {
-//        CCLOG("checkout: Sprite:0x%X, 0x%X",(void*)pObj, (void*)(pObj->getSprite()));
-//    }
-    
+    m_containerUnUseArray.erase(it);
+    m_containerInUseArray.insert(pObj);
+
     return pObj;
 }
 
@@ -51,49 +48,48 @@ void CNodeContainer::checkinElement(CObjectBase* elem)
 {
     CC_ASSERT(NULL != elem);
     
-    unsigned int idx = containerInUseArray_.indexOfObject(elem);
-    if (CC_INVALID_INDEX == idx)
+    SOB_IT it = m_containerInUseArray.find(elem);
+    if (it == m_containerInUseArray.end())
     {
         return;
     }
-    
-//    if (dynamic_cast<TFItemInGame*>(elem))
-//    {
-//        CCLOG("checkin: Sprite:0x%X, 0x%X",(void*)elem, (void*)(elem->getSprite()));
-//    }
 
-    containerUnUseArray_.addObject(elem);
-    containerInUseArray_.removeObjectAtIndex(idx);
+    
+    m_containerUnUseArray.insert(*it);
+    m_containerInUseArray.erase(it);
+
 }
 
 
 
 void CNodeContainer::clear()
 {
-    CCObject* pObj;
-    CCARRAY_FOREACH(&containerInUseArray_, pObj)
+    SOB_IT it = m_containerInUseArray.begin();
+    for (; it != m_containerInUseArray.end(); ++it)
     {
-        CObjectBase* pTFObj = dynamic_cast<CObjectBase*>(pObj);
+        CObjectBase* pTFObj = (CObjectBase*)*it;
         if (NULL != pTFObj)
         {
             pTFObj->clearAll();
         }
     }
-    CCARRAY_FOREACH(&containerUnUseArray_, pObj)
+
+    it = m_containerUnUseArray.begin();
+    for (; it != m_containerUnUseArray.end(); ++it)
     {
-        CObjectBase* pTFObj = dynamic_cast<CObjectBase*>(pObj);
+        CObjectBase* pTFObj = (CObjectBase*)*it;
         if (NULL != pTFObj)
         {
             pTFObj->clearAll();
         }
     }
-    containerInUseArray_.removeAllObjects();
-    containerUnUseArray_.removeAllObjects();
+    m_containerInUseArray.clear();
+    m_containerUnUseArray.clear();
 }
 
 
 
-bool CNodeContainer::initCache(const std::string& name, int num)
+bool CNodeContainer::initCache(const std::string& name, int num, CCObject* target, NODE_CONTAINER_INIT_CALL_BACK callback, void* pUserData)
 {
     for (int i = 0; i < num; ++i)
     {
@@ -101,7 +97,15 @@ bool CNodeContainer::initCache(const std::string& name, int num)
         if (NULL != pObj)
         {
             pObj->die();
-            containerUnUseArray_.addObject(pObj);
+            m_containerUnUseArray.insert(pObj);
+
+            if (target)
+            {
+                if (!(target->*callback)(m_containerUnUseArray, pObj, pUserData))
+                {
+                    return false;
+                }
+            }
         }
         else
         {
@@ -115,16 +119,16 @@ bool CNodeContainer::initCache(const std::string& name, int num)
 
 
 
-const CCArray* CNodeContainer::getInUseArray() const
+const SOB& CNodeContainer::getInUseArray() const
 {
-    return &containerInUseArray_;
+    return m_containerInUseArray;
 }
 
 
 
 unsigned int CNodeContainer::getInUseCount()
 {
-    return containerInUseArray_.count();
+    return m_containerInUseArray.size();
 }
 
 

@@ -62,7 +62,6 @@ public:
     
     virtual void think();
     
-    virtual void addCCBAnimationDelegate(ICCBAnimationDelegate* delegate);
 protected:
     CWarriorRole();
 
@@ -81,7 +80,6 @@ protected:
     
     MRF m_skipList;
     
-    SAD m_ccbAnimatonDelegates;
 private:
 
 };

@@ -7,7 +7,6 @@
 //
 
 #include "CObjectBase.h"
-#include "TFGameObjectManager.h"
 
 
 CObjectBase::CObjectBase()

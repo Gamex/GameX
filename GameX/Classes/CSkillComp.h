@@ -28,12 +28,7 @@ class CSkillComp
     CC_SYNTHESIZE_READONLY(float, m_CDTotalTime, CDTotalTime);
     CC_SYNTHESIZE_READONLY(float, m_CDLeftTime, CDLeftTime);
 public:
-    static CSkillComp* createObject(const std::string& name);
-    FACTORY_CREATE_FUNC(CSkillComp);
-    
-    virtual bool loadSkill(const string& skillName);
-
-    virtual bool init();
+    virtual bool init(const string& skillName);
     virtual void onEnter();
     virtual void onExit();
     virtual void update(float dt);

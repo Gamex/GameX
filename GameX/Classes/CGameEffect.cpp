@@ -7,10 +7,19 @@
 //
 
 #include "CGameEffect.h"
-
+#include "CRole.h"
 
 
 void CGameEffect::clearThis()
+{
+}
+
+
+
+CGameEffect::CGameEffect()
+: m_damage(0.f)
+, m_effectTarget(NULL)
+, m_effectOwner(NULL)
 {
 }
 
@@ -22,8 +31,16 @@ CGameEffect::~CGameEffect()
 
 
 
-bool CGameEffect::init(CCDictionary* pObjectDict)
+bool CGameEffect::init(const string& ccbi_name)
 {
+    do
+    {
+        BREAK_IF_FAILED(CSpriteObject::init());
+        BREAK_IF_FAILED(setSpriteFromCcbi(ccbi_name.c_str()));
+        enableAlphaTest(0.5f);
+        return true;
+    } while (false);
+    
 	return false;
 }
 
@@ -31,19 +48,23 @@ bool CGameEffect::init(CCDictionary* pObjectDict)
 
 bool CGameEffect::attachSpriteTo(CCNode* parent, int zOrder, int tag)
 {
-	return false;
+	return CSpriteObject::attachSpriteTo(parent, zOrder, tag);
 }
 
 
 
 void CGameEffect::die()
 {
+    CSpriteObject::die();
+    setSpriteVisible(false);
 }
 
 
 
 void CGameEffect::revive()
 {
+    CSpriteObject::revive();
+    setSpriteVisible(true);
 }
 
 
@@ -60,10 +81,35 @@ void CGameEffect::clearAll()
 
 
 
-CGameEffect::CGameEffect()
+SEL_CallFuncN CGameEffect::onResolveCCBCCCallFuncSelector(CCObject * pTarget, const char* pSelectorName)
 {
+    CCB_SELECTORRESOLVER_CALLFUNC_GLUE(this, "onEffectHit", CGameEffect::onEffectHit);
+    CCB_SELECTORRESOLVER_CALLFUNC_GLUE(this, "onEffectOver", CGameEffect::onEffectOver);
+    return NULL;
 }
 
+
+
+void CGameEffect::onEffectHit(CCNode* obj)
+{
+    m_effectTarget->damage(m_damage, m_effectTarget);
+}
+
+
+
+void CGameEffect::onEffectOver(CCNode* obj)
+{
+    die();
+}
+
+
+
+void CGameEffect::setEffectTarget(CRole* target)
+{
+    CC_ASSERT(target);
+    m_effectTarget = target;
+    this->setSpriteVertexZ(m_effectTarget->getSpriteVertexZ() + .2);
+}
 
 
 

@@ -7,7 +7,7 @@
 	<key>currentResolution</key>
 	<integer>0</integer>
 	<key>currentSequenceId</key>
-	<integer>15</integer>
+	<integer>17</integer>
 	<key>fileType</key>
 	<string>CocosBuilder</string>
 	<key>fileVersion</key>
@@ -3415,7 +3415,7 @@
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<true/>
+						<false/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3902,7 +3902,7 @@
 						<key>type</key>
 						<string>Check</string>
 						<key>value</key>
-						<false/>
+						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -4298,7 +4298,7 @@
 			<key>name</key>
 			<string>BL_Attack</string>
 			<key>offset</key>
-			<real>0.0</real>
+			<real>0.14731022715568542</real>
 			<key>position</key>
 			<real>1</real>
 			<key>resolution</key>
@@ -4372,24 +4372,7 @@
 			<key>callbackChannel</key>
 			<dict>
 				<key>keyframes</key>
-				<array>
-					<dict>
-						<key>easing</key>
-						<dict>
-							<key>type</key>
-							<integer>0</integer>
-						</dict>
-						<key>time</key>
-						<real>0.20000000298023224</real>
-						<key>type</key>
-						<integer>10</integer>
-						<key>value</key>
-						<array>
-							<string>CallbackSel1</string>
-							<integer>2</integer>
-						</array>
-					</dict>
-				</array>
+				<array/>
 				<key>type</key>
 				<integer>10</integer>
 			</dict>
@@ -4423,24 +4406,7 @@
 			<key>callbackChannel</key>
 			<dict>
 				<key>keyframes</key>
-				<array>
-					<dict>
-						<key>easing</key>
-						<dict>
-							<key>type</key>
-							<integer>0</integer>
-						</dict>
-						<key>time</key>
-						<real>0.23333333432674408</real>
-						<key>type</key>
-						<integer>10</integer>
-						<key>value</key>
-						<array>
-							<string>CallbackSel1</string>
-							<integer>2</integer>
-						</array>
-					</dict>
-				</array>
+				<array/>
 				<key>type</key>
 				<integer>10</integer>
 			</dict>

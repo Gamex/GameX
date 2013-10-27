@@ -4256,6 +4256,22 @@
 							<integer>0</integer>
 						</dict>
 						<key>time</key>
+						<real>0.73333334922790527</real>
+						<key>type</key>
+						<integer>10</integer>
+						<key>value</key>
+						<array>
+							<string>onSkillHit</string>
+							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>easing</key>
+						<dict>
+							<key>type</key>
+							<integer>0</integer>
+						</dict>
+						<key>time</key>
 						<real>1.2000000476837158</real>
 						<key>type</key>
 						<integer>10</integer>
@@ -4278,7 +4294,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>1.2000000476837158</real>
+			<real>0.73333334922790527</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -4392,6 +4408,22 @@
 							<integer>0</integer>
 						</dict>
 						<key>time</key>
+						<real>0.73333334922790527</real>
+						<key>type</key>
+						<integer>10</integer>
+						<key>value</key>
+						<array>
+							<string>onSkillHit</string>
+							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>easing</key>
+						<dict>
+							<key>type</key>
+							<integer>0</integer>
+						</dict>
+						<key>time</key>
 						<real>1.2000000476837158</real>
 						<key>type</key>
 						<integer>10</integer>
@@ -4414,7 +4446,7 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>1.2000000476837158</real>
+			<real>0.73333334922790527</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
@@ -4596,6 +4628,22 @@
 							<integer>0</integer>
 						</dict>
 						<key>time</key>
+						<real>0.73333334922790527</real>
+						<key>type</key>
+						<integer>10</integer>
+						<key>value</key>
+						<array>
+							<string>onSkillHit</string>
+							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>easing</key>
+						<dict>
+							<key>type</key>
+							<integer>0</integer>
+						</dict>
+						<key>time</key>
 						<real>1.2000000476837158</real>
 						<key>type</key>
 						<integer>10</integer>
@@ -4732,6 +4780,22 @@
 							<integer>0</integer>
 						</dict>
 						<key>time</key>
+						<real>0.73333334922790527</real>
+						<key>type</key>
+						<integer>10</integer>
+						<key>value</key>
+						<array>
+							<string>onSkillHit</string>
+							<integer>2</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>easing</key>
+						<dict>
+							<key>type</key>
+							<integer>0</integer>
+						</dict>
+						<key>time</key>
 						<real>1.2000000476837158</real>
 						<key>type</key>
 						<integer>10</integer>
@@ -4754,11 +4818,11 @@
 			<key>offset</key>
 			<real>0.0</real>
 			<key>position</key>
-			<real>1.2000000476837158</real>
+			<real>0.73333334922790527</real>
 			<key>resolution</key>
 			<real>30</real>
 			<key>scale</key>
-			<real>128</real>
+			<real>256.5997314453125</real>
 			<key>sequenceId</key>
 			<integer>14</integer>
 			<key>soundChannel</key>

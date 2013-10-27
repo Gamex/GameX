@@ -1,12 +1,12 @@
-#ifndef __#__CLASS_NAME____
-#define __#__CLASS_NAME____
+#ifndef __DTEffect__
+#define __DTEffect__
 #include "cocos2d.h"
 #include <string>
 
 using namespace std;
 USING_NS_CC;
 
-class #__CLASS_NAME__
+class DTEffect
 {
 	friend class CDataCenterManager;
 public:
@@ -28,7 +28,18 @@ public:
             CC_SAFE_RETAIN(m_pArray);
         }
 
-#__BLOCK_1__
+		{
+			CCDictionary* elem = CCDictionary::create();
+			
+			elem->setObject(CCString::create("1"), "skillID");
+			elem->setObject(CCString::create("CGameEffect"), "className");
+			elem->setObject(CCString::create("100"), "cacheNum");
+			elem->setObject(CCString::create("Effect0"), "resourceID");
+
+			
+			m_pArray->addObject(elem);
+		}
+
     }
         
     CCDictionary* getData(int key)
@@ -55,12 +66,39 @@ public:
         return dynamic_cast<CCString*>(subDict->objectForKey(subKey));
     }
 
-#__BLOCK_2__
+	CCString* get_className_Value(int key)
+	{
+		return getValueOf(key, "className");
+	}
+	CCString* get_className_Value(CCDictionary* subDict)
+	{
+		return getValueOf(subDict, "className");
+	}
+
+	CCString* get_cacheNum_Value(int key)
+	{
+		return getValueOf(key, "cacheNum");
+	}
+	CCString* get_cacheNum_Value(CCDictionary* subDict)
+	{
+		return getValueOf(subDict, "cacheNum");
+	}
+
+	CCString* get_resourceID_Value(int key)
+	{
+		return getValueOf(key, "resourceID");
+	}
+	CCString* get_resourceID_Value(CCDictionary* subDict)
+	{
+		return getValueOf(subDict, "resourceID");
+	}
+
+
 
 protected:
-	#__CLASS_NAME__():m_pArray(NULL)
+	DTEffect():m_pArray(NULL)
 	{}
-	~#__CLASS_NAME__()
+	~DTEffect()
 	{
 		CC_SAFE_RELEASE(m_pArray);
 	}
@@ -70,4 +108,4 @@ private:
 };
 
 
-#endif	// __#__CLASS_NAME____
+#endif	// __DTEffect__

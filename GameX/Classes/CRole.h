@@ -13,6 +13,7 @@
 #include "CFightingRelationship.h"
 #include "CSpriteObject.h"
 #include "CBackgroundManager.h"
+#include "ICCBAnimationDelegate.h"
 
 #define ROLE_FACE_TO_LEFT_PREFIX        "FL_"
 #define ROLE_FACE_TO_RIGHT_PREFIX       "FR_"
@@ -110,6 +111,9 @@ public:
     virtual float getDistanceSqInGrid(IGridRole* role);
     virtual bool checkInGridRadiusSq(IGridRole* role, float radiusInGrid);
 
+    virtual void addCCBAnimationDelegate(ICCBAnimationDelegate* delegate);
+
+    virtual void damage(float damagePoint, CRole* attacker);     // damagePoint should be a positive value and this value while be minue from CurHp
 protected:
 	CRole();
     void clearThis();
@@ -118,6 +122,9 @@ protected:
     virtual void addComponentsForStates();
 
     VS m_faceToPrefix;
+    
+    
+    SAD m_ccbAnimatonDelegates;
 private:
 };
 

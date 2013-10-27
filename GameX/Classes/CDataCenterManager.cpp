@@ -44,6 +44,9 @@ bool CDataCenterManager::initialize()
         m_DTSkill = new DTSkill;
         m_DTSkill->loadData2CCDictionary();
         
+        m_DTEffect = new DTEffect;
+        m_DTEffect->loadData2CCArray();
+        
         return true;
     } while (false);
     

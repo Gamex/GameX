@@ -10,10 +10,16 @@ class DTLevel
 {
 	friend class CDataCenterManager;
 public:
+    int getArrayCount() const
+    {
+        return m_pArray->count();
+    }
+    
 	CCArray* getRoot() const
 	{
 		return m_pArray;
 	}
+    
 	void loadData2CCArray()
     {
         if (NULL == m_pArray)

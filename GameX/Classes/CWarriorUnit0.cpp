@@ -21,3 +21,8 @@ CWarriorUnit0::~CWarriorUnit0()
 
 
 
+void CWarriorUnit0::think()
+{
+    CWarriorRole::think();
+}
+

@@ -26,7 +26,7 @@ public:
 			CCDictionary* elem = CCDictionary::create();
 			
 			elem->setObject(CCString::create("skill_1"), "name");
-			elem->setObject(CCString::create("CSkillComp"), "className");
+			elem->setObject(CCString::create("CSkillMeleeAttack"), "className");
 			elem->setObject(CCString::create("0"), "cd");
 			elem->setObject(CCString::create("0"), "trigger");
 			elem->setObject(CCString::create("0"), "param");
@@ -55,7 +55,7 @@ public:
 			CCDictionary* elem = CCDictionary::create();
 			
 			elem->setObject(CCString::create("skill_2"), "name");
-			elem->setObject(CCString::create("CSkillComp"), "className");
+			elem->setObject(CCString::create("CSkillMarineGunAttack"), "className");
 			elem->setObject(CCString::create("0"), "cd");
 			elem->setObject(CCString::create("0"), "trigger");
 			elem->setObject(CCString::create("0"), "param");
@@ -84,7 +84,7 @@ public:
 			CCDictionary* elem = CCDictionary::create();
 			
 			elem->setObject(CCString::create("skill_3"), "name");
-			elem->setObject(CCString::create("CSkillComp"), "className");
+			elem->setObject(CCString::create("CSkillMeleeAttack"), "className");
 			elem->setObject(CCString::create("0"), "cd");
 			elem->setObject(CCString::create("0"), "trigger");
 			elem->setObject(CCString::create("0"), "param");

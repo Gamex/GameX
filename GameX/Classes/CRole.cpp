@@ -6,7 +6,6 @@
 //
 //
 #include "CRole.h"
-#include "TFGameObjectManager.h"
 #include "CBackgroundManager.h"
 #include "CMoveOnGridComp.h"
 #include "CBattleFiledManager.h"
@@ -84,6 +83,13 @@ bool CRole::init(const string& unitId)
     } while (false);
     
     return false;
+}
+
+
+
+void CRole::addCCBAnimationDelegate(ICCBAnimationDelegate* delegate)
+{
+    m_ccbAnimatonDelegates.insert(delegate);
 }
 
 
@@ -419,3 +425,27 @@ CCPoint CRole::getPositionInGrid()
     return pos;
 }
 
+
+
+void CRole::damage(float damagePoint, CRole* attacker)
+{
+    float curHP = getCurHP();
+    curHP = curHP - damagePoint;
+    if (FLT_LE(curHP, 0.f))
+    {
+        setCurHP(0.f);
+        changeState(ROLE_STATE_DYING);
+    }
+    else
+    {
+        setCurHP(curHP);
+        
+        if (attacker)
+        {
+            if (getMovetarget().equals(CCPoint(-1.f, -1.f)))
+            {
+                setMoveTarget(attacker->getLogicGrid()->getGridPos());
+            }
+        }
+    }
+}
