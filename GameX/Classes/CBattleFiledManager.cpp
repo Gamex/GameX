@@ -13,6 +13,7 @@ IMPLEMENT_SINGLETON(CBattleFiledManager);
 
 
 CBattleFiledManager::CBattleFiledManager()
+: m_defenderInBattle(false)
 {
 }
 
@@ -23,6 +24,18 @@ CBattleFiledManager::~CBattleFiledManager()
     removeAll();
 }
 
+
+
+bool CBattleFiledManager::init()
+{
+    do
+    {
+        m_defenderInBattle = false;
+        return true;
+    } while (false);
+    
+    return false;
+}
 
 
 void CBattleFiledManager::addRole(CRole* role)
@@ -70,4 +83,15 @@ SR& CBattleFiledManager::getRoles(ROLE_GROUP group)
 
 
 
-
+void CBattleFiledManager::wakeUpAllDefender()
+{
+    if (!m_defenderInBattle)
+    {
+        SR& df = m_roleByGroups[ROLE_GROUP_DEFENCE];
+        SR_IT it = df.begin();
+        for (; it != df.end(); ++it)
+        {
+            (*it)->enterBattleState();
+        }
+    }
+}

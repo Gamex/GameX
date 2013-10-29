@@ -95,7 +95,7 @@ void CFormationLayer::onFrameSel(const std::string& unitId)
         CCString* class_name = DTUNIT->get_className_Value(dict);
         CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_name->getCString()));
         CC_ASSERT(role);
-        role->init(unitId);
+        role->init(unitId, true);
         bkgGrd->placeRole(role, grid->getGridPos());
         role->attachSpriteTo(bkgGrd);
         m_roleNode->addChild(role);
@@ -292,7 +292,7 @@ void CFormationLayer::onLoad(CFormation* fmt)
             CCString* className = DTUNIT->get_className_Value(dict);
             CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(className->getCString()));
             CC_ASSERT(role);
-            role->init(fe->unitId);
+            role->init(fe->unitId, true);
             bkgGrd->placeRole(role, fe->pos);
             role->attachSpriteTo(bkgGrd);
             m_roleNode->addChild(role);

@@ -35,6 +35,8 @@ protected:
     
     CBackgroundManager* m_bkgMgr;
     VNC m_caches;
+    
+    CCSpriteBatchNode* m_batchNode;
 };
 
 

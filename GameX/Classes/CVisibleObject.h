@@ -63,6 +63,11 @@ public:
     virtual void clearAll();
     
     virtual CCNode* getInnerSprite() const=0;
+    
+    virtual bool addSlot(CVisibleObject* vo, int tag);
+    virtual void removeSlot(CVisibleObject* vo);
+    virtual void removeSlotByTag(int tag);
+    virtual void updateSlots(float dt);
  
 protected:
     CVisibleObject();
@@ -80,6 +85,8 @@ protected:
     bool m_isCachePosition;
     
     CCArray m_runningActions;
+    
+    MISVO m_slots;
 private:
 };
 

@@ -13,8 +13,7 @@
 
 
 CWarriorRole::CWarriorRole()
-: m_pHPBar(NULL)
-, m_visionRadiusSq(0.f)
+: m_visionRadiusSq(0.f)
 {
     
 }
@@ -68,11 +67,11 @@ CC_ASSERT(str);\
 addSkillByName(str->getCString(), __SKILL_IDX__);\
 }
 
-bool CWarriorRole::init(const string& unitId)
+bool CWarriorRole::init(const string& unitId, bool editorMode)
 {
     do
     {
-        BREAK_IF(!CRole::init(unitId));
+        BREAK_IF(!CRole::init(unitId, editorMode));
         
         CCDictionary* dict = DTUNIT->getData(unitId);
 
@@ -87,13 +86,20 @@ bool CWarriorRole::init(const string& unitId)
 //        LOAD_SKILL(3);
 //        LOAD_SKILL(4);
 //        LOAD_SKILL(5);
-        
+
         return true;
     } while (false);
     
     return false;
 }
 
+
+
+void CWarriorRole::enterBattleState()
+{
+    CRole::enterBattleState();
+    m_visionRadiusSq = FLT_MAX;
+}
 
 
 void CWarriorRole::update(float dt)
@@ -109,11 +115,6 @@ void CWarriorRole::die()
 {
     CRole::die();
     
-    if (m_pHPBar != NULL)
-    {
-        m_pHPBar->setSpriteVisible(false);
-    }
-    
     m_ccbAnimatonDelegates.clear();
 }
 
@@ -128,25 +129,6 @@ void CWarriorRole::prepareToDie()
     setRoleGroup(ROLE_GROUP_NA);
     
     setSpriteVertexZ(-900);
-}
-
-
-
-bool CWarriorRole::createHPBar()
-{
-    do
-    {
-//        setHPBar(dynamic_cast<TFHPBar*>(CObjectBase::createObject(getHPBarName())));
-//        BREAK_IF(NULL == getHPBar());
-//        
-//        float w = m_pHPBar->getSpriteContentSize().width;
-//        m_pHPBar->setSpritePosition(ccp(w / 2.f + 2.f, 0));
-//        addChild(m_pHPBar);
-//        m_pHPBar->attachSpriteTo(getInnerSprite());
-        return true;
-    } while (false);
-    
-    return false;
 }
 
 
@@ -259,7 +241,7 @@ void CWarriorRole::thinkOfVisionField()
     CWarriorRole* target = NULL;
     float distance = m_visionRadiusSq;
 
-    SR& roles = BF_MANAGER->getRoles(m_roleGroup == ROLE_GROUP_ATTACK ? ROLE_GROUP_DEFENDCE : ROLE_GROUP_ATTACK);
+    SR& roles = BF_MANAGER->getRoles(m_roleGroup == ROLE_GROUP_ATTACK ? ROLE_GROUP_DEFENCE : ROLE_GROUP_ATTACK);
     SR_IT it = roles.begin();
     for (; it != roles.end(); ++it)
     {

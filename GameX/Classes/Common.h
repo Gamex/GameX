@@ -230,6 +230,10 @@ typedef std::vector<class CNodeContainer*> VNC;
 typedef std::vector<class CNodeContainer*>::iterator VNC_IT;
 typedef std::vector<class CNodeContainer*>::const_iterator VNC_CIT;
 
+typedef std::map<int, class CVisibleObject*> MISVO;
+typedef std::map<int, class CVisibleObject*>::iterator MISVO_IT;
+typedef std::map<int, class CVisibleObject*>::const_iterator MISVO_CIT;
+
 #pragma mark --debug
 
 #ifdef DEBUG

@@ -74,7 +74,7 @@ bool CFormationPanelLayer::init()
             CCString* class_name = DTUNIT->get_className_Value(dict);
             CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_name->getCString()));
             CC_ASSERT(role);
-            role->init(m_editRoleIds[i]);
+            role->init(m_editRoleIds[i], true);
 
             m_allRoles->addObject(role);
         }

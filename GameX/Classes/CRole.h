@@ -14,6 +14,7 @@
 #include "CSpriteObject.h"
 #include "CBackgroundManager.h"
 #include "ICCBAnimationDelegate.h"
+#include "CHPBar.h"
 
 #define ROLE_FACE_TO_LEFT_PREFIX        "FL_"
 #define ROLE_FACE_TO_RIGHT_PREFIX       "FR_"
@@ -48,9 +49,10 @@ enum ROLE_GROUP
 {
     ROLE_GROUP_NA,
     ROLE_GROUP_ATTACK,
-    ROLE_GROUP_DEFENDCE,
+    ROLE_GROUP_DEFENCE,
     ROLE_GROUP_MAX,
 };
+
 
 class CRole
 : public CSpriteObject
@@ -58,6 +60,8 @@ class CRole
 , public IGridRole
 {
     friend class CObjectBase;
+    
+    CC_SYNTHESIZE_RETAIN(CHPBar*, m_pHPBar, HPBar);
     CC_SYNTHESIZE(FACE_TO, m_faceTo, FaceTo);
     CC_SYNTHESIZE_PASS_BY_REF(string, m_unitId, UnitId);
     CC_PROPERTY(ROLE_GROUP, m_roleGroup, RoleGroup);
@@ -77,7 +81,7 @@ public:
 
     virtual _FIGHTING_RELATION_TYPE getRelationType();
     
-    virtual bool init(const string& unitId);
+    virtual bool init(const string& unitId, bool editorMode = false);
     virtual bool init();
     virtual bool changeState(int state);
     virtual bool attachSpriteTo(CCNode* parent, int zOrder = 0, int tag = -1);
@@ -92,6 +96,8 @@ public:
     virtual void attack(CRole* pAt);
     virtual CRole* getAttackTarget();
 
+    
+    virtual bool createHPBar();
     
     virtual void updateVertexZ();
     virtual void onPlaceOnMap(const CCPoint& gridPos, const CCPoint& position);
@@ -114,6 +120,7 @@ public:
     virtual void addCCBAnimationDelegate(ICCBAnimationDelegate* delegate);
 
     virtual void damage(float damagePoint, CRole* attacker);     // damagePoint should be a positive value and this value while be minue from CurHp
+    virtual void enterBattleState(){}
 protected:
 	CRole();
     void clearThis();

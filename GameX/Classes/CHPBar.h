@@ -1,34 +1,35 @@
 //
-//  TFHPBar.h
+//  CHPBar.h
 //  TheForce
 //
 //  Created by Ray M on 13-2-19.
 //  Copyright (c) 2013年 Tencent. All rights reserved.
 //
 
-#ifndef __TheForce__TFHPBar__
-#define __TheForce__TFHPBar__
+#ifndef __TheForce__CHPBar__
+#define __TheForce__CHPBar__
 
 #include "CSpriteObject.h"
 #include "CScale9SpriteObject.h"
 
 
-class TFHPBar : public CSpriteObject
+class CHPBar : public CSpriteObject
 {
     friend class CObjectBase;
     CC_SYNTHESIZE_RETAIN(CScale9SpriteObject*, m_pBar, Bar);
 public:
-    FACTORY_CREATE_FUNC(TFHPBar);
-    virtual ~TFHPBar();
+    FACTORY_CREATE_FUNC(CHPBar);
+    virtual ~CHPBar();
 
     virtual void setPercentage(float percentage);
     virtual void setSpriteVisible(bool visible);
-    virtual bool init();
+    virtual bool init(const char* foregroundName, const char* backgroundName);
     virtual void update(float dt);
     virtual void clearAll();
 
+    virtual bool attachSpriteTo(CCNode* parent, int zOrder = 0, int tag = -1);
 protected:
-    TFHPBar();
+    CHPBar();
     void clearThis();
     
     void updateBar();
@@ -39,4 +40,4 @@ private:
     
 };
 
-#endif /* defined(__TheForce__TFHPBar__) */
+#endif /* defined(__TheForce__CHPBar__) */

@@ -72,6 +72,8 @@ bool CBattleFieldLayer::init()
         addChild(m_pGamePanelLayer, Z_ORDER_GAME_PANEL);
 
         BREAK_IF_FAILED(EFFECT_MANAGER->init(getBkgGrd()));
+        
+        BREAK_IF_FAILED(BF_MANAGER->init());
 
         loadFormation();
         scheduleUpdate();
@@ -94,6 +96,7 @@ void CBattleFieldLayer::update(float dt)
     BF_MANAGER->update(dt);
     
     EFFECT_MANAGER->update(dt);
+
     
     TP_LOG("1", 0);
     
@@ -268,7 +271,7 @@ bool CBattleFieldLayer::loadFormation()
         bkgGrd->placeRole(role, fe->pos);
         role->setMoveTarget(fe->pos);
         role->attachSpriteTo(bkgGrd);
-        role->setRoleGroup(ROLE_GROUP_DEFENDCE);
+        role->setRoleGroup(ROLE_GROUP_DEFENCE);
         addChild(role);
     }
     return true;

@@ -33,6 +33,7 @@ public:
     virtual void clearAll();
     
     virtual void setEffectTarget(CRole* target);
+    virtual CRole* getEffectTarget();
     
     virtual SEL_CallFuncN onResolveCCBCCCallFuncSelector(CCObject * pTarget, const char* pSelectorName);
 

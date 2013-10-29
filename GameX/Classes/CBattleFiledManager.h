@@ -16,16 +16,19 @@
 class CBattleFiledManager : public CSingleton<CBattleFiledManager>
 {
     CC_SYNTHESIZE(float, m_maxLoopTime, MaxLoopTime);
+    CC_SYNTHESIZE(bool, m_defenderInBattle, DefenderInBattle);
 public:
     CBattleFiledManager();
     virtual ~CBattleFiledManager();
     
-//    virtual bool init();
+    virtual bool init();
     virtual void addRole(CRole* role);
     virtual void removeRole(CRole* role);
     virtual SR& getRoles(ROLE_GROUP group);
     virtual void removeAll();
     virtual void update(float dt);
+    
+    virtual void wakeUpAllDefender();
 protected:
     
     SR m_roleByGroups[ROLE_GROUP_MAX];

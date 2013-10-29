@@ -163,7 +163,7 @@
 		54DFBED517DB747900B006F3 /* CWarriorRole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE8217DB747800B006F3 /* CWarriorRole.cpp */; };
 		54DFBED717DB747900B006F3 /* TFCollisionMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE8917DB747900B006F3 /* TFCollisionMgr.cpp */; };
 		54DFBED817DB747900B006F3 /* TFCollisionProtocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE8B17DB747900B006F3 /* TFCollisionProtocol.cpp */; };
-		54DFBEDA17DB747900B006F3 /* TFHPBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE8F17DB747900B006F3 /* TFHPBar.cpp */; };
+		54DFBEDA17DB747900B006F3 /* CHPBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE8F17DB747900B006F3 /* CHPBar.cpp */; };
 		54DFBEDD17DB747900B006F3 /* TFPListReaderHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE9517DB747900B006F3 /* TFPListReaderHelper.cpp */; };
 		54DFBEDE17DB747900B006F3 /* UtilityFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBE9717DB747900B006F3 /* UtilityFunction.cpp */; };
 		54DFBEE017DB77CC00B006F3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54DFBEDF17DB77CC00B006F3 /* Info.plist */; };
@@ -484,8 +484,8 @@
 		54DFBE8A17DB747900B006F3 /* TFCollisionMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFCollisionMgr.h; path = ../../Classes/TFCollisionMgr.h; sourceTree = "<group>"; };
 		54DFBE8B17DB747900B006F3 /* TFCollisionProtocol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TFCollisionProtocol.cpp; path = ../../Classes/TFCollisionProtocol.cpp; sourceTree = "<group>"; };
 		54DFBE8C17DB747900B006F3 /* TFCollisionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFCollisionProtocol.h; path = ../../Classes/TFCollisionProtocol.h; sourceTree = "<group>"; };
-		54DFBE8F17DB747900B006F3 /* TFHPBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TFHPBar.cpp; path = ../../Classes/TFHPBar.cpp; sourceTree = "<group>"; };
-		54DFBE9017DB747900B006F3 /* TFHPBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHPBar.h; path = ../../Classes/TFHPBar.h; sourceTree = "<group>"; };
+		54DFBE8F17DB747900B006F3 /* CHPBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CHPBar.cpp; path = ../../Classes/CHPBar.cpp; sourceTree = "<group>"; };
+		54DFBE9017DB747900B006F3 /* CHPBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHPBar.h; path = ../../Classes/CHPBar.h; sourceTree = "<group>"; };
 		54DFBE9517DB747900B006F3 /* TFPListReaderHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TFPListReaderHelper.cpp; path = ../../Classes/TFPListReaderHelper.cpp; sourceTree = "<group>"; };
 		54DFBE9617DB747900B006F3 /* TFPListReaderHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFPListReaderHelper.h; path = ../../Classes/TFPListReaderHelper.h; sourceTree = "<group>"; };
 		54DFBE9717DB747900B006F3 /* UtilityFunction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = UtilityFunction.cpp; path = ../../Classes/UtilityFunction.cpp; sourceTree = "<group>"; };
@@ -912,8 +912,8 @@
 				54DFBE2B17DB747800B006F3 /* CCircleSensor.h */,
 				54DFBE5F17DB747800B006F3 /* CPath.cpp */,
 				54DFBE6017DB747800B006F3 /* CPath.h */,
-				54DFBE8F17DB747900B006F3 /* TFHPBar.cpp */,
-				54DFBE9017DB747900B006F3 /* TFHPBar.h */,
+				54DFBE8F17DB747900B006F3 /* CHPBar.cpp */,
+				54DFBE9017DB747900B006F3 /* CHPBar.h */,
 			);
 			name = GameObjects;
 			sourceTree = "<group>";
@@ -1216,7 +1216,7 @@
 				54DFBED517DB747900B006F3 /* CWarriorRole.cpp in Sources */,
 				54DFBED717DB747900B006F3 /* TFCollisionMgr.cpp in Sources */,
 				54DFBED817DB747900B006F3 /* TFCollisionProtocol.cpp in Sources */,
-				54DFBEDA17DB747900B006F3 /* TFHPBar.cpp in Sources */,
+				54DFBEDA17DB747900B006F3 /* CHPBar.cpp in Sources */,
 				54DFBEDD17DB747900B006F3 /* TFPListReaderHelper.cpp in Sources */,
 				54DFBEDE17DB747900B006F3 /* UtilityFunction.cpp in Sources */,
 				543EE19C17DB838F0096D97E /* CCBAnimationManager.cpp in Sources */,

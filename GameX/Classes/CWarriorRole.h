@@ -10,7 +10,7 @@
 #define __GameX__CWarriorRole__
 
 #include "CRole.h"
-#include "TFHPBar.h"
+#include "CHPBar.h"
 #include "ICCBAnimationDelegate.h"
 
 class CSkillComp;
@@ -33,13 +33,12 @@ enum WARRIOR_ROLE_STATE
 
 class CWarriorRole : public CRole
 {
-    CC_SYNTHESIZE_RETAIN(TFHPBar*, m_pHPBar, HPBar);
 public:
     FACTORY_CREATE_FUNC(CWarriorRole);
     
     virtual ~CWarriorRole();
 
-    virtual bool init(const string& unitId);
+    virtual bool init(const string& unitId, bool editorMode = false);
     virtual void die();
     
     virtual void update(float dt);
@@ -62,10 +61,10 @@ public:
     
     virtual void think();
     
+    virtual void enterBattleState();
 protected:
     CWarriorRole();
-
-    virtual bool createHPBar();
+    
     virtual void findNearestMonsterToAttack(){};
 
     virtual void thinkOfVisionField();

@@ -34,7 +34,7 @@ public:
 			elem->setObject(CCString::create("1"), "skillID");
 			elem->setObject(CCString::create("CGameEffect"), "className");
 			elem->setObject(CCString::create("100"), "cacheNum");
-			elem->setObject(CCString::create("Effect0"), "resourceID");
+			elem->setObject(CCString::create("effect0"), "resourceID");
 
 			
 			m_pArray->addObject(elem);

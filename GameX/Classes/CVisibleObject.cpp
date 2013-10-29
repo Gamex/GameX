@@ -30,6 +30,8 @@ CVisibleObject::~CVisibleObject()
 void CVisibleObject::update(float dt)
 {
     CObjectBase::update(dt);
+
+    updateSlots(dt);
     
     updateBoundingBoxInWorldSpace();
 }
@@ -515,6 +517,60 @@ void CVisibleObject::_enableAlphaTestR(CCNode* node, float value)
 void CVisibleObject::enableAlphaTest(float value)
 {
     _enableAlphaTestR(getInnerSprite(), value);
+}
+
+
+
+bool CVisibleObject::addSlot(CVisibleObject* vo, int tag)
+{
+    MISVO_IT it = m_slots.find(tag);
+    if (it == m_slots.end())
+    {
+        vo->setTag(tag);
+        m_slots[tag] = vo;
+        
+        return true;
+    }
+    
+    
+    return false;
+}
+
+
+
+void CVisibleObject::removeSlot(CVisibleObject* vo)
+{
+    MISVO_IT it = m_slots.find(vo->getTag());
+    if (it != m_slots.end())
+    {
+        m_slots.erase(it);
+    }
+}
+
+
+
+void CVisibleObject::removeSlotByTag(int tag)
+{
+    MISVO_IT it = m_slots.find(tag);
+    if (it != m_slots.end())
+    {
+        m_slots.erase(it);
+    }
+}
+
+
+
+void CVisibleObject::updateSlots(float dt)
+{
+    CCPoint pt = getSpritePosition();
+    MISVO_IT it = m_slots.begin();
+    for (; it != m_slots.end(); ++it)
+    {
+        CVisibleObject* vo = (*it).second;
+        vo->setSpritePosition(pt + vo->getPosition());
+        
+        vo->update(dt);
+    }
 }
 
 

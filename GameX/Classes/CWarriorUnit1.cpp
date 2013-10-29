@@ -19,9 +19,9 @@ CWarriorUnit1::~CWarriorUnit1()
 }
 
 
-bool CWarriorUnit1::init(const string& unitId)
+bool CWarriorUnit1::init(const string& unitId, bool editorMode)
 {
-    return CWarriorRole::init(unitId);
+    return CWarriorRole::init(unitId, editorMode);
 }
 
 

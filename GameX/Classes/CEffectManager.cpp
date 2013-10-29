@@ -14,6 +14,7 @@ IMPLEMENT_SINGLETON(CEffectManager);
 
 CEffectManager::CEffectManager()
 : m_bkgMgr(NULL)
+, m_batchNode(NULL)
 {
 }
 
@@ -34,6 +35,7 @@ void CEffectManager::clear()
         delete *it;
     }
     m_caches.clear();
+    
 }
 
 
@@ -61,7 +63,7 @@ bool CEffectManager::init(CBackgroundManager* bm)
             CC_ASSERT(s);
             
             
-            CNodeContainer* nc = new CNodeContainer[eftCount];
+            CNodeContainer* nc = new CNodeContainer;
             bool res = nc->initCache(s->getCString(), cacheNum, this,
                                          (NODE_CONTAINER_INIT_CALL_BACK)&CEffectManager::onCacheElemInit,
                                          (void*)i);
@@ -86,9 +88,13 @@ void CEffectManager::update(float dt)
         SOB_IT sob_it = sob.begin();
         for (; sob_it != sob.end(); ++sob_it)
         {
-            if ((*sob_it)->isDead())
+            CGameEffect* gf = (CGameEffect*)(*sob_it);
+            if (gf->isDead())
             {
-                toDel.insert(*sob_it);
+                toDel.insert(gf);
+                CRole* et = gf->getEffectTarget();
+                CC_ASSERT(et);
+                et->removeSlot(gf);
             }
         }
         
@@ -115,8 +121,13 @@ CGameEffect* CEffectManager::createEffect(int eftNo, CRole* target)
         CCPoint pt = target->getSpritePosition();
         effect->setSpritePosition(pt);
         
-        effect->playAnimation(EFFECT_ANIMATION_RUN);
+        if (!target->addSlot(effect, effect->getTag()))
+        {
+            effect->setSpriteVisible(false);
+        }
         
+        effect->playAnimation(EFFECT_ANIMATION_RUN);
+
         effect->setEffectTarget(target);
         return effect;
 
@@ -138,6 +149,8 @@ bool CEffectManager::onCacheElemInit(SOB& unUseArrray, CObjectBase* curObj, void
         CGameEffect* gf = (CGameEffect*)curObj;
         BREAK_IF_FAILED(gf->init(s->getCString()));
         curObj->die();
+        
+        curObj->setTag(idx);
         
         gf->attachSpriteTo(m_bkgMgr);
         return true;

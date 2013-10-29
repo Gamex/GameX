@@ -18,7 +18,7 @@ public:
     FACTORY_CREATE_FUNC(CWarriorUnit1);
     virtual ~CWarriorUnit1();
 
-    virtual bool init(const string& unitId);
+    virtual bool init(const string& unitId, bool editorMode = false);
     virtual void think();
 protected:
     CWarriorUnit1();

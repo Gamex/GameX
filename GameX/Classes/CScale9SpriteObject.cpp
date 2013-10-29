@@ -45,20 +45,20 @@ bool CScale9SpriteObject::init(const std::string& name)
 
 bool CScale9SpriteObject::createScale9Sprite(const std::string& name)
 {
-    std::string _name = name;
-    std::string::size_type pos = name.find(".png", 0);
-    if (pos != std::string::npos)
-    {
-        _name = name.substr(0, pos);
-    }
+//    std::string _name = name;
+//    std::string::size_type pos = name.find(".png", 0);
+//    if (pos != std::string::npos)
+//    {
+//        _name = name.substr(0, pos);
+//    }
     
-    CCSpriteFrame *pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(_name.c_str());
+    CCSpriteFrame *pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name.c_str());
     if (NULL == pFrame)
     {
         return false;
     }
-//    OrigBarSize_ = pFrame->getRect().size;
-    m_pSprite = CCScale9Sprite::createWithSpriteFrameName(_name.c_str(), pFrame->getRect());
+    CCSize sz = pFrame->getRect().size;
+    m_pSprite = CCScale9Sprite::createWithSpriteFrameName(name.c_str(), CCRect(1, 1, sz.width-2, sz.height-2));
     if (NULL == m_pSprite)
     {
         return false;

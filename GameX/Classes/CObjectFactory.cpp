@@ -9,7 +9,7 @@
 #include "CObjectFactory.h"
 #include "CObjectBase.h"
 #include "CRole.h"
-#include "TFHPBar.h"
+#include "CHPBar.h"
 #include "CScale9SpriteObject.h"
 #include "CSpriteObject.h"
 #include "CCircleSensor.h"
@@ -43,7 +43,7 @@ CObjectFactory::~CObjectFactory()
 bool CObjectFactory::Initialize()
 {
     REGISTER_CLASS(CRole);
-    REGISTER_CLASS(TFHPBar);
+    REGISTER_CLASS(CHPBar);
     REGISTER_CLASS(CSpriteObject);
     REGISTER_CLASS(CScale9SpriteObject);
     REGISTER_CLASS(CCircleSensor);

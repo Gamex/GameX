@@ -11,6 +11,10 @@
 #include "CBattleFiledManager.h"
 #include "CDataCenterManager.h"
 #include "CWarriorDyingComp.h"
+#include "CHPBar.h"
+
+
+#define TAG_HUD_HPBAR   1000
 
 
 CRole::CRole()
@@ -19,6 +23,7 @@ CRole::CRole()
 #ifdef DEBUG
 , m_mark(false)
 #endif
+, m_pHPBar(NULL)
 {
 
 }
@@ -49,7 +54,7 @@ void CRole::setInnerSprite(CCSprite* var)
 }
 
 
-bool CRole::init(const string& unitId)
+bool CRole::init(const string& unitId, bool editorMode)
 {
     do
     {
@@ -79,6 +84,13 @@ bool CRole::init(const string& unitId)
         
         BREAK_IF_FAILED(CSpriteObject::setSpriteFromCcbi(DTUNIT->get_resourceID_Value(dict)->getCString()));
         
+        if (!editorMode)
+        {
+            BREAK_IF_FAILED(createHPBar());
+            m_pHPBar->setPercentage(1.f);
+            CCSize sz = getSpriteContentSize();
+            m_pHPBar->setPosition(0, sz.height);
+        }
         return true;
     } while (false);
     
@@ -132,6 +144,7 @@ void CRole::clearAll()
 
 void CRole::clearThis()
 {
+    setHPBar(NULL);
 }
 
 
@@ -179,6 +192,12 @@ void CRole::die()
     CSpriteObject::die();
     
     setSpriteVisible(false);
+    
+    
+    if (m_pHPBar != NULL)
+    {
+        m_pHPBar->setSpriteVisible(false);
+    }
 }
 
 
@@ -187,6 +206,11 @@ void CRole::revive()
 {
     CSpriteObject::revive();
     BF_MANAGER->addRole(this);
+    
+    if (m_pHPBar != NULL)
+    {
+        m_pHPBar->setSpriteVisible(true);
+    }
 }
 
 
@@ -259,6 +283,11 @@ bool CRole::attachSpriteTo(CCNode* parent, int zOrder, int tag)
         BREAK_IF(!CSpriteObject::attachSpriteTo(parent, zOrder, tag));
         updateVertexZ();
         
+        
+        if (m_pHPBar)
+        {
+            m_pHPBar->attachSpriteTo(parent, zOrder);
+        }
         return true;
     } while (false);
 	return false;
@@ -448,4 +477,30 @@ void CRole::damage(float damagePoint, CRole* attacker)
             }
         }
     }
+    
+    m_pHPBar->setPercentage(getCurHP() / getMaxHP());
+    
+    BF_MANAGER->wakeUpAllDefender();
+}
+
+
+
+bool CRole::createHPBar()
+{
+    do
+    {
+        setHPBar((CHPBar*)(OBJECT_FACTORY->createInstance("CHPBar")));
+        BREAK_IF_FAILED(getHPBar());
+
+        BREAK_IF_FAILED(m_pHPBar->init("huds/hp_bar_fg0.png", "huds/hp_bar_bg0.png"));
+        float w = m_pHPBar->getSpriteContentSize().width;
+        m_pHPBar->setSpritePosition(ccp(w / 2.f + 2.f, 0));
+        addSlot(m_pHPBar, TAG_HUD_HPBAR);
+//        addChild(m_pHPBar);
+//        m_pHPBar->attachSpriteTo(getInnerSprite());
+
+        return true;
+    } while (false);
+    
+    return false;
 }

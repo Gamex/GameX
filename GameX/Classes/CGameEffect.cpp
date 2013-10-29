@@ -113,3 +113,8 @@ void CGameEffect::setEffectTarget(CRole* target)
 
 
 
+CRole* CGameEffect::getEffectTarget()
+{
+    return m_effectTarget;
+}
+
