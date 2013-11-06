@@ -88,6 +88,7 @@ public:
     
     virtual void die();
     virtual void revive();
+    virtual bool isDying();
     
 	virtual void update(float dt);
     virtual void clearAll();

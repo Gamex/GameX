@@ -49,13 +49,10 @@ bool CHPBar::init(const char* foregroundName, const char* backgroundName)
         setBar((CScale9SpriteObject*)OBJECT_FACTORY->createInstance("CScale9SpriteObject"));
         BREAK_IF_FAILED(getBar());
         BREAK_IF_FAILED(m_pBar->init(foregroundName));
-        
-//        m_pBar->setSpriteAnchorPoint(ccp(1.f, 0.5f));
-        
+       
         OrigBarSize_ = m_pBar->getSpriteContentSize();
         
         addChild(m_pBar);
-//        m_pBar->attachSpriteTo(m_pBar);
 
         updateBar();
         return true;

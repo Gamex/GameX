@@ -84,6 +84,8 @@ class CBackgroundManager
     CC_SYNTHESIZE_READONLY(CCTMXLayer*, m_objectLayer, ObjectLayer);
     CC_SYNTHESIZE(float, m_mapScaleThresholdMax, MapScaleThresholdMax);
     CC_SYNTHESIZE(float, m_mapScaleThresholdMin, MapScaleThresholdMin);
+    
+    CC_SYNTHESIZE_READONLY(CCTMXTiledMap*, m_bkgMap, BkgMap);
 public:
     CREATE_FUNC(CBackgroundManager);
     

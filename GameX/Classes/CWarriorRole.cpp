@@ -81,11 +81,11 @@ bool CWarriorRole::init(const string& unitId, bool editorMode)
 
         // load skills
         LOAD_SKILL(0);
-//        LOAD_SKILL(1);
-//        LOAD_SKILL(2);
-//        LOAD_SKILL(3);
-//        LOAD_SKILL(4);
-//        LOAD_SKILL(5);
+        LOAD_SKILL(1);
+        LOAD_SKILL(2);
+        LOAD_SKILL(3);
+        LOAD_SKILL(4);
+        LOAD_SKILL(5);
 
         return true;
     } while (false);
@@ -238,27 +238,36 @@ void CWarriorRole::updateSkipList(float dt)
 void CWarriorRole::thinkOfVisionField()
 {
     CC_ASSERT(m_roleGroup != ROLE_GROUP_NA);
-    CWarriorRole* target = NULL;
     float distance = m_visionRadiusSq;
-
-    SR& roles = BF_MANAGER->getRoles(m_roleGroup == ROLE_GROUP_ATTACK ? ROLE_GROUP_DEFENCE : ROLE_GROUP_ATTACK);
-    SR_IT it = roles.begin();
-    for (; it != roles.end(); ++it)
+    
+    CWarriorRole* target = (CWarriorRole*)getAttackTarget();
+    if (NULL == target)
     {
-        if (m_skipList.find((*it)) == m_skipList.end())
+        changeState(ROLE_STATE_MOVE);
+        SR& roles = BF_MANAGER->getRoles(m_roleGroup == ROLE_GROUP_ATTACK ? ROLE_GROUP_DEFENCE : ROLE_GROUP_ATTACK);
+        SR_IT it = roles.begin();
+        for (; it != roles.end(); ++it)
         {
-            CWarriorRole* role = (CWarriorRole*)(*it);
-            float dist = getDistanceSqInGrid((*it));
-            if (dist < distance)
+            if (m_skipList.find((*it)) == m_skipList.end())
             {
-                distance = dist;
-                target = role;
+                CWarriorRole* role = (CWarriorRole*)(*it);
+                float dist = getDistanceSqInGrid((*it));
+                if (dist < distance)
+                {
+                    distance = dist;
+                    target = role;
+                }
             }
+        }
+        if (target)
+        {
+            attack(target);
         }
     }
     
-    if (target)
+    if (target && !target->isDying() && !target->isDead())
     {
+        distance = getDistanceSqInGrid(target);
         SS_IT it = m_skillNames.begin();
         for (; it != m_skillNames.end(); ++it)
         {
@@ -280,6 +289,7 @@ void CWarriorRole::thinkOfVisionField()
     {
         setMoveTarget(CCPoint(-1, -1));
     }
+    
 }
 
 

@@ -38,8 +38,8 @@ bool CSkillComp::init(const string& skillName)
 
         str = DTSKILL->get_cd_Value(skillDict);
         CC_ASSERT(str);
-        m_CDTotalTime = str->floatValue();
-        m_CDLeftTime = m_CDTotalTime;
+        m_CDTotalTime = 1.f;//str->floatValue();
+        m_CDLeftTime = 0.f;
         
         m_strName = skillName;
         return true;
@@ -94,15 +94,7 @@ void CSkillComp::update(float dt)
         {
             CWarriorRoleCompBase::update(dt);
         }
-        
-        if (m_CDLeftTime > 0)
-        {
-            m_CDLeftTime -= dt;
-            if (FLT_LE(m_CDLeftTime, 0.f))
-            {
-                m_CDLeftTime = 0.f;
-            }
-        }
+
         
         if (!isEnabled()) return;
         
@@ -110,6 +102,15 @@ void CSkillComp::update(float dt)
         {
             case SKILL_SUB_STATE_READY:
                 THINK_AND_BREAK();
+                if (FLT_GE(m_CDLeftTime, 0))
+                {
+                    m_CDLeftTime -= dt;
+                    if (FLT_LE(m_CDLeftTime, 0.f))
+                    {
+                        m_CDLeftTime = 0.f;
+                        m_subState = SKILL_SUB_STATE_PRE_CAST;
+                    }
+                }
                 break;
             case SKILL_SUB_STATE_PRE_CAST:
                 m_ownerRole->setFaceTo(m_skillTarget);
@@ -140,7 +141,6 @@ bool CSkillComp::checkTarget(CRole* target, float distance)
 
         if (distance > m_attackRadiusSq)
         {
-            m_ownerRole->changeState(ROLE_STATE_MOVE);
             break;
         }
         m_skillTarget = target;
@@ -155,7 +155,7 @@ bool CSkillComp::checkTarget(CRole* target, float distance)
 void CSkillComp::action()
 {
     m_subState = SKILL_SUB_STATE_PRE_CAST;
-    m_CDLeftTime = m_CDTotalTime;
+    m_CDLeftTime = 0.f;
     
     m_ownerRole->setMoveTarget(m_skillTarget->getLogicGrid()->getGridPos());
 }
@@ -183,10 +183,8 @@ void CSkillComp::onSkillOver(CCNode* obj)
 #endif
     {
         m_subState = SKILL_SUB_STATE_POST_CAST;
+        m_CDLeftTime = m_CDTotalTime;
     }
-
-
-    m_ownerRole->changeState(ROLE_STATE_MOVE);
 
 }
 

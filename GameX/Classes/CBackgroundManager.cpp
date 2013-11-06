@@ -16,13 +16,14 @@
 #define BKG_BATCH_NODE_NAME     "bn_scene"
 
 
-#define NORMAL_GID              1
-#define HIGHTLITE_GID           2
+#define NORMAL_GID              0
+#define HIGHTLITE_GID           1
 
 #define TILE_MAP_NAME           "background.tmx"
 #define GROUND_LAYER_NAME       "ground"
 #define OBJECT_LAYER_NAME       "object"
 
+#define TILE_BKG_MAP_NAME       "bkg0.tmx"
 
 
 
@@ -83,12 +84,21 @@ bool CBackgroundManager::init()
         BREAK_IF_FAILED(m_tiledMap);
         CC_SAFE_RETAIN(m_tiledMap);
         
+        m_bkgMap = CCTMXTiledMap::create(TILE_BKG_MAP_NAME);
+        CC_SAFE_RETAIN(m_bkgMap);
+        
         m_groundLayer = m_tiledMap->layerNamed(GROUND_LAYER_NAME);
         m_objectLayer = m_tiledMap->layerNamed(OBJECT_LAYER_NAME);
         
         CCPoint centerTile = m_tiledMap->getMapSize();
         centerTile = centerTile * 0.5f;
         centerTileMapOnTileCoord(centerTile);
+        
+        CCPoint bkgCenterPoint = m_bkgMap->getContentSize() * 0.5f;
+        CCPoint tileCenterPoint = m_groundLayer->positionAt(centerTile);
+
+        m_bkgMap->setPosition(tileCenterPoint - bkgCenterPoint);
+        
 
         CCSize layerSz = m_groundLayer->getLayerSize();
         
@@ -103,6 +113,7 @@ bool CBackgroundManager::init()
             }
         }
 
+        addChild(m_bkgMap, -2);
         addChild(m_tiledMap, -1);
         
         m_pathFinder = new CPathFinderManager;

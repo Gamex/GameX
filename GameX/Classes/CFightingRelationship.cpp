@@ -39,66 +39,66 @@ void CFightingRelationship::add(IFightingRelation* villain, IFightingRelation* v
     CC_ASSERT(villain);
     CC_ASSERT(victim);
     
-    IFightingRelation::_FIGHTING_RELATION_TYPE villainType = villain->getRelationType();
-    IFightingRelation::_FIGHTING_RELATION_TYPE victimType = victim->getRelationType();
+//    IFightingRelation::_FIGHTING_RELATION_TYPE villainType = villain->getRelationType();
+//    IFightingRelation::_FIGHTING_RELATION_TYPE victimType = victim->getRelationType();
+//    
+//    MRVR_IT villain_it = m_villains.find(villain);
+//    MRVR_IT victim_it = m_victims.find(victim);
     
-    MRVR_IT villain_it = m_villains.find(villain);
-    MRVR_IT victim_it = m_victims.find(victim);
-    
-    switch (villainType)
-    {
-        case IFightingRelation::RELATION_1v1:
-        {
-            switch (victimType)
-            {
-                case IFightingRelation::RELATION_1v1:
-                    if (villain_it != m_villains.end() || victim_it != m_victims.end())
-                    {
-                        return;
-                    }
-                    break;
-                case IFightingRelation::RELATION_1vN:
-                    return;
-                    break;
-                case IFightingRelation::RELATION_Nv1:
-                    return;
-                    break;
-            }
-            break;
-        }
-        case IFightingRelation::RELATION_1vN:
-        {
-            switch (victimType)
-            {
-                case IFightingRelation::RELATION_1v1:
-                    return;
-                    break;
-                case IFightingRelation::RELATION_1vN:
-                    return;
-                    break;
-                case IFightingRelation::RELATION_Nv1:
-                    return;
-                    break;
-            }
-            break;
-        }
-        case IFightingRelation::RELATION_Nv1:
-        {
-            switch (victimType)
-            {
-                case IFightingRelation::RELATION_1v1:
-                    return;
-                    break;
-                case IFightingRelation::RELATION_1vN:
-                    return;
-                    break;
-                case IFightingRelation::RELATION_Nv1:
-                    return;
-                    break;
-            }
-            break;
-        }
-    }
+//    switch (villainType)
+//    {
+//        case IFightingRelation::RELATION_1v1:
+//        {
+//            switch (victimType)
+//            {
+//                case IFightingRelation::RELATION_1v1:
+//                    if (villain_it != m_villains.end() || victim_it != m_victims.end())
+//                    {
+//                        return;
+//                    }
+//                    break;
+//                case IFightingRelation::RELATION_1vN:
+//                    return;
+//                    break;
+//                case IFightingRelation::RELATION_Nv1:
+//                    return;
+//                    break;
+//            }
+//            break;
+//        }
+//        case IFightingRelation::RELATION_1vN:
+//        {
+//            switch (victimType)
+//            {
+//                case IFightingRelation::RELATION_1v1:
+//                    return;
+//                    break;
+//                case IFightingRelation::RELATION_1vN:
+//                    return;
+//                    break;
+//                case IFightingRelation::RELATION_Nv1:
+//                    return;
+//                    break;
+//            }
+//            break;
+//        }
+//        case IFightingRelation::RELATION_Nv1:
+//        {
+//            switch (victimType)
+//            {
+//                case IFightingRelation::RELATION_1v1:
+//                    return;
+//                    break;
+//                case IFightingRelation::RELATION_1vN:
+//                    return;
+//                    break;
+//                case IFightingRelation::RELATION_Nv1:
+//                    return;
+//                    break;
+//            }
+//            break;
+//        }
+//    }
     
     m_victims[victim].push_back(villain);
     m_villains[villain].push_back(victim);

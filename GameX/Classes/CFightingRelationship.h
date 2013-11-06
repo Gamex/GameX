@@ -24,6 +24,7 @@ public:
         RELATION_1v1,
         RELATION_1vN,
         RELATION_Nv1,
+        RELATION_NvN,
     };
     
     IFightingRelation(){}

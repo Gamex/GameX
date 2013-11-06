@@ -214,6 +214,12 @@ void CRole::revive()
 }
 
 
+bool CRole::isDying()
+{
+    return getCurrentState() == ROLE_STATE_DYING;
+}
+
+
 void CRole::onPlaceOnMap(const CCPoint& gridPos, const CCPoint& position)
 {
     setSpritePosition(position);
