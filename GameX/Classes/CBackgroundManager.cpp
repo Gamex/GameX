@@ -23,7 +23,7 @@
 #define GROUND_LAYER_NAME       "ground"
 #define OBJECT_LAYER_NAME       "object"
 
-#define TILE_BKG_MAP_NAME       "bkg0.tmx"
+#define TILE_BKG_MAP_NAME       "bkg1.tmx"
 
 
 

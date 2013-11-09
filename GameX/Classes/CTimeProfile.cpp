@@ -52,7 +52,6 @@ bool CTimeProfile::init()
 }
 
 
-
 bool CTimeProfile::begin(int identifier)
 {
     do

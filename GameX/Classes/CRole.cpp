@@ -469,6 +469,7 @@ void CRole::damage(float damagePoint, CRole* attacker)
     if (FLT_LE(curHP, 0.f))
     {
         setCurHP(0.f);
+        FIGHT_RELATION->removeAllRelation(dynamic_cast<IFightingRelation*>(this));
         changeState(ROLE_STATE_DYING);
     }
     else

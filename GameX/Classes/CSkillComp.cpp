@@ -17,6 +17,7 @@ CSkillComp::CSkillComp(void)
 , m_CDLeftTime(0.f)
 , m_stateId(-1)
 , m_skillTarget(NULL)
+, m_enableUpdateCD(false)
 {
     m_strName = "SkillComp";
 }
@@ -95,6 +96,7 @@ void CSkillComp::update(float dt)
             CWarriorRoleCompBase::update(dt);
         }
 
+        updateCD(dt);
         
         if (!isEnabled()) return;
         
@@ -102,14 +104,11 @@ void CSkillComp::update(float dt)
         {
             case SKILL_SUB_STATE_READY:
                 THINK_AND_BREAK();
-                if (FLT_GE(m_CDLeftTime, 0))
+                m_ownerRole->playAnimation(ROLE_ANIMATION_IDLE);
+                if (FLT_EQUAL(m_CDLeftTime, 0.f))
                 {
-                    m_CDLeftTime -= dt;
-                    if (FLT_LE(m_CDLeftTime, 0.f))
-                    {
-                        m_CDLeftTime = 0.f;
-                        m_subState = SKILL_SUB_STATE_PRE_CAST;
-                    }
+                    m_subState = SKILL_SUB_STATE_PRE_CAST;
+                    m_enableUpdateCD = false;
                 }
                 break;
             case SKILL_SUB_STATE_PRE_CAST:
@@ -184,8 +183,26 @@ void CSkillComp::onSkillOver(CCNode* obj)
     {
         m_subState = SKILL_SUB_STATE_POST_CAST;
         m_CDLeftTime = m_CDTotalTime;
+        m_enableUpdateCD = true;
     }
 
+}
+
+
+
+void CSkillComp::updateCD(float dt)
+{
+    if (m_enableUpdateCD)
+    {
+        if (FLT_GE(m_CDLeftTime, 0))
+        {
+            m_CDLeftTime -= dt;
+            if (FLT_LE(m_CDLeftTime, 0.f))
+            {
+                m_CDLeftTime = 0.f;
+            }
+        }
+    }
 }
 
 

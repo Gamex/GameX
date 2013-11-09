@@ -40,9 +40,12 @@ public:
     virtual void onSkillOver(CCNode* obj);
 protected:
     CSkillComp(void);
+    
+    virtual void updateCD(float dt);
 
     float m_attackRadiusSq;
     CRole* m_skillTarget;
+    bool m_enableUpdateCD;
 private:
 };
 

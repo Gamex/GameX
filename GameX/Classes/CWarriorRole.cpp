@@ -81,11 +81,11 @@ bool CWarriorRole::init(const string& unitId, bool editorMode)
 
         // load skills
         LOAD_SKILL(0);
-        LOAD_SKILL(1);
-        LOAD_SKILL(2);
-        LOAD_SKILL(3);
-        LOAD_SKILL(4);
-        LOAD_SKILL(5);
+//        LOAD_SKILL(1);
+//        LOAD_SKILL(2);
+//        LOAD_SKILL(3);
+//        LOAD_SKILL(4);
+//        LOAD_SKILL(5);
 
         return true;
     } while (false);

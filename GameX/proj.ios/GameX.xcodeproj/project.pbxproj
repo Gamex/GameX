@@ -10,6 +10,8 @@
 		5407D0C917DC994E0071A620 /* lobby_layer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5407D0C817DC994E0071A620 /* lobby_layer.ccbi */; };
 		5407D0CC17DCC5450071A620 /* formation_layer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5407D0CB17DCC5450071A620 /* formation_layer.ccbi */; };
 		5407D0CE17DCCCEE0071A620 /* background_grid.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5407D0CD17DCCCEE0071A620 /* background_grid.ccbi */; };
+		540D7A09182C7E68002A634B /* bkg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 540D7A07182C7E68002A634B /* bkg1.png */; };
+		540D7A0A182C7E68002A634B /* bkg1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 540D7A08182C7E68002A634B /* bkg1.tmx */; };
 		540E4CAC180ED184000BA7D4 /* CWarriorDyingComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 540E4CAA180ED184000BA7D4 /* CWarriorDyingComp.cpp */; };
 		540E5BB71803B73F003C7510 /* CBattleFiledManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 540E5BB51803B73E003C7510 /* CBattleFiledManager.cpp */; };
 		540F5139182A612500B60D52 /* bkg0.png in Resources */ = {isa = PBXBuildFile; fileRef = 540F5137182A612500B60D52 /* bkg0.png */; };
@@ -206,6 +208,8 @@
 		5407D0C817DC994E0071A620 /* lobby_layer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = lobby_layer.ccbi; sourceTree = "<group>"; };
 		5407D0CB17DCC5450071A620 /* formation_layer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = formation_layer.ccbi; sourceTree = "<group>"; };
 		5407D0CD17DCCCEE0071A620 /* background_grid.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = background_grid.ccbi; sourceTree = "<group>"; };
+		540D7A07182C7E68002A634B /* bkg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkg1.png; path = ../Resources/bkg1.png; sourceTree = "<group>"; };
+		540D7A08182C7E68002A634B /* bkg1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = bkg1.tmx; path = ../Resources/bkg1.tmx; sourceTree = "<group>"; };
 		540E4CAA180ED184000BA7D4 /* CWarriorDyingComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorDyingComp.cpp; path = ../../Classes/CWarriorDyingComp.cpp; sourceTree = "<group>"; };
 		540E4CAB180ED184000BA7D4 /* CWarriorDyingComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWarriorDyingComp.h; path = ../../Classes/CWarriorDyingComp.h; sourceTree = "<group>"; };
 		540E5BB51803B73E003C7510 /* CBattleFiledManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBattleFiledManager.cpp; path = ../../Classes/CBattleFiledManager.cpp; sourceTree = "<group>"; };
@@ -775,6 +779,8 @@
 		54607B861760D96400108571 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				540D7A07182C7E68002A634B /* bkg1.png */,
+				540D7A08182C7E68002A634B /* bkg1.tmx */,
 				540F5137182A612500B60D52 /* bkg0.png */,
 				540F5138182A612500B60D52 /* bkg0.tmx */,
 				5471E1E518164E6200F60DED /* objects.png */,
@@ -1171,6 +1177,8 @@
 				54467E0E1817F2680028B700 /* effect0.ccbi in Resources */,
 				540F5139182A612500B60D52 /* bkg0.png in Resources */,
 				540F513A182A612500B60D52 /* bkg0.tmx in Resources */,
+				540D7A09182C7E68002A634B /* bkg1.png in Resources */,
+				540D7A0A182C7E68002A634B /* bkg1.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
