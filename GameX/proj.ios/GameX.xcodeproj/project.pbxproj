@@ -10,12 +10,8 @@
 		5407D0C917DC994E0071A620 /* lobby_layer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5407D0C817DC994E0071A620 /* lobby_layer.ccbi */; };
 		5407D0CC17DCC5450071A620 /* formation_layer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5407D0CB17DCC5450071A620 /* formation_layer.ccbi */; };
 		5407D0CE17DCCCEE0071A620 /* background_grid.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5407D0CD17DCCCEE0071A620 /* background_grid.ccbi */; };
-		540D7A09182C7E68002A634B /* bkg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 540D7A07182C7E68002A634B /* bkg1.png */; };
-		540D7A0A182C7E68002A634B /* bkg1.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 540D7A08182C7E68002A634B /* bkg1.tmx */; };
 		540E4CAC180ED184000BA7D4 /* CWarriorDyingComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 540E4CAA180ED184000BA7D4 /* CWarriorDyingComp.cpp */; };
 		540E5BB71803B73F003C7510 /* CBattleFiledManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 540E5BB51803B73E003C7510 /* CBattleFiledManager.cpp */; };
-		540F5139182A612500B60D52 /* bkg0.png in Resources */ = {isa = PBXBuildFile; fileRef = 540F5137182A612500B60D52 /* bkg0.png */; };
-		540F513A182A612500B60D52 /* bkg0.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 540F5138182A612500B60D52 /* bkg0.tmx */; };
 		5411741A17E203FE0082E53C /* unit0.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411740E17E203FE0082E53C /* unit0.ccbi */; };
 		5411741B17E203FE0082E53C /* unit1.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411740F17E203FE0082E53C /* unit1.ccbi */; };
 		5411741C17E203FE0082E53C /* unit2.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411741017E203FE0082E53C /* unit2.ccbi */; };
@@ -86,8 +82,6 @@
 		54467E121817F4040028B700 /* CGameEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54467E101817F4040028B700 /* CGameEffect.cpp */; };
 		544F90A918064AFC0049139F /* CSkillComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544F90A718064AFC0049139F /* CSkillComp.cpp */; };
 		544F90AC18064B200049139F /* CWarriorRoleCompBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544F90AA18064B200049139F /* CWarriorRoleCompBase.cpp */; };
-		545589EC18162C3600560A3B /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 545589E918162C3600560A3B /* background.png */; };
-		545589ED18162C3600560A3B /* background.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 545589EA18162C3600560A3B /* background.tmx */; };
 		54607B761760D96400108571 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B751760D96400108571 /* QuartzCore.framework */; };
 		54607B781760D96400108571 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B771760D96400108571 /* OpenGLES.framework */; };
 		54607B7A1760D96400108571 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B791760D96400108571 /* OpenAL.framework */; };
@@ -96,7 +90,6 @@
 		54607B801760D96400108571 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B7F1760D96400108571 /* UIKit.framework */; };
 		54607B821760D96400108571 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B811760D96400108571 /* Foundation.framework */; };
 		54607B841760D96400108571 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B831760D96400108571 /* CoreGraphics.framework */; };
-		5471E1E618164E6200F60DED /* objects.png in Resources */ = {isa = PBXBuildFile; fileRef = 5471E1E518164E6200F60DED /* objects.png */; };
 		54801F1C18059E2A00F3F68E /* CWarriorUnit0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54801F1A18059E2A00F3F68E /* CWarriorUnit0.cpp */; };
 		54801F211805A46800F3F68E /* CWarriorUnit1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54801F1D1805A46800F3F68E /* CWarriorUnit1.cpp */; };
 		54801F221805A46800F3F68E /* CWarriorUnit2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54801F1F1805A46800F3F68E /* CWarriorUnit2.cpp */; };
@@ -208,14 +201,10 @@
 		5407D0C817DC994E0071A620 /* lobby_layer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = lobby_layer.ccbi; sourceTree = "<group>"; };
 		5407D0CB17DCC5450071A620 /* formation_layer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = formation_layer.ccbi; sourceTree = "<group>"; };
 		5407D0CD17DCCCEE0071A620 /* background_grid.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = background_grid.ccbi; sourceTree = "<group>"; };
-		540D7A07182C7E68002A634B /* bkg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkg1.png; path = ../Resources/bkg1.png; sourceTree = "<group>"; };
-		540D7A08182C7E68002A634B /* bkg1.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = bkg1.tmx; path = ../Resources/bkg1.tmx; sourceTree = "<group>"; };
 		540E4CAA180ED184000BA7D4 /* CWarriorDyingComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorDyingComp.cpp; path = ../../Classes/CWarriorDyingComp.cpp; sourceTree = "<group>"; };
 		540E4CAB180ED184000BA7D4 /* CWarriorDyingComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWarriorDyingComp.h; path = ../../Classes/CWarriorDyingComp.h; sourceTree = "<group>"; };
 		540E5BB51803B73E003C7510 /* CBattleFiledManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBattleFiledManager.cpp; path = ../../Classes/CBattleFiledManager.cpp; sourceTree = "<group>"; };
 		540E5BB61803B73E003C7510 /* CBattleFiledManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBattleFiledManager.h; path = ../../Classes/CBattleFiledManager.h; sourceTree = "<group>"; };
-		540F5137182A612500B60D52 /* bkg0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bkg0.png; path = ../Resources/bkg0.png; sourceTree = "<group>"; };
-		540F5138182A612500B60D52 /* bkg0.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = bkg0.tmx; path = ../Resources/bkg0.tmx; sourceTree = "<group>"; };
 		5411740E17E203FE0082E53C /* unit0.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit0.ccbi; sourceTree = "<group>"; };
 		5411740F17E203FE0082E53C /* unit1.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit1.ccbi; sourceTree = "<group>"; };
 		5411741017E203FE0082E53C /* unit2.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit2.ccbi; sourceTree = "<group>"; };
@@ -353,8 +342,6 @@
 		544F90A818064AFC0049139F /* CSkillComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSkillComp.h; path = ../../Classes/CSkillComp.h; sourceTree = "<group>"; };
 		544F90AA18064B200049139F /* CWarriorRoleCompBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorRoleCompBase.cpp; path = ../../Classes/CWarriorRoleCompBase.cpp; sourceTree = "<group>"; };
 		544F90AB18064B200049139F /* CWarriorRoleCompBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWarriorRoleCompBase.h; path = ../../Classes/CWarriorRoleCompBase.h; sourceTree = "<group>"; };
-		545589E918162C3600560A3B /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../Resources/background.png; sourceTree = "<group>"; };
-		545589EA18162C3600560A3B /* background.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = background.tmx; path = ../Resources/background.tmx; sourceTree = "<group>"; };
 		54607B721760D96400108571 /* GameX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GameX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54607B751760D96400108571 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		54607B771760D96400108571 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -365,7 +352,6 @@
 		54607B811760D96400108571 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		54607B831760D96400108571 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		54607E101760D96800108571 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = ../Prefix.pch; sourceTree = "<group>"; };
-		5471E1E518164E6200F60DED /* objects.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = objects.png; path = ../Resources/objects.png; sourceTree = "<group>"; };
 		54801F1A18059E2A00F3F68E /* CWarriorUnit0.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorUnit0.cpp; path = ../../Classes/CWarriorUnit0.cpp; sourceTree = "<group>"; };
 		54801F1B18059E2A00F3F68E /* CWarriorUnit0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWarriorUnit0.h; path = ../../Classes/CWarriorUnit0.h; sourceTree = "<group>"; };
 		54801F1D1805A46800F3F68E /* CWarriorUnit1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorUnit1.cpp; path = ../../Classes/CWarriorUnit1.cpp; sourceTree = "<group>"; };
@@ -779,13 +765,6 @@
 		54607B861760D96400108571 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				540D7A07182C7E68002A634B /* bkg1.png */,
-				540D7A08182C7E68002A634B /* bkg1.tmx */,
-				540F5137182A612500B60D52 /* bkg0.png */,
-				540F5138182A612500B60D52 /* bkg0.tmx */,
-				5471E1E518164E6200F60DED /* objects.png */,
-				545589E918162C3600560A3B /* background.png */,
-				545589EA18162C3600560A3B /* background.tmx */,
 				5407D0CA17DC99570071A620 /* ccbi */,
 				54D0CD7217DC8E9A0022A1E9 /* Icons */,
 				54D0CD6B17DC8BDB0022A1E9 /* Configs */,
@@ -1072,6 +1051,7 @@
 				54607B6E1760D96400108571 /* Sources */,
 				54607B6F1760D96400108571 /* Frameworks */,
 				54607B701760D96400108571 /* Resources */,
+				54CB9E60182F823E0035659B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1171,18 +1151,27 @@
 				5411742317E203FE0082E53C /* unit9.ccbi in Resources */,
 				5411742417E203FE0082E53C /* unit10.ccbi in Resources */,
 				5411742517E203FE0082E53C /* unit11.ccbi in Resources */,
-				545589EC18162C3600560A3B /* background.png in Resources */,
-				545589ED18162C3600560A3B /* background.tmx in Resources */,
-				5471E1E618164E6200F60DED /* objects.png in Resources */,
 				54467E0E1817F2680028B700 /* effect0.ccbi in Resources */,
-				540F5139182A612500B60D52 /* bkg0.png in Resources */,
-				540F513A182A612500B60D52 /* bkg0.tmx in Resources */,
-				540D7A09182C7E68002A634B /* bkg1.png in Resources */,
-				540D7A0A182C7E68002A634B /* bkg1.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		54CB9E60182F823E0035659B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "// current directory is \"proj.ios\"\n../../Tools/bin/TMXConvertor ../../GameX/Assets/GameX/TMX/ ../../GameX/ ../../Tools/bin/WBTMXTool";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		54607B6E1760D96400108571 /* Sources */ = {

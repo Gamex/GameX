@@ -64,7 +64,8 @@ bool CBattleFieldLayer::init()
         loadConfig();
         
         // ccbi和tmx地图有冲突，所以必须在创建tmx之前先创建一次ccbi，否则真机上release版本会出错！！
-        CObjectBase* ob = (CObjectBase*)OBJECT_FACTORY->createInstance("CRole");
+        CRole* ob = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance("CWarriorRole"));
+        ob->init("1", true);
         ob->clearAll();
 
         BREAK_IF_FAILED(CBkgLayerBase::initBkgLayerBase(BATCHNODE_LIST));
