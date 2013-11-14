@@ -10,8 +10,8 @@
 
 CCControlToggleButton::CCControlToggleButton()
 : m_toggleValue(false)
-, toggleOn_(NULL)
-, toggleOff_(NULL)
+, toggleOn_(nullptr)
+, toggleOff_(nullptr)
 {
     
 }
@@ -19,12 +19,12 @@ CCControlToggleButton::CCControlToggleButton()
 
 CCControlToggleButton::~CCControlToggleButton()
 {
-    setToggleOn(NULL);
-    setToggleOff(NULL);
+    setToggleOn(nullptr);
+    setToggleOff(nullptr);
 }
 
 
-CCControlToggleButton* CCControlToggleButton::createWithToggles(CCScale9Sprite* toggleOn, CCScale9Sprite* toggleOff)
+CCControlToggleButton* CCControlToggleButton::createWithToggles(Scale9Sprite* toggleOn, Scale9Sprite* toggleOff)
 {
     CCControlToggleButton *pRet = new CCControlToggleButton();
 
@@ -36,15 +36,15 @@ CCControlToggleButton* CCControlToggleButton::createWithToggles(CCScale9Sprite* 
     else
     {
         delete pRet;
-        pRet = NULL;
-        return NULL;
+        pRet = nullptr;
+        return nullptr;
     }
 }
 
 
-bool CCControlToggleButton::initWithToggles(CCScale9Sprite* toggleOn, CCScale9Sprite* toggleOff)
+bool CCControlToggleButton::initWithToggles(Scale9Sprite* toggleOn, Scale9Sprite* toggleOff)
 {
-    CCAssert(toggleOn && toggleOff, "Invalid CCScale9Sprite.");
+    CCAssert(toggleOn && toggleOff, "Invalid Scale9Sprite.");
     
     do
     {
@@ -72,49 +72,49 @@ void CCControlToggleButton::setToggleValue(bool val)
     
     if (m_toggleValue)
     {
-        setBackgroundSpriteForState(toggleOn_, CCControlStateNormal);
+        setBackgroundSpriteForState(toggleOn_, Control::State::NORMAL);
     }
     else
     {
-        setBackgroundSpriteForState(toggleOff_, CCControlStateNormal);
+        setBackgroundSpriteForState(toggleOff_, Control::State::NORMAL);
     }
 }
 
 
-bool CCControlToggleButton::ccTouchBegan(CCTouch* pTouch, CCEvent *pEvent)
+bool CCControlToggleButton::onTouchBegan(Touch* pTouch, Event *pEvent)
 {    
-    return CCControlButton::ccTouchBegan(pTouch, pEvent);
+    return ControlButton::onTouchBegan(pTouch, pEvent);
 }
 
 
-void CCControlToggleButton::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
+void CCControlToggleButton::onTouchMoved(Touch *pTouch, Event *pEvent)
 {
-    CCControlButton::ccTouchMoved(pTouch, pEvent);
+    ControlButton::onTouchMoved(pTouch, pEvent);
 }
 
 
-void CCControlToggleButton::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
+void CCControlToggleButton::onTouchEnded(Touch *pTouch, Event *pEvent)
 {
     if (isTouchInside(pTouch))
     {
 //        m_toggleValue = !m_toggleValue;
 //        if (m_toggleValue)
 //        {
-//            setBackgroundSpriteForState(toggleOn_, CCControlStateNormal);
+//            setBackgroundSpriteForState(toggleOn_, Control::State::NORMAL);
 //        }
 //        else
 //        {
-//            setBackgroundSpriteForState(toggleOff_, CCControlStateNormal);
+//            setBackgroundSpriteForState(toggleOff_, Control::State::NORMAL);
 //        }
         setToggleValue(!m_toggleValue);
     }
     
-    CCControlButton::ccTouchEnded(pTouch, pEvent);
+    ControlButton::onTouchEnded(pTouch, pEvent);
 }
 
 
-void CCControlToggleButton::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
+void CCControlToggleButton::onTouchCancelled(Touch *pTouch, Event *pEvent)
 {
-    CCControlButton::ccTouchCancelled(pTouch, pEvent);
+    ControlButton::onTouchCancelled(pTouch, pEvent);
 }
 

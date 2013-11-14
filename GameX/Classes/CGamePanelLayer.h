@@ -23,8 +23,8 @@ public:
     
     virtual void popMenu();
 protected:
-    virtual void onBuild(CCObject* sender, CCControlEvent event);
-    virtual void onBuild2(CCObject* sender, CCControlEvent event);
+    virtual void onBuild(Object* sender, Control::EventType event);
+    virtual void onBuild2(Object* sender, Control::EventType event);
 private:
 };
 

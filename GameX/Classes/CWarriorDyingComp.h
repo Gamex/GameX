@@ -32,7 +32,7 @@ public:
     virtual void onExit();
     virtual void update(float dt);
 
-    virtual void onDyingOver(CCNode* obj);
+    virtual void onDyingOver(Node* obj);
 protected:
     CWarriorDyingComp(void);
 private:

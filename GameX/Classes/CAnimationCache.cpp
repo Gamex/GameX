@@ -16,7 +16,7 @@
 #define ANIMATION_RESTORE_ORIGINAL_FRAME    "RestoreOriginalFrame"
 #define ANIMATION_LOOP                      "Loop"
 
-CAnimationCache* CAnimationCache::spInstance_ = NULL;
+CAnimationCache* CAnimationCache::spInstance_ = nullptr;
 
 
 CAnimationCache::CAnimationCache()
@@ -46,52 +46,52 @@ void CAnimationCache::addAnimations(const char* pFileName)
 {
     CCAssert(pFileName && (strlen(pFileName) > 0), "Invalid file name.");
     
-    CCDictionary* dict = CCDictionary::createWithContentsOfFile(pFileName);
-    if (NULL == dict)
+    Dictionary* dict = Dictionary::createWithContentsOfFile(pFileName);
+    if (nullptr == dict)
     {
         __CCLOGWITHFUNCTION("Failed to retrieve file: %s", pFileName);
         return ;
     }
     
     
-    CCAnimationCache *animationCache = CCAnimationCache::sharedAnimationCache();
-    CCSpriteFrameCache* spriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
+    AnimationCache *animationCache = AnimationCache::getInstance();
+    SpriteFrameCache* spriteFrameCache = SpriteFrameCache::getInstance();
     
-    CCDictElement* pElement = NULL;
+    DictElement* pElement = nullptr;
     CCDICT_FOREACH(dict, pElement)
     {
         do
         {
             const char* key = pElement->getStrKey();
-            CC_BREAK_IF(NULL == key || strlen(key) <= 0);
-            CCDictionary* entry = dynamic_cast<CCDictionary*>(pElement->getObject());
-            CC_BREAK_IF(NULL == entry);
+            CC_BREAK_IF(nullptr == key || strlen(key) <= 0);
+            Dictionary* entry = dynamic_cast<Dictionary*>(pElement->getObject());
+            CC_BREAK_IF(nullptr == entry);
 
             do
             {
-                CCString* type = dynamic_cast<CCString*>(entry->objectForKey(ANIMATION_TYPE));
-                CC_BREAK_IF(NULL == type || type->compare("SequenceFrame") != 0);
-                CCString* frameName = dynamic_cast<CCString*>(entry->objectForKey(ANIMATION_FRAME_NAME));
-                CC_BREAK_IF(NULL == frameName);
-                CCString* frameNum = dynamic_cast<CCString*>(entry->objectForKey(ANIMATION_FRAME_NUM));
-                CC_BREAK_IF(NULL == frameNum);
-                CCString* delayPerUnit = dynamic_cast<CCString*>(entry->objectForKey(ANIMATION_DELAY_PER_UNIT));
-                CC_BREAK_IF(NULL == delayPerUnit);
-                CCString* restoreOriginalFrame = dynamic_cast<CCString*>(entry->objectForKey(ANIMATION_RESTORE_ORIGINAL_FRAME));
-                CC_BREAK_IF(NULL == restoreOriginalFrame);
-                CCString* loop = dynamic_cast<CCString*>(entry->objectForKey(ANIMATION_LOOP));
-                CC_BREAK_IF(NULL == loop);
+                String* type = dynamic_cast<String*>(entry->objectForKey(ANIMATION_TYPE));
+                CC_BREAK_IF(nullptr == type || type->compare("SequenceFrame") != 0);
+                String* frameName = dynamic_cast<String*>(entry->objectForKey(ANIMATION_FRAME_NAME));
+                CC_BREAK_IF(nullptr == frameName);
+                String* frameNum = dynamic_cast<String*>(entry->objectForKey(ANIMATION_FRAME_NUM));
+                CC_BREAK_IF(nullptr == frameNum);
+                String* delayPerUnit = dynamic_cast<String*>(entry->objectForKey(ANIMATION_DELAY_PER_UNIT));
+                CC_BREAK_IF(nullptr == delayPerUnit);
+                String* restoreOriginalFrame = dynamic_cast<String*>(entry->objectForKey(ANIMATION_RESTORE_ORIGINAL_FRAME));
+                CC_BREAK_IF(nullptr == restoreOriginalFrame);
+                String* loop = dynamic_cast<String*>(entry->objectForKey(ANIMATION_LOOP));
+                CC_BREAK_IF(nullptr == loop);
                 
-                CCArray* frames = CCArray::createWithCapacity(frameNum->intValue());
+                Array* frames = Array::createWithCapacity(frameNum->intValue());
                 char buffer[256] = {'\0'};
                 
                 for (int i = 0; i < frameNum->intValue(); i++) {
                     sprintf(buffer, "%s%d", frameName->getCString(), i);
-                    CCSpriteFrame* frame = spriteFrameCache->spriteFrameByName(buffer);
+                    SpriteFrame* frame = spriteFrameCache->getSpriteFrameByName(buffer);
                     frames->addObject(frame);
                 }
                 
-                CCAnimation* animation = CCAnimation::createWithSpriteFrames(frames);
+                cocos2d::Animation* animation = cocos2d::Animation::createWithSpriteFrames(frames);
                 animation->setDelayPerUnit(delayPerUnit->floatValue());
                 animation->setRestoreOriginalFrame(restoreOriginalFrame->boolValue());
                 animation->setLoops(loop->intValue());
@@ -103,42 +103,42 @@ void CAnimationCache::addAnimations(const char* pFileName)
 }
 
 
-CCAnimate* CAnimationCache::getAnimateByAnimationName(const char* name)
+Animate* CAnimationCache::getAnimateByAnimationName(const char* name)
 {
     do {
-        CC_BREAK_IF(NULL == name || strlen(name) <= 0);
-        CCAnimationCache* animationCache = CCAnimationCache::sharedAnimationCache();
-        CCAnimation* animation = animationCache->animationByName(name);
-        CC_BREAK_IF(NULL == animation);
-        CCAnimate* animate = CCAnimate::create(animation);
+        CC_BREAK_IF(nullptr == name || strlen(name) <= 0);
+        AnimationCache* animationCache = AnimationCache::getInstance();
+        cocos2d::Animation* animation = animationCache->getAnimation(name);
+        CC_BREAK_IF(nullptr == animation);
+        Animate* animate = cocos2d::Animate::create(animation);
 
         return animate;
     } while (false);
 
-    return NULL;
+    return nullptr;
 }
 
 
-CCAnimation* CAnimationCache::getAnimationByName(const char* name)
+cocos2d::Animation* CAnimationCache::getAnimationByName(const char* name)
 {
     do {
-        CC_BREAK_IF(NULL == name || strlen(name) <= 0);
-        CCAnimationCache* animationCache = CCAnimationCache::sharedAnimationCache();
-        CCAnimation* animation = animationCache->animationByName(name);
+        CC_BREAK_IF(nullptr == name || strlen(name) <= 0);
+        AnimationCache* animationCache = AnimationCache::getInstance();
+        cocos2d::Animation* animation = animationCache->getAnimation(name);
         
         return animation;
     } while (false);
     
-    return NULL;
+    return nullptr;
 }
 
 
-CCAction* CAnimationCache::createActionByAnimationName(const char* name, bool repeated, CCCallFunc* callback)
+Action* CAnimationCache::createActionByAnimationName(const char* name, bool repeated, CallFunc* callback)
 {
     do
     {
-        CCAnimate* animate = getAnimateByAnimationName(name);
-        CC_BREAK_IF(NULL == animate);
+        Animate* animate = getAnimateByAnimationName(name);
+        CC_BREAK_IF(nullptr == animate);
         
         if (repeated)
         {
@@ -148,101 +148,101 @@ CCAction* CAnimationCache::createActionByAnimationName(const char* name, bool re
         {
             if (callback)
             {
-                return CCSequence::create(animate, callback, NULL);
+                return CCSequence::create(animate, callback, nullptr);
             }
             else
             {
-                return CCSequence::create(animate, NULL);
+                return CCSequence::create(animate, nullptr);
             }
         }
     } while (false);
     
-    return NULL;
+    return nullptr;
 }
 
 
-CCAction* CAnimationCache::createMoveToAction(float duration, CCPoint pos, CCCallFunc* callback)
+Action* CAnimationCache::createMoveToAction(float duration, Point pos, CallFunc* callback)
 {
     if (callback)
     {
-        return CCSequence::create(CCMoveTo::create(duration, pos), callback, NULL);
+        return CCSequence::create(CCMoveTo::create(duration, pos), callback, nullptr);
     }
     else
     {
-        return CCSequence::create(CCMoveTo::create(duration, pos), NULL);
+        return CCSequence::create(CCMoveTo::create(duration, pos), nullptr);
     }
 }
 
 
-CCAction* CAnimationCache::createPopAction(float duration, CCCallFunc* callback)
+Action* CAnimationCache::createPopAction(float duration, CallFunc* callback)
 {
-    CCActionInterval* scale = CCScaleTo::create(0.0f, 0.2f);
-    CCActionInterval* scaleBack = CCEaseElasticOut::create(CCScaleTo::create(duration, 1.0f));
+    ActionInterval* scale = ScaleTo::create(0.0f, 0.2f);
+    ActionInterval* scaleBack = CCEaseElasticOut::create(ScaleTo::create(duration, 1.0f));
 
     if (callback)
     {
-        return CCSequence::create(scale, scaleBack, callback, NULL);
+        return CCSequence::create(scale, scaleBack, callback, nullptr);
     }
     else
     {
-        return CCSequence::create(scale, scaleBack, NULL);
+        return CCSequence::create(scale, scaleBack, nullptr);
     }
 }
 
 
 
-CCAction* CAnimationCache::createVibrateAction(float duration, CCCallFunc* callback)
+Action* CAnimationCache::createVibrateAction(float duration, CallFunc* callback)
 {
-//    CCFiniteTimeAction* scale1 = GBScale::create(1.05f);
-//    CCFiniteTimeAction* vibrate = GBVibrate::create(duration);
-//    CCFiniteTimeAction* scale2 = GBScale::create(1.f);
-//    CCFiniteTimeAction* place = CCPlace::create(ccp(0.f, 0.f));
+//    FiniteTimeAction* scale1 = GBScale::create(1.05f);
+//    FiniteTimeAction* vibrate = GBVibrate::create(duration);
+//    FiniteTimeAction* scale2 = GBScale::create(1.f);
+//    FiniteTimeAction* place = CCPlace::create(Point(0.f, 0.f));
 //  
 //    if (callback)
 //    {
-//        return CCSequence::create(scale1, vibrate, scale2, place, callback, NULL);
+//        return CCSequence::create(scale1, vibrate, scale2, place, callback, nullptr);
 //    }
 //    else
 //    {
-//        return CCSequence::create(scale1, vibrate, scale2, place, NULL);
+//        return CCSequence::create(scale1, vibrate, scale2, place, nullptr);
 //    }
     
-    return NULL;
+    return nullptr;
 }
 
 
 
-CCAction* CAnimationCache::createMovePauseAction(float moveDuration, float pauseDuration, CCPoint pausePosition,  CCCallFunc* callback)
+Action* CAnimationCache::createMovePauseAction(float moveDuration, float pauseDuration, Point pausePosition,  CallFunc* callback)
 {
     do {
-        CCFiniteTimeAction* move = dynamic_cast<CCFiniteTimeAction*>(createMoveToAction(moveDuration, pausePosition));
-        CC_BREAK_IF(NULL == move);
-        CCFiniteTimeAction* pause = CCDelayTime::create(pauseDuration);
-        CC_BREAK_IF(NULL == pause);
+        FiniteTimeAction* move = dynamic_cast<FiniteTimeAction*>(createMoveToAction(moveDuration, pausePosition));
+        CC_BREAK_IF(nullptr == move);
+        FiniteTimeAction* pause = CCDelayTime::create(pauseDuration);
+        CC_BREAK_IF(nullptr == pause);
         
         if (callback)
         {
-            return CCSequence::create(move, pause, callback, NULL);
+            return CCSequence::create(move, pause, callback, nullptr);
         }
         else
         {
-            return CCSequence::create(move, pause, NULL);
+            return CCSequence::create(move, pause, nullptr);
         }
         
     } while (false);
-    return NULL;
+    return nullptr;
 }
 
 
 
-CCAction* CAnimationCache::createFadeToAction(float duration, GLubyte fadeTo, CCCallFunc* callback)
+Action* CAnimationCache::createFadeToAction(float duration, GLubyte fadeTo, CallFunc* callback)
 {
     do {
-        CCFiniteTimeAction* fade = CCFadeTo::create(duration, fadeTo);
-        CC_BREAK_IF(NULL == fade);
+        FiniteTimeAction* fade = FadeTo::create(duration, fadeTo);
+        CC_BREAK_IF(nullptr == fade);
         if (callback)
         {
-            return CCSequence::create(fade, callback, NULL);
+            return CCSequence::create(fade, callback, nullptr);
         }
         else
         {
@@ -251,5 +251,5 @@ CCAction* CAnimationCache::createFadeToAction(float duration, GLubyte fadeTo, CC
         
     } while (false);
     
-    return NULL;
+    return nullptr;
 }

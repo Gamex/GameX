@@ -18,8 +18,8 @@ void CGameEffect::clearThis()
 
 CGameEffect::CGameEffect()
 : m_damage(0.f)
-, m_effectTarget(NULL)
-, m_effectOwner(NULL)
+, m_effectTarget(nullptr)
+, m_effectOwner(nullptr)
 {
 }
 
@@ -46,7 +46,7 @@ bool CGameEffect::init(const string& ccbi_name)
 
 
 
-bool CGameEffect::attachSpriteTo(CCNode* parent, int zOrder, int tag)
+bool CGameEffect::attachSpriteTo(Node* parent, int zOrder, int tag)
 {
 	return CSpriteObject::attachSpriteTo(parent, zOrder, tag);
 }
@@ -81,23 +81,23 @@ void CGameEffect::clearAll()
 
 
 
-SEL_CallFuncN CGameEffect::onResolveCCBCCCallFuncSelector(CCObject * pTarget, const char* pSelectorName)
+SEL_CallFuncN CGameEffect::onResolveCCBCCCallFuncSelector(Object * pTarget, const char* pSelectorName)
 {
     CCB_SELECTORRESOLVER_CALLFUNC_GLUE(this, "onEffectHit", CGameEffect::onEffectHit);
     CCB_SELECTORRESOLVER_CALLFUNC_GLUE(this, "onEffectOver", CGameEffect::onEffectOver);
-    return NULL;
+    return nullptr;
 }
 
 
 
-void CGameEffect::onEffectHit(CCNode* obj)
+void CGameEffect::onEffectHit(Node* obj)
 {
     m_effectTarget->damage(m_damage, m_effectTarget);
 }
 
 
 
-void CGameEffect::onEffectOver(CCNode* obj)
+void CGameEffect::onEffectOver(Node* obj)
 {
     die();
 }

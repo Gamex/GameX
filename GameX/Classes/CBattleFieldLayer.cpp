@@ -29,8 +29,8 @@
 
 
 CBattleFieldLayer::CBattleFieldLayer()
-: m_pGamePanelLayer(NULL)
-, m_curSelRole(NULL)
+: m_pGamePanelLayer(nullptr)
+, m_curSelRole(nullptr)
 , m_bMapMoved(false)
 {
 }
@@ -54,7 +54,7 @@ bool CBattleFieldLayer::init()
     {
         BREAK_IF_FAILED(CTouchesLayer::init());
         
-        CCDirector *pDirector = CCDirector::sharedDirector();
+        Director *pDirector = Director::getInstance();
         pDirector->setDepthTest(true);
         
         setTouchEnabled(true);
@@ -62,11 +62,6 @@ bool CBattleFieldLayer::init()
         initListener();
         
         loadConfig();
-        
-        // ccbi和tmx地图有冲突，所以必须在创建tmx之前先创建一次ccbi，否则真机上release版本会出错！！
-        CRole* ob = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance("CWarriorRole"));
-        ob->init("1", true);
-        ob->clearAll();
 
         BREAK_IF_FAILED(CBkgLayerBase::initBkgLayerBase(BATCHNODE_LIST));
         setGamePanelLayer(CGamePanelLayer::create());
@@ -101,8 +96,8 @@ void CBattleFieldLayer::update(float dt)
     
     TP_LOG("1", 0);
     
-    CCArray* children = getChildren();
-    CCObject* obj;
+    Array* children = getChildren();
+    Object* obj;
     CCARRAY_FOREACH(children, obj)
     {
         obj->update(dt);
@@ -126,7 +121,7 @@ void CBattleFieldLayer::update(float dt)
 }
 
 
-void CBattleFieldLayer::touchesBegan(CCSet* touches, CCEvent* event)
+void CBattleFieldLayer::touchesBegan(const std::vector<Touch*>& touches, Event* event)
 {
     bool swallow = false;
 
@@ -138,7 +133,7 @@ void CBattleFieldLayer::touchesBegan(CCSet* touches, CCEvent* event)
 
 
 
-void CBattleFieldLayer::touchesMoved(CCSet* touches, CCEvent* event)
+void CBattleFieldLayer::touchesMoved(const std::vector<Touch*>& touches, Event* event)
 {
     bool swallow = false;
     
@@ -150,23 +145,23 @@ void CBattleFieldLayer::touchesMoved(CCSet* touches, CCEvent* event)
 
 
 
-void CBattleFieldLayer::touchesEnded(CCSet* touches, CCEvent* event)
+void CBattleFieldLayer::touchesEnded(const std::vector<Touch*>& touches, Event* event)
 {
     bool swallow = false;
     
-    switch (touches->count())
+    switch (touches.size())
     {
         case 1:
         {
-            CCTouch* t1 = (CCTouch*)touches->anyObject();
-            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
-            CCPoint location1 = this->convertToNodeSpace(point1);
+            Touch* t1 = touches[0];
+            Point point1 = Director::getInstance()->convertToUI(t1->getLocationInView());
+            Point location1 = this->convertToNodeSpace(point1);
             
             CBackgroundManager* bkg = getBkgGrd();
             CC_ASSERT(bkg);
-            CCPoint gp = bkg->screenPointToGrid(location1);
+            Point gp = bkg->screenPointToGrid(location1);
             
-            if (m_curSelRole == NULL)
+            if (m_curSelRole == nullptr)
             {
                 bkg->clearAllHightlightGrids();
                 CLogicGrid* grid = bkg->getLogicGrid(gp);
@@ -183,7 +178,7 @@ void CBattleFieldLayer::touchesEnded(CCSet* touches, CCEvent* event)
             {
 //                m_curSelRole->setMoveTarget(gp);
                 UNMARK_ROLE(m_curSelRole);
-                m_curSelRole = NULL;
+                m_curSelRole = nullptr;
             }
             break;
         }
@@ -199,7 +194,7 @@ void CBattleFieldLayer::touchesEnded(CCSet* touches, CCEvent* event)
 
 void CBattleFieldLayer::initListener()
 {
-//    CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CBattleFieldLayer::onGameOver), NOTIFICATION_HERO_DEAD, NULL);
+//    CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CBattleFieldLayer::onGameOver), NOTIFICATION_HERO_DEAD, nullptr);
 }
 
 
@@ -211,7 +206,7 @@ void CBattleFieldLayer::removeAllListener()
 
 
 
-void CBattleFieldLayer::onGameOver(CCObject* obj)
+void CBattleFieldLayer::onGameOver(Object* obj)
 {
     removeAllListener();
 }
@@ -244,8 +239,8 @@ bool CBattleFieldLayer::loadFormation()
     {
         CFormationElement* fe = (*it);
         
-        CCDictionary* dict = DTUNIT->getData(fe->unitId);
-        CCString* class_Name = DTUNIT->get_className_Value(dict);
+        Dictionary* dict = DTUNIT->getData(fe->unitId);
+        String* class_Name = DTUNIT->get_className_Value(dict);
         
         CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_Name->getCString()));
         CC_ASSERT(role);
@@ -264,8 +259,8 @@ bool CBattleFieldLayer::loadFormation()
     {
         CFormationElement* fe = (*it1);
         
-        CCDictionary* dict = DTUNIT->getData(fe->unitId);
-        CCString* class_name = DTUNIT->get_className_Value(dict);
+        Dictionary* dict = DTUNIT->getData(fe->unitId);
+        String* class_name = DTUNIT->get_className_Value(dict);
         CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_name->getCString()));
         CC_ASSERT(role);
         role->init(fe->unitId);

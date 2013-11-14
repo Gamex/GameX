@@ -8,15 +8,14 @@
 
 #include "CBkgLayerBase.h"
 
-#define INVALIDE_TAP_POS        CCPoint(FLT_MAX, FLT_MAX)
+#define INVALIDE_TAP_POS        Point(FLT_MAX, FLT_MAX)
 
 CBkgLayerBase::CBkgLayerBase()
-: m_bkgGrd(NULL)
-, m_batchNode(NULL)
-, m_pathFinder(NULL)
-, m_layer(NULL)
+: m_bkgGrd(nullptr)
+, m_batchNode(nullptr)
+, m_pathFinder(nullptr)
+, m_layer(nullptr)
 , m_lastLength(0.f)
-, m_touches(NULL)
 {
 
 }
@@ -25,10 +24,16 @@ CBkgLayerBase::CBkgLayerBase()
 
 CBkgLayerBase::~CBkgLayerBase()
 {
-    setBkgGrd(NULL);
-    setBatchNode(NULL);
+    setBkgGrd(nullptr);
+    setBatchNode(nullptr);
     CC_SAFE_DELETE(m_pathFinder);
-    CC_SAFE_RELEASE(m_touches);
+    
+    vector<Touch*>::iterator it = m_touches.begin();
+    for (; it != m_touches.end(); ++it)
+    {
+        CC_SAFE_RELEASE(*it);
+    }
+    m_touches.clear();
 }
 
 
@@ -37,7 +42,7 @@ bool CBkgLayerBase::initBkgLayerBase(const char* batchNodeName)
 {
     do
     {
-        m_layer = dynamic_cast<CCLayer*>(this);
+        m_layer = dynamic_cast<Layer*>(this);
         CC_ASSERT(m_layer);
         
         setBatchNode(CBatchNodeManager::create());
@@ -56,9 +61,7 @@ bool CBkgLayerBase::initBkgLayerBase(const char* batchNodeName)
         
         m_tapStartPoint = INVALIDE_TAP_POS;
         m_scaleCenterGridPos = INVALIDE_TAP_POS;
-        
-        m_touches = CCArray::create();
-        CC_SAFE_RETAIN(m_touches);
+
         return true;
     } while (false);
     
@@ -67,36 +70,37 @@ bool CBkgLayerBase::initBkgLayerBase(const char* batchNodeName)
 
 
 
-void CBkgLayerBase::bkgLayerBaseTouchesBegan(CCSet* touches, CCEvent* event)
+void CBkgLayerBase::bkgLayerBaseTouchesBegan(const std::vector<Touch*>& touches, Event* event)
 {
-    CCSetIterator it;
+    std::vector<Touch*>::const_iterator it;
     
-    for( it = touches->begin(); it != touches->end(); it++)
+    for( it = touches.begin(); it != touches.end(); it++)
     {
-        CCTouch* tch = (CCTouch*)*it;
-        if (!m_touches->containsObject(tch))
+        Touch* tch = (Touch*)*it;
+        std::vector<Touch*>::iterator it_ = find(m_touches.begin(), m_touches.end(), tch);
+        if (it_ == m_touches.end())
         {
-            m_touches->addObject(tch);
+            CC_SAFE_RETAIN(tch);
+            m_touches.push_back(tch);
         }
     }
 }
 
 
 
-void CBkgLayerBase::bkgLayerBaseTouchesMoved(CCSet* touches, CCEvent* event)
+void CBkgLayerBase::bkgLayerBaseTouchesMoved(const std::vector<Touch*>& touches, Event* event)
 {
-    switch (m_touches->count())
+    switch (m_touches.size())
     {
         case 1:
         {
-            CCArray* tch = m_touches;
-            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
-            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
-            CCPoint location1 = m_layer->convertToNodeSpace(point1);
+            Touch* t1 = touches[0];
+            Point point1 = Director::getInstance()->convertToUI(t1->getLocationInView());
+            Point location1 = m_layer->convertToNodeSpace(point1);
 
             if (!m_tapStartPoint.equals(INVALIDE_TAP_POS))
             {
-                CCPoint offset = location1 -  m_tapStartPoint;
+                Point offset = location1 -  m_tapStartPoint;
                 m_bkgGrd->moveMap(offset);
             }
             m_tapStartPoint = location1;
@@ -106,21 +110,20 @@ void CBkgLayerBase::bkgLayerBaseTouchesMoved(CCSet* touches, CCEvent* event)
 
         case 2:
         {
-            CCArray* tch = m_touches;
-            CCTouch* t1 = (CCTouch*)tch->objectAtIndex(0);
-            CCTouch* t2 = (CCTouch*)tch->objectAtIndex(1);
+            Touch* t1 = m_touches[0];
+            Touch* t2 = m_touches[1];
             
-            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
-            CCPoint location1 = m_layer->convertToNodeSpace(point1);
+            Point point1 = Director::getInstance()->convertToUI(t1->getLocationInView());
+            Point location1 = m_layer->convertToNodeSpace(point1);
             
-            CCPoint point2 = CCDirector::sharedDirector()->convertToUI(t2->getLocationInView());
-            CCPoint location2 = m_layer->convertToNodeSpace(point2);
+            Point point2 = Director::getInstance()->convertToUI(t2->getLocationInView());
+            Point location2 = m_layer->convertToNodeSpace(point2);
             
             
             if (m_scaleCenterGridPos.equals(INVALIDE_TAP_POS))
             {
                 m_lastLength = (location2 - location1).getLengthSq();
-                CCPoint center = CCDirector::sharedDirector()->getWinSize();
+                Point center = Point(Director::getInstance()->getWinSize());
                 center = center * 0.5f;
                 m_scaleCenterGridPos = m_bkgGrd->screenPointToGrid(center);
             }
@@ -150,18 +153,23 @@ void CBkgLayerBase::bkgLayerBaseTouchesMoved(CCSet* touches, CCEvent* event)
 
 
 
-void CBkgLayerBase::bkgLayerBaseTouchesEnded(CCSet* touches, CCEvent* event)
+void CBkgLayerBase::bkgLayerBaseTouchesEnded(const std::vector<Touch*>& touches, Event* event)
 {
     m_tapStartPoint = INVALIDE_TAP_POS;
     m_scaleCenterGridPos = INVALIDE_TAP_POS;
     
-    CCSetIterator it;
+    std::vector<Touch*>::const_iterator it;
     
-    for( it = touches->begin(); it != touches->end(); it++)
+    for( it = touches.begin(); it != touches.end(); it++)
     {
-        CCTouch* tch = (CCTouch*)*it;
+        Touch* tch = (Touch*)*it;
 
-        m_touches->removeObject(tch);
+        std::vector<Touch*>::iterator it_ = find(m_touches.begin(), m_touches.end(), tch);
+        
+        if (it_ != m_touches.end())
+        {
+            m_touches.erase(it_);
+        }
     }
 }
 

@@ -50,7 +50,7 @@ void CPathFinderManager::update(float dt)
 
 
 
-void CPathFinderManager::findPath(const CCPoint& startPos, const CCPoint& targetPos, IGridRole* role, IPathFinderDelegate* delegate)
+void CPathFinderManager::findPath(const Point& startPos, const Point& targetPos, IGridRole* role, IPathFinderDelegate* delegate)
 {
     _FinderTask* task = new _FinderTask;
     
@@ -68,8 +68,8 @@ void CPathFinderManager::findPath(const CCPoint& startPos, const CCPoint& target
 MEM_POOL_DEFINE(_PathNode, PATH_NODE_MEM_POOL_SIZE);
 
 _PathNode::_PathNode()
-: grid(NULL)
-, parent(NULL)
+: grid(nullptr)
+, parent(nullptr)
 , H(0)
 , G(0)
 , F(0)
@@ -89,7 +89,7 @@ void _FinderTask::doFind()
         openList.push(pn);
     }
 
-    vector<CCPoint> outPath;
+    vector<Point> outPath;
     while (openList.size() > 0)
     {
         _PathNode* pn = openList.top();
@@ -117,7 +117,7 @@ void _FinderTask::doFind()
 
 
 
-void _FinderTask::checkF(const CCPoint& gridPos, int G, _PathNode* parent)
+void _FinderTask::checkF(const Point& gridPos, int G, _PathNode* parent)
 {
     if (!closeList.getInList(gridPos))
     {
@@ -163,17 +163,17 @@ void _FinderTask::checkF(const CCPoint& gridPos, int G, _PathNode* parent)
 
 void _FinderTask::findSurround(_PathNode* parent)
 {
-    const CCPoint& p = parent->grid->getGridPos();
+    const Point& p = parent->grid->getGridPos();
     int G = parent->G;
     
-    checkF(CCPoint(p.x - 1, p.y     ), G + 10, parent);   // Left
-    checkF(CCPoint(p.x    , p.y - 1 ), G + 10, parent);   // Down
-    checkF(CCPoint(p.x + 1, p.y     ), G + 10, parent);   // Right
-    checkF(CCPoint(p.x    , p.y + 1 ), G + 10, parent);   // Up
-    checkF(CCPoint(p.x + 1, p.y + 1 ), G + 14, parent);   // Right up
-    checkF(CCPoint(p.x - 1, p.y + 1 ), G + 14, parent);   // Left up
-    checkF(CCPoint(p.x - 1, p.y - 1 ), G + 14, parent);   // Left down
-    checkF(CCPoint(p.x + 1, p.y - 1 ), G + 14, parent);   // Right down
+    checkF(Point(p.x - 1, p.y     ), G + 10, parent);   // Left
+    checkF(Point(p.x    , p.y - 1 ), G + 10, parent);   // Down
+    checkF(Point(p.x + 1, p.y     ), G + 10, parent);   // Right
+    checkF(Point(p.x    , p.y + 1 ), G + 10, parent);   // Up
+    checkF(Point(p.x + 1, p.y + 1 ), G + 14, parent);   // Right up
+    checkF(Point(p.x - 1, p.y + 1 ), G + 14, parent);   // Left up
+    checkF(Point(p.x - 1, p.y - 1 ), G + 14, parent);   // Left down
+    checkF(Point(p.x + 1, p.y - 1 ), G + 14, parent);   // Right down
 }
 
 

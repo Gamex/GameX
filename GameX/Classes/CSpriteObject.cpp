@@ -12,9 +12,9 @@
 
 
 CSpriteObject::CSpriteObject()
-: pSprite_(NULL)
-, pCCBReader_(NULL)
-, m_pActionDelegate(NULL)
+: pSprite_(nullptr)
+, pCCBReader_(nullptr)
+, m_pActionDelegate(nullptr)
 , isAnimationLoopEnd_(false)
 {
     
@@ -32,16 +32,16 @@ CSpriteObject::~CSpriteObject()
 bool CSpriteObject::setSpriteFromCcbi(const char* name)
 {
     // Create auto-release node loader
-    CCNodeLoaderLibrary* ccNodeLoaderLibrary = CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary();
+    NodeLoaderLibrary* nodeLoaderLibrary = NodeLoaderLibrary::getInstance();
 
     // Create a CCBReader, auto release.
-    CCBReader * ccbReader = new CCBReader(ccNodeLoaderLibrary);
+    CCBReader * ccbReader = new CCBReader(nodeLoaderLibrary);
     ccbReader->autorelease();
 
-    // Read a ccbi file, return a CCNode instance.
-    setInnerSprite(dynamic_cast<CCSprite*>(ccbReader->readNodeGraphFromFile(name, this)));
+    // Read a ccbi file, return a Node instance.
+    setInnerSprite(dynamic_cast<Sprite*>(ccbReader->readNodeGraphFromFile(name, this)));
 
-    if (NULL == getInnerSprite())
+    if (nullptr == getInnerSprite())
     {
         return false;
     }
@@ -55,13 +55,13 @@ bool CSpriteObject::setSpriteFromCcbi(const char* name)
 
 bool CSpriteObject::setSprite(const char* name)
 {
-    setInnerSprite(CCSprite::createWithSpriteFrameName(name));
+    setInnerSprite(Sprite::createWithSpriteFrameName(name));
     
-    if (NULL == getInnerSprite())
+    if (nullptr == getInnerSprite())
     {
         return false;
     }
-    setCCBReader(NULL);
+    setCCBReader(nullptr);
     return true;
 }
 
@@ -69,9 +69,9 @@ bool CSpriteObject::setSprite(const char* name)
 
 void CSpriteObject::setActionDelegate(CSpriteActionDelegate* pDelegate)
 {
-    CC_SAFE_RELEASE(dynamic_cast<CCObject*>(m_pActionDelegate));
+    CC_SAFE_RELEASE(dynamic_cast<Object*>(m_pActionDelegate));
     m_pActionDelegate = pDelegate;
-    CC_SAFE_RETAIN(dynamic_cast<CCObject*>(m_pActionDelegate));
+    CC_SAFE_RETAIN(dynamic_cast<Object*>(m_pActionDelegate));
 }
 
 
@@ -89,15 +89,15 @@ void CSpriteObject::clearThis()
     CCBReader* pCCBReader = getCCBReader();
     if (pCCBReader)
     {
-        pCCBReader->getAnimationManager()->setDelegate(NULL);
+        pCCBReader->getAnimationManager()->setDelegate(nullptr);
     }
-    setCCBReader(NULL);
-    setActionDelegate(NULL);
+    setCCBReader(nullptr);
+    setActionDelegate(nullptr);
     
-    if (pSprite_ != NULL)
+    if (pSprite_ != nullptr)
     {
         pSprite_->removeFromParentAndCleanup(true);
-        setInnerSprite(NULL);
+        setInnerSprite(nullptr);
     }
 }
 
@@ -116,8 +116,8 @@ bool CSpriteObject::playAnimation(const std::string& name, bool forceReplay)
             {
                 BREAK_IF(name.compare(am->getRunningSequenceName()) == 0 && !forceReplay);
             }
-            CCArray* seq = am->getSequences();
-            CCObject* pObj;
+            Array* seq = am->getSequences();
+            Object* pObj;
             CCARRAY_FOREACH(seq, pObj)
             {
                 CCBSequence *seq = (CCBSequence*)pObj;
@@ -159,14 +159,14 @@ void CSpriteObject::endState()
 }
 
 
-CCNode* CSpriteObject::getInnerSprite() const
+Node* CSpriteObject::getInnerSprite() const
 {
     return pSprite_;
 }
 
 
 
-void CSpriteObject::setInnerSprite(CCSprite* var)
+void CSpriteObject::setInnerSprite(Sprite* var)
 {
     if (pSprite_ != var)
     {
@@ -221,28 +221,28 @@ void CSpriteObject::setSpriteFlipY(bool f)
 }
 
 
-void CSpriteObject::setSpriteFlipXRecursive(CCSprite* spr, bool f)
+void CSpriteObject::setSpriteFlipXRecursive(Sprite* spr, bool f)
 {
-    spr->setFlipX(f);
+    spr->setFlippedX(f);
     
-    CCArray* children = spr->getChildren();
-    CCObject* obj;
+    Array* children = spr->getChildren();
+    Object* obj;
     CCARRAY_FOREACH(children, obj)
     {
-        setSpriteFlipXRecursive(dynamic_cast<CCSprite*>(obj), f);
+        setSpriteFlipXRecursive(dynamic_cast<Sprite*>(obj), f);
     }
 }
 
 
-void CSpriteObject::setSpriteFlipYRecursive(CCSprite* spr, bool f)
+void CSpriteObject::setSpriteFlipYRecursive(Sprite* spr, bool f)
 {
-    spr->setFlipY(f);
+    spr->setFlippedY(f);
     
-    CCArray* children = spr->getChildren();
-    CCObject* obj;
+    Array* children = spr->getChildren();
+    Object* obj;
     CCARRAY_FOREACH(children, obj)
     {
-        setSpriteFlipYRecursive(dynamic_cast<CCSprite*>(obj), f);
+        setSpriteFlipYRecursive(dynamic_cast<Sprite*>(obj), f);
     }
 }
 
@@ -252,7 +252,7 @@ void CSpriteObject::setSpriteFlipYRecursive(CCSprite* spr, bool f)
 bool CSpriteObject::getSpriteFlipX()
 {
     CC_ASSERT(pSprite_);
-    return pSprite_->isFlipX();
+    return pSprite_->isFlippedX();
 }
 
 
@@ -260,7 +260,7 @@ bool CSpriteObject::getSpriteFlipX()
 bool CSpriteObject::getSpriteFlipY()
 {
     CC_ASSERT(pSprite_);
-    return pSprite_->isFlipY();
+    return pSprite_->isFlippedY();
 }
 
 

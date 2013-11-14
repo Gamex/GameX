@@ -14,7 +14,7 @@ static class CLobbyLayerRegister
 public:
     CLobbyLayerRegister()
     {
-        CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary()->registerCCNodeLoader( "CLobbyLayer", CLobbyLayerLoader::loader());
+        NodeLoaderLibrary::getInstance()->registerNodeLoader( "CLobbyLayer", CLobbyLayerLoader::loader());
     }
 } __reg;
 
@@ -46,42 +46,42 @@ bool CLobbyLayer::init()
 }
 
 
-SEL_MenuHandler CLobbyLayer::onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char* pSelectorName)
+SEL_MenuHandler CLobbyLayer::onResolveCCBCCMenuItemSelector(Object * pTarget, const char* pSelectorName)
 {
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onFormation", CLobbyLayer::onFormation);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onBattle", CLobbyLayer::onBattle);
-    return NULL;
+    return nullptr;
 }
 
-//函数定义类型为：void pressTitle(CCObject *pSender);
-SEL_CCControlHandler CLobbyLayer::onResolveCCBCCControlSelector(CCObject * pTarget, const char* pSelectorName)
+//函数定义类型为：void pressTitle(Object *pSender);
+Control::Handler CLobbyLayer::onResolveCCBCCControlSelector(Object * pTarget, const char* pSelectorName)
 {
 //    CCB_SELECTORRESOLVER_CCCONTROL_GLUE( this, "pressTitle", CLobbyLayer::controlButtonTest);
-    return NULL;
+    return nullptr;
 }
 
-bool CLobbyLayer::onAssignCCBMemberVariable(CCObject* pTarget, const char* pMemberVariableName, CCNode* pNode)
+bool CLobbyLayer::onAssignCCBMemberVariable(Object* pTarget, const char* pMemberVariableName, Node* pNode)
 {
 //    CCB_MEMBERVARIABLEASSIGNER_GLUE( this, "helloLabel", CCLabelTTF*, helloLabel);
     return false;
 }
 
 
-void CLobbyLayer::onNodeLoaded(CCNode * pNode, CCNodeLoader * pNodeLoader)
+void CLobbyLayer::onNodeLoaded(Node * pNode, NodeLoader * pNodeLoader)
 {
     
 }
 
 
 
-void CLobbyLayer::onFormation(CCObject *pSender)
+void CLobbyLayer::onFormation(Object *pSender)
 {
     SCENE_MANAGER->go(ST_FORMATION);
 }
 
 
 
-void CLobbyLayer::onBattle(CCObject* pSender)
+void CLobbyLayer::onBattle(Object* pSender)
 {
     SCENE_MANAGER->go(ST_BATTLE_FIELD);
 }

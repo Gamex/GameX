@@ -49,7 +49,7 @@ public:
             assert(false);
         }
         
-        return NULL;
+        return nullptr;
     }
 
     
@@ -100,6 +100,6 @@ inline void operator delete(void* p)\
 };
 
 #define MEM_POOL_DEFINE(__CLASS__, __SIZE__)\
-CMemPool<__CLASS__, __SIZE__>* __CLASS__::m_pMemPool = NULL;
+CMemPool<__CLASS__, __SIZE__>* __CLASS__::m_pMemPool = nullptr;
 
 #endif /* defined(__GameX__CMemPool__) */

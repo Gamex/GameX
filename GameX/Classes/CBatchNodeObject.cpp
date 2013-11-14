@@ -10,7 +10,7 @@
 
 
 //CBatchNodeObject::CBatchNodeObject() :
-//pBatchNode_(NULL)
+//pBatchNode_(nullptr)
 //{
 //    
 //}
@@ -27,7 +27,7 @@
 //bool CBatchNodeObject::init()
 //{
 //    setBatchNode(TEXTURE_CACHE->createSpriteBatchNode(getBatchNodeName()));
-//    if (NULL == getBatchNode())
+//    if (nullptr == getBatchNode())
 //    {
 //        return false;
 //    }
@@ -43,16 +43,16 @@
 //    {
 //        getBatchNode()->removeFromParentAndCleanup(true);
 //    }
-//    setBatchNode(NULL);
+//    setBatchNode(nullptr);
 //}
 //
 //
 //
-//bool CBatchNodeObject::attachBatchNodeToParent(CCNode* parent, int zOrder, int tag)
+//bool CBatchNodeObject::attachBatchNodeToParent(Node* parent, int zOrder, int tag)
 //{
-//    if (NULL == parent)
+//    if (nullptr == parent)
 //    {
-//        __CCLOGWITHFUNCTION("parent can't be NULL");
+//        __CCLOGWITHFUNCTION("parent can't be nullptr");
 //        return false;
 //    }
 //    

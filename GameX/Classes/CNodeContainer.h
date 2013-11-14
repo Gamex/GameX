@@ -13,7 +13,7 @@
 
 class CObjectBase;
 
-typedef bool (CCObject::*NODE_CONTAINER_INIT_CALL_BACK)(SOB& unUseArrray, CObjectBase* curObj, void* pUserData);
+typedef bool (Object::*NODE_CONTAINER_INIT_CALL_BACK)(SOB& unUseArrray, CObjectBase* curObj, void* pUserData);
 
 class CNodeContainer
 {
@@ -23,7 +23,7 @@ public:
     
     const SOB& getInUseArray() const;
     unsigned int  getInUseCount();
-    virtual bool initCache(const std::string& name, int num, CCObject* target = NULL, NODE_CONTAINER_INIT_CALL_BACK callback = NULL, void* pUserData = NULL);
+    virtual bool initCache(const std::string& name, int num, Object* target = nullptr, NODE_CONTAINER_INIT_CALL_BACK callback = nullptr, void* pUserData = nullptr);
     virtual CObjectBase* checkoutElement();
     virtual void checkinElement(CObjectBase* elem);
     virtual void clear();

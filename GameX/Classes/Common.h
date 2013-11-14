@@ -142,6 +142,7 @@ USING_NS_CC_EXT;
 #include <map>
 #include <string>
 #include <algorithm>
+#include <functional>
 
 using namespace std;
 
@@ -163,9 +164,9 @@ typedef std::set<class CRole*>::const_iterator SR_CIT;
 
 typedef std::queue<class CRole*> QR;
 
-typedef std::map<std::string, CCSpriteBatchNode*> MSSBN;              // batch node name -> batch node object
-typedef std::map<std::string, CCSpriteBatchNode*>::iterator MSSBN_IT;
-typedef std::map<std::string, CCSpriteBatchNode*>::const_iterator MSSBN_CIT;
+typedef std::map<std::string, SpriteBatchNode*> MSSBN;              // batch node name -> batch node object
+typedef std::map<std::string, SpriteBatchNode*>::iterator MSSBN_IT;
+typedef std::map<std::string, SpriteBatchNode*>::const_iterator MSSBN_CIT;
 
 typedef std::vector<class IFightingRelation*> VR;
 typedef std::vector<class IFightingRelation*>::iterator VR_IT;
@@ -212,9 +213,9 @@ typedef std::map<int, string>::iterator MIS_IT;
 typedef std::map<int, string>::const_iterator MIS_CIT;
 
 
-typedef std::map<int, cc_timeval> MIT;
-typedef std::map<int, cc_timeval>::iterator MIT_IT;
-typedef std::map<int, cc_timeval>::const_iterator MIT_CIT;
+typedef std::map<int, timeval> MIT;
+typedef std::map<int, timeval>::iterator MIT_IT;
+typedef std::map<int, timeval>::const_iterator MIT_CIT;
 
 
 typedef std::set<class ICCBAnimationDelegate*> SAD;

@@ -22,9 +22,9 @@ public:
     
     virtual void clearAll();
     
-    virtual CCNode* getInnerSprite() const;
+    virtual Node* getInnerSprite() const;
  
-    virtual void setSpritePreferredSize(const CCSize& size);
+    virtual void setSpritePreferredSize(const Size& size);
 
 protected:
     CScale9SpriteObject();
@@ -34,7 +34,7 @@ protected:
     
     bool createScale9Sprite(const std::string& name);
     
-    CCScale9Sprite* m_pSprite;
+    Scale9Sprite* m_pSprite;
     
     
 private:

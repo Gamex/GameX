@@ -35,10 +35,10 @@ void CWarriorRole::setRoleGroup(ROLE_GROUP var)
     }
     else
     {
-        CCDictionary* dict = DTUNIT->getData(getUnitId());
+        Dictionary* dict = DTUNIT->getData(getUnitId());
         if (dict)
         {
-            CCString* str = DTUNIT->get_radius_Value(dict);
+            String* str = DTUNIT->get_radius_Value(dict);
             CC_ASSERT(str);
             m_visionRadiusSq = str->floatValue();
 
@@ -50,19 +50,19 @@ void CWarriorRole::setRoleGroup(ROLE_GROUP var)
 
 
 
-SEL_CallFuncN CWarriorRole::onResolveCCBCCCallFuncSelector(CCObject * pTarget, const char* pSelectorName)
+SEL_CallFuncN CWarriorRole::onResolveCCBCCCallFuncSelector(Object * pTarget, const char* pSelectorName)
 {
     CCB_SELECTORRESOLVER_CALLFUNC_GLUE(this, "onSkillHit", CWarriorRole::onSkillHit);
     CCB_SELECTORRESOLVER_CALLFUNC_GLUE(this, "onSkillOver", CWarriorRole::onSkillOver);
     CCB_SELECTORRESOLVER_CALLFUNC_GLUE(this, "onDyingOver", CWarriorRole::onDyingOver);
-    return NULL;
+    return nullptr;
 }
 
 
 
 #define LOAD_SKILL(__SKILL_IDX__)\
 {\
-CCString* str = DTUNIT->get_skill##__SKILL_IDX__##_Value(dict);\
+String* str = DTUNIT->get_skill##__SKILL_IDX__##_Value(dict);\
 CC_ASSERT(str);\
 addSkillByName(str->getCString(), __SKILL_IDX__);\
 }
@@ -73,9 +73,9 @@ bool CWarriorRole::init(const string& unitId, bool editorMode)
     {
         BREAK_IF(!CRole::init(unitId, editorMode));
         
-        CCDictionary* dict = DTUNIT->getData(unitId);
+        Dictionary* dict = DTUNIT->getData(unitId);
 
-        CCString* str = DTUNIT->get_radius_Value(dict);
+        String* str = DTUNIT->get_radius_Value(dict);
         CC_ASSERT(str);
         m_visionRadiusSq = str->floatValue();
 
@@ -139,10 +139,10 @@ void CWarriorRole::addSkillByName(const string& skillName, int skillIdx)
     do
     {
         CC_ASSERT(m_skillNames.find(skillName) == m_skillNames.end());
-        CCString* s = DTSKILL->get_className_Value(skillName);
-        BREAK_IF(NULL == s);
+        String* s = DTSKILL->get_className_Value(skillName);
+        BREAK_IF(nullptr == s);
         CSkillComp* skill = (CSkillComp*)OBJECT_FACTORY->createInstance(s->getCString());
-        BREAK_IF(NULL == skill);
+        BREAK_IF(nullptr == skill);
         BREAK_IF_FAILED(skill->init(skillName));
         
         skill->setStateId(WARRIOR_ROLE_STATE_SKILL_0 + skillIdx);
@@ -163,7 +163,7 @@ CSkillComp* CWarriorRole::getSkillCompByName(const string& skillName)
 
 
 
-void CWarriorRole::onSkillHit(CCNode* obj)
+void CWarriorRole::onSkillHit(Node* obj)
 {
     SAD_IT it = m_ccbAnimatonDelegates.begin();
     for ( ;it != m_ccbAnimatonDelegates.end(); ++it)
@@ -174,7 +174,7 @@ void CWarriorRole::onSkillHit(CCNode* obj)
 
 
 
-void CWarriorRole::onSkillOver(CCNode* obj)
+void CWarriorRole::onSkillOver(Node* obj)
 {
     SAD_IT it = m_ccbAnimatonDelegates.begin();
     for ( ;it != m_ccbAnimatonDelegates.end(); ++it)
@@ -185,7 +185,7 @@ void CWarriorRole::onSkillOver(CCNode* obj)
 
 
 
-void CWarriorRole::onDyingOver(CCNode* obj)
+void CWarriorRole::onDyingOver(Node* obj)
 {
     SAD_IT it = m_ccbAnimatonDelegates.begin();
     for ( ;it != m_ccbAnimatonDelegates.end(); ++it)
@@ -241,7 +241,7 @@ void CWarriorRole::thinkOfVisionField()
     float distance = m_visionRadiusSq;
     
     CWarriorRole* target = (CWarriorRole*)getAttackTarget();
-    if (NULL == target)
+    if (nullptr == target)
     {
         changeState(ROLE_STATE_MOVE);
         SR& roles = BF_MANAGER->getRoles(m_roleGroup == ROLE_GROUP_ATTACK ? ROLE_GROUP_DEFENCE : ROLE_GROUP_ATTACK);
@@ -287,7 +287,7 @@ void CWarriorRole::thinkOfVisionField()
     }
     else
     {
-        setMoveTarget(CCPoint(-1, -1));
+        setMoveTarget(Point(-1, -1));
     }
     
 }

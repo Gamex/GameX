@@ -21,7 +21,7 @@ public:
     virtual ~CSkillMarineGunAttack();
 protected:
     CSkillMarineGunAttack();
-    virtual void onSkillHit(CCNode* obj);
+    virtual void onSkillHit(Node* obj);
     
     CGameEffect* m_effect;
 };

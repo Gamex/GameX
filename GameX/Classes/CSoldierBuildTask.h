@@ -20,7 +20,7 @@ public:
     
     std::string m_soldierName;
     float m_buildTime;
-    CCPoint m_bothPosition;
+    Point m_bothPosition;
 protected:
 private:
 };

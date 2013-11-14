@@ -52,7 +52,7 @@ public:
     
     virtual int getNormalAttackStateId() const {return WARRIOR_ROLE_STATE_SKILL_0;}
     
-    virtual SEL_CallFuncN onResolveCCBCCCallFuncSelector(CCObject * pTarget, const char* pSelectorName);
+    virtual SEL_CallFuncN onResolveCCBCCCallFuncSelector(Object * pTarget, const char* pSelectorName);
 
     virtual void addToSkipList(CWarriorRole* role);
     virtual void updateSkipList(float dt);
@@ -69,9 +69,9 @@ protected:
 
     virtual void thinkOfVisionField();
     
-    virtual void onSkillHit(CCNode* obj);
-    virtual void onSkillOver(CCNode* obj);
-    virtual void onDyingOver(CCNode* obj);
+    virtual void onSkillHit(Node* obj);
+    virtual void onSkillOver(Node* obj);
+    virtual void onDyingOver(Node* obj);
 
     float m_visionRadiusSq;
 

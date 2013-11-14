@@ -36,8 +36,8 @@ public:
     virtual bool checkTarget(CRole* target, float distance);
     virtual void action();
     
-    virtual void onSkillHit(CCNode* obj);
-    virtual void onSkillOver(CCNode* obj);
+    virtual void onSkillHit(Node* obj);
+    virtual void onSkillOver(Node* obj);
 protected:
     CSkillComp(void);
     

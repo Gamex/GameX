@@ -11,9 +11,9 @@
 IMPLEMENT_SINGLETON(CDataCenterManager);
 
 CDataCenterManager::CDataCenterManager()
-: m_DTLevel(NULL)
-, m_DTScene(NULL)
-, m_DTUnit(NULL)
+: m_DTLevel(nullptr)
+, m_DTScene(nullptr)
+, m_DTUnit(nullptr)
 {
 }
 

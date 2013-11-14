@@ -77,12 +77,12 @@ bool CObjectFactory::registerClass(const std::string&  className, FACTORY_CREATE
 
 
 
-CCObject* CObjectFactory::createInstance(const std::string& className)
+Object* CObjectFactory::createInstance(const std::string& className)
 {
     MSCF_IT it = FactoryTable_.find(className);
     if (it == FactoryTable_.end())
     {
-        return NULL;
+        return nullptr;
     }
     
     return ((*it).second)();

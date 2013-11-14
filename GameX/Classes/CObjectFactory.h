@@ -19,13 +19,13 @@ using namespace std;
 class CObjectFactory : public CSingleton<CObjectFactory>
 {
 public:
-    typedef CCObject* (*FACTORY_CREATE_FUNC)();
+    typedef Object* (*FACTORY_CREATE_FUNC)();
 
     CObjectFactory();
     virtual ~CObjectFactory();
     
     bool Initialize();
-    CCObject* createInstance(const std::string& className);
+    Object* createInstance(const std::string& className);
     
 protected:
     bool registerClass(const std::string&  className, FACTORY_CREATE_FUNC func);
@@ -38,7 +38,7 @@ private:
     
 };
 
-#define FACTORY_CREATE_FUNC(__type) static CCObject* create() \
+#define FACTORY_CREATE_FUNC(__type) static Object* create() \
 { \
     __type *pRet = new __type(); \
     if (pRet) \
@@ -49,8 +49,8 @@ private:
     else \
     { \
         delete pRet; \
-        pRet = NULL; \
-        return NULL; \
+        pRet = nullptr; \
+        return nullptr; \
     } \
 }
 

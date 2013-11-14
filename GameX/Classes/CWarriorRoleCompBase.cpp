@@ -10,7 +10,7 @@
 
 CWarriorRoleCompBase::CWarriorRoleCompBase(int subState)
 : m_subState(subState)
-, m_ownerRole(NULL)
+, m_ownerRole(nullptr)
 {
 }
 
@@ -24,14 +24,14 @@ CWarriorRoleCompBase::~CWarriorRoleCompBase()
 
 bool CWarriorRoleCompBase::init()
 {
-    return CCComponent::init();
+    return Component::init();
 }
 
 
 
 void CWarriorRoleCompBase::onEnter()
 {
-    CCComponent::onEnter();
+    Component::onEnter();
     m_ownerRole = dynamic_cast<CWarriorRole*>(getOwner());
     m_ownerRole->addCCBAnimationDelegate(this);
 }
@@ -40,14 +40,14 @@ void CWarriorRoleCompBase::onEnter()
 
 void CWarriorRoleCompBase::onExit()
 {
-    CCComponent::onExit();
+    Component::onExit();
 }
 
 
 
 void CWarriorRoleCompBase::update(float dt)
 {
-    CCComponent::update(dt);
+    Component::update(dt);
 }
 
 

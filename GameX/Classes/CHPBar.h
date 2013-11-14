@@ -27,7 +27,7 @@ public:
     virtual void update(float dt);
     virtual void clearAll();
 
-    virtual bool attachSpriteTo(CCNode* parent, int zOrder = 0, int tag = -1);
+    virtual bool attachSpriteTo(Node* parent, int zOrder = 0, int tag = -1);
 protected:
     CHPBar();
     void clearThis();
@@ -36,7 +36,7 @@ protected:
 
     float m_percentage;
 private:
-    CCSize OrigBarSize_;
+    Size OrigBarSize_;
     
 };
 

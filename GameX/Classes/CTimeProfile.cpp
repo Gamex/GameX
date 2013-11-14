@@ -34,15 +34,15 @@ bool CTimeProfile::init()
 {
     do
     {
-        m_log = CCDictionary::create();
+        m_log = Dictionary::create();
         CC_SAFE_RETAIN(m_log);
         
-        m_tempLog = CCDictionary::create();
+        m_tempLog = Dictionary::create();
         CC_SAFE_RETAIN(m_tempLog);
         
-        cc_timeval& t1 = m_beginLogTimes[0];
-        cc_timeval& t2 = m_lastLogTimes[0];
-        CCTime::gettimeofdayCocos2d(&t1, NULL);
+        timeval& t1 = m_beginLogTimes[0];
+        timeval& t2 = m_lastLogTimes[0];
+        CCTime::gettimeofdayCocos2d(&t1, nullptr);
         t2 = t1;
         
         return true;
@@ -56,10 +56,10 @@ bool CTimeProfile::begin(int identifier)
 {
     do
     {
-        cc_timeval& t1 = m_beginLogTimes[identifier];
-        cc_timeval& t2 = m_lastLogTimes[identifier];
+        timeval& t1 = m_beginLogTimes[identifier];
+        timeval& t2 = m_lastLogTimes[identifier];
             
-        CCTime::gettimeofdayCocos2d(&t1, NULL);
+        CCTime::gettimeofdayCocos2d(&t1, nullptr);
         t2 = t1;
 
         return true;
@@ -76,15 +76,15 @@ bool CTimeProfile::log(const char* s, int identifier)
     {
         MIT_IT it = m_beginLogTimes.find(identifier);
         BREAK_IF(it == m_lastLogTimes.end());
-        cc_timeval& t = (*it).second;
+        timeval& t = (*it).second;
         
-        cc_timeval tp;
-        CCTime::gettimeofdayCocos2d(&tp, NULL);
+        timeval tp;
+        CCTime::gettimeofdayCocos2d(&tp, nullptr);
         double diff = CCTime::timersubCocos2d(&t, &tp);
         t = tp;
-        CCString* key = CCString::createWithFormat("%ld : %d - %f %s", tp.tv_sec, tp.tv_usec, diff, diff > 10 ? "<---" : "");
+        String* key = String::createWithFormat("%ld : %d - %f %s", tp.tv_sec, tp.tv_usec, diff, diff > 10 ? "<---" : "");
 
-        m_tempLog->setObject(CCString::create(s), key->getCString());
+        m_tempLog->setObject(String::create(s), key->getCString());
         
         return true;
     } while (false);
@@ -98,8 +98,8 @@ bool CTimeProfile::commit(float threld)
 {
     do
     {
-        cc_timeval tp;
-        CCTime::gettimeofdayCocos2d(&tp, NULL);
+        timeval tp;
+        CCTime::gettimeofdayCocos2d(&tp, nullptr);
         
         float t = CCTime::timersubCocos2d(&(m_beginLogTimes[0]), &tp);
         CCLOG("t: %f", t);
@@ -124,7 +124,7 @@ bool CTimeProfile::flush()
 {
     do
     {
-        string path = CCFileUtils::sharedFileUtils()->getWritablePath();
+        string path = FileUtils::getInstance()->getWritablePath();
         path += LOG_FILE_NAME;
         m_log->writeToFile(path.c_str());
         return true;

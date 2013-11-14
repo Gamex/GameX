@@ -19,11 +19,11 @@ public:
     virtual ~CVisibleObject();
 
     virtual void enableAlphaTest(float value);
-    virtual CCRect getSpriteBoundingBox() const;
-    virtual CCRect getSpriteBoundingBoxInWorldSpace();
-    virtual CCPoint getSpritePositionInWorldSpace();
-    virtual CCPoint getSpritePosition() const;
-    virtual void setSpritePosition(const CCPoint& point);
+    virtual Rect getSpriteBoundingBox() const;
+    virtual Rect getSpriteBoundingBoxInWorldSpace();
+    virtual Point getSpritePositionInWorldSpace();
+    virtual Point getSpritePosition() const;
+    virtual void setSpritePosition(const Point& point);
     virtual void setSpriteVisible(bool visible);
     virtual void setSpriteScaleX(float sx);
     virtual void setSpriteScaleY(float sy);
@@ -35,18 +35,18 @@ public:
     virtual bool getSpriteFlipX();
     virtual bool getSpriteFlipY();
     virtual bool isSpriteVisible();
-    virtual CCSize getSpriteContentSize();
+    virtual Size getSpriteContentSize();
     virtual void setSpriteZOrder(int z);
     virtual bool isSpriteInScreen();
     virtual void removeSpriteFromParentAndCleanup(bool cleanup=true);
-    virtual bool runSpriteAction(CCAction* action);
-    virtual void setSpriteAnchorPoint(const CCPoint& point);
+    virtual bool runSpriteAction(Action* action);
+    virtual void setSpriteAnchorPoint(const Point& point);
     virtual void stopSpriteAllActions();
     
     virtual void setSpriteVertexZ(float z);
     virtual float getSpriteVertexZ() const;
     
-    virtual bool attachSpriteTo(CCNode* parent, int zOrder = 0, int tag = -1);
+    virtual bool attachSpriteTo(Node* parent, int zOrder = 0, int tag = -1);
     virtual bool dettachSpriteFrom(bool cleanup = true);
     
     virtual bool isNeedCheckCollision();
@@ -62,7 +62,7 @@ public:
     
     virtual void clearAll();
     
-    virtual CCNode* getInnerSprite() const=0;
+    virtual Node* getInnerSprite() const=0;
     
     virtual bool addSlot(CVisibleObject* vo, int tag);
     virtual void removeSlot(CVisibleObject* vo);
@@ -73,18 +73,18 @@ protected:
     CVisibleObject();
     void clearThis();
     
-    virtual void _setSpriteVertexZ_R(CCNode* node, float z);
-    virtual void _enableAlphaTestR(CCNode* node, float value);
+    virtual void _setSpriteVertexZ_R(Node* node, float z);
+    virtual void _enableAlphaTestR(Node* node, float value);
     
     virtual void updateBoundingBoxInWorldSpace();
-    virtual void onSensor(CCObject* obj);
+    virtual void onSensor(Object* obj);
     virtual void onSetSensorType(CSensor* pSensor);
    
-    CCRect m_boundingBoxInWorldSpace;
-    CCPoint m_positionInWorldSpace;
+    Rect m_boundingBoxInWorldSpace;
+    Point m_positionInWorldSpace;
     bool m_isCachePosition;
     
-    CCArray m_runningActions;
+    Array m_runningActions;
     
     MISVO m_slots;
 private:

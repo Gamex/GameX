@@ -15,7 +15,7 @@ CVisibleObject::CVisibleObject() :
 m_isCachePosition(false)
 , m_pSensor(NULL)
 {
-    
+    m_runningActions.init();
 }
 
 
@@ -45,7 +45,7 @@ void CVisibleObject::updateBoundingBoxInWorldSpace()
         return;
     }
 
-    CCNode* pInnerSprite = getInnerSprite();
+    Node* pInnerSprite = getInnerSprite();
     if (pInnerSprite)
     {
         m_boundingBoxInWorldSpace = getSpriteBoundingBox();
@@ -76,8 +76,8 @@ bool CVisibleObject::isCollsionWith(TFCollisionProtocol* object)
         return false;
     }
     
-    CCRect b1 = getSpriteBoundingBoxInWorldSpace();
-    CCRect b2 = pObj->getSpriteBoundingBoxInWorldSpace();
+    Rect b1 = getSpriteBoundingBoxInWorldSpace();
+    Rect b2 = pObj->getSpriteBoundingBoxInWorldSpace();
     
     return b1.intersectsRect(b2);
 }
@@ -85,23 +85,23 @@ bool CVisibleObject::isCollsionWith(TFCollisionProtocol* object)
 
 
 
-CCRect CVisibleObject::getSpriteBoundingBox() const
+Rect CVisibleObject::getSpriteBoundingBox() const
 {
     if (NULL != getInnerSprite())
     {
-        return getInnerSprite()->boundingBox();
+        return getInnerSprite()->getBoundingBox();
     }
     
-    return CCRectZero;
+    return Rect::ZERO;
 }
 
 
 
-CCRect CVisibleObject::getSpriteBoundingBoxInWorldSpace()
+Rect CVisibleObject::getSpriteBoundingBoxInWorldSpace()
 { 
     if (!m_isCachePosition)
     {
-        CCNode* pInnerSprite = getInnerSprite();
+        Node* pInnerSprite = getInnerSprite();
         
         m_boundingBoxInWorldSpace = getSpriteBoundingBox();
         
@@ -116,11 +116,11 @@ CCRect CVisibleObject::getSpriteBoundingBoxInWorldSpace()
 
 
 
-CCPoint CVisibleObject::getSpritePositionInWorldSpace()
+Point CVisibleObject::getSpritePositionInWorldSpace()
 {
     if (!m_isCachePosition)
     {
-        CCNode* pInnerSprite = getInnerSprite();
+        Node* pInnerSprite = getInnerSprite();
         
         m_positionInWorldSpace = getSpritePosition();
         
@@ -134,19 +134,19 @@ CCPoint CVisibleObject::getSpritePositionInWorldSpace()
 }
 
 
-CCPoint CVisibleObject::getSpritePosition() const
+Point CVisibleObject::getSpritePosition() const
 {
     if (NULL != getInnerSprite())
     {
         return getInnerSprite()->getPosition();
     }
     
-    return CCPointZero;
+    return Point::ZERO;
 }
 
 
 
-void CVisibleObject::setSpritePosition(const CCPoint& point)
+void CVisibleObject::setSpritePosition(const Point& point)
 {
     if (NULL != getInnerSprite())
     {
@@ -180,14 +180,14 @@ bool CVisibleObject::isSpriteVisible()
 
 
 
-CCSize CVisibleObject::getSpriteContentSize()
+Size CVisibleObject::getSpriteContentSize()
 {
     if (NULL != getInnerSprite())
     {
         return getInnerSprite()->getContentSize();
     }
     
-    return CCSizeZero;
+    return Size::ZERO;
 }
 
 
@@ -196,7 +196,7 @@ void CVisibleObject::setSpriteZOrder(int z)
 {
     if (NULL != getInnerSprite())
     {
-        CCNode* pParent = getInnerSprite()->getParent();
+        Node* pParent = getInnerSprite()->getParent();
         if (NULL != pParent)
         {
             getInnerSprite()->setZOrder(z);
@@ -210,10 +210,10 @@ bool CVisibleObject::isSpriteInScreen()
 {
     if (NULL != getInnerSprite())
     {
-        CCRect screen;
-        screen.origin = CCPointZero;
-        screen.size = CCDirector::sharedDirector()->getWinSize();
-        if (screen.intersectsRect(getInnerSprite()->boundingBox()))
+        Rect screen;
+        screen.origin = Point::ZERO;
+        screen.size = Director::getInstance()->getWinSize();
+        if (screen.intersectsRect(getInnerSprite()->getBoundingBox()))
         {
             return true;
         }
@@ -264,7 +264,7 @@ void CVisibleObject::removeSpriteFromParentAndCleanup(bool cleanup)
 
 
 
-bool CVisibleObject::runSpriteAction(CCAction* action)
+bool CVisibleObject::runSpriteAction(Action* action)
 {
     CCAssert(NULL != action, "action can't be NULL!");
     if (NULL == getInnerSprite())
@@ -282,7 +282,7 @@ bool CVisibleObject::runSpriteAction(CCAction* action)
 
 void CVisibleObject::stopSpriteAllActions()
 {
-    CCNode* node = getInnerSprite();
+    Node* node = getInnerSprite();
     
     if (node)
     {
@@ -292,7 +292,7 @@ void CVisibleObject::stopSpriteAllActions()
 
 
 
-void CVisibleObject::setSpriteAnchorPoint(const CCPoint& point)
+void CVisibleObject::setSpriteAnchorPoint(const Point& point)
 {
     if (NULL != getInnerSprite())
     {
@@ -310,20 +310,20 @@ void CVisibleObject::setSpriteVertexZ(float z)
 
 
 
-void CVisibleObject::_setSpriteVertexZ_R(CCNode* node, float z)
+void CVisibleObject::_setSpriteVertexZ_R(Node* node, float z)
 {
-    CCSprite* spr = (CCSprite*)node;
-    if (spr->getAtlasIndex() != CCSpriteIndexNotInitialized)
+    Sprite* spr = (Sprite*)node;
+    if (spr->getAtlasIndex() != Sprite::INDEX_NOT_INITIALIZED)
     {
         spr->setVertexZ(z);
         spr->setDirty(true);
         spr->updateTransform();
-        CCArray* children = node->getChildren();
-        CCObject* obj;
+        Array* children = node->getChildren();
+        Object* obj;
         CCARRAY_FOREACH(children, obj)
         {
             CC_ASSERT(obj);
-            _setSpriteVertexZ_R((CCNode*)obj, z);
+            _setSpriteVertexZ_R((Node*)obj, z);
         }
     }
     else
@@ -342,7 +342,7 @@ float CVisibleObject::getSpriteVertexZ() const
 
 
 
-bool CVisibleObject::attachSpriteTo(CCNode* parent, int zOrder, int tag)
+bool CVisibleObject::attachSpriteTo(Node* parent, int zOrder, int tag)
 {
     CC_ASSERT(parent);
     CC_ASSERT(getInnerSprite());
@@ -356,7 +356,7 @@ bool CVisibleObject::attachSpriteTo(CCNode* parent, int zOrder, int tag)
 
 bool CVisibleObject::dettachSpriteFrom(bool cleanup)
 {
-    CCNode* node = getInnerSprite();
+    Node* node = getInnerSprite();
     CC_ASSERT(node);
     node->removeFromParentAndCleanup(cleanup);
     
@@ -387,12 +387,12 @@ void CVisibleObject::die()
 {
     CObjectBase::die();
 
-    CCObject* pObj;
+    Object* pObj;
     CCARRAY_FOREACH(&m_runningActions, pObj)
     {
         if (NULL != getInnerSprite())
         {
-            getInnerSprite()->stopAction(dynamic_cast<CCAction*>(pObj));
+            getInnerSprite()->stopAction(dynamic_cast<Action*>(pObj));
         }
     }
     m_runningActions.removeAllObjects();
@@ -428,7 +428,7 @@ void CVisibleObject::clearAll()
 
 
 
-void CVisibleObject::onSensor(CCObject* obj)
+void CVisibleObject::onSensor(Object* obj)
 {
     
 }
@@ -491,24 +491,24 @@ bool CVisibleObject::getSpriteFlipY()
 }
 
 
-void CVisibleObject::_enableAlphaTestR(CCNode* node, float value)
+void CVisibleObject::_enableAlphaTestR(Node* node, float value)
 {
     CC_ASSERT(node);
-    CCGLProgram* program = CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColorAlphaTest);
+    GLProgram* program = ShaderCache::getInstance()->getProgram(GLProgram::SHADER_NAME_POSITION_TEXTURE_ALPHA_TEST);
     node->setShaderProgram(program);
         program->use();
     
-    GLint alphaValueLocation = glGetUniformLocation(program->getProgram(), kCCUniformAlphaTestValue);
+    GLint alphaValueLocation = glGetUniformLocation(program->getProgram(), GLProgram::UNIFORM_NAME_ALPHA_TEST_VALUE);
     
     // NOTE: alpha test shader is hard-coded to use the equivalent of a glAlphaFunc(GL_GREATER) comparison
     program->setUniformLocationWith1f(alphaValueLocation, value);
 
 
-    CCArray* children = node->getChildren();
-    CCObject* obj;
+    Array* children = node->getChildren();
+    Object* obj;
     CCARRAY_FOREACH(children, obj)
     {
-        _enableAlphaTestR((CCNode*)obj, value);
+        _enableAlphaTestR((Node*)obj, value);
     }
 }
 
@@ -562,7 +562,7 @@ void CVisibleObject::removeSlotByTag(int tag)
 
 void CVisibleObject::updateSlots(float dt)
 {
-    CCPoint pt = getSpritePosition();
+    Point pt = getSpritePosition();
     MISVO_IT it = m_slots.begin();
     for (; it != m_slots.end(); ++it)
     {

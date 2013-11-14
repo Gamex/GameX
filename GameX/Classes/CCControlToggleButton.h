@@ -11,25 +11,25 @@
 
 #include "Common.h"
 
-class CCControlToggleButton : public CCControlButton
+class CCControlToggleButton : public ControlButton
 {
 public:
     CCControlToggleButton();
     virtual ~CCControlToggleButton();
     
-    static CCControlToggleButton* createWithToggles(CCScale9Sprite* toggleOn, CCScale9Sprite* toggleOff);
-    virtual bool initWithToggles(CCScale9Sprite* toggleOn, CCScale9Sprite* toggleOff);
+    static CCControlToggleButton* createWithToggles(Scale9Sprite* toggleOn, Scale9Sprite* toggleOff);
+    virtual bool initWithToggles(Scale9Sprite* toggleOn, Scale9Sprite* toggleOff);
 
     //events
-    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+    virtual bool onTouchBegan(Touch *pTouch, Event *pEvent);
+    virtual void onTouchMoved(Touch *pTouch, Event *pEvent);
+    virtual void onTouchEnded(Touch *pTouch, Event *pEvent);
+    virtual void onTouchCancelled(Touch *pTouch, Event *pEvent);
     
 //    CC_SYNTHESIZE(bool, m_toggleValue, ToggleValue);
     CC_PROPERTY(bool, m_toggleValue, ToggleValue);
-    CC_SYNTHESIZE_RETAIN(CCScale9Sprite*, toggleOn_, ToggleOn);
-    CC_SYNTHESIZE_RETAIN(CCScale9Sprite*, toggleOff_, ToggleOff);
+    CC_SYNTHESIZE_RETAIN(Scale9Sprite*, toggleOn_, ToggleOn);
+    CC_SYNTHESIZE_RETAIN(Scale9Sprite*, toggleOff_, ToggleOff);
     
 protected:
 private:

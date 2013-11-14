@@ -26,18 +26,18 @@ public:
 protected:
     virtual bool initBkgLayerBase(const char* batchNodeName);
     
-    virtual void bkgLayerBaseTouchesBegan(CCSet* touches, CCEvent* event);
-    virtual void bkgLayerBaseTouchesMoved(CCSet* touches, CCEvent* event);
-    virtual void bkgLayerBaseTouchesEnded(CCSet* touches, CCEvent* event);
+    virtual void bkgLayerBaseTouchesBegan(const std::vector<Touch*>& touches, Event* event);
+    virtual void bkgLayerBaseTouchesMoved(const std::vector<Touch*>& touches, Event* event);
+    virtual void bkgLayerBaseTouchesEnded(const std::vector<Touch*>& touches, Event* event);
 private:
     CPathFinderManager* m_pathFinder;
-    CCLayer* m_layer;
+    Layer* m_layer;
     
     float m_lastLength;
-    CCPoint  m_tapStartPoint;
-    CCPoint m_scaleCenterGridPos;
+    Point  m_tapStartPoint;
+    Point m_scaleCenterGridPos;
     
-    CCArray* m_touches;
+    std::vector<Touch*> m_touches;
 };
 
 #endif /* defined(__GameX__CBkgLayerBase__) */

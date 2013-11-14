@@ -34,7 +34,7 @@
 
 
 CPath::CPath()
-: spline_(NULL)
+: spline_(nullptr)
 {
     
 }
@@ -63,7 +63,7 @@ bool CPath::initWithData(char* pData, int32_t length)
 //        
 //        int len = length - sizeof(int32_t) - pathNameLen;
 //
-//        CCArray* controlPoint = CCArray::create();
+//        Array* controlPoint = Array::create();
 //        double x, y;
 //
 //        len /= 2 * sizeof(double);
@@ -74,7 +74,7 @@ bool CPath::initWithData(char* pData, int32_t length)
 //            y = *((double*)p);
 //            p += sizeof(double);
             
-//            CCPoint* pt = new CCPoint(x, y);
+//            Point* pt = new Point(x, y);
 //            pt->autorelease();
 //            controlPoint->addObject(pt);
         }
@@ -88,7 +88,7 @@ bool CPath::initWithData(char* pData, int32_t length)
 
 
 
-bool CPath::makeSpline(CCArray* cp)
+bool CPath::makeSpline(Array* cp)
 {
     int division;
     int maxDivision = 0;
@@ -97,21 +97,21 @@ bool CPath::makeSpline(CCArray* cp)
     if (cpCount < 4) return false;
     
     CC_SAFE_RELEASE(spline_);
-    spline_ = CCArray::create();
+    spline_ = Array::create();
     CC_SAFE_RETAIN(spline_);
     
     cpCount -= 3;
-    CCPoint cps[4];
+    Point cps[4];
     
     for (int i = 0; i < cpCount; ++i)
     {
-        cps[0] = *dynamic_cast<CCPoint*>(cp->objectAtIndex(i));
-        cps[1] = *dynamic_cast<CCPoint*>(cp->objectAtIndex(i+1));
-        cps[2] = *dynamic_cast<CCPoint*>(cp->objectAtIndex(i+2));
-        cps[3] = *dynamic_cast<CCPoint*>(cp->objectAtIndex(i+3));
+        cps[0] = *dynamic_cast<Point*>(cp->getObjectAtIndex(i));
+        cps[1] = *dynamic_cast<Point*>(cp->getObjectAtIndex(i+1));
+        cps[2] = *dynamic_cast<Point*>(cp->getObjectAtIndex(i+2));
+        cps[3] = *dynamic_cast<Point*>(cp->getObjectAtIndex(i+3));
         
-        CCPoint startPoint;
-        CCPoint endPoint;
+        Point startPoint;
+        Point endPoint;
         startPoint.x = SPLINE(0.f, 0.f, 0.f,
                               cps[0].x,
                               cps[1].x,
@@ -147,7 +147,7 @@ bool CPath::makeSpline(CCArray* cp)
 			u_2 = u * u;
 			u_3 = u_2 * u;
             
-            CCPoint* curveData = new CCPoint;
+            Point* curveData = new Point;
             curveData->autorelease();
             // Position
             curveData->x = SPLINE(u, u_2, u_3,
@@ -170,33 +170,33 @@ bool CPath::makeSpline(CCArray* cp)
 }
 
 
-bool CPath::initWithRandom(const CCPoint& sp, const CCPoint& ep)
+bool CPath::initWithRandom(const Point& sp, const Point& ep)
 {
-    CCSize winSz = CCDirector::sharedDirector()->getWinSize();
+    Size winSz = Director::getInstance()->getWinSize();
     
-    CCRect rect;
+    Rect rect;
     rect.origin.x = MIN(sp.x, ep.x);
     rect.origin.y = MIN(sp.y, ep.y);
     rect.size.width = fabsf(sp.x - ep.x);
     rect.size.height = fabsf(sp.y - ep.y);
     
-    CCArray* controlPoints = CCArray::create();
+    Array* controlPoints = Array::create();
     
-    CCPoint* cp1 = new CCPoint(sp);
+    Point* cp1 = new Point(sp);
     cp1->autorelease();
 
-    CCPoint* cp2 = new CCPoint(rect.origin.x +  CCRANDOM_0_1() * rect.size.width,
+    Point* cp2 = new Point(rect.origin.x +  CCRANDOM_0_1() * rect.size.width,
                                rect.origin.y + CCRANDOM_0_1() * rect.size.width);
     cp2->autorelease();
     
-    CCPoint* cp3 = new CCPoint(rect.origin.x +  CCRANDOM_0_1() * rect.size.width,
+    Point* cp3 = new Point(rect.origin.x +  CCRANDOM_0_1() * rect.size.width,
                                rect.origin.y + CCRANDOM_0_1() * rect.size.width);
     cp3->autorelease();
 
-    CCPoint* cp4 = new CCPoint(ep);
+    Point* cp4 = new Point(ep);
     cp4->autorelease();
     
-    CCPoint* cp0 = new CCPoint;
+    Point* cp0 = new Point;
     cp0->autorelease();
     if (cp1->x < winSz.width / 2.f)
     {
@@ -216,7 +216,7 @@ bool CPath::initWithRandom(const CCPoint& sp, const CCPoint& ep)
     }
     
     
-    CCPoint* cp5 = new CCPoint;
+    Point* cp5 = new Point;
     cp5->autorelease();
     
     if (cp0->x == 0)

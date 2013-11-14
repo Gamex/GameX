@@ -11,7 +11,7 @@
 
 #include "CVisibleObject.h"
 #include "CSpriteActionDelegate.h"
-#include "CCBReader.h"
+#include "CCBReader/CCBReader.h"
 #include <map>
 
 USING_NS_CC;
@@ -35,14 +35,14 @@ public:
     
     virtual void setActionDelegate(CSpriteActionDelegate* pDelegate);
 
-    virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char* pSelectorName)
-    { return NULL; };
-    virtual SEL_CallFuncN onResolveCCBCCCallFuncSelector(CCObject * pTarget, const char* pSelectorName)
-    { return NULL; };
-    virtual SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, const char* pSelectorName)
-    { return NULL; };
+    virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(Object * pTarget, const char* pSelectorName)
+    { return nullptr; };
+    virtual SEL_CallFuncN onResolveCCBCCCallFuncSelector(Object * pTarget, const char* pSelectorName)
+    { return nullptr; };
+    virtual Control::Handler onResolveCCBCCControlSelector(Object * pTarget, const char* pSelectorName)
+    { return nullptr; };
 
-    virtual CCNode* getInnerSprite() const;
+    virtual Node* getInnerSprite() const;
     virtual void setSpriteFlipX(bool f);
     virtual void setSpriteFlipY(bool f);
     virtual bool getSpriteFlipX();
@@ -57,17 +57,17 @@ protected:
     CSpriteObject();
     void clearThis();
     
-    virtual void setInnerSprite(CCSprite* var);
+    virtual void setInnerSprite(Sprite* var);
     virtual void completedAnimationSequenceNamed(const char *name);
     
     bool setSpriteFromCcbi(const char* name);
     bool setSprite(const char* name);
     
-    void setSpriteFlipXRecursive(CCSprite* spr, bool f);
-    void setSpriteFlipYRecursive(CCSprite* spr, bool f);
+    void setSpriteFlipXRecursive(Sprite* spr, bool f);
+    void setSpriteFlipYRecursive(Sprite* spr, bool f);
     CSpriteActionDelegate* m_pActionDelegate;
 private:
-    CCSprite* pSprite_;
+    Sprite* pSprite_;
     bool isAnimationLoopEnd_;
 };
 

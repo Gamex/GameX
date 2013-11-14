@@ -11,7 +11,7 @@
 
 
 CScale9SpriteObject::CScale9SpriteObject() :
-m_pSprite(NULL)
+m_pSprite(nullptr)
 {
     
 }
@@ -52,14 +52,14 @@ bool CScale9SpriteObject::createScale9Sprite(const std::string& name)
 //        _name = name.substr(0, pos);
 //    }
     
-    CCSpriteFrame *pFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(name.c_str());
-    if (NULL == pFrame)
+    SpriteFrame *pFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(name.c_str());
+    if (nullptr == pFrame)
     {
         return false;
     }
-    CCSize sz = pFrame->getRect().size;
-    m_pSprite = CCScale9Sprite::createWithSpriteFrameName(name.c_str(), CCRect(1, 1, sz.width-2, sz.height-2));
-    if (NULL == m_pSprite)
+    Size sz = pFrame->getRect().size;
+    m_pSprite = Scale9Sprite::createWithSpriteFrameName(name.c_str(), Rect(1, 1, sz.width-2, sz.height-2));
+    if (nullptr == m_pSprite)
     {
         return false;
     }
@@ -83,15 +83,15 @@ void CScale9SpriteObject::clearThis()
     if (m_pSprite)
     {
         m_pSprite->removeFromParentAndCleanup(true);
-        m_pSprite = NULL;
+        m_pSprite = nullptr;
     }
 }
 
 
 
-void CScale9SpriteObject::setSpritePreferredSize(const CCSize& size)
+void CScale9SpriteObject::setSpritePreferredSize(const Size& size)
 {
-    if (NULL != m_pSprite)
+    if (nullptr != m_pSprite)
     {
         m_pSprite->setPreferredSize(size);
     }
@@ -99,7 +99,7 @@ void CScale9SpriteObject::setSpritePreferredSize(const CCSize& size)
 
 
 
-CCNode* CScale9SpriteObject::getInnerSprite() const
+Node* CScale9SpriteObject::getInnerSprite() const
 {
     return m_pSprite;
 }

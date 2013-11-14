@@ -18,7 +18,7 @@ class CBackgroundManager;
 
 class CEffectManager
 : public CSingleton<CEffectManager>
-, public CCObject
+, public Object
 {
 public:
     CEffectManager();
@@ -36,7 +36,7 @@ protected:
     CBackgroundManager* m_bkgMgr;
     VNC m_caches;
     
-    CCSpriteBatchNode* m_batchNode;
+    SpriteBatchNode* m_batchNode;
 };
 
 

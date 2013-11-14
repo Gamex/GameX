@@ -11,7 +11,7 @@
 
 #include "Common.h"
 #include "CSingleton.h"
-#include "CCBReader.h"
+#include "CCBReader/CCBReader.h"
 
 enum SCENE_TYPE
 {
@@ -35,7 +35,7 @@ public:
 
 protected:
 private:
-    CCArray* m_scenes;
+    Array* m_scenes;
 };
 
 #define SCENE_MANAGER           (CGameSceneManager::getInstance())

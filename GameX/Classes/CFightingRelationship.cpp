@@ -151,7 +151,7 @@ void CFightingRelationship::removeAllVillains(IFightingRelation* role)
 
 IFightingRelation* CFightingRelationship::getFirstVillain(IFightingRelation* role)
 {
-    IFightingRelation* ret = NULL;
+    IFightingRelation* ret = nullptr;
     MRVR_IT it = m_victims.find(role);
     if (it != m_victims.end())
     {
@@ -171,7 +171,7 @@ IFightingRelation* CFightingRelationship::getFirstVillain(IFightingRelation* rol
 
 IFightingRelation* CFightingRelationship::getNextVillain(IFightingRelation* role, IFightingRelation* preVictim)
 {
-    IFightingRelation* ret = NULL;
+    IFightingRelation* ret = nullptr;
     MRVR_IT it = m_victims.find(role);
     if (it != m_victims.end())
     {
@@ -195,7 +195,7 @@ IFightingRelation* CFightingRelationship::getNextVillain(IFightingRelation* role
 
 IFightingRelation* CFightingRelationship::getFirstVictim(IFightingRelation* role)
 {
-    IFightingRelation* ret = NULL;
+    IFightingRelation* ret = nullptr;
     MRVR_IT it = m_villains.find(role);
     if (it != m_villains.end())
     {
@@ -215,7 +215,7 @@ IFightingRelation* CFightingRelationship::getFirstVictim(IFightingRelation* role
 
 IFightingRelation* CFightingRelationship::getNextVictim(IFightingRelation* role, IFightingRelation* preVillain)
 {
-    IFightingRelation* ret = NULL;
+    IFightingRelation* ret = nullptr;
     MRVR_IT it = m_villains.find(role);
     if (it != m_villains.end())
     {

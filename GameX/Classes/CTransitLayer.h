@@ -29,7 +29,7 @@ protected:
     virtual bool addLayers();
     
 private:
-    CCScale9Sprite* pBackground_;
+    Scale9Sprite* pBackground_;
 
     void runLoadingAnimation(bool needCallback);
     void loadingAnimationDidFinished();

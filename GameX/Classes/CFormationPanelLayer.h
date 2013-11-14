@@ -10,7 +10,7 @@
 #define __GameX__CFormationPanelLayer__
 
 #include "CTouchesLayer.h"
-#include "CCBReader.h"
+#include "CCBReader/CCBReader.h"
 
 #define FRAME_NUM       7           // this is the num that frames were placed in cocosbuilder
 
@@ -27,7 +27,7 @@ class CFormationPanelLayer
 : public CTouchesLayer
 , public CCBSelectorResolver
 , public CCBMemberVariableAssigner
-, public CCNodeLoaderListener
+, public NodeLoaderListener
 {
     CC_SYNTHESIZE(int, m_curSel, CurSel);
     CC_SYNTHESIZE(IFormationLayerDelegate*, m_delegate, Delegate)
@@ -40,40 +40,40 @@ public:
     virtual bool init();
     
     //CCBSelectorResolver
-    virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char* pSelectorName) ;
-    virtual SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, const char* pSelectorName) ;
+    virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(Object * pTarget, const char* pSelectorName) ;
+    virtual Control::Handler onResolveCCBCCControlSelector(Object * pTarget, const char* pSelectorName) ;
     
     //CCBMemberVariableAssigner
-    virtual bool onAssignCCBMemberVariable(CCObject * pTarget, const char* pMemberVariableName, CCNode * pNode);
+    virtual bool onAssignCCBMemberVariable(Object * pTarget, const char* pMemberVariableName, Node * pNode);
     
-    virtual void onNodeLoaded(CCNode * pNode, CCNodeLoader * pNodeLoader);
+    virtual void onNodeLoaded(Node * pNode, NodeLoader * pNodeLoader);
 
 protected:
-    virtual void touchBegan(CCPoint position);
-    virtual void touchMoved(CCPoint position);
-    virtual void touchEnded(CCPoint position);
+    virtual void touchBegan(Point position);
+    virtual void touchMoved(Point position);
+    virtual void touchEnded(Point position);
     
-    virtual void onBack(CCObject *pSender);
-    virtual void onSave(CCObject* pSender);
-    virtual void onLoad(CCObject* pSender);
-    virtual void onSave1(CCObject* pSender);
-    virtual void onLoad1(CCObject* pSender);
-    virtual void onUp(CCObject *pSender);
-    virtual void onDown(CCObject *pSender);
+    virtual void onBack(Object *pSender);
+    virtual void onSave(Object* pSender);
+    virtual void onLoad(Object* pSender);
+    virtual void onSave1(Object* pSender);
+    virtual void onLoad1(Object* pSender);
+    virtual void onUp(Object *pSender);
+    virtual void onDown(Object *pSender);
     
-    virtual void onFrame(CCObject *pSender);
+    virtual void onFrame(Object *pSender);
     
     virtual void setFrameShowRole(int fromIdx);
 private:
     VS m_editRoleIds;     // 可在阵型中编辑的兵种名字，将来是从玩家解锁的兵种中得来，这里暂时写死
-    CCArray* m_allRoles;                // 与m_editRoleNames一一对应
-    CCMenuItem* m_frames[FRAME_NUM];
+    Array* m_allRoles;                // 与m_editRoleNames一一对应
+    MenuItem* m_frames[FRAME_NUM];
 
     int m_firstShownIdx;
 };
 
 
-class CFormationPanelLayerLoader : public cocos2d::extension::CCLayerLoader
+class CFormationPanelLayerLoader : public cocos2d::extension::LayerLoader
 {
 public:
     CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(CFormationPanelLayerLoader, loader);

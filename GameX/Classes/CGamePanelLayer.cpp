@@ -28,17 +28,17 @@ bool CGamePanelLayer::init()
 {
     do
     {
-        BREAK_IF(!CCLayer::init());
+        BREAK_IF(!Layer::init());
         
-        CCControlButton* btnBuild = CBaseLayer::createImageButton("huds/build.png");
+        ControlButton* btnBuild = CBaseLayer::createImageButton("huds/build.png");
         BREAK_IF(!btnBuild);
-        btnBuild->setPosition(ccp(240, 50));
-        btnBuild->addTargetWithActionForControlEvents(this, cccontrol_selector(CGamePanelLayer::onBuild), CCControlEventTouchUpInside);
+        btnBuild->setPosition(Point(240, 50));
+        btnBuild->addTargetWithActionForControlEvents(this, cccontrol_selector(CGamePanelLayer::onBuild), Control::EventType::TOUCH_UP_INSIDE);
         addChild(btnBuild);
         
-//        CCControlButton* btnBuild2 = CBaseLayer::createImageButton("build");
+//        ControlButton* btnBuild2 = CBaseLayer::createImageButton("build");
 //        BREAK_IF(!btnBuild2);
-//        btnBuild2->setPosition(ccp(270, 50));
+//        btnBuild2->setPosition(Point(270, 50));
 //        btnBuild2->addTargetWithActionForControlEvents(this, cccontrol_selector(CGamePanelLayer::onBuild2), CCControlEventTouchUpInside);
 //        addChild(btnBuild2);
         return true;
@@ -56,7 +56,7 @@ void CGamePanelLayer::popMenu()
 
 
 
-void CGamePanelLayer::onBuild(CCObject* sender, CCControlEvent event)
+void CGamePanelLayer::onBuild(Object* sender, Control::EventType event)
 {
     SCENE_MANAGER->go(ST_LOBBY);
     
@@ -67,6 +67,6 @@ void CGamePanelLayer::onBuild(CCObject* sender, CCControlEvent event)
 
 
 
-void CGamePanelLayer::onBuild2(CCObject* sender, CCControlEvent event)
+void CGamePanelLayer::onBuild2(Object* sender, Control::EventType event)
 {
 }

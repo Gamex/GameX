@@ -19,7 +19,7 @@ public:
     virtual ~CSkillMeleeAttack();
 protected:
     CSkillMeleeAttack();
-    virtual void onSkillHit(CCNode* obj);
+    virtual void onSkillHit(Node* obj);
 };
 
 #endif /* defined(__GameX__CSkillMeleeAttack__) */

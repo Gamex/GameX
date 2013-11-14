@@ -16,15 +16,15 @@
 class CFormationElement
 {
 public:
-    CCPoint pos;
+    Point pos;
     std::string unitId;
 };
 
 class CFormation
 {
 public:
-    virtual bool saveToFile(const char* filename = NULL);
-    virtual bool loadFromFile(const char* filename = NULL);
+    virtual bool saveToFile(const char* filename = nullptr);
+    virtual bool loadFromFile(const char* filename = nullptr);
     
     void clearAll();
     

@@ -80,7 +80,7 @@ bool CObjectBase::isDead() const
 
 void CObjectBase::update(float dt)
 {
-    CCNode::update(dt);
+    Node::update(dt);
     
     if (checkDead())
     {
@@ -88,8 +88,8 @@ void CObjectBase::update(float dt)
         return;
     }
     
-    CCArray* children = getChildren();
-    CCObject* pObj;
+    Array* children = getChildren();
+    Object* pObj;
     CCARRAY_FOREACH(children, pObj)
     {
         pObj->update(dt);
@@ -125,7 +125,7 @@ void CObjectBase::addComponentsForStates()
 
 
 
-void CObjectBase::addComponentForState(int state, CCComponent* comp)
+void CObjectBase::addComponentForState(int state, Component* comp)
 {
     do
     {
@@ -154,7 +154,7 @@ void CObjectBase::onEnterState(int state)
         SS_IT ss_it = ss.begin();
         for (; ss_it != ss.end(); ++ss_it)
         {
-            CCComponent* comp = getComponent((*ss_it).c_str());
+            Component* comp = getComponent((*ss_it).c_str());
             CC_ASSERT(comp);
             comp->setEnabled(true);
             comp->onEnter();
@@ -174,7 +174,7 @@ void CObjectBase::onLeaveState(int state)
         SS_IT ss_it = ss.begin();
         for (; ss_it != ss.end(); ++ss_it)
         {
-            CCComponent* comp = getComponent((*ss_it).c_str());
+            Component* comp = getComponent((*ss_it).c_str());
             CC_ASSERT(comp);
             comp->setEnabled(false);
             comp->onExit();

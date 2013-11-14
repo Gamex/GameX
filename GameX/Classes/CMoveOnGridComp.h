@@ -40,14 +40,14 @@ public:
 protected:
     CMoveOnGridComp(void);
     
-    virtual void onPathReady(const vector<CCPoint>& path);
+    virtual void onPathReady(const vector<Point>& path);
     virtual void findPathIfNeeded(bool briefFind);
 private:
-    vector<CCPoint> m_paths;
+    vector<Point> m_paths;
     
-    CCPoint m_moveTarget;
-    CCPoint m_moveFrom;
-    CCPoint m_moveTo;
+    Point m_moveTarget;
+    Point m_moveFrom;
+    Point m_moveTo;
     float m_moveTotalTime;
     float m_moveElapseTime;
     

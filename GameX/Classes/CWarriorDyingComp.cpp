@@ -11,7 +11,7 @@
 CWarriorDyingComp::CWarriorDyingComp(void)
 : CWarriorRoleCompBase(DYING_SUB_STATE_START)
 {
-    m_strName = "WarriorDyingComp";
+    setName("WarriorDyingComp");
 }
 
 
@@ -68,7 +68,7 @@ void CWarriorDyingComp::update(float dt)
 
 
 
-void CWarriorDyingComp::onDyingOver(CCNode* obj)
+void CWarriorDyingComp::onDyingOver(Node* obj)
 {
     if (!isEnabled())
     {

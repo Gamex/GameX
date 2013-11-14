@@ -17,7 +17,7 @@ CMoveOnGridComp::CMoveOnGridComp(void)
 , m_moveTotalTime(0.f)
 , m_idleSleepTime(0.f)
 {
-    m_strName = "MoveOnGridComp";
+    setName("MoveOnGridComp");
 }
 
 
@@ -106,7 +106,7 @@ void CMoveOnGridComp::update(float dt)
             {
                 CBackgroundManager* bkg = m_ownerRole->getBackGround();
                 CC_ASSERT(bkg);
-                const CCPoint& pos = m_paths.back();
+                const Point& pos = m_paths.back();
                 if (pos.equals(m_ownerRole->getLogicGrid()->getGridPos()))
                 {
                     m_paths.pop_back();
@@ -117,7 +117,7 @@ void CMoveOnGridComp::update(float dt)
                 {
                     
                     CLogicGrid* pGrid = m_ownerRole->getLogicGrid();
-                    const CCPoint& curPos = pGrid->getGridPos();
+                    const Point& curPos = pGrid->getGridPos();
 
                     float speed = m_ownerRole->getSpeed();
                     m_moveTotalTime = pos.getDistance(curPos) / speed;
@@ -126,7 +126,7 @@ void CMoveOnGridComp::update(float dt)
                     m_moveFrom = bkg->gridToWorldPoint(curPos);
                     m_moveTo = bkg->gridToWorldPoint(pos);
                     
-                    CCPoint diff = m_moveTo - m_moveFrom;
+                    Point diff = m_moveTo - m_moveFrom;
                     if (diff.x > 0)
                     {
                         if (diff.y > 0)
@@ -191,7 +191,7 @@ void CMoveOnGridComp::update(float dt)
             }
 
 
-            CCPoint newPos = m_moveFrom.lerp(m_moveTo, alpha);
+            Point newPos = m_moveFrom.lerp(m_moveTo, alpha);
             m_ownerRole->setSpritePosition(newPos);
 
             break;
@@ -213,7 +213,7 @@ void CMoveOnGridComp::update(float dt)
 
 
 
-void CMoveOnGridComp::onPathReady(const vector<CCPoint>& path)
+void CMoveOnGridComp::onPathReady(const vector<Point>& path)
 {
     if (!isEnabled())
     {
@@ -228,7 +228,7 @@ void CMoveOnGridComp::onPathReady(const vector<CCPoint>& path)
 //        CBackgroundManager* bkg = m_ownerRole->getBackGround();
 //        CC_ASSERT(bkg);
 //        bkg->clearAllHightlightGrids();
-//        vector<CCPoint>::reverse_iterator it = m_paths.rbegin();
+//        vector<Point>::reverse_iterator it = m_paths.rbegin();
 //        for (; it != m_paths.rend(); ++it)
 //        {
 //            bkg->hightlightGrid(*it);
@@ -237,7 +237,7 @@ void CMoveOnGridComp::onPathReady(const vector<CCPoint>& path)
     }
     else
     {
-        CCPoint pt = m_ownerRole->getMovetarget();
+        Point pt = m_ownerRole->getMovetarget();
         m_ownerRole->setMoveTarget(m_ownerRole->getLogicGrid()->getGridPos());
         m_subState = MOVE_SUB_STATE_IDLE;
 
@@ -261,13 +261,13 @@ void CMoveOnGridComp::findPathIfNeeded(bool briefFind)
     }
     
     m_moveTarget = m_ownerRole->getMovetarget();
-    if (m_moveTarget.equals(CCPoint(-1, -1)))
+    if (m_moveTarget.equals(Point(-1, -1)))
     {
         m_subState = MOVE_SUB_STATE_IDLE;
         return;
     }
     CLogicGrid* pGrid = m_ownerRole->getLogicGrid();
-    const CCPoint& curPos = pGrid->getGridPos();
+    const Point& curPos = pGrid->getGridPos();
     
     if (!curPos.equals(m_moveTarget))
     {

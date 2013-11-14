@@ -12,7 +12,7 @@
 
 CSkillMarineGunAttack::CSkillMarineGunAttack()
 {
-    m_strName = "SkillMarineGunAttack";
+    setName("SkillMarineGunAttack");
 }
 
 
@@ -23,7 +23,7 @@ CSkillMarineGunAttack::~CSkillMarineGunAttack()
 
 
 
-void CSkillMarineGunAttack::onSkillHit(CCNode* obj)
+void CSkillMarineGunAttack::onSkillHit(Node* obj)
 {
     if (!isEnabled())
     {

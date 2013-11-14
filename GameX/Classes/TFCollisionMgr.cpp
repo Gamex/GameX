@@ -39,16 +39,16 @@ bool TFCollisionMgr::init()
 {
     const char* cp = "GameCollision.plist";    
     
-    CCArray* pArray = CCArray::createWithContentsOfFile(cp);
+    Array* pArray = Array::createWithContentsOfFile(cp);
     if (!pArray)
     {
         __CCLOGWITHFUNCTION("file can't be loaded: %s", cp);
         return false;
     }
-    CCObject* pObj;
+    Object* pObj;
     CCARRAY_FOREACH(pArray, pObj)
     {
-        CCString* mask = dynamic_cast<CCString*>(pObj);
+        String* mask = dynamic_cast<String*>(pObj);
         if (mask)
         {
             m_CollisionObjs.push_back(LRB());
@@ -107,8 +107,8 @@ void TFCollisionMgr::update()
     updateToBeAdded();
     updateToBeDeleted();
     
-//    cc_timeval time1, time2;
-//    CCTime::gettimeofdayCocos2d(&time1, NULL);
+//    timeval time1, time2;
+//    CCTime::gettimeofdayCocos2d(&time1, nullptr);
     int i,j;
     int size = m_CollisionObjs.size();
     unsigned int obj_id = 1;
@@ -127,7 +127,7 @@ void TFCollisionMgr::update()
         obj_id <<= 1;
     }
     
-//    CCTime::gettimeofdayCocos2d(&time2, NULL);
+//    CCTime::gettimeofdayCocos2d(&time2, nullptr);
 //    CCLog("total collision time is: %f", CCTime::timersubCocos2d(&time1, &time2));
 }
 
@@ -146,8 +146,8 @@ void TFCollisionMgr::checkCollisionOf2Groups(LRB& group1, LRB& group2)
             continue;
         }
         
-//        cc_timeval time1, time2;
-//        CCTime::gettimeofdayCocos2d(&time1, NULL);
+//        timeval time1, time2;
+//        CCTime::gettimeofdayCocos2d(&time1, nullptr);
         LRB_IT it2 = group2.begin();
         for (; it2 != group2.end(); ++it2)
         {
@@ -172,7 +172,7 @@ void TFCollisionMgr::checkCollisionOf2Groups(LRB& group1, LRB& group2)
             }
         }
         
-//        CCTime::gettimeofdayCocos2d(&time2, NULL);
+//        CCTime::gettimeofdayCocos2d(&time2, nullptr);
 //        CCLog("did check collision time: %f", CCTime::timersubCocos2d(&time1, &time2));
     }
 }

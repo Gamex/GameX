@@ -48,31 +48,31 @@ void CTransitLayer::onExit()
 {
     CBaseLayer::onExit();
     
-    CCDirector::sharedDirector()->setNotificationNode(NULL);
+    Director::getInstance()->setNotificationNode(nullptr);
 }
 
 
 void CTransitLayer::unLoad()
 {
-    this->runAction(ANIMATION_CACHE->createFadeToAction(1.0f, 255, CCCallFunc::create(this, callfunc_selector(CTransitLayer::onExit))));
+    this->runAction(ANIMATION_CACHE->createFadeToAction(1.0f, 255, CallFunc::create(bind(&CTransitLayer::onExit, this))));
 }
 
 
 bool CTransitLayer::addLayers()
 {
     // Color layer
-    if (!CCLayer::init())
+    if (!Layer::init())
     {
         return false;
     }
     
     // Background
-    CCScale9Sprite* pBackground = CBaseLayer::createTile("background", m_obContentSize, ccp(m_obContentSize.width / 2, m_obContentSize.height / 2));
+    Scale9Sprite* pBackground = CBaseLayer::createTile("background", _contentSize, Point(_contentSize.width / 2, _contentSize.height / 2));
     this->addChild(pBackground, -100);
     
     // Add loading aniamtion
-    CCSprite* loadingSprite = CCSprite::createWithSpriteFrameName("loading0");
-    loadingSprite->setPosition(ccp(m_obContentSize.width / 2, m_obContentSize.height / 2));
+    Sprite* loadingSprite = Sprite::createWithSpriteFrameName("loading0");
+    loadingSprite->setPosition(Point(_contentSize.width / 2, _contentSize.height / 2));
     this->addChild(loadingSprite, 0, TAG_LOADING_SPRITE);
     
     return true;
@@ -81,12 +81,12 @@ bool CTransitLayer::addLayers()
 
 void CTransitLayer::runLoadingAnimation(bool needCallback)
 {
-    CCAction* action = NULL;
+    Action* action = nullptr;
     if (needCallback)
     {
         action = ANIMATION_CACHE->createActionByAnimationName("Loading",
                                                               false,
-                                                              CCCallFunc::create(this, callfunc_selector(CTransitLayer::loadingAnimationDidFinished)));
+                                                              CallFunc::create(bind(&CTransitLayer::loadingAnimationDidFinished, this)));
 
     }
     else
@@ -94,7 +94,7 @@ void CTransitLayer::runLoadingAnimation(bool needCallback)
         action = ANIMATION_CACHE->createActionByAnimationName("Loading", true);
     }
     
-    CCSprite* loadingSprite = static_cast<CCSprite*>(getChildByTag(TAG_LOADING_SPRITE));
+    Sprite* loadingSprite = static_cast<Sprite*>(getChildByTag(TAG_LOADING_SPRITE));
     CCAssert(loadingSprite, "Invalid loading sprite.");
     loadingSprite->runAction(action);
 }

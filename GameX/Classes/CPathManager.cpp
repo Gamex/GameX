@@ -17,7 +17,7 @@ IMPLEMENT_SINGLETON(CPathManager);
 
 
 CPathManager::CPathManager()
-: paths_(NULL)
+: paths_(nullptr)
 , m_tempPathNamePrefix("__ray__pre__")
 , m_tempPathNameIdx(0)
 {
@@ -28,7 +28,7 @@ CPathManager::CPathManager()
 
 CPathManager::~CPathManager()
 {
-    setPaths(NULL);
+    setPaths(nullptr);
 }
 
 
@@ -39,14 +39,14 @@ bool CPathManager::initialize()
 #if 0           // 这里要重写，必须用getFileData一次性取出所有文件内容，而不能用fread一点点读，因为android系统下面这些文件都是压缩打包的
     do
     {
-        setPaths(CCDictionary::create());
+        setPaths(Dictionary::create());
         BREAK_IF(!paths_);
         
         const char* cp = "game_path.pmp";
-        const char* fcp = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(cp);
+        const char* fcp = cocos2d::FileUtils::getInstance()->fullPathForFilename(cp);
         
         FILE* fp = fopen(fcp, "rb");
-        BREAK_IF(NULL == fp);
+        BREAK_IF(nullptr == fp);
         int32_t pathCount;
         fread(&pathCount, sizeof(pathCount), 1, fp);
         vector<int32_t> offsetTable;
@@ -91,7 +91,7 @@ CPath* CPathManager::getPathByName(const std::string& name)
 
 
 
-string CPathManager::makeRandomPath(const CCPoint& sp, const CCPoint& ep)
+string CPathManager::makeRandomPath(const Point& sp, const Point& ep)
 {
     do
     {
@@ -119,7 +119,7 @@ string CPathManager::makeTempPathName()
         m_tempPathNameIdx++;
         sprintf(name, "%s%d", m_tempPathNamePrefix.c_str(), m_tempPathNameIdx);
 
-        if (paths_->objectForKey(name) == NULL)
+        if (paths_->objectForKey(name) == nullptr)
         {
             return std::string(name);
         }

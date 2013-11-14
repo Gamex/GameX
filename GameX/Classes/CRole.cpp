@@ -23,7 +23,7 @@ CRole::CRole()
 #ifdef DEBUG
 , m_mark(false)
 #endif
-, m_pHPBar(NULL)
+, m_pHPBar(nullptr)
 {
 
 }
@@ -44,7 +44,7 @@ IFightingRelation::_FIGHTING_RELATION_TYPE CRole::getRelationType()
 
 
 
-void CRole::setInnerSprite(CCSprite* var)
+void CRole::setInnerSprite(Sprite* var)
 {
     CSpriteObject::setInnerSprite(var);
     if (var)
@@ -71,7 +71,7 @@ bool CRole::init(const string& unitId, bool editorMode)
 
         setUnitId(unitId);
         
-        CCDictionary* dict = DTUNIT->getData(unitId);
+        Dictionary* dict = DTUNIT->getData(unitId);
         setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
         setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
         
@@ -88,7 +88,7 @@ bool CRole::init(const string& unitId, bool editorMode)
         {
             BREAK_IF_FAILED(createHPBar());
             m_pHPBar->setPercentage(1.f);
-            CCSize sz = getSpriteContentSize();
+            Size sz = getSpriteContentSize();
             m_pHPBar->setPosition(0, sz.height);
         }
         return true;
@@ -144,7 +144,7 @@ void CRole::clearAll()
 
 void CRole::clearThis()
 {
-    setHPBar(NULL);
+    setHPBar(nullptr);
 }
 
 
@@ -194,7 +194,7 @@ void CRole::die()
     setSpriteVisible(false);
     
     
-    if (m_pHPBar != NULL)
+    if (m_pHPBar != nullptr)
     {
         m_pHPBar->setSpriteVisible(false);
     }
@@ -207,7 +207,7 @@ void CRole::revive()
     CSpriteObject::revive();
     BF_MANAGER->addRole(this);
     
-    if (m_pHPBar != NULL)
+    if (m_pHPBar != nullptr)
     {
         m_pHPBar->setSpriteVisible(true);
     }
@@ -220,7 +220,7 @@ bool CRole::isDying()
 }
 
 
-void CRole::onPlaceOnMap(const CCPoint& gridPos, const CCPoint& position)
+void CRole::onPlaceOnMap(const Point& gridPos, const Point& position)
 {
     setSpritePosition(position);
 }
@@ -232,13 +232,13 @@ void CRole::updateVertexZ()
     do
     {
         CBackgroundManager* bkg = getBackGround();
-        BREAK_IF(NULL == bkg);
-        CCTMXTiledMap* map = bkg->getTiledMap();
-        BREAK_IF(NULL == map);
-        const CCSize& szMap = map->getMapSize();
+        BREAK_IF(nullptr == bkg);
+        TMXTiledMap* map = bkg->getTiledMap();
+        BREAK_IF(nullptr == map);
+        const Size& szMap = map->getMapSize();
         float lowestZ = -(szMap.width + szMap.height);
 
-        const CCPoint& tilePos = getLogicGrid()->getGridPos();
+        const Point& tilePos = getLogicGrid()->getGridPos();
         float currentZ = tilePos.x + tilePos.y;
         
         
@@ -258,14 +258,14 @@ bool CRole::changeState(int state)
 
 
 
-void CRole::setMoveTarget(const CCPoint& gridPos)
+void CRole::setMoveTarget(const Point& gridPos)
 {
     m_moveTarget = gridPos;
 }
 
 
 
-const CCPoint& CRole::getMovetarget()
+const Point& CRole::getMovetarget()
 {
     return m_moveTarget;
 }
@@ -282,7 +282,7 @@ bool CRole::playAnimation(const std::string& name)
 
 
 
-bool CRole::attachSpriteTo(CCNode* parent, int zOrder, int tag)
+bool CRole::attachSpriteTo(Node* parent, int zOrder, int tag)
 {
     do
     {
@@ -301,7 +301,7 @@ bool CRole::attachSpriteTo(CCNode* parent, int zOrder, int tag)
 
 
 
-void CRole::findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFinderDelegate* delegate)
+void CRole::findPath(const Point& startPos, const Point& targetPos, IPathFinderDelegate* delegate)
 {
     CBackgroundManager* bkg = getBackGround();
     CC_ASSERT(bkg);
@@ -310,11 +310,11 @@ void CRole::findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFin
 
 
 
-bool CRole::findPathBrief(const CCPoint& startPos, const CCPoint& targetPos, vector<CCPoint>& path)
+bool CRole::findPathBrief(const Point& startPos, const Point& targetPos, vector<Point>& path)
 {
     path.clear();
-    CCPoint pt = startPos;
-    CCPoint diff = targetPos - startPos;
+    Point pt = startPos;
+    Point diff = targetPos - startPos;
     int xSign = FLT_GE(diff.x, 0) ? 1 : -1;
     int ySign = FLT_GE(diff.y, 0) ? 1 : -1;
     diff.x = fabsf(diff.x);
@@ -365,9 +365,9 @@ void CRole::setFaceTo(CRole* role)
         CC_ASSERT(bkg);
         CLogicGrid* l1 = getLogicGrid();
         CLogicGrid* l2 = role->getLogicGrid();
-        BREAK_IF(l1 == NULL || l2 == NULL);
-        CCPoint p1 = l1->getGridPos();
-        CCPoint p2 = l2->getGridPos();
+        BREAK_IF(l1 == nullptr || l2 == nullptr);
+        Point p1 = l1->getGridPos();
+        Point p2 = l2->getGridPos();
         p1 = bkg->gridToWorldPoint(p1);
         p2 = bkg->gridToWorldPoint(p2);
         FACE_TO ft;
@@ -405,8 +405,8 @@ void CRole::setFaceTo(CRole* role)
 
 float CRole::getDistanceSqInGrid(IGridRole* role)
 {
-    CCPoint p1 = getPositionInGrid();
-    CCPoint p2 = role->getPositionInGrid();
+    Point p1 = getPositionInGrid();
+    Point p2 = role->getPositionInGrid();
     
     int i,j,m,n;
     float smallest = FLT_MAX;
@@ -415,12 +415,12 @@ float CRole::getDistanceSqInGrid(IGridRole* role)
     {
         for (j = 0; j < getGridHeight(); ++j)
         {
-            CCPoint pos1(p1.x + i, p1.y + j);
+            Point pos1(p1.x + i, p1.y + j);
             for (m = 0; m < role->getGridWidth(); ++m)
             {
                 for (n = 0; n < role->getGridHeight(); ++n)
                 {
-                    CCPoint pos2(p2.x + m, p2.y + n);
+                    Point pos2(p2.x + m, p2.y + n);
                     float dist = pos1.getDistanceSq(pos2);
                     if (dist < smallest)
                     {
@@ -444,7 +444,7 @@ bool CRole::checkInGridRadiusSq(IGridRole* role, float radiusInGrid)
 
 
 
-CCPoint CRole::getPositionInGrid()
+Point CRole::getPositionInGrid()
 {
     CLogicGrid* lg = getLogicGrid();
     
@@ -453,7 +453,7 @@ CCPoint CRole::getPositionInGrid()
     int w = getGridWidth();
     int h = getGridHeight();
     
-    CCPoint pos = lg->getGridPos();
+    Point pos = lg->getGridPos();
     pos.x += (w - 1) * 0.5f;
     pos.y += (h - 1) * 0.5f;
     
@@ -478,7 +478,7 @@ void CRole::damage(float damagePoint, CRole* attacker)
         
         if (attacker)
         {
-            if (getMovetarget().equals(CCPoint(-1.f, -1.f)))
+            if (getMovetarget().equals(Point(-1.f, -1.f)))
             {
                 setMoveTarget(attacker->getLogicGrid()->getGridPos());
             }
@@ -501,7 +501,7 @@ bool CRole::createHPBar()
 
         BREAK_IF_FAILED(m_pHPBar->init("huds/hp_bar_fg0.png", "huds/hp_bar_bg0.png"));
         float w = m_pHPBar->getSpriteContentSize().width;
-        m_pHPBar->setSpritePosition(ccp(w / 2.f + 2.f, 0));
+        m_pHPBar->setSpritePosition(Point(w / 2.f + 2.f, 0));
         addSlot(m_pHPBar, TAG_HUD_HPBAR);
 //        addChild(m_pHPBar);
 //        m_pHPBar->attachSpriteTo(getInnerSprite());

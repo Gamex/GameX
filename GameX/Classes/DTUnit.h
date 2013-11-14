@@ -10,142 +10,142 @@ class DTUnit
 {
 	friend class CDataCenterManager;
 public:
-	CCDictionary* getRoot() const
+	Dictionary* getRoot() const
 	{
 		return m_pDictionary;
 	}
 	void loadData2CCDictionary()
     {
-        if (NULL == m_pDictionary)
+        if (nullptr == m_pDictionary)
         {
-            m_pDictionary = CCDictionary::create();
+            m_pDictionary = Dictionary::create();
             CC_SAFE_RETAIN(m_pDictionary);
         }
 
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("unit_1"), "name");
-			elem->setObject(CCString::create("0"), "type");
-			elem->setObject(CCString::create("unit0"), "resourceID");
-			elem->setObject(CCString::create("CWarriorUnit0"), "className");
-			elem->setObject(CCString::create("-9"), "x");
-			elem->setObject(CCString::create("-15"), "y");
-			elem->setObject(CCString::create("23"), "width");
-			elem->setObject(CCString::create("43"), "hight");
-			elem->setObject(CCString::create("1"), "gridWidth");
-			elem->setObject(CCString::create("1"), "gridHeight");
-			elem->setObject(CCString::create("120"), "hp");
-			elem->setObject(CCString::create("10"), "atk");
-			elem->setObject(CCString::create("1"), "def");
-			elem->setObject(CCString::create("0"), "deftype");
-			elem->setObject(CCString::create("1"), "dimension");
-			elem->setObject(CCString::create("0"), "target");
-			elem->setObject(CCString::create("4"), "radius");
-			elem->setObject(CCString::create("3"), "speed");
-			elem->setObject(CCString::create("1"), "rate");
-			elem->setObject(CCString::create("1"), "skill0");
-			elem->setObject(CCString::create("10001"), "skill1");
-			elem->setObject(CCString::create(""), "skill2");
-			elem->setObject(CCString::create(""), "skill3");
-			elem->setObject(CCString::create(""), "skill4");
-			elem->setObject(CCString::create(""), "skill5");
+			elem->setObject(String::create("unit_1"), "name");
+			elem->setObject(String::create("0"), "type");
+			elem->setObject(String::create("unit0"), "resourceID");
+			elem->setObject(String::create("CWarriorUnit0"), "className");
+			elem->setObject(String::create("-9"), "x");
+			elem->setObject(String::create("-15"), "y");
+			elem->setObject(String::create("23"), "width");
+			elem->setObject(String::create("43"), "hight");
+			elem->setObject(String::create("1"), "gridWidth");
+			elem->setObject(String::create("1"), "gridHeight");
+			elem->setObject(String::create("120"), "hp");
+			elem->setObject(String::create("10"), "atk");
+			elem->setObject(String::create("1"), "def");
+			elem->setObject(String::create("0"), "deftype");
+			elem->setObject(String::create("1"), "dimension");
+			elem->setObject(String::create("0"), "target");
+			elem->setObject(String::create("4"), "radius");
+			elem->setObject(String::create("3"), "speed");
+			elem->setObject(String::create("1"), "rate");
+			elem->setObject(String::create("1"), "skill0");
+			elem->setObject(String::create("10001"), "skill1");
+			elem->setObject(String::create(""), "skill2");
+			elem->setObject(String::create(""), "skill3");
+			elem->setObject(String::create(""), "skill4");
+			elem->setObject(String::create(""), "skill5");
 
 			
 			m_pDictionary->setObject(elem, "1");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("unit_2"), "name");
-			elem->setObject(CCString::create("0"), "type");
-			elem->setObject(CCString::create("unit1"), "resourceID");
-			elem->setObject(CCString::create("CWarriorUnit1"), "className");
-			elem->setObject(CCString::create("-9"), "x");
-			elem->setObject(CCString::create("-15"), "y");
-			elem->setObject(CCString::create("15"), "width");
-			elem->setObject(CCString::create("40"), "hight");
-			elem->setObject(CCString::create("1"), "gridWidth");
-			elem->setObject(CCString::create("1"), "gridHeight");
-			elem->setObject(CCString::create("80"), "hp");
-			elem->setObject(CCString::create("8"), "atk");
-			elem->setObject(CCString::create("0"), "def");
-			elem->setObject(CCString::create("0"), "deftype");
-			elem->setObject(CCString::create("1"), "dimension");
-			elem->setObject(CCString::create("0"), "target");
-			elem->setObject(CCString::create("4"), "radius");
-			elem->setObject(CCString::create("3"), "speed");
-			elem->setObject(CCString::create("1"), "rate");
-			elem->setObject(CCString::create("2"), "skill0");
-			elem->setObject(CCString::create("10002"), "skill1");
-			elem->setObject(CCString::create(""), "skill2");
-			elem->setObject(CCString::create(""), "skill3");
-			elem->setObject(CCString::create(""), "skill4");
-			elem->setObject(CCString::create(""), "skill5");
+			elem->setObject(String::create("unit_2"), "name");
+			elem->setObject(String::create("0"), "type");
+			elem->setObject(String::create("unit1"), "resourceID");
+			elem->setObject(String::create("CWarriorUnit1"), "className");
+			elem->setObject(String::create("-9"), "x");
+			elem->setObject(String::create("-15"), "y");
+			elem->setObject(String::create("15"), "width");
+			elem->setObject(String::create("40"), "hight");
+			elem->setObject(String::create("1"), "gridWidth");
+			elem->setObject(String::create("1"), "gridHeight");
+			elem->setObject(String::create("80"), "hp");
+			elem->setObject(String::create("8"), "atk");
+			elem->setObject(String::create("0"), "def");
+			elem->setObject(String::create("0"), "deftype");
+			elem->setObject(String::create("1"), "dimension");
+			elem->setObject(String::create("0"), "target");
+			elem->setObject(String::create("4"), "radius");
+			elem->setObject(String::create("3"), "speed");
+			elem->setObject(String::create("1"), "rate");
+			elem->setObject(String::create("2"), "skill0");
+			elem->setObject(String::create("10002"), "skill1");
+			elem->setObject(String::create(""), "skill2");
+			elem->setObject(String::create(""), "skill3");
+			elem->setObject(String::create(""), "skill4");
+			elem->setObject(String::create(""), "skill5");
 
 			
 			m_pDictionary->setObject(elem, "2");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("unit_3"), "name");
-			elem->setObject(CCString::create("0"), "type");
-			elem->setObject(CCString::create("unit2"), "resourceID");
-			elem->setObject(CCString::create("CWarriorUnit2"), "className");
-			elem->setObject(CCString::create("-9"), "x");
-			elem->setObject(CCString::create("-15"), "y");
-			elem->setObject(CCString::create("32"), "width");
-			elem->setObject(CCString::create("37"), "hight");
-			elem->setObject(CCString::create("2"), "gridWidth");
-			elem->setObject(CCString::create("2"), "gridHeight");
-			elem->setObject(CCString::create("250"), "hp");
-			elem->setObject(CCString::create("32"), "atk");
-			elem->setObject(CCString::create("2"), "def");
-			elem->setObject(CCString::create("0"), "deftype");
-			elem->setObject(CCString::create("1"), "dimension");
-			elem->setObject(CCString::create("0"), "target");
-			elem->setObject(CCString::create("4"), "radius");
-			elem->setObject(CCString::create("2"), "speed");
-			elem->setObject(CCString::create("0.5"), "rate");
-			elem->setObject(CCString::create("3"), "skill0");
-			elem->setObject(CCString::create("10003"), "skill1");
-			elem->setObject(CCString::create(""), "skill2");
-			elem->setObject(CCString::create(""), "skill3");
-			elem->setObject(CCString::create(""), "skill4");
-			elem->setObject(CCString::create(""), "skill5");
+			elem->setObject(String::create("unit_3"), "name");
+			elem->setObject(String::create("0"), "type");
+			elem->setObject(String::create("unit2"), "resourceID");
+			elem->setObject(String::create("CWarriorUnit2"), "className");
+			elem->setObject(String::create("-9"), "x");
+			elem->setObject(String::create("-15"), "y");
+			elem->setObject(String::create("32"), "width");
+			elem->setObject(String::create("37"), "hight");
+			elem->setObject(String::create("2"), "gridWidth");
+			elem->setObject(String::create("2"), "gridHeight");
+			elem->setObject(String::create("250"), "hp");
+			elem->setObject(String::create("32"), "atk");
+			elem->setObject(String::create("2"), "def");
+			elem->setObject(String::create("0"), "deftype");
+			elem->setObject(String::create("1"), "dimension");
+			elem->setObject(String::create("0"), "target");
+			elem->setObject(String::create("4"), "radius");
+			elem->setObject(String::create("2"), "speed");
+			elem->setObject(String::create("0.5"), "rate");
+			elem->setObject(String::create("3"), "skill0");
+			elem->setObject(String::create("10003"), "skill1");
+			elem->setObject(String::create(""), "skill2");
+			elem->setObject(String::create(""), "skill3");
+			elem->setObject(String::create(""), "skill4");
+			elem->setObject(String::create(""), "skill5");
 
 			
 			m_pDictionary->setObject(elem, "3");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("unit_4"), "name");
-			elem->setObject(CCString::create("0"), "type");
-			elem->setObject(CCString::create("unit3"), "resourceID");
-			elem->setObject(CCString::create("CWarriorUnit3"), "className");
-			elem->setObject(CCString::create("-9"), "x");
-			elem->setObject(CCString::create("-15"), "y");
-			elem->setObject(CCString::create("47"), "width");
-			elem->setObject(CCString::create("35"), "hight");
-			elem->setObject(CCString::create("2"), "gridWidth");
-			elem->setObject(CCString::create("2"), "gridHeight");
-			elem->setObject(CCString::create("100"), "hp");
-			elem->setObject(CCString::create("12"), "atk");
-			elem->setObject(CCString::create("1"), "def");
-			elem->setObject(CCString::create("0"), "deftype");
-			elem->setObject(CCString::create("1"), "dimension");
-			elem->setObject(CCString::create("0"), "target");
-			elem->setObject(CCString::create("4"), "radius");
-			elem->setObject(CCString::create("2"), "speed");
-			elem->setObject(CCString::create("0.6"), "rate");
-			elem->setObject(CCString::create("4"), "skill0");
-			elem->setObject(CCString::create("10004"), "skill1");
-			elem->setObject(CCString::create(""), "skill2");
-			elem->setObject(CCString::create(""), "skill3");
-			elem->setObject(CCString::create(""), "skill4");
-			elem->setObject(CCString::create(""), "skill5");
+			elem->setObject(String::create("unit_4"), "name");
+			elem->setObject(String::create("0"), "type");
+			elem->setObject(String::create("unit3"), "resourceID");
+			elem->setObject(String::create("CWarriorUnit3"), "className");
+			elem->setObject(String::create("-9"), "x");
+			elem->setObject(String::create("-15"), "y");
+			elem->setObject(String::create("47"), "width");
+			elem->setObject(String::create("35"), "hight");
+			elem->setObject(String::create("2"), "gridWidth");
+			elem->setObject(String::create("2"), "gridHeight");
+			elem->setObject(String::create("100"), "hp");
+			elem->setObject(String::create("12"), "atk");
+			elem->setObject(String::create("1"), "def");
+			elem->setObject(String::create("0"), "deftype");
+			elem->setObject(String::create("1"), "dimension");
+			elem->setObject(String::create("0"), "target");
+			elem->setObject(String::create("4"), "radius");
+			elem->setObject(String::create("2"), "speed");
+			elem->setObject(String::create("0.6"), "rate");
+			elem->setObject(String::create("4"), "skill0");
+			elem->setObject(String::create("10004"), "skill1");
+			elem->setObject(String::create(""), "skill2");
+			elem->setObject(String::create(""), "skill3");
+			elem->setObject(String::create(""), "skill4");
+			elem->setObject(String::create(""), "skill5");
 
 			
 			m_pDictionary->setObject(elem, "4");
@@ -153,250 +153,250 @@ public:
 
     }
         
-    CCDictionary* getData(const string& key)
+    Dictionary* getData(const string& key)
     {
         CC_ASSERT(m_pDictionary);
-        return dynamic_cast<CCDictionary*>(m_pDictionary->objectForKey(key));
+        return dynamic_cast<Dictionary*>(m_pDictionary->objectForKey(key));
     }
 
-    CCString* getValueOf(const string& key, const string& subKey)
+    String* getValueOf(const string& key, const string& subKey)
     {
         CC_ASSERT(m_pDictionary);
-        CCDictionary* sub = getData(key);
+        Dictionary* sub = getData(key);
         if (sub)
         {
-            return dynamic_cast<CCString*>(sub->objectForKey(subKey));
+            return dynamic_cast<String*>(sub->objectForKey(subKey));
         }
-        return NULL;
+        return nullptr;
     }
 
-    CCString* getValueOf(CCDictionary* subDict, const string& subKey)
+    String* getValueOf(Dictionary* subDict, const string& subKey)
     {
         CC_ASSERT(subDict);
-        return dynamic_cast<CCString*>(subDict->objectForKey(subKey));
+        return dynamic_cast<String*>(subDict->objectForKey(subKey));
     }
 
-	CCString* get_name_Value(const string& key)
+	String* get_name_Value(const string& key)
 	{
 		return getValueOf(key, "name");
 	}
-	CCString* get_name_Value(CCDictionary* subDict)
+	String* get_name_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "name");
 	}
 
-	CCString* get_type_Value(const string& key)
+	String* get_type_Value(const string& key)
 	{
 		return getValueOf(key, "type");
 	}
-	CCString* get_type_Value(CCDictionary* subDict)
+	String* get_type_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "type");
 	}
 
-	CCString* get_resourceID_Value(const string& key)
+	String* get_resourceID_Value(const string& key)
 	{
 		return getValueOf(key, "resourceID");
 	}
-	CCString* get_resourceID_Value(CCDictionary* subDict)
+	String* get_resourceID_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "resourceID");
 	}
 
-	CCString* get_className_Value(const string& key)
+	String* get_className_Value(const string& key)
 	{
 		return getValueOf(key, "className");
 	}
-	CCString* get_className_Value(CCDictionary* subDict)
+	String* get_className_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "className");
 	}
 
-	CCString* get_x_Value(const string& key)
+	String* get_x_Value(const string& key)
 	{
 		return getValueOf(key, "x");
 	}
-	CCString* get_x_Value(CCDictionary* subDict)
+	String* get_x_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "x");
 	}
 
-	CCString* get_y_Value(const string& key)
+	String* get_y_Value(const string& key)
 	{
 		return getValueOf(key, "y");
 	}
-	CCString* get_y_Value(CCDictionary* subDict)
+	String* get_y_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "y");
 	}
 
-	CCString* get_width_Value(const string& key)
+	String* get_width_Value(const string& key)
 	{
 		return getValueOf(key, "width");
 	}
-	CCString* get_width_Value(CCDictionary* subDict)
+	String* get_width_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "width");
 	}
 
-	CCString* get_hight_Value(const string& key)
+	String* get_hight_Value(const string& key)
 	{
 		return getValueOf(key, "hight");
 	}
-	CCString* get_hight_Value(CCDictionary* subDict)
+	String* get_hight_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "hight");
 	}
 
-	CCString* get_gridWidth_Value(const string& key)
+	String* get_gridWidth_Value(const string& key)
 	{
 		return getValueOf(key, "gridWidth");
 	}
-	CCString* get_gridWidth_Value(CCDictionary* subDict)
+	String* get_gridWidth_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "gridWidth");
 	}
 
-	CCString* get_gridHeight_Value(const string& key)
+	String* get_gridHeight_Value(const string& key)
 	{
 		return getValueOf(key, "gridHeight");
 	}
-	CCString* get_gridHeight_Value(CCDictionary* subDict)
+	String* get_gridHeight_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "gridHeight");
 	}
 
-	CCString* get_hp_Value(const string& key)
+	String* get_hp_Value(const string& key)
 	{
 		return getValueOf(key, "hp");
 	}
-	CCString* get_hp_Value(CCDictionary* subDict)
+	String* get_hp_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "hp");
 	}
 
-	CCString* get_atk_Value(const string& key)
+	String* get_atk_Value(const string& key)
 	{
 		return getValueOf(key, "atk");
 	}
-	CCString* get_atk_Value(CCDictionary* subDict)
+	String* get_atk_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "atk");
 	}
 
-	CCString* get_def_Value(const string& key)
+	String* get_def_Value(const string& key)
 	{
 		return getValueOf(key, "def");
 	}
-	CCString* get_def_Value(CCDictionary* subDict)
+	String* get_def_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "def");
 	}
 
-	CCString* get_deftype_Value(const string& key)
+	String* get_deftype_Value(const string& key)
 	{
 		return getValueOf(key, "deftype");
 	}
-	CCString* get_deftype_Value(CCDictionary* subDict)
+	String* get_deftype_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "deftype");
 	}
 
-	CCString* get_dimension_Value(const string& key)
+	String* get_dimension_Value(const string& key)
 	{
 		return getValueOf(key, "dimension");
 	}
-	CCString* get_dimension_Value(CCDictionary* subDict)
+	String* get_dimension_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "dimension");
 	}
 
-	CCString* get_target_Value(const string& key)
+	String* get_target_Value(const string& key)
 	{
 		return getValueOf(key, "target");
 	}
-	CCString* get_target_Value(CCDictionary* subDict)
+	String* get_target_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "target");
 	}
 
-	CCString* get_radius_Value(const string& key)
+	String* get_radius_Value(const string& key)
 	{
 		return getValueOf(key, "radius");
 	}
-	CCString* get_radius_Value(CCDictionary* subDict)
+	String* get_radius_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "radius");
 	}
 
-	CCString* get_speed_Value(const string& key)
+	String* get_speed_Value(const string& key)
 	{
 		return getValueOf(key, "speed");
 	}
-	CCString* get_speed_Value(CCDictionary* subDict)
+	String* get_speed_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "speed");
 	}
 
-	CCString* get_rate_Value(const string& key)
+	String* get_rate_Value(const string& key)
 	{
 		return getValueOf(key, "rate");
 	}
-	CCString* get_rate_Value(CCDictionary* subDict)
+	String* get_rate_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "rate");
 	}
 
-	CCString* get_skill0_Value(const string& key)
+	String* get_skill0_Value(const string& key)
 	{
 		return getValueOf(key, "skill0");
 	}
-	CCString* get_skill0_Value(CCDictionary* subDict)
+	String* get_skill0_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "skill0");
 	}
 
-	CCString* get_skill1_Value(const string& key)
+	String* get_skill1_Value(const string& key)
 	{
 		return getValueOf(key, "skill1");
 	}
-	CCString* get_skill1_Value(CCDictionary* subDict)
+	String* get_skill1_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "skill1");
 	}
 
-	CCString* get_skill2_Value(const string& key)
+	String* get_skill2_Value(const string& key)
 	{
 		return getValueOf(key, "skill2");
 	}
-	CCString* get_skill2_Value(CCDictionary* subDict)
+	String* get_skill2_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "skill2");
 	}
 
-	CCString* get_skill3_Value(const string& key)
+	String* get_skill3_Value(const string& key)
 	{
 		return getValueOf(key, "skill3");
 	}
-	CCString* get_skill3_Value(CCDictionary* subDict)
+	String* get_skill3_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "skill3");
 	}
 
-	CCString* get_skill4_Value(const string& key)
+	String* get_skill4_Value(const string& key)
 	{
 		return getValueOf(key, "skill4");
 	}
-	CCString* get_skill4_Value(CCDictionary* subDict)
+	String* get_skill4_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "skill4");
 	}
 
-	CCString* get_skill5_Value(const string& key)
+	String* get_skill5_Value(const string& key)
 	{
 		return getValueOf(key, "skill5");
 	}
-	CCString* get_skill5_Value(CCDictionary* subDict)
+	String* get_skill5_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "skill5");
 	}
@@ -404,7 +404,7 @@ public:
 
 
 protected:
-	DTUnit():m_pDictionary(NULL)
+	DTUnit():m_pDictionary(nullptr)
 	{}
 	~DTUnit()
 	{
@@ -412,7 +412,7 @@ protected:
 	}
 	
 private:
-	CCDictionary* m_pDictionary;
+	Dictionary* m_pDictionary;
 };
 
 

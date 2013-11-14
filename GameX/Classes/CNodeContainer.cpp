@@ -29,7 +29,7 @@ CObjectBase* CNodeContainer::checkoutElement()
 {
     if (m_containerUnUseArray.size() == 0)
     {
-        return NULL;
+        return nullptr;
     }
     
     SOB_IT it = m_containerUnUseArray.begin();
@@ -46,7 +46,7 @@ CObjectBase* CNodeContainer::checkoutElement()
 
 void CNodeContainer::checkinElement(CObjectBase* elem)
 {
-    CC_ASSERT(NULL != elem);
+    CC_ASSERT(nullptr != elem);
     
     SOB_IT it = m_containerInUseArray.find(elem);
     if (it == m_containerInUseArray.end())
@@ -68,7 +68,7 @@ void CNodeContainer::clear()
     for (; it != m_containerInUseArray.end(); ++it)
     {
         CObjectBase* pTFObj = (CObjectBase*)*it;
-        if (NULL != pTFObj)
+        if (nullptr != pTFObj)
         {
             pTFObj->clearAll();
         }
@@ -78,7 +78,7 @@ void CNodeContainer::clear()
     for (; it != m_containerUnUseArray.end(); ++it)
     {
         CObjectBase* pTFObj = (CObjectBase*)*it;
-        if (NULL != pTFObj)
+        if (nullptr != pTFObj)
         {
             pTFObj->clearAll();
         }
@@ -89,12 +89,12 @@ void CNodeContainer::clear()
 
 
 
-bool CNodeContainer::initCache(const std::string& name, int num, CCObject* target, NODE_CONTAINER_INIT_CALL_BACK callback, void* pUserData)
+bool CNodeContainer::initCache(const std::string& name, int num, Object* target, NODE_CONTAINER_INIT_CALL_BACK callback, void* pUserData)
 {
     for (int i = 0; i < num; ++i)
     {
         CObjectBase* pObj = (CObjectBase*)OBJECT_FACTORY->createInstance(name);
-        if (NULL != pObj)
+        if (nullptr != pObj)
         {
             pObj->die();
             m_containerUnUseArray.insert(pObj);

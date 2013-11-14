@@ -19,7 +19,7 @@
 class IPathFinderDelegate
 {
 public:
-    virtual void onPathReady(const vector<CCPoint>& path) = 0;
+    virtual void onPathReady(const vector<Point>& path) = 0;
 };
 
 class _PathNode
@@ -51,17 +51,17 @@ private:
     class __IfNode
     {
     public:
-        __IfNode(const CCPoint& pos):m_pos(pos){}
+        __IfNode(const Point& pos):m_pos(pos){}
         bool operator() (_PathNode* node)
         {
             return node->grid->getGridPos().equals(m_pos);
         }
         
     private:
-        CCPoint m_pos;
+        Point m_pos;
     };
 public:
-    _PathNode* getInList(const CCPoint& pos)
+    _PathNode* getInList(const Point& pos)
     {
         vector<_PathNode*>::iterator it = find_if(c.begin(), c.end(), __IfNode(pos));
         if (c.end() != it)
@@ -69,7 +69,7 @@ public:
             return *it;
         }
         
-        return NULL;
+        return nullptr;
     }
     
     void deleteVector()
@@ -91,10 +91,10 @@ protected:
 class _FinderTask
 {
 public:
-    _FinderTask() : delegate(NULL), role(NULL){}
+    _FinderTask() : delegate(nullptr), role(nullptr){}
     virtual ~_FinderTask();
-    CCPoint start;
-    CCPoint target;
+    Point start;
+    Point target;
     IGridRole* role;
     IPathFinderDelegate* delegate;
     CBackgroundManager* m_bkg;
@@ -102,7 +102,7 @@ public:
     void doFind();
 protected:
     void findSurround(_PathNode* parent);
-    void checkF(const CCPoint& gridPos, int G, _PathNode* parent);
+    void checkF(const Point& gridPos, int G, _PathNode* parent);
 private:
     _HeapList openList;
     _HeapList closeList;
@@ -122,7 +122,7 @@ public:
 
     virtual void update(float dt);
     
-    virtual void findPath(const CCPoint& startPos, const CCPoint& targetPos, IGridRole* role = NULL, IPathFinderDelegate* delegate = NULL);
+    virtual void findPath(const Point& startPos, const Point& targetPos, IGridRole* role = nullptr, IPathFinderDelegate* delegate = nullptr);
 protected:
         
     QFT m_finderTaskQueue;

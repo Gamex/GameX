@@ -31,12 +31,12 @@ bool CFormation::saveToFile(const char* filename)
 {
     do
     {
-        if (filename == NULL)
+        if (filename == nullptr)
         {
             filename = m_filename.c_str();
         }
         
-        std::string path = CCFileUtils::sharedFileUtils()->getWritablePath();
+        std::string path = FileUtils::getInstance()->getWritablePath();
         path += filename;
         FILE* fp = fopen(path.c_str(), "wb");
         BREAK_IF_FAILED(fp);
@@ -66,12 +66,12 @@ bool CFormation::loadFromFile(const char* filename)
 {
     do
     {
-        if (filename == NULL)
+        if (filename == nullptr)
         {
             filename = m_filename.c_str();
         }
         
-        std::string path = CCFileUtils::sharedFileUtils()->getWritablePath();
+        std::string path = FileUtils::getInstance()->getWritablePath();
         path += filename;
         FILE* fp = fopen(path.c_str(), "rb");
         BREAK_IF_FAILED(fp);

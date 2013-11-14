@@ -31,14 +31,14 @@ public:
     virtual bool init();
     void update(float dt);
 
-    virtual void touchesBegan(CCSet* touches, CCEvent* event);
-    virtual void touchesMoved(CCSet* touches, CCEvent* event);
-    virtual void touchesEnded(CCSet* touches, CCEvent* event);
+    virtual void touchesBegan(const std::vector<Touch*>& touches, Event* event);
+    virtual void touchesMoved(const std::vector<Touch*>& touches, Event* event);
+    virtual void touchesEnded(const std::vector<Touch*>& touches, Event* event);
 protected:
 
     void initListener();
     void removeAllListener();
-    void onGameOver(CCObject* obj);
+    void onGameOver(Object* obj);
 
     bool loadConfig();
     bool loadFormation();

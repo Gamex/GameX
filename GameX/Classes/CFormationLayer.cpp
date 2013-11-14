@@ -19,7 +19,7 @@
 #define Z_ORDER_PANEL           1000
 
 CFormationLayer::CFormationLayer()
-: m_curSelRole(NULL)
+: m_curSelRole(nullptr)
 {
     
 }
@@ -39,22 +39,21 @@ bool CFormationLayer::init()
     {
         BREAK_IF_FAILED(CTouchesLayer::init());
         
-        CCDirector *pDirector = CCDirector::sharedDirector();
+        Director *pDirector = Director::getInstance();
         pDirector->setDepthTest(true);
         
         setTouchEnabled(true);
         
-        CCBReader* pReader = new CCBReader(CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary());
+        CCBReader* pReader = new CCBReader(NodeLoaderLibrary::getInstance());
         m_panel = dynamic_cast<CFormationPanelLayer*>(pReader->readNodeGraphFromFile("formation_layer.ccbi"));
         delete pReader;
         
         m_panel->setDelegate(this);
         addChild(m_panel, Z_ORDER_PANEL);
-        
-        // ccbi和tmx地图有冲突，所以必须在创建tmx之前先创建一次ccbi，否则真机上release版本会出错！！
+
         BREAK_IF_FAILED(initBkgLayerBase(BATCHNODE_LIST));
         
-        m_roleNode = CCNode::create();
+        m_roleNode = Node::create();
         addChild(m_roleNode);
 
         m_curSelGrid.x = -1;
@@ -83,16 +82,16 @@ void CFormationLayer::onFrameSel(const std::string& unitId)
     CBackgroundManager* bkgGrd = getBkgGrd();
     CC_ASSERT(bkgGrd);
     
-    CCDictionary* dict = DTUNIT->getData(unitId);
+    Dictionary* dict = DTUNIT->getData(unitId);
     int gridWidth = DTUNIT->get_gridWidth_Value(dict)->intValue();
     int gridHeight = DTUNIT->get_gridHeight_Value(dict)->intValue();
     
-    CCPoint screenCenter = CCDirector::sharedDirector()->getWinSize() / 2;
-    CCPoint gridPos = bkgGrd->screenPointToGrid(screenCenter);
+    Point screenCenter {Director::getInstance()->getWinSize() / 2};
+    Point gridPos = bkgGrd->screenPointToGrid(screenCenter);
     CLogicGrid* grid = bkgGrd->getEmptyGridNearby(gridPos, gridWidth, gridHeight);
     if (grid)
     {
-        CCString* class_name = DTUNIT->get_className_Value(dict);
+        String* class_name = DTUNIT->get_className_Value(dict);
         CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_name->getCString()));
         CC_ASSERT(role);
         role->init(unitId, true);
@@ -106,24 +105,24 @@ void CFormationLayer::onFrameSel(const std::string& unitId)
 
 
 
-void CFormationLayer::touchesBegan(CCSet* touches, CCEvent* event)
+void CFormationLayer::touchesBegan(const std::vector<Touch*>& touches, Event* event)
 {
     
     bool swallow = false;
     
     
-    switch (touches->count())
+    switch (touches.size())
     {
         case 1:
         {
-            CCTouch* t1 = (CCTouch*)touches->anyObject();
-            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
-            CCPoint location1 = this->convertToNodeSpace(point1);
+            Touch* t1 = touches[0];
+            Point point1 = Director::getInstance()->convertToUI(t1->getLocationInView());
+//            Point location1 = this->convertToNodeSpace(point1);
 
             CBackgroundManager* bkgGrd = getBkgGrd();
             CC_ASSERT(bkgGrd);
             
-            CCPoint gp = bkgGrd->screenPointToGrid(point1);
+            Point gp = bkgGrd->screenPointToGrid(point1);
             bkgGrd->hightlightGrid(m_curSelGrid, false);
             m_curSelGrid = gp;
             bkgGrd->hightlightGrid(m_curSelGrid, true);
@@ -151,22 +150,22 @@ void CFormationLayer::touchesBegan(CCSet* touches, CCEvent* event)
 
 
 
-void CFormationLayer::touchesMoved(CCSet* touches, CCEvent* event)
+void CFormationLayer::touchesMoved(const std::vector<Touch*>& touches, Event* event)
 {
     bool swallow = false;
     
     CBackgroundManager* bkgGrd = getBkgGrd();
     CC_ASSERT(bkgGrd);
     
-    switch (touches->count())
+    switch (touches.size())
     {
         case 1:
         {
-            CCTouch* t1 = (CCTouch*)touches->anyObject();
-            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
-            CCPoint location1 = this->convertToNodeSpace(point1);
+            Touch* t1 = touches[0];
+            Point point1 = Director::getInstance()->convertToUI(t1->getLocationInView());
+            Point location1 = this->convertToNodeSpace(point1);
             
-            CCPoint gp = bkgGrd->screenPointToGrid(location1);
+            Point gp = bkgGrd->screenPointToGrid(location1);
 
             bkgGrd->hightlightGrid(m_curSelGrid, false);
             m_curSelGrid = gp;
@@ -176,7 +175,7 @@ void CFormationLayer::touchesMoved(CCSet* touches, CCEvent* event)
             {
                 CLogicGrid* grid = bkgGrd->getLogicGrid(m_curSelGrid);
                 CRole* role = dynamic_cast<CRole*>(grid->getUnit());
-                if (role == NULL && bkgGrd->isRoleCanBePlacedOnPos(m_curSelRole, m_curSelGrid))      // this grid is not occupied, so place in it
+                if (role == nullptr && bkgGrd->isRoleCanBePlacedOnPos(m_curSelRole, m_curSelGrid))      // this grid is not occupied, so place in it
                 {
                     bkgGrd->placeRole(m_curSelRole, m_curSelGrid);
                 }
@@ -197,24 +196,24 @@ void CFormationLayer::touchesMoved(CCSet* touches, CCEvent* event)
 
 
 
-void CFormationLayer::touchesEnded(CCSet* touches, CCEvent* event)
+void CFormationLayer::touchesEnded(const std::vector<Touch*>& touches, Event* event)
 {
     bool swallow = false;
     
     CBackgroundManager* bkgGrd = getBkgGrd();
     CC_ASSERT(bkgGrd);
     
-    switch (touches->count())
+    switch (touches.size())
     {
         case 1:
         {
-            CCTouch* t1 = (CCTouch*)touches->anyObject();
-            CCPoint point1 = CCDirector::sharedDirector()->convertToUI(t1->getLocationInView());
-            CCPoint location1 = this->convertToNodeSpace(point1);
+            Touch* t1 = touches[0];
+            Point point1 = Director::getInstance()->convertToUI(t1->getLocationInView());
+            Point location1 = this->convertToNodeSpace(point1);
 
             location1 = bkgGrd->screenPointToWorld(location1);
             CLogicGrid* grid = bkgGrd->getGridFromWorldPt(location1);
-            if (m_curSelRole != NULL)
+            if (m_curSelRole != nullptr)
             {
                 bkgGrd->hightlightGrid(m_curSelGrid, false);
                 m_curSelGrid.x = -1;
@@ -223,13 +222,13 @@ void CFormationLayer::touchesEnded(CCSet* touches, CCEvent* event)
                 
                 CRole* role = dynamic_cast<CRole*>(grid->getUnit());
                 
-                if (role == NULL)       // this grid is not occupied, so place in it
+                if (role == nullptr)       // this grid is not occupied, so place in it
                 {
                     bkgGrd->placeRole(m_curSelRole, grid->getGridPos());
                 }
                 
                 m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
-                m_curSelRole = NULL;
+                m_curSelRole = nullptr;
                 
                 swallow = true;
             }
@@ -250,7 +249,7 @@ void CFormationLayer::onSave(CFormation* fmt)
     int x, y;
     CBackgroundManager* bkgGrd = getBkgGrd();
     CC_ASSERT(bkgGrd);
-    CCPoint pos;
+    Point pos;
     for (y = 0; y < bkgGrd->getHeightInGrid(); ++y)
     {
         for (x = 0; x < bkgGrd->getWidthInGrid(); ++x)
@@ -288,8 +287,8 @@ void CFormationLayer::onLoad(CFormation* fmt)
         for (int i = 0; i < sz; ++i)
         {
             CFormationElement* fe = fmt->m_elements[i];
-            CCDictionary* dict = DTUNIT->getData(fe->unitId);
-            CCString* className = DTUNIT->get_className_Value(dict);
+            Dictionary* dict = DTUNIT->getData(fe->unitId);
+            String* className = DTUNIT->get_className_Value(dict);
             CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(className->getCString()));
             CC_ASSERT(role);
             role->init(fe->unitId, true);
@@ -315,8 +314,8 @@ void CFormationLayer::clearFormation()
     CBackgroundManager* bkgGrd = getBkgGrd();
     CC_ASSERT(bkgGrd);
     bkgGrd->clearAllUnits();
-    CCArray* roles = m_roleNode->getChildren();
-    CCObject* obj;
+    Array* roles = m_roleNode->getChildren();
+    Object* obj;
     CCARRAY_FOREACH(roles, obj)
     {
         CRole* role = (CRole*)obj;

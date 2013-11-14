@@ -34,23 +34,22 @@ CTouchesLayer::~CTouchesLayer()
 
 long CTouchesLayer::millisecondNow()
 {
-    struct cc_timeval now;
-    CCTime::gettimeofdayCocos2d(&now, NULL);
+    struct timeval now;
+    gettimeofday(&now, nullptr);
     return (now.tv_sec * 1000 + now.tv_usec / 1000);
 }
 
 
 // Override of touches
-void CTouchesLayer::ccTouchesBegan(CCSet* _touches, CCEvent* event)
+void CTouchesLayer::onTouchesBegan(const std::vector<Touch*>& touches, Event* event)
 {
     this->touchHasMoved_ = false;
     this->touchStart_ = this->millisecondNow();
-    CCArray *allTouches = utility::allTouchesSet(_touches);
     
-    CCTouch* fingerOne = (CCTouch *)allTouches->objectAtIndex(0);
-    CCPoint  pointOne = CCDirector::sharedDirector()->convertToUI(fingerOne->getLocationInView());
+    Touch* fingerOne = touches[0];
+    Point  pointOne = Director::getInstance()->convertToUI(fingerOne->getLocationInView());
     
-    CCPoint location = this->convertToNodeSpace(pointOne);
+    Point location = this->convertToNodeSpace(pointOne);
     this->gestureStartPoint_= location; //touch locationInView:touch->view);
     this->previousPoint_ = location;
     
@@ -58,23 +57,22 @@ void CTouchesLayer::ccTouchesBegan(CCSet* _touches, CCEvent* event)
     
     // Passthrough
     this->touchBegan(location);
-    this->touchesBegan(_touches, event);
+    this->touchesBegan(touches, event);
     
 }
 
 
-void CTouchesLayer::ccTouchesMoved(CCSet* _touches, CCEvent* event)
+void CTouchesLayer::onTouchesMoved(const std::vector<Touch*>& touches, Event* event)
 {
     long endTime = this->millisecondNow();
     long deltaTime = endTime - this->touchStart_;
     
     this->touchHasMoved_ = true;
-    CCArray *allTouches = utility::allTouchesSet(_touches);
+
+    Touch* fingerOne = touches[0];
+    Point pointOne = Director::getInstance()->convertToUI(fingerOne->getLocationInView());
     
-    CCTouch* fingerOne = (CCTouch *)allTouches->objectAtIndex(0);
-    CCPoint pointOne = CCDirector::sharedDirector()->convertToUI(fingerOne->getLocationInView());
-    
-    CCPoint location = this->convertToNodeSpace(pointOne);
+    Point location = this->convertToNodeSpace(pointOne);
     this->actualPoint_ = location;
     
     if (!swipeDone_)
@@ -85,7 +83,7 @@ void CTouchesLayer::ccTouchesMoved(CCSet* _touches, CCEvent* event)
         float deltaX = gestureStartPoint_.x - actualPoint_.x;
         float deltaY = gestureStartPoint_.y - actualPoint_.y;
         
-        CCSize screenSize = CCDirector::sharedDirector()->getWinSize();
+        Size screenSize = Director::getInstance()->getWinSize();
         
         float horSwipeDistancePercentage = fabs((deltaX / screenSize.width) * 100);
         float verSwipeDistancePercentage = fabs((deltaY / screenSize.height) * 100);
@@ -134,21 +132,20 @@ void CTouchesLayer::ccTouchesMoved(CCSet* _touches, CCEvent* event)
 //    CCLog("Position:%f,%f",location.x,location.y);
     // Passthrough
     this->touchMoved(location);
-    this->touchesMoved(_touches, event);
+    this->touchesMoved(touches, event);
 }
 
 
-void CTouchesLayer::ccTouchesEnded(CCSet* _touches, CCEvent* event)
+void CTouchesLayer::onTouchesEnded(const std::vector<Touch*>& touches, Event* event)
 {
     long endTime = this->millisecondNow();
     long deltaTime = endTime - this->touchStart_;
 //    CCLog("Deltatime %ld",deltaTime);
-    CCArray *allTouches = utility::allTouchesSet(_touches);
     
-    CCTouch* fingerOne = (CCTouch *)allTouches->objectAtIndex(0);
-    CCPoint pointOne = CCDirector::sharedDirector()->convertToUI(fingerOne->getLocationInView());
+    Touch* fingerOne = touches[0];
+    Point pointOne = Director::getInstance()->convertToUI(fingerOne->getLocationInView());
     
-    CCPoint location = this->convertToNodeSpace(pointOne);
+    Point location = this->convertToNodeSpace(pointOne);
     this->gestureEndPoint_ = location;//touch locationInView:touch->view);
     
     if (deltaTime >= this->m_longTapTime)// No movement, tap detected
@@ -169,12 +166,12 @@ void CTouchesLayer::ccTouchesEnded(CCSet* _touches, CCEvent* event)
     swipeDone_ = false;
     
     touchEnded(location);
-    touchesEnded(_touches, event);
+    touchesEnded(touches, event);
 }
 
 
 
-void CTouchesLayer::tapHandler(CCObject* caller)
+void CTouchesLayer::tapHandler(float caller)
 {
     this->unschedule(schedule_selector(CTouchesLayer::tapHandler));
     
@@ -196,52 +193,52 @@ void CTouchesLayer::tapHandler(CCObject* caller)
 
 
 
-void CTouchesLayer::touchBegan(CCPoint position)
+void CTouchesLayer::touchBegan(Point position)
 {
 }
 
 
-void CTouchesLayer::touchMoved(CCPoint position)
+void CTouchesLayer::touchMoved(Point position)
 {
 }
 
 
-void CTouchesLayer::touchEnded(CCPoint position)
+void CTouchesLayer::touchEnded(Point position)
 {
 }
 
 
-void CTouchesLayer::tapGesture(CCPoint position)
+void CTouchesLayer::tapGesture(Point position)
 {
 }
 
 
-void CTouchesLayer::doubleTapGesture(CCPoint position)
+void CTouchesLayer::doubleTapGesture(Point position)
 {
 }
 
 
-void CTouchesLayer::longTapGesture(CCPoint position)
+void CTouchesLayer::longTapGesture(Point position)
 {
 }
 
 
 
-void CTouchesLayer::touchesBegan(CCSet* touches, CCEvent* event)
-{
-    
-}
-
-
-
-void CTouchesLayer::touchesMoved(CCSet* touches, CCEvent* event)
+void CTouchesLayer::touchesBegan(const std::vector<Touch*>& touches, Event* event)
 {
     
 }
 
 
 
-void CTouchesLayer::touchesEnded(CCSet* touches, CCEvent* event)
+void CTouchesLayer::touchesMoved(const std::vector<Touch*>& touches, Event* event)
+{
+    
+}
+
+
+
+void CTouchesLayer::touchesEnded(const std::vector<Touch*>& touches, Event* event)
 {
     
 }

@@ -28,9 +28,9 @@ public:
 
     virtual void update(float dt);
 protected:
-    virtual void touchesBegan(CCSet* touches, CCEvent* event);
-    virtual void touchesMoved(CCSet* touches, CCEvent* event);
-    virtual void touchesEnded(CCSet* touches, CCEvent* event);
+    virtual void touchesBegan(const std::vector<Touch*>& touches, Event* event);
+    virtual void touchesMoved(const std::vector<Touch*>& touches, Event* event);
+    virtual void touchesEnded(const std::vector<Touch*>& touches, Event* event);
     
     virtual void onFrameSel(const std::string& unitId);
     virtual void onSave(class CFormation* fmt);
@@ -40,11 +40,11 @@ protected:
     void clearAll();
 
 private:
-    CCNode* m_roleNode;
+    Node* m_roleNode;
     CFormationPanelLayer* m_panel;
     class CRole* m_curSelRole;
     
-    CCPoint m_curSelGrid;
+    Point m_curSelGrid;
 
 };
 

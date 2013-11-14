@@ -14,17 +14,17 @@
 class CCControlToggleButton;
 
 
-class CBaseLayer : public CCLayer
+class CBaseLayer : public Layer
 {
 public:
     CBaseLayer();
     ~CBaseLayer();
     
-    static CCScale9Sprite* createTile(const char* spriteFrameName, CCSize size = CCSizeZero, CCPoint position = CCPointZero);
-    static CCControlButton* createImageButton(const char* spriteFrameName, CCPoint position = CCPointZero);
-    static CCControlButton* createImageButtonWithTitle(const char* title, GameFonts font, const char* spriteFrameName, CCPoint position = CCPointZero);
-    static CCControlToggleButton* createToggleButton(const char* toggleOn, const char* toggleOff, CCPoint position = CCPointZero);
-    static CCLabelBMFont* createLabelBMFont(const char* title, GameFonts font, CCTextAlignment alignment = kCCTextAlignmentCenter, CCPoint position = CCPointZero);
+    static Scale9Sprite* createTile(const char* spriteFrameName, Size size = Size::ZERO, Point position = Point::ZERO);
+    static ControlButton* createImageButton(const char* spriteFrameName, Point position = Point::ZERO);
+    static ControlButton* createImageButtonWithTitle(const char* title, GameFonts font, const char* spriteFrameName, Point position = Point::ZERO);
+    static CCControlToggleButton* createToggleButton(const char* toggleOn, const char* toggleOff, Point position = Point::ZERO);
+    static LabelBMFont* createLabelBMFont(const char* title, GameFonts font, TextHAlignment alignment = TextHAlignment::CENTER, Point position = Point::ZERO);
     
     virtual void onEnter();
     virtual void onExit();
@@ -33,13 +33,13 @@ public:
     
     void go(LAYERS layer, bool needTransit = false);
     
-    CC_SYNTHESIZE_RETAIN(CCArray*, m_popTargets, PopTargets);
+    CC_SYNTHESIZE_RETAIN(Array*, m_popTargets, PopTargets);
     
 protected:
-    virtual CCScene* wrap(LAYERS layer);
-    virtual void addPopTarget(CCNode* pNode);
+    virtual Scene* wrap(LAYERS layer);
+    virtual void addPopTarget(Node* pNode);
     virtual void addCloseButton();
-    virtual void menuCloseCallback(CCObject* pSender);
+    virtual void menuCloseCallback(Object* pSender);
     
 private:
 };

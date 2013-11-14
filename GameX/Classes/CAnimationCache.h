@@ -18,14 +18,14 @@ public:
     static CAnimationCache* getInstance();
     
     virtual void addAnimations(const char* pFileName);
-    virtual CCAnimate* getAnimateByAnimationName(const char* name);
-    virtual CCAnimation* getAnimationByName(const char* name);
-    virtual CCAction* createActionByAnimationName(const char* name, bool repeated = true, CCCallFunc* callback = NULL);
-    virtual CCAction* createMoveToAction(float duration, CCPoint pos, CCCallFunc* callback = NULL);
-    virtual CCAction* createPopAction(float duration, CCCallFunc* callback = NULL);
-    virtual CCAction* createVibrateAction(float duration, CCCallFunc* callback = NULL);
-    virtual CCAction* createMovePauseAction(float moveDuration, float pauseDuration, CCPoint pausePosition, CCCallFunc* callback);
-    virtual CCAction* createFadeToAction(float duration, GLubyte fadeTo, CCCallFunc* callback = NULL);
+    virtual Animate* getAnimateByAnimationName(const char* name);
+    virtual cocos2d::Animation* getAnimationByName(const char* name);
+    virtual Action* createActionByAnimationName(const char* name, bool repeated = true, CallFunc* callback = nullptr);
+    virtual Action* createMoveToAction(float duration, Point pos, CallFunc* callback = nullptr);
+    virtual Action* createPopAction(float duration, CallFunc* callback = nullptr);
+    virtual Action* createVibrateAction(float duration, CallFunc* callback = nullptr);
+    virtual Action* createMovePauseAction(float moveDuration, float pauseDuration, Point pausePosition, CallFunc* callback);
+    virtual Action* createFadeToAction(float duration, GLubyte fadeTo, CallFunc* callback = nullptr);
     
 protected:
     

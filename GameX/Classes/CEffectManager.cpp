@@ -13,8 +13,8 @@
 IMPLEMENT_SINGLETON(CEffectManager);
 
 CEffectManager::CEffectManager()
-: m_bkgMgr(NULL)
-, m_batchNode(NULL)
+: m_bkgMgr(nullptr)
+, m_batchNode(nullptr)
 {
 }
 
@@ -55,7 +55,7 @@ bool CEffectManager::init(CBackgroundManager* bm)
         
         for (int i = 0; i < eftCount; ++i)
         {
-            CCString* s = DTEFFECT->get_cacheNum_Value(i);
+            String* s = DTEFFECT->get_cacheNum_Value(i);
             CC_ASSERT(s);
             int cacheNum = s->intValue();
             
@@ -118,7 +118,7 @@ CGameEffect* CEffectManager::createEffect(int eftNo, CRole* target)
         CC_ASSERT(effect);
 
         effect->revive();
-        CCPoint pt = target->getSpritePosition();
+        Point pt = target->getSpritePosition();
         effect->setSpritePosition(pt);
         
         if (!target->addSlot(effect, effect->getTag()))
@@ -133,7 +133,7 @@ CGameEffect* CEffectManager::createEffect(int eftNo, CRole* target)
 
     } while (false);
     
-	return NULL;
+	return nullptr;
 }
 
 
@@ -145,7 +145,7 @@ bool CEffectManager::onCacheElemInit(SOB& unUseArrray, CObjectBase* curObj, void
     {
         int idx = (int)pUserData;
 
-        CCString* s = DTEFFECT->get_resourceID_Value(idx);
+        String* s = DTEFFECT->get_resourceID_Value(idx);
         CGameEffect* gf = (CGameEffect*)curObj;
         BREAK_IF_FAILED(gf->init(s->getCString()));
         curObj->die();

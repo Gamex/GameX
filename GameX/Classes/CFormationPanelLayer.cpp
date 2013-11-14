@@ -23,18 +23,18 @@ static class CFormationPanelLayerRegister
 public:
     CFormationPanelLayerRegister()
     {
-        CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary()->registerCCNodeLoader( "CFormationPanelLayer", CFormationPanelLayerLoader::loader());
+        NodeLoaderLibrary::getInstance()->registerNodeLoader( "CFormationPanelLayer", CFormationPanelLayerLoader::loader());
     }
 } __reg;
 
 
 CFormationPanelLayer::CFormationPanelLayer()
 : m_firstShownIdx(0)
-, m_delegate(NULL)
+, m_delegate(nullptr)
 {
     for (int i = 0; i < FRAME_NUM; ++i)
     {
-        m_frames[i] = NULL;
+        m_frames[i] = nullptr;
     }
 }
 
@@ -66,12 +66,12 @@ bool CFormationPanelLayer::init()
 //        m_editRoleIds.push_back("11");
 //        m_editRoleIds.push_back("12");
 
-        m_allRoles = CCArray::createWithCapacity(m_editRoleIds.size());
+        m_allRoles = Array::createWithCapacity(m_editRoleIds.size());
         CC_SAFE_RETAIN(m_allRoles);
         for (int i = 0; i < m_editRoleIds.size(); ++i)
         {
-            CCDictionary* dict = DTUNIT->getData(m_editRoleIds[i]);
-            CCString* class_name = DTUNIT->get_className_Value(dict);
+            Dictionary* dict = DTUNIT->getData(m_editRoleIds[i]);
+            String* class_name = DTUNIT->get_className_Value(dict);
             CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_name->getCString()));
             CC_ASSERT(role);
             role->init(m_editRoleIds[i], true);
@@ -85,7 +85,7 @@ bool CFormationPanelLayer::init()
 }
 
 
-SEL_MenuHandler CFormationPanelLayer::onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char* pSelectorName)
+SEL_MenuHandler CFormationPanelLayer::onResolveCCBCCMenuItemSelector(Object * pTarget, const char* pSelectorName)
 {
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onBack", CFormationPanelLayer::onBack);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onSave", CFormationPanelLayer::onSave);
@@ -102,44 +102,44 @@ SEL_MenuHandler CFormationPanelLayer::onResolveCCBCCMenuItemSelector(CCObject * 
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onF5", CFormationPanelLayer::onFrame);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onF6", CFormationPanelLayer::onFrame);
     
-    return NULL;
+    return nullptr;
 }
 
-//函数定义类型为：void pressTitle(CCObject *pSender);
-SEL_CCControlHandler CFormationPanelLayer::onResolveCCBCCControlSelector(CCObject * pTarget, const char* pSelectorName)
+//函数定义类型为：void pressTitle(Object *pSender);
+Control::Handler CFormationPanelLayer::onResolveCCBCCControlSelector(Object * pTarget, const char* pSelectorName)
 {
 //    CCB_SELECTORRESOLVER_CCCONTROL_GLUE( this, "pressTitle", CFormationPanelLayer::controlButtonTest);
-    return NULL;
+    return nullptr;
 }
 
-bool CFormationPanelLayer::onAssignCCBMemberVariable(CCObject* pTarget, const char* pMemberVariableName, CCNode* pNode)
+bool CFormationPanelLayer::onAssignCCBMemberVariable(Object* pTarget, const char* pMemberVariableName, Node* pNode)
 {
     for (int i = 0; i < FRAME_NUM; ++i)
     {
         char s[20];
         sprintf(s, "m_f%d", i);
-        CCB_MEMBERVARIABLEASSIGNER_GLUE(this, s, CCMenuItem*, m_frames[i]);
+        CCB_MEMBERVARIABLEASSIGNER_GLUE(this, s, MenuItem*, m_frames[i]);
     }
 
     return false;
 }
 
 
-void CFormationPanelLayer::onNodeLoaded(CCNode * pNode, CCNodeLoader * pNodeLoader)
+void CFormationPanelLayer::onNodeLoaded(Node * pNode, NodeLoader * pNodeLoader)
 {
     setFrameShowRole(0);
 }
 
 
 
-void CFormationPanelLayer:: onBack(CCObject *pSender)
+void CFormationPanelLayer:: onBack(Object *pSender)
 {
     SCENE_MANAGER->go(ST_LOBBY);
 }
 
 
 
-void CFormationPanelLayer:: onSave(CCObject *pSender)
+void CFormationPanelLayer:: onSave(Object *pSender)
 {
     CFormation* fmt = FORMATION_MANAGER->getFormation();
     fmt->m_elements.clear();
@@ -153,7 +153,7 @@ void CFormationPanelLayer:: onSave(CCObject *pSender)
 
 
 
-void CFormationPanelLayer::onLoad(CCObject *pSender)
+void CFormationPanelLayer::onLoad(Object *pSender)
 {
     CFormation* fmt = FORMATION_MANAGER->getFormation();
     fmt->m_elements.clear();
@@ -167,7 +167,7 @@ void CFormationPanelLayer::onLoad(CCObject *pSender)
 
 
 
-void CFormationPanelLayer::onSave1(CCObject* pSender)
+void CFormationPanelLayer::onSave1(Object* pSender)
 {
     CFormation* fmt = FORMATION_MANAGER->getFormation1();
     fmt->m_elements.clear();
@@ -180,7 +180,7 @@ void CFormationPanelLayer::onSave1(CCObject* pSender)
 
 
 
-void CFormationPanelLayer::onLoad1(CCObject* pSender)
+void CFormationPanelLayer::onLoad1(Object* pSender)
 {
     CFormation* fmt = FORMATION_MANAGER->getFormation1();
     fmt->m_elements.clear();
@@ -194,21 +194,21 @@ void CFormationPanelLayer::onLoad1(CCObject* pSender)
 
 
 
-void CFormationPanelLayer:: onUp(CCObject *pSender)
+void CFormationPanelLayer:: onUp(Object *pSender)
 {
 }
 
 
 
-void CFormationPanelLayer:: onDown(CCObject *pSender)
+void CFormationPanelLayer:: onDown(Object *pSender)
 {
 }
 
 
 
-void CFormationPanelLayer:: onFrame(CCObject *pSender)
+void CFormationPanelLayer:: onFrame(Object *pSender)
 {
-    CCMenuItem* menu = dynamic_cast<CCMenuItem*>(pSender);
+    MenuItem* menu = dynamic_cast<MenuItem*>(pSender);
     CC_ASSERT(menu);
     
     
@@ -246,10 +246,10 @@ void CFormationPanelLayer::setFrameShowRole(int fromIdx)
         if (index < m_allRoles->count())
         {
             m_frames[i]->setEnabled(true);
-            CRole* role = (CRole*)m_allRoles->objectAtIndex(index);
+            CRole* role = (CRole*)m_allRoles->getObjectAtIndex(index);
             CC_ASSERT(role);
-            CCSize sz = m_frames[i]->getContentSize();
-            role->setSpritePosition(ccp(sz.width / 2.f, sz.height / 2.f));
+            Size sz = m_frames[i]->getContentSize();
+            role->setSpritePosition(Point(sz.width / 2.f, sz.height / 2.f));
             role->attachSpriteTo(m_frames[i], 0, TAG_ROLE);
             role->setFaceTo(FACE_TO_LEFT_DOWN);
             role->playAnimation(ROLE_ANIMATION_IDLE);
@@ -264,19 +264,19 @@ void CFormationPanelLayer::setFrameShowRole(int fromIdx)
 
 
 
-void CFormationPanelLayer::touchBegan(CCPoint position)
+void CFormationPanelLayer::touchBegan(Point position)
 {
 }
 
 
 
-void CFormationPanelLayer::touchMoved(CCPoint position)
+void CFormationPanelLayer::touchMoved(Point position)
 {
 }
 
 
 
-void CFormationPanelLayer::touchEnded(CCPoint position)
+void CFormationPanelLayer::touchEnded(Point position)
 {
 }
 

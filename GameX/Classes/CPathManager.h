@@ -17,13 +17,13 @@ class CPath;
 
 class CPathManager : public CSingleton<CPathManager>
 {
-    CC_SYNTHESIZE_RETAIN(CCDictionary*, paths_, Paths);
+    CC_SYNTHESIZE_RETAIN(Dictionary*, paths_, Paths);
 public:
     CPathManager();
     virtual ~CPathManager();
     virtual bool initialize();
     
-    virtual std::string makeRandomPath(const CCPoint& sp, const CCPoint& ep);
+    virtual std::string makeRandomPath(const Point& sp, const Point& ep);
     virtual void removePath(const std::string& name);
     virtual CPath* getPathByName(const std::string& name);
 protected:

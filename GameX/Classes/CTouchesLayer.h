@@ -45,39 +45,39 @@ public:
     
     
     // Override of touches
-    virtual void ccTouchesBegan(CCSet* touches, CCEvent* event);
-    virtual void ccTouchesMoved(CCSet* touches, CCEvent* event);
-    virtual void ccTouchesEnded(CCSet* touches, CCEvent* event);
+    virtual void onTouchesBegan(const std::vector<Touch*>& touches, Event* event);
+    virtual void onTouchesMoved(const std::vector<Touch*>& touches, Event* event);
+    virtual void onTouchesEnded(const std::vector<Touch*>& touches, Event* event);
     
 
     // Override for subclsss
-    virtual void touchesBegan(CCSet* touches, CCEvent* event);
-    virtual void touchesMoved(CCSet* touches, CCEvent* event);
-    virtual void touchesEnded(CCSet* touches, CCEvent* event);
+    virtual void touchesBegan(const std::vector<Touch*>& touches, Event* event);
+    virtual void touchesMoved(const std::vector<Touch*>& touches, Event* event);
+    virtual void touchesEnded(const std::vector<Touch*>& touches, Event* event);
     
     // Easy touch callbacks
-    virtual void touchBegan(CCPoint position);
-    virtual void touchMoved(CCPoint position);
-    virtual void touchEnded(CCPoint position);
+    virtual void touchBegan(Point position);
+    virtual void touchMoved(Point position);
+    virtual void touchEnded(Point position);
     
     // Gesture Callbacks
-    virtual void tapGesture(CCPoint position);
-    virtual void doubleTapGesture(CCPoint position);
-    virtual void longTapGesture(CCPoint position);
+    virtual void tapGesture(Point position);
+    virtual void doubleTapGesture(Point position);
+    virtual void longTapGesture(Point position);
     virtual void swipeGesture(GBTouchDirection direction, float distance, float speed);
     
 protected:
 
 private:
     
-    void tapHandler(CCObject* caller);
+    void tapHandler(float caller);
     
     GBTouchDirection touchDirection_;
     // Touch positions
-    CCPoint gestureStartPoint_;
-    CCPoint gestureEndPoint_;
-    CCPoint actualPoint_;
-    CCPoint previousPoint_;
+    Point gestureStartPoint_;
+    Point gestureEndPoint_;
+    Point actualPoint_;
+    Point previousPoint_;
 
     bool touchHasMoved_;
     long touchStart_;

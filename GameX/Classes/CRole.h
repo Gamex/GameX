@@ -84,7 +84,7 @@ public:
     virtual bool init(const string& unitId, bool editorMode = false);
     virtual bool init();
     virtual bool changeState(int state);
-    virtual bool attachSpriteTo(CCNode* parent, int zOrder = 0, int tag = -1);
+    virtual bool attachSpriteTo(Node* parent, int zOrder = 0, int tag = -1);
     
     virtual void die();
     virtual void revive();
@@ -101,20 +101,20 @@ public:
     virtual bool createHPBar();
     
     virtual void updateVertexZ();
-    virtual void onPlaceOnMap(const CCPoint& gridPos, const CCPoint& position);
-    virtual void findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFinderDelegate* delegate = NULL);
-    virtual bool findPathBrief(const CCPoint& startPos, const CCPoint& targetPos, vector<CCPoint>& path);
+    virtual void onPlaceOnMap(const Point& gridPos, const Point& position);
+    virtual void findPath(const Point& startPos, const Point& targetPos, IPathFinderDelegate* delegate = nullptr);
+    virtual bool findPathBrief(const Point& startPos, const Point& targetPos, vector<Point>& path);
     
     virtual bool playAnimation(const std::string& name);
     
-    virtual void setMoveTarget(const CCPoint& gridPos);
-    virtual const CCPoint& getMovetarget();
+    virtual void setMoveTarget(const Point& gridPos);
+    virtual const Point& getMovetarget();
     
     virtual void think();
     
     virtual void setFaceTo(CRole* role);
     
-    virtual CCPoint getPositionInGrid();
+    virtual Point getPositionInGrid();
     virtual float getDistanceSqInGrid(IGridRole* role);
     virtual bool checkInGridRadiusSq(IGridRole* role, float radiusInGrid);
 
@@ -126,7 +126,7 @@ protected:
 	CRole();
     void clearThis();
     
-    virtual void setInnerSprite(CCSprite* var);
+    virtual void setInnerSprite(Sprite* var);
     virtual void addComponentsForStates();
 
     VS m_faceToPrefix;

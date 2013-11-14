@@ -10,126 +10,126 @@ class DTScene
 {
 	friend class CDataCenterManager;
 public:
-	CCDictionary* getRoot() const
+	Dictionary* getRoot() const
 	{
 		return m_pDictionary;
 	}
 	void loadData2CCDictionary()
     {
-        if (NULL == m_pDictionary)
+        if (nullptr == m_pDictionary)
         {
-            m_pDictionary = CCDictionary::create();
+            m_pDictionary = Dictionary::create();
             CC_SAFE_RETAIN(m_pDictionary);
         }
 
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("600"), "positionx");
-			elem->setObject(CCString::create("32"), "positiony");
-			elem->setObject(CCString::create("60"), "length");
-			elem->setObject(CCString::create("32"), "width");
-			elem->setObject(CCString::create("1"), "target");
-			elem->setObject(CCString::create("0"), "related1");
-			elem->setObject(CCString::create("1"), "wt1");
-			elem->setObject(CCString::create("2"), "related2");
-			elem->setObject(CCString::create("1"), "wt2");
+			elem->setObject(String::create("600"), "positionx");
+			elem->setObject(String::create("32"), "positiony");
+			elem->setObject(String::create("60"), "length");
+			elem->setObject(String::create("32"), "width");
+			elem->setObject(String::create("1"), "target");
+			elem->setObject(String::create("0"), "related1");
+			elem->setObject(String::create("1"), "wt1");
+			elem->setObject(String::create("2"), "related2");
+			elem->setObject(String::create("1"), "wt2");
 
 			
 			m_pDictionary->setObject(elem, "1");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("600"), "positionx");
-			elem->setObject(CCString::create("96"), "positiony");
-			elem->setObject(CCString::create("60"), "length");
-			elem->setObject(CCString::create("32"), "width");
-			elem->setObject(CCString::create("2"), "target");
-			elem->setObject(CCString::create("1"), "related1");
-			elem->setObject(CCString::create("1"), "wt1");
-			elem->setObject(CCString::create("3"), "related2");
-			elem->setObject(CCString::create("1"), "wt2");
+			elem->setObject(String::create("600"), "positionx");
+			elem->setObject(String::create("96"), "positiony");
+			elem->setObject(String::create("60"), "length");
+			elem->setObject(String::create("32"), "width");
+			elem->setObject(String::create("2"), "target");
+			elem->setObject(String::create("1"), "related1");
+			elem->setObject(String::create("1"), "wt1");
+			elem->setObject(String::create("3"), "related2");
+			elem->setObject(String::create("1"), "wt2");
 
 			
 			m_pDictionary->setObject(elem, "2");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("600"), "positionx");
-			elem->setObject(CCString::create("160"), "positiony");
-			elem->setObject(CCString::create("60"), "length");
-			elem->setObject(CCString::create("32"), "width");
-			elem->setObject(CCString::create("3"), "target");
-			elem->setObject(CCString::create("2"), "related1");
-			elem->setObject(CCString::create("1"), "wt1");
-			elem->setObject(CCString::create("4"), "related2");
-			elem->setObject(CCString::create("1"), "wt2");
+			elem->setObject(String::create("600"), "positionx");
+			elem->setObject(String::create("160"), "positiony");
+			elem->setObject(String::create("60"), "length");
+			elem->setObject(String::create("32"), "width");
+			elem->setObject(String::create("3"), "target");
+			elem->setObject(String::create("2"), "related1");
+			elem->setObject(String::create("1"), "wt1");
+			elem->setObject(String::create("4"), "related2");
+			elem->setObject(String::create("1"), "wt2");
 
 			
 			m_pDictionary->setObject(elem, "3");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("600"), "positionx");
-			elem->setObject(CCString::create("224"), "positiony");
-			elem->setObject(CCString::create("60"), "length");
-			elem->setObject(CCString::create("32"), "width");
-			elem->setObject(CCString::create("4"), "target");
-			elem->setObject(CCString::create("3"), "related1");
-			elem->setObject(CCString::create("1"), "wt1");
-			elem->setObject(CCString::create("5"), "related2");
-			elem->setObject(CCString::create("1"), "wt2");
+			elem->setObject(String::create("600"), "positionx");
+			elem->setObject(String::create("224"), "positiony");
+			elem->setObject(String::create("60"), "length");
+			elem->setObject(String::create("32"), "width");
+			elem->setObject(String::create("4"), "target");
+			elem->setObject(String::create("3"), "related1");
+			elem->setObject(String::create("1"), "wt1");
+			elem->setObject(String::create("5"), "related2");
+			elem->setObject(String::create("1"), "wt2");
 
 			
 			m_pDictionary->setObject(elem, "4");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("600"), "positionx");
-			elem->setObject(CCString::create("288"), "positiony");
-			elem->setObject(CCString::create("60"), "length");
-			elem->setObject(CCString::create("32"), "width");
-			elem->setObject(CCString::create("5"), "target");
-			elem->setObject(CCString::create("4"), "related1");
-			elem->setObject(CCString::create("1"), "wt1");
-			elem->setObject(CCString::create("0"), "related2");
-			elem->setObject(CCString::create("1"), "wt2");
+			elem->setObject(String::create("600"), "positionx");
+			elem->setObject(String::create("288"), "positiony");
+			elem->setObject(String::create("60"), "length");
+			elem->setObject(String::create("32"), "width");
+			elem->setObject(String::create("5"), "target");
+			elem->setObject(String::create("4"), "related1");
+			elem->setObject(String::create("1"), "wt1");
+			elem->setObject(String::create("0"), "related2");
+			elem->setObject(String::create("1"), "wt2");
 
 			
 			m_pDictionary->setObject(elem, "5");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("300"), "positionx");
-			elem->setObject(CCString::create("-40"), "positiony");
-			elem->setObject(CCString::create("60"), "length");
-			elem->setObject(CCString::create("32"), "width");
-			elem->setObject(CCString::create("1"), "target");
-			elem->setObject(CCString::create("0"), "related1");
-			elem->setObject(CCString::create("1"), "wt1");
-			elem->setObject(CCString::create("2"), "related2");
-			elem->setObject(CCString::create("1"), "wt2");
+			elem->setObject(String::create("300"), "positionx");
+			elem->setObject(String::create("-40"), "positiony");
+			elem->setObject(String::create("60"), "length");
+			elem->setObject(String::create("32"), "width");
+			elem->setObject(String::create("1"), "target");
+			elem->setObject(String::create("0"), "related1");
+			elem->setObject(String::create("1"), "wt1");
+			elem->setObject(String::create("2"), "related2");
+			elem->setObject(String::create("1"), "wt2");
 
 			
 			m_pDictionary->setObject(elem, "6");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("300"), "positionx");
-			elem->setObject(CCString::create("360"), "positiony");
-			elem->setObject(CCString::create("60"), "length");
-			elem->setObject(CCString::create("32"), "width");
-			elem->setObject(CCString::create("5"), "target");
-			elem->setObject(CCString::create("4"), "related1");
-			elem->setObject(CCString::create("1"), "wt1");
-			elem->setObject(CCString::create("0"), "related2");
-			elem->setObject(CCString::create("1"), "wt2");
+			elem->setObject(String::create("300"), "positionx");
+			elem->setObject(String::create("360"), "positiony");
+			elem->setObject(String::create("60"), "length");
+			elem->setObject(String::create("32"), "width");
+			elem->setObject(String::create("5"), "target");
+			elem->setObject(String::create("4"), "related1");
+			elem->setObject(String::create("1"), "wt1");
+			elem->setObject(String::create("0"), "related2");
+			elem->setObject(String::create("1"), "wt2");
 
 			
 			m_pDictionary->setObject(elem, "7");
@@ -137,106 +137,106 @@ public:
 
     }
         
-    CCDictionary* getData(const string& key)
+    Dictionary* getData(const string& key)
     {
         CC_ASSERT(m_pDictionary);
-        return dynamic_cast<CCDictionary*>(m_pDictionary->objectForKey(key));
+        return dynamic_cast<Dictionary*>(m_pDictionary->objectForKey(key));
     }
 
-    CCString* getValueOf(const string& key, const string& subKey)
+    String* getValueOf(const string& key, const string& subKey)
     {
         CC_ASSERT(m_pDictionary);
-        CCDictionary* sub = getData(key);
+        Dictionary* sub = getData(key);
         if (sub)
         {
-            return dynamic_cast<CCString*>(sub->objectForKey(subKey));
+            return dynamic_cast<String*>(sub->objectForKey(subKey));
         }
-        return NULL;
+        return nullptr;
     }
 
-    CCString* getValueOf(CCDictionary* subDict, const string& subKey)
+    String* getValueOf(Dictionary* subDict, const string& subKey)
     {
         CC_ASSERT(subDict);
-        return dynamic_cast<CCString*>(subDict->objectForKey(subKey));
+        return dynamic_cast<String*>(subDict->objectForKey(subKey));
     }
 
-	CCString* get_positionx_Value(const string& key)
+	String* get_positionx_Value(const string& key)
 	{
 		return getValueOf(key, "positionx");
 	}
-	CCString* get_positionx_Value(CCDictionary* subDict)
+	String* get_positionx_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "positionx");
 	}
 
-	CCString* get_positiony_Value(const string& key)
+	String* get_positiony_Value(const string& key)
 	{
 		return getValueOf(key, "positiony");
 	}
-	CCString* get_positiony_Value(CCDictionary* subDict)
+	String* get_positiony_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "positiony");
 	}
 
-	CCString* get_length_Value(const string& key)
+	String* get_length_Value(const string& key)
 	{
 		return getValueOf(key, "length");
 	}
-	CCString* get_length_Value(CCDictionary* subDict)
+	String* get_length_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "length");
 	}
 
-	CCString* get_width_Value(const string& key)
+	String* get_width_Value(const string& key)
 	{
 		return getValueOf(key, "width");
 	}
-	CCString* get_width_Value(CCDictionary* subDict)
+	String* get_width_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "width");
 	}
 
-	CCString* get_target_Value(const string& key)
+	String* get_target_Value(const string& key)
 	{
 		return getValueOf(key, "target");
 	}
-	CCString* get_target_Value(CCDictionary* subDict)
+	String* get_target_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "target");
 	}
 
-	CCString* get_related1_Value(const string& key)
+	String* get_related1_Value(const string& key)
 	{
 		return getValueOf(key, "related1");
 	}
-	CCString* get_related1_Value(CCDictionary* subDict)
+	String* get_related1_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "related1");
 	}
 
-	CCString* get_wt1_Value(const string& key)
+	String* get_wt1_Value(const string& key)
 	{
 		return getValueOf(key, "wt1");
 	}
-	CCString* get_wt1_Value(CCDictionary* subDict)
+	String* get_wt1_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "wt1");
 	}
 
-	CCString* get_related2_Value(const string& key)
+	String* get_related2_Value(const string& key)
 	{
 		return getValueOf(key, "related2");
 	}
-	CCString* get_related2_Value(CCDictionary* subDict)
+	String* get_related2_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "related2");
 	}
 
-	CCString* get_wt2_Value(const string& key)
+	String* get_wt2_Value(const string& key)
 	{
 		return getValueOf(key, "wt2");
 	}
-	CCString* get_wt2_Value(CCDictionary* subDict)
+	String* get_wt2_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "wt2");
 	}
@@ -244,7 +244,7 @@ public:
 
 
 protected:
-	DTScene():m_pDictionary(NULL)
+	DTScene():m_pDictionary(nullptr)
 	{}
 	~DTScene()
 	{
@@ -252,7 +252,7 @@ protected:
 	}
 	
 private:
-	CCDictionary* m_pDictionary;
+	Dictionary* m_pDictionary;
 };
 
 

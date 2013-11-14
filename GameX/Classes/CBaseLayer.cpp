@@ -16,7 +16,7 @@
 
 
 CBaseLayer::CBaseLayer()
-: m_popTargets(NULL)
+: m_popTargets(nullptr)
 {
     
 }
@@ -24,20 +24,20 @@ CBaseLayer::CBaseLayer()
 
 CBaseLayer::~CBaseLayer()
 {
-    setPopTargets(NULL);
+    setPopTargets(nullptr);
 }
 
 
 void CBaseLayer::onEnter()
 {
-    CCLayer::onEnter();
+    Layer::onEnter();
     
     if (m_popTargets)
     {
-        CCObject* pObject = NULL;
+        Object* pObject = nullptr;
         CCARRAY_FOREACH(m_popTargets, pObject)
         {
-            CCNode* pNode = dynamic_cast<CCNode*>(pObject);
+            Node* pNode = dynamic_cast<Node*>(pObject);
             if (pNode)
             {
                 pNode->stopAllActions();
@@ -50,19 +50,19 @@ void CBaseLayer::onEnter()
 
 void CBaseLayer::onExit()
 {
-    CCLayer::onExit();
+    Layer::onExit();
 }
 
 
 void CBaseLayer::onEnterTransitionDidFinish()
 {
-    CCLayer::onEnterTransitionDidFinish();
+    Layer::onEnterTransitionDidFinish();
 }
 
 
 void CBaseLayer::unLoadTransitLayer()
 {
-//    CCDirector* pDirector = CCDirector::sharedDirector();
+//    Director* pDirector = Director::getInstance();
     
 //    CTransitLayer* pLayer = dynamic_cast<CTransitLayer*>(pDirector->getNotificationNode());
 //    if (pLayer)
@@ -72,12 +72,12 @@ void CBaseLayer::unLoadTransitLayer()
 }
 
 
-CCScale9Sprite* CBaseLayer::createTile(const char* spriteFrameName, CCSize size, CCPoint position)
+Scale9Sprite* CBaseLayer::createTile(const char* spriteFrameName, Size size, Point position)
 {
-    CCScale9Sprite* tile = CCScale9Sprite::createWithSpriteFrameName(spriteFrameName);
-    if (size.equals(CCSizeZero))
+    Scale9Sprite* tile = Scale9Sprite::createWithSpriteFrameName(spriteFrameName);
+    if (size.equals(Size::ZERO))
     {
-        CCSprite* pSprite = CCSprite::createWithSpriteFrameName(spriteFrameName);
+        Sprite* pSprite = Sprite::createWithSpriteFrameName(spriteFrameName);
         if (pSprite)
         {
             size = pSprite->getContentSize();
@@ -85,35 +85,35 @@ CCScale9Sprite* CBaseLayer::createTile(const char* spriteFrameName, CCSize size,
     }
     
     tile->setPreferredSize(size);
-    tile->setAnchorPoint(ccp(0.5f, 0.5f));
+    tile->setAnchorPoint(Point(0.5f, 0.5f));
     tile->setPosition(position);
     return tile;
 }
 
 
-CCControlButton* CBaseLayer::createImageButton(const char* spriteFrameName, CCPoint position)
+ControlButton* CBaseLayer::createImageButton(const char* spriteFrameName, Point position)
 {
     CCAssert(spriteFrameName && strlen(spriteFrameName) > 0, "Invalid sprite frame name.");
     
     do
     {
-        CCSprite* pSprite = CCSprite::createWithSpriteFrameName(spriteFrameName);
-        CC_BREAK_IF(NULL == pSprite);
-        CCSize size = pSprite->getContentSize();
+        Sprite* pSprite = Sprite::createWithSpriteFrameName(spriteFrameName);
+        CC_BREAK_IF(nullptr == pSprite);
+        Size size = pSprite->getContentSize();
         
-        CCControlButton* pButton = CCControlButton::create(CCScale9Sprite::createWithSpriteFrameName(spriteFrameName));
-        CC_BREAK_IF(NULL == pButton);
+        ControlButton* pButton = ControlButton::create(Scale9Sprite::createWithSpriteFrameName(spriteFrameName));
+        CC_BREAK_IF(nullptr == pButton);
         pButton->setPreferredSize(size);
         pButton->setPosition(position);
         
         return pButton;
     } while (false);
     
-    return NULL;
+    return nullptr;
 }
 
 
-CCControlButton* CBaseLayer::createImageButtonWithTitle(const char* title, GameFonts font, const char* spriteFrameName, CCPoint position)
+ControlButton* CBaseLayer::createImageButtonWithTitle(const char* title, GameFonts font, const char* spriteFrameName, Point position)
 {
     CCAssert(title && strlen(title) > 0, "Invalid title.");
     CCAssert(spriteFrameName && strlen(spriteFrameName) > 0, "Invalid sprite frame name.");
@@ -121,15 +121,15 @@ CCControlButton* CBaseLayer::createImageButtonWithTitle(const char* title, GameF
     do
     {
         // majun
-//        CCLabelBMFont* pLabel = CCLabelBMFont::create(title,
+//        LabelBMFont* pLabel = LabelBMFont::create(title,
 //                                                      TEXTURE_CACHE->getFontFileName(font).c_str());
-//        CC_BREAK_IF(NULL == pLabel);
-//        CCScale9Sprite* pBackground = CCScale9Sprite::createWithSpriteFrameName(spriteFrameName);
-//        CC_BREAK_IF(NULL == pBackground);
-//        CCControlButton* pButton = CCControlButton::create(pLabel, pBackground);
-//        CC_BREAK_IF(NULL == pButton);
-//        CCSize size = pLabel->getContentSize();
-//        CCSize backgroundSize = pBackground->getContentSize();
+//        CC_BREAK_IF(nullptr == pLabel);
+//        Scale9Sprite* pBackground = Scale9Sprite::createWithSpriteFrameName(spriteFrameName);
+//        CC_BREAK_IF(nullptr == pBackground);
+//        ControlButton* pButton = ControlButton::create(pLabel, pBackground);
+//        CC_BREAK_IF(nullptr == pButton);
+//        Size size = pLabel->getContentSize();
+//        Size backgroundSize = pBackground->getContentSize();
 //        size.width = 2 + size.width > backgroundSize.width ? size.width : backgroundSize.width;
 //        size.height = 2 + size.height > backgroundSize.height ? size.height : backgroundSize.height;
 //        pButton->setPreferredSize(size);
@@ -138,59 +138,59 @@ CCControlButton* CBaseLayer::createImageButtonWithTitle(const char* title, GameF
 //        return pButton;
     } while (false);
     
-    return NULL;
+    return nullptr;
 }
 
 
-CCControlToggleButton* CBaseLayer::createToggleButton(const char* toggleOn, const char* toggleOff, CCPoint position)
+CCControlToggleButton* CBaseLayer::createToggleButton(const char* toggleOn, const char* toggleOff, Point position)
 {
     CCAssert(toggleOn && strlen(toggleOn) > 0, "Invalid sprite frame name.");
     CCAssert(toggleOff && strlen(toggleOff) > 0, "Invalid sprite frame name.");
     
     do
     {
-        CCSprite* pSpriteOn = CCSprite::createWithSpriteFrameName(toggleOn);
-        CC_BREAK_IF(NULL == pSpriteOn);
-        CCScale9Sprite* pScale9SpriteOn = CCScale9Sprite::createWithSpriteFrameName(toggleOn);
-        CC_BREAK_IF(NULL == pScale9SpriteOn);
+        Sprite* pSpriteOn = Sprite::createWithSpriteFrameName(toggleOn);
+        CC_BREAK_IF(nullptr == pSpriteOn);
+        Scale9Sprite* pScale9SpriteOn = Scale9Sprite::createWithSpriteFrameName(toggleOn);
+        CC_BREAK_IF(nullptr == pScale9SpriteOn);
         pScale9SpriteOn->setPreferredSize(pSpriteOn->getContentSize());
 
-        CCSprite* pSpriteOff = CCSprite::createWithSpriteFrameName(toggleOff);
-        CC_BREAK_IF(NULL == pSpriteOff);
-        CCScale9Sprite* pScale9SpriteOff = CCScale9Sprite::createWithSpriteFrameName(toggleOff);
-        CC_BREAK_IF(NULL == pScale9SpriteOff);
+        Sprite* pSpriteOff = Sprite::createWithSpriteFrameName(toggleOff);
+        CC_BREAK_IF(nullptr == pSpriteOff);
+        Scale9Sprite* pScale9SpriteOff = Scale9Sprite::createWithSpriteFrameName(toggleOff);
+        CC_BREAK_IF(nullptr == pScale9SpriteOff);
         pScale9SpriteOff->setPreferredSize(pSpriteOff->getContentSize());
         
         CCControlToggleButton* pButton = CCControlToggleButton::createWithToggles(pScale9SpriteOn, pScale9SpriteOff);
-        CC_BREAK_IF(NULL == pButton);
+        CC_BREAK_IF(nullptr == pButton);
         pButton->setPreferredSize(pSpriteOn->getContentSize());
         pButton->setPosition(position);
         
         return pButton;
     } while (false);
     
-    return NULL;
+    return nullptr;
 }
 
 
-CCLabelBMFont* CBaseLayer::createLabelBMFont(const char* title, GameFonts font, CCTextAlignment alignment, CCPoint position)
+LabelBMFont* CBaseLayer::createLabelBMFont(const char* title, GameFonts font, TextHAlignment alignment, Point position)
 {
     CCAssert(title, "Invalid title.");
     
     do {
         // majun
-//        CCLabelBMFont* pLabel = CCLabelBMFont::create(title, TEXTURE_CACHE->getFontFileName(font).c_str(), kCCLabelAutomaticWidth, alignment, ccp(0.5f, 0.5f));
-//        CC_BREAK_IF(NULL == pLabel);
+//        LabelBMFont* pLabel = LabelBMFont::create(title, TEXTURE_CACHE->getFontFileName(font).c_str(), kCCLabelAutomaticWidth, alignment, Point(0.5f, 0.5f));
+//        CC_BREAK_IF(nullptr == pLabel);
 //        
 //        switch (alignment) {
 //            case kCCTextAlignmentLeft:
-//                pLabel->setAnchorPoint(ccp(0.0f, 0.5f));
+//                pLabel->setAnchorPoint(Point(0.0f, 0.5f));
 //                break;
 //            case kCCTextAlignmentRight:
-//                pLabel->setAnchorPoint(ccp(1.0f, 0.5f));
+//                pLabel->setAnchorPoint(Point(1.0f, 0.5f));
 //                break;
 //            case kCCTextAlignmentCenter:
-//                pLabel->setAnchorPoint(ccp(0.5f, 0.5f));
+//                pLabel->setAnchorPoint(Point(0.5f, 0.5f));
 //                break;
 //            default:
 //                break;
@@ -200,13 +200,13 @@ CCLabelBMFont* CBaseLayer::createLabelBMFont(const char* title, GameFonts font, 
 //        return pLabel;
     } while (false);
 
-    return NULL;
+    return nullptr;
 }
 
 
 void CBaseLayer::go(LAYERS layer, bool needTransit)
 {
-    CCDirector* pDirector = CCDirector::sharedDirector();
+    Director* pDirector = Director::getInstance();
     
     if (needTransit && pDirector->getNotificationNode())
     {
@@ -221,7 +221,7 @@ void CBaseLayer::go(LAYERS layer, bool needTransit)
     }
     else
     {
-        CCScene* pScene = this->wrap(layer);
+        Scene* pScene = this->wrap(layer);
         
         if (pScene)
         {
@@ -238,9 +238,9 @@ void CBaseLayer::go(LAYERS layer, bool needTransit)
 }
 
 
-CCScene* CBaseLayer::wrap(LAYERS layer)
+Scene* CBaseLayer::wrap(LAYERS layer)
 {
-    CBaseLayer* pLayer = NULL;
+    CBaseLayer* pLayer = nullptr;
     
 //    switch (layer) {
 //        case LAYERS_NONE:
@@ -261,18 +261,18 @@ CCScene* CBaseLayer::wrap(LAYERS layer)
 //            break;
 //    }
     
-    CCScene *pScene = CCScene::create();
+    Scene *pScene = Scene::create();
     pScene->addChild(pLayer);
     
     return pScene;
 }
 
 
-void CBaseLayer::addPopTarget(CCNode* pNode)
+void CBaseLayer::addPopTarget(Node* pNode)
 {
-    if (NULL == m_popTargets)
+    if (nullptr == m_popTargets)
     {
-        setPopTargets(CCArray::create());
+        setPopTargets(Array::create());
     }
     
     m_popTargets->addObject(pNode);
@@ -282,22 +282,24 @@ void CBaseLayer::addPopTarget(CCNode* pNode)
 void CBaseLayer::addCloseButton()
 {
     // add a "close" icon to exit the progress. it's an autorelease object
-    CCMenuItemImage *pCloseItem = CCMenuItemImage::create("CloseNormal.png",
-                                                          "CloseSelected.png",
-                                                          this,
-                                                          menu_selector(CBaseLayer::menuCloseCallback) );
-    pCloseItem->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20));
+    MenuItemImage *pCloseItem = MenuItemImage::create("CloseNormal.png",
+                                                      "CloseSelected.png",
+                                                      nullptr,
+                                                      bind(&CBaseLayer::menuCloseCallback, this, std::placeholders::_1)
+                                                      );
+
+    pCloseItem->setPosition(Point(Director::getInstance()->getWinSize().width - 20, 20));
     
     // create menu, it's an autorelease object
-    CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-    pMenu->setPosition( CCPointZero );
+    Menu* pMenu = Menu::create(pCloseItem, nullptr);
+    pMenu->setPosition( Point::ZERO );
     this->addChild(pMenu, 1);
 }
 
 
-void CBaseLayer::menuCloseCallback(CCObject* pSender)
+void CBaseLayer::menuCloseCallback(Object* pSender)
 {
-    CCDirector::sharedDirector()->end();
+    Director::getInstance()->end();
     
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);

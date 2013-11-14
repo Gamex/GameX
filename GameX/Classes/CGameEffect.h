@@ -25,7 +25,7 @@ public:
     virtual ~CGameEffect();
 
     virtual bool init(const string& ccbi_name);
-    virtual bool attachSpriteTo(CCNode* parent, int zOrder = 0, int tag = -1);
+    virtual bool attachSpriteTo(Node* parent, int zOrder = 0, int tag = -1);
 
     virtual void die();
     virtual void revive();
@@ -35,15 +35,15 @@ public:
     virtual void setEffectTarget(CRole* target);
     virtual CRole* getEffectTarget();
     
-    virtual SEL_CallFuncN onResolveCCBCCCallFuncSelector(CCObject * pTarget, const char* pSelectorName);
+    virtual SEL_CallFuncN onResolveCCBCCCallFuncSelector(Object * pTarget, const char* pSelectorName);
 
 protected:
     CGameEffect();
 
     void clearThis();
     
-    virtual void onEffectHit(CCNode* obj);
-    virtual void onEffectOver(CCNode* obj);
+    virtual void onEffectHit(Node* obj);
+    virtual void onEffectOver(Node* obj);
     
     CRole* m_effectTarget;
 };

@@ -11,20 +11,20 @@
 
 #include "Common.h"
 #if 0
-class CPath : public CCObject
+class CPath : public Object
 {
 public:    
     CPath();
     virtual ~CPath();
     
     bool initWithData(char* pData, int32_t length);
-    bool initWithRandom(const CCPoint& sp, const CCPoint& ep);
-    CCArray* getSpline() const {return spline_;}
+    bool initWithRandom(const Point& sp, const Point& ep);
+    Array* getSpline() const {return spline_;}
     const std::string& getPathName(){return pathName_;}
 protected:
-    bool makeSpline(CCArray* cp);
+    bool makeSpline(Array* cp);
 private:
-    CCArray* spline_;
+    Array* spline_;
     std::string pathName_;
 };
 #endif

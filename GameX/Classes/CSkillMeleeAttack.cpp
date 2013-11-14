@@ -12,7 +12,7 @@
 
 CSkillMeleeAttack::CSkillMeleeAttack()
 {
-    m_strName = "SkillMeleeAttack";
+    setName("SkillMeleeAttack");
 }
 
 
@@ -23,7 +23,7 @@ CSkillMeleeAttack::~CSkillMeleeAttack()
 
 
 
-void CSkillMeleeAttack::onSkillHit(CCNode* obj)
+void CSkillMeleeAttack::onSkillHit(Node* obj)
 {
     CSkillComp::onSkillHit(obj);
     

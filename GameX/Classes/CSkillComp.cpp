@@ -16,10 +16,10 @@ CSkillComp::CSkillComp(void)
 , m_CDTotalTime(0.f)
 , m_CDLeftTime(0.f)
 , m_stateId(-1)
-, m_skillTarget(NULL)
+, m_skillTarget(nullptr)
 , m_enableUpdateCD(false)
 {
-    m_strName = "SkillComp";
+    setName("SkillComp");
 }
 
 
@@ -30,10 +30,10 @@ bool CSkillComp::init(const string& skillName)
     {
         BREAK_IF_FAILED(CWarriorRoleCompBase::init());
         
-        CCDictionary* skillDict = DTSKILL->getData(skillName);
+        Dictionary* skillDict = DTSKILL->getData(skillName);
         CC_ASSERT(skillDict);
         
-        CCString* str = DTSKILL->get_range_Value(skillDict);
+        String* str = DTSKILL->get_range_Value(skillDict);
         CC_ASSERT(str);
         m_attackRadiusSq = str->floatValue();
 
@@ -42,7 +42,7 @@ bool CSkillComp::init(const string& skillName)
         m_CDTotalTime = 1.f;//str->floatValue();
         m_CDLeftTime = 0.f;
         
-        m_strName = skillName;
+        setName(skillName.c_str());
         return true;
     } while (false);
 	return false;
@@ -161,13 +161,13 @@ void CSkillComp::action()
 
 
 
-void CSkillComp::onSkillHit(CCNode* obj)
+void CSkillComp::onSkillHit(Node* obj)
 {
 }
 
 
 
-void CSkillComp::onSkillOver(CCNode* obj)
+void CSkillComp::onSkillOver(Node* obj)
 {
     if (!isEnabled())
     {

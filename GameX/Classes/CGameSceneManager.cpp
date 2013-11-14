@@ -17,7 +17,7 @@ IMPLEMENT_SINGLETON(CGameSceneManager);
 
 
 CGameSceneManager::CGameSceneManager()
-: m_scenes(NULL)
+: m_scenes(nullptr)
 {
     
 }
@@ -35,7 +35,7 @@ bool CGameSceneManager::initialize()
 {
     do
     {
-        m_scenes = CCArray::createWithCapacity(ST_NUM);
+        m_scenes = Array::createWithCapacity(ST_NUM);
         CC_SAFE_RETAIN(m_scenes);
 
         return true;
@@ -48,25 +48,25 @@ bool CGameSceneManager::initialize()
 
 bool CGameSceneManager::go(SCENE_TYPE st)
 {
-    CCScene* scene = NULL;
+    Scene* scene = nullptr;
     switch (st)
     {
         case ST_LOBBY:
         {
-            CCBReader* pReader = new CCBReader(CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary());
+            CCBReader* pReader = new CCBReader(NodeLoaderLibrary::getInstance());
             scene = pReader->createSceneWithNodeGraphFromFile("lobby_layer.ccbi");
             delete pReader;
             break;
         }
         case ST_FORMATION:
         {
-            scene = CCScene::create();
+            scene = Scene::create();
             scene->addChild(CFormationLayer::create());
             break;
         }
         case ST_BATTLE_FIELD:
         {
-            scene = CCScene::create();
+            scene = Scene::create();
             scene->addChild(CBattleFieldLayer::create());       // call init in create()
             break;
         }
@@ -77,10 +77,10 @@ bool CGameSceneManager::go(SCENE_TYPE st)
     }
     if (scene)
     {
-        CCDirector* pDirector = CCDirector::sharedDirector();
+        Director* pDirector = Director::getInstance();
         if (pDirector->getRunningScene())
         {
-            CCTransitionFade* trans = CCTransitionFade::create(.2f, scene, ccc3(255, 255, 255));
+            TransitionFade* trans = TransitionFade::create(.2f, scene, Color3B(255, 255, 255));
             pDirector->replaceScene(trans);
         }
         else

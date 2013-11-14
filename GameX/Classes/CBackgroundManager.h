@@ -31,11 +31,11 @@ class IGridRole
     CC_SYNTHESIZE(class CLogicGrid*, m_pLogicGird, LogicGrid);
     CC_SYNTHESIZE(int, m_gridWidth, GridWidth);
     CC_SYNTHESIZE(int, m_gridHeight, GridHeight);
-    CC_SYNTHESIZE_PASS_BY_REF(CCPoint, m_moveTarget, MoveTarget);
+    CC_SYNTHESIZE_PASS_BY_REF(Point, m_moveTarget, MoveTarget);
 public:
     IGridRole()
-    : m_pLogicGird(NULL)
-    , m_background(NULL)
+    : m_pLogicGird(nullptr)
+    , m_background(nullptr)
     , m_gridWidth(0)
     , m_gridHeight(0)
     , m_moveTarget(-1.f, -1.f)
@@ -43,10 +43,10 @@ public:
     virtual ~IGridRole(){}
     
     virtual void updateVertexZ() = 0;
-    virtual void onPlaceOnMap(const CCPoint& gridPos, const CCPoint& position) = 0;
-    virtual void findPath(const CCPoint& startPos, const CCPoint& targetPos, IPathFinderDelegate* delegate = NULL) = 0;
-    virtual bool findPathBrief(const CCPoint& startPos, const CCPoint& targetPos, vector<CCPoint>& path) = 0;
-    virtual CCPoint getPositionInGrid() = 0;
+    virtual void onPlaceOnMap(const Point& gridPos, const Point& position) = 0;
+    virtual void findPath(const Point& startPos, const Point& targetPos, IPathFinderDelegate* delegate = nullptr) = 0;
+    virtual bool findPathBrief(const Point& startPos, const Point& targetPos, vector<Point>& path) = 0;
+    virtual Point getPositionInGrid() = 0;
     virtual float getDistanceSqInGrid(IGridRole* role) = 0;
     virtual bool checkInGridRadiusSq(IGridRole* role, float radiusInGrid) = 0;
 };
@@ -58,7 +58,7 @@ class CLogicGrid
 {
     friend class CBackgroundManager;
     
-    CC_SYNTHESIZE_READONLY(CCPoint, m_gridPos, GridPos);
+    CC_SYNTHESIZE_READONLY(Point, m_gridPos, GridPos);
     CC_SYNTHESIZE_READONLY(IGridRole*, m_unit, Unit);
     CC_SYNTHESIZE(bool, m_isPrimary, IsPrimary);
     CC_SYNTHESIZE(bool, m_locked, Lock);
@@ -77,15 +77,15 @@ private:
 
 
 class CBackgroundManager
-: public CCLayer
+: public Layer
 {
-    CC_SYNTHESIZE_READONLY(CCTMXTiledMap*, m_tiledMap, TiledMap);
-    CC_SYNTHESIZE_READONLY(CCTMXLayer*, m_groundLayer, GroundLayer);
-    CC_SYNTHESIZE_READONLY(CCTMXLayer*, m_objectLayer, ObjectLayer);
+    CC_SYNTHESIZE_READONLY(TMXTiledMap*, m_tiledMap, TiledMap);
+    CC_SYNTHESIZE_READONLY(TMXLayer*, m_groundLayer, GroundLayer);
+    CC_SYNTHESIZE_READONLY(TMXLayer*, m_objectLayer, ObjectLayer);
     CC_SYNTHESIZE(float, m_mapScaleThresholdMax, MapScaleThresholdMax);
     CC_SYNTHESIZE(float, m_mapScaleThresholdMin, MapScaleThresholdMin);
     
-    CC_SYNTHESIZE_READONLY(CCTMXTiledMap*, m_bkgMap, BkgMap);
+    CC_SYNTHESIZE_READONLY(TMXTiledMap*, m_bkgMap, BkgMap);
 public:
     CREATE_FUNC(CBackgroundManager);
     
@@ -96,46 +96,46 @@ public:
     
     virtual void update(float dt);
     
-    virtual void attachBackgroundTo(CCNode* parent);
+    virtual void attachBackgroundTo(Node* parent);
 
-    virtual CLogicGrid* getLogicGrid(const CCPoint& gridPos);
-    virtual CLogicGrid* getGridFromWorldPt(const CCPoint& pt);
+    virtual CLogicGrid* getLogicGrid(const Point& gridPos);
+    virtual CLogicGrid* getGridFromWorldPt(const Point& pt);
     
-    virtual CCPoint gridToWorldPoint(const CCPoint& gridPos);
-    virtual CCPoint worldPointToGrid(const CCPoint& pt);
-    virtual CCPoint screenPointToGrid(const CCPoint& pt);
-    virtual CCPoint worldPointToScreen(const CCPoint& pt);
-    virtual CCPoint screenPointToWorld(const CCPoint& pt);
+    virtual Point gridToWorldPoint(const Point& gridPos);
+    virtual Point worldPointToGrid(const Point& pt);
+    virtual Point screenPointToGrid(const Point& pt);
+    virtual Point worldPointToScreen(const Point& pt);
+    virtual Point screenPointToWorld(const Point& pt);
     
-    virtual CLogicGrid* getEmptyGridNearby(const CCPoint& gridPos, int width = 1, int height = 1,
+    virtual CLogicGrid* getEmptyGridNearby(const Point& gridPos, int width = 1, int height = 1,
                                            int level = 1, int step = 0, int count = 0, int dir = DIRECTION_DOWN);
     
     virtual void clearAllHightlightGrids();
-    virtual void hightlightGrid(const CCPoint& gridPos, bool onOff = true);
+    virtual void hightlightGrid(const Point& gridPos, bool onOff = true);
     
-    virtual bool isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& gridPos, bool lock = false);
-    virtual bool isGridPosInGridRange(const CCPoint& gridPos, int width, int height, const CCPoint& testPos);
-    virtual void addRoleToGrid(const CCPoint& gridPos, IGridRole* role);
+    virtual bool isRoleCanBePlacedOnPos(IGridRole* role, const Point& gridPos, bool lock = false);
+    virtual bool isGridPosInGridRange(const Point& gridPos, int width, int height, const Point& testPos);
+    virtual void addRoleToGrid(const Point& gridPos, IGridRole* role);
     virtual void removeRoleFromGrid(IGridRole* role);
-    virtual void removeRoleFromGrid(const CCPoint& gridPos);
+    virtual void removeRoleFromGrid(const Point& gridPos);
     virtual void clearAllUnits();
     
-    virtual void scaleMap(float s, CCPoint centerTilePos);
+    virtual void scaleMap(float s, Point centerTilePos);
     virtual float getMapScale();
-    virtual void addMapScale(float scaleDelta, CCPoint centerTilePos);
+    virtual void addMapScale(float scaleDelta, Point centerTilePos);
     
-    void centerTileMapOnTileCoord(CCPoint tilePos);
+    void centerTileMapOnTileCoord(Point tilePos);
 
-    virtual void moveMap(const CCPoint& offset);
-    virtual void moveMapTo(const CCPoint& pos);
+    virtual void moveMap(const Point& offset);
+    virtual void moveMapTo(const Point& pos);
     
     virtual float getWidthInGrid() const;
     virtual float getHeightInGrid() const;
-    virtual const CCSize& getSizeInGrid() const;
+    virtual const Size& getSizeInGrid() const;
 
-    virtual bool placeRole(IGridRole* role, const CCPoint& gridPos);
+    virtual bool placeRole(IGridRole* role, const Point& gridPos);
     
-    virtual void findPath(const CCPoint& startPos, const CCPoint& targetPos, IGridRole* role = NULL, IPathFinderDelegate* delegate = NULL);
+    virtual void findPath(const Point& startPos, const Point& targetPos, IGridRole* role = nullptr, IPathFinderDelegate* delegate = nullptr);
 
 protected:
 private:

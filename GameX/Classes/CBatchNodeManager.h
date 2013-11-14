@@ -14,7 +14,7 @@
 
 
 class CBatchNodeManager
-: public CCNode
+: public Node
 {
 public:
     CREATE_FUNC(CBatchNodeManager);
@@ -25,9 +25,9 @@ public:
     virtual bool init();
     virtual bool loadBatchNodeInitData(const char* filename);
     
-    virtual void attachToParent(CCNode* parent, int z);
+    virtual void attachToParent(Node* parent, int z);
     
-    virtual CCNode* getNodeByName(const std::string& name, bool& isBatchNode);
+    virtual Node* getNodeByName(const std::string& name, bool& isBatchNode);
     
     virtual void clearAllChildren();
     

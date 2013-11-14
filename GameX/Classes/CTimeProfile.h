@@ -32,8 +32,8 @@ public:
     virtual ~CTimeProfile();
     
 protected:
-    CCDictionary* m_log;
-    CCDictionary* m_tempLog;
+    Dictionary* m_log;
+    Dictionary* m_tempLog;
     
     MIT m_beginLogTimes;
     MIT m_lastLogTimes;

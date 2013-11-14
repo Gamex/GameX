@@ -36,10 +36,10 @@ AppDelegate::~AppDelegate()
 bool AppDelegate::applicationDidFinishLaunching()
 {
     // initialize director
-    CCDirector *pDirector = CCDirector::sharedDirector();
-    pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
+    Director *pDirector = Director::getInstance();
+    pDirector->setOpenGLView(EGLView::getInstance());
     
-    pDirector->setProjection(kCCDirectorProjection2D);
+    pDirector->setProjection(Director::Projection::_2D);
     
     // turn on display FPS
     pDirector->setDisplayStats(true);
@@ -81,7 +81,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground()
 {
-    CCDirector::sharedDirector()->stopAnimation();
+    Director::getInstance()->stopAnimation();
 
     // if you use SimpleAudioEngine, it must be paused
     // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
@@ -92,7 +92,7 @@ void AppDelegate::applicationDidEnterBackground()
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground()
 {
-    CCDirector::sharedDirector()->startAnimation();
+    Director::getInstance()->startAnimation();
     
     // if you use SimpleAudioEngine, it must resume here
     // SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
@@ -106,10 +106,10 @@ void AppDelegate::setupConfigurationFiles()
 //
 //    if (!CCUserDefault::sharedUserDefault()->getBoolForKey("_IS_EXISTED", false))
 //    {
-//        CCDictionary* dict = CCDictionary::createWithContentsOfFile(udFileName);
+//        Dictionary* dict = Dictionary::createWithContentsOfFile(udFileName);
 //        for (int i = 0; i < GAME_SETTINGS_MAX; i++)
 //        {
-//            const CCString* value = dict->valueForKey(GAME_SETTINGS_TEXT(i));
+//            const String* value = dict->valueForKey(GAME_SETTINGS_TEXT(i));
 //            SaveStringToUserDefault(i, value->getCString());
 //        }
 //        
@@ -122,23 +122,23 @@ void AppDelegate::setupConfigurationFiles()
 
 void AppDelegate::setupMultipleResolutionSupport()
 {
-    CCSize sizeIphone = CCSizeMake(480, 320);
-    CCSize sizeIphoneHD = CCSizeMake(960, 640);
-    CCSize sizeIphone5 = CCSizeMake(1136, 640);
-    CCSize sizeIpad = CCSizeMake(1024, 768);
-    CCSize sizeIpadHD = CCSizeMake(2048, 1536);
+    Size sizeIphone = Size(480, 320);
+    Size sizeIphoneHD = Size(960, 640);
+    Size sizeIphone5 = Size(1136, 640);
+    Size sizeIpad = Size(1024, 768);
+    Size sizeIpadHD = Size(2048, 1536);
     
-    CCSize designSize = sizeIphoneHD;
-    CCSize resourceSize = sizeIphoneHD;
-    CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
+    Size designSize = sizeIphoneHD;
+    Size resourceSize = sizeIphoneHD;
+    Size screenSize = EGLView::getInstance()->getFrameSize();
     
     std::vector<std::string> searchPaths;
     std::vector<std::string> resDirOrders;
     
-    TargetPlatform platform = CCApplication::sharedApplication()->getTargetPlatform();
-    if (platform == kTargetIphone || platform == kTargetIpad)
+    Application::Platform platform = Application::getInstance()->getTargetPlatform();
+    if (platform == Application::Platform::OS_IPHONE || platform == Application::Platform::OS_IPAD)
     {
-        CCFileUtils::sharedFileUtils()->setSearchPaths(searchPaths);
+        FileUtils::getInstance()->setSearchPaths(searchPaths);
         
         if (screenSize.height > 768)
         {
@@ -175,14 +175,14 @@ void AppDelegate::setupMultipleResolutionSupport()
             resDirOrders.push_back("resources-iphone"); 
         } 
         
-        CCFileUtils::sharedFileUtils()->setSearchResolutionsOrder(resDirOrders); 
+        FileUtils::getInstance()->setSearchResolutionsOrder(resDirOrders);
     } 
     
-    CCDirector* pDirector = CCDirector::sharedDirector();
+    Director* pDirector = Director::getInstance();
     pDirector->setContentScaleFactor(resourceSize.width / designSize.width); 
-    CCEGLView::sharedOpenGLView()->setDesignResolutionSize( 
-                                                              designSize.width, designSize.height, 
-                                                              kResolutionExactFit); 
+    EGLView::getInstance()->setDesignResolutionSize(
+                                                      designSize.width, designSize.height, 
+                                                      ResolutionPolicy::EXACT_FIT); 
 
     // set texture resoures
     GLOBAL_CONFIG->setTextureSuffix("");

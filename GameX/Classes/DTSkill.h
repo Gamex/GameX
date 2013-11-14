@@ -10,246 +10,246 @@ class DTSkill
 {
 	friend class CDataCenterManager;
 public:
-	CCDictionary* getRoot() const
+	Dictionary* getRoot() const
 	{
 		return m_pDictionary;
 	}
 	void loadData2CCDictionary()
     {
-        if (NULL == m_pDictionary)
+        if (nullptr == m_pDictionary)
         {
-            m_pDictionary = CCDictionary::create();
+            m_pDictionary = Dictionary::create();
             CC_SAFE_RETAIN(m_pDictionary);
         }
 
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("skill_1"), "name");
-			elem->setObject(CCString::create("CSkillMeleeAttack"), "className");
-			elem->setObject(CCString::create("0"), "cd");
-			elem->setObject(CCString::create("0"), "trigger");
-			elem->setObject(CCString::create("0"), "param");
-			elem->setObject(CCString::create("1"), "target");
-			elem->setObject(CCString::create("1"), "dimension");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("2.25"), "range");
-			elem->setObject(CCString::create("0"), "angle");
-			elem->setObject(CCString::create("0"), "bullet");
-			elem->setObject(CCString::create("0"), "speed");
-			elem->setObject(CCString::create("0"), "resourceID");
-			elem->setObject(CCString::create("atk"), "animation");
-			elem->setObject(CCString::create(""), "atk_se");
-			elem->setObject(CCString::create(""), "hit_eft");
-			elem->setObject(CCString::create(""), "buff1");
-			elem->setObject(CCString::create(""), "buff2");
-			elem->setObject(CCString::create(""), "buff3");
-			elem->setObject(CCString::create("1000"), "debuff1");
-			elem->setObject(CCString::create(""), "debuff2");
-			elem->setObject(CCString::create(""), "debuff3");
+			elem->setObject(String::create("skill_1"), "name");
+			elem->setObject(String::create("CSkillMeleeAttack"), "className");
+			elem->setObject(String::create("0"), "cd");
+			elem->setObject(String::create("0"), "trigger");
+			elem->setObject(String::create("0"), "param");
+			elem->setObject(String::create("1"), "target");
+			elem->setObject(String::create("1"), "dimension");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("2.25"), "range");
+			elem->setObject(String::create("0"), "angle");
+			elem->setObject(String::create("0"), "bullet");
+			elem->setObject(String::create("0"), "speed");
+			elem->setObject(String::create("0"), "resourceID");
+			elem->setObject(String::create("atk"), "animation");
+			elem->setObject(String::create(""), "atk_se");
+			elem->setObject(String::create(""), "hit_eft");
+			elem->setObject(String::create(""), "buff1");
+			elem->setObject(String::create(""), "buff2");
+			elem->setObject(String::create(""), "buff3");
+			elem->setObject(String::create("1000"), "debuff1");
+			elem->setObject(String::create(""), "debuff2");
+			elem->setObject(String::create(""), "debuff3");
 
 			
 			m_pDictionary->setObject(elem, "1");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("skill_2"), "name");
-			elem->setObject(CCString::create("CSkillMarineGunAttack"), "className");
-			elem->setObject(CCString::create("0"), "cd");
-			elem->setObject(CCString::create("0"), "trigger");
-			elem->setObject(CCString::create("0"), "param");
-			elem->setObject(CCString::create("1"), "target");
-			elem->setObject(CCString::create("3"), "dimension");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("25"), "range");
-			elem->setObject(CCString::create("0"), "angle");
-			elem->setObject(CCString::create("2"), "bullet");
-			elem->setObject(CCString::create("100"), "speed");
-			elem->setObject(CCString::create("bullet_line_1.png"), "resourceID");
-			elem->setObject(CCString::create("atk"), "animation");
-			elem->setObject(CCString::create(""), "atk_se");
-			elem->setObject(CCString::create(""), "hit_eft");
-			elem->setObject(CCString::create(""), "buff1");
-			elem->setObject(CCString::create(""), "buff2");
-			elem->setObject(CCString::create(""), "buff3");
-			elem->setObject(CCString::create("1000"), "debuff1");
-			elem->setObject(CCString::create(""), "debuff2");
-			elem->setObject(CCString::create(""), "debuff3");
+			elem->setObject(String::create("skill_2"), "name");
+			elem->setObject(String::create("CSkillMarineGunAttack"), "className");
+			elem->setObject(String::create("0"), "cd");
+			elem->setObject(String::create("0"), "trigger");
+			elem->setObject(String::create("0"), "param");
+			elem->setObject(String::create("1"), "target");
+			elem->setObject(String::create("3"), "dimension");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("25"), "range");
+			elem->setObject(String::create("0"), "angle");
+			elem->setObject(String::create("2"), "bullet");
+			elem->setObject(String::create("100"), "speed");
+			elem->setObject(String::create("bullet_line_1.png"), "resourceID");
+			elem->setObject(String::create("atk"), "animation");
+			elem->setObject(String::create(""), "atk_se");
+			elem->setObject(String::create(""), "hit_eft");
+			elem->setObject(String::create(""), "buff1");
+			elem->setObject(String::create(""), "buff2");
+			elem->setObject(String::create(""), "buff3");
+			elem->setObject(String::create("1000"), "debuff1");
+			elem->setObject(String::create(""), "debuff2");
+			elem->setObject(String::create(""), "debuff3");
 
 			
 			m_pDictionary->setObject(elem, "2");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("skill_3"), "name");
-			elem->setObject(CCString::create("CSkillMeleeAttack"), "className");
-			elem->setObject(CCString::create("0"), "cd");
-			elem->setObject(CCString::create("0"), "trigger");
-			elem->setObject(CCString::create("0"), "param");
-			elem->setObject(CCString::create("1"), "target");
-			elem->setObject(CCString::create("1"), "dimension");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("2.25"), "range");
-			elem->setObject(CCString::create("0"), "angle");
-			elem->setObject(CCString::create("0"), "bullet");
-			elem->setObject(CCString::create("0"), "speed");
-			elem->setObject(CCString::create("0"), "resourceID");
-			elem->setObject(CCString::create("atk"), "animation");
-			elem->setObject(CCString::create(""), "atk_se");
-			elem->setObject(CCString::create(""), "hit_eft");
-			elem->setObject(CCString::create(""), "buff1");
-			elem->setObject(CCString::create(""), "buff2");
-			elem->setObject(CCString::create(""), "buff3");
-			elem->setObject(CCString::create("1000"), "debuff1");
-			elem->setObject(CCString::create(""), "debuff2");
-			elem->setObject(CCString::create(""), "debuff3");
+			elem->setObject(String::create("skill_3"), "name");
+			elem->setObject(String::create("CSkillMeleeAttack"), "className");
+			elem->setObject(String::create("0"), "cd");
+			elem->setObject(String::create("0"), "trigger");
+			elem->setObject(String::create("0"), "param");
+			elem->setObject(String::create("1"), "target");
+			elem->setObject(String::create("1"), "dimension");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("2.25"), "range");
+			elem->setObject(String::create("0"), "angle");
+			elem->setObject(String::create("0"), "bullet");
+			elem->setObject(String::create("0"), "speed");
+			elem->setObject(String::create("0"), "resourceID");
+			elem->setObject(String::create("atk"), "animation");
+			elem->setObject(String::create(""), "atk_se");
+			elem->setObject(String::create(""), "hit_eft");
+			elem->setObject(String::create(""), "buff1");
+			elem->setObject(String::create(""), "buff2");
+			elem->setObject(String::create(""), "buff3");
+			elem->setObject(String::create("1000"), "debuff1");
+			elem->setObject(String::create(""), "debuff2");
+			elem->setObject(String::create(""), "debuff3");
 
 			
 			m_pDictionary->setObject(elem, "3");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("skill_4"), "name");
-			elem->setObject(CCString::create("CSkillComp"), "className");
-			elem->setObject(CCString::create("0"), "cd");
-			elem->setObject(CCString::create("0"), "trigger");
-			elem->setObject(CCString::create("0"), "param");
-			elem->setObject(CCString::create("1"), "target");
-			elem->setObject(CCString::create("1"), "dimension");
-			elem->setObject(CCString::create("3"), "type");
-			elem->setObject(CCString::create("9"), "range");
-			elem->setObject(CCString::create("90"), "angle");
-			elem->setObject(CCString::create("0"), "bullet");
-			elem->setObject(CCString::create("0"), "speed");
-			elem->setObject(CCString::create("0"), "resourceID");
-			elem->setObject(CCString::create("atk"), "animation");
-			elem->setObject(CCString::create(""), "atk_se");
-			elem->setObject(CCString::create(""), "hit_eft");
-			elem->setObject(CCString::create(""), "buff1");
-			elem->setObject(CCString::create(""), "buff2");
-			elem->setObject(CCString::create(""), "buff3");
-			elem->setObject(CCString::create("1000"), "debuff1");
-			elem->setObject(CCString::create(""), "debuff2");
-			elem->setObject(CCString::create(""), "debuff3");
+			elem->setObject(String::create("skill_4"), "name");
+			elem->setObject(String::create("CSkillComp"), "className");
+			elem->setObject(String::create("0"), "cd");
+			elem->setObject(String::create("0"), "trigger");
+			elem->setObject(String::create("0"), "param");
+			elem->setObject(String::create("1"), "target");
+			elem->setObject(String::create("1"), "dimension");
+			elem->setObject(String::create("3"), "type");
+			elem->setObject(String::create("9"), "range");
+			elem->setObject(String::create("90"), "angle");
+			elem->setObject(String::create("0"), "bullet");
+			elem->setObject(String::create("0"), "speed");
+			elem->setObject(String::create("0"), "resourceID");
+			elem->setObject(String::create("atk"), "animation");
+			elem->setObject(String::create(""), "atk_se");
+			elem->setObject(String::create(""), "hit_eft");
+			elem->setObject(String::create(""), "buff1");
+			elem->setObject(String::create(""), "buff2");
+			elem->setObject(String::create(""), "buff3");
+			elem->setObject(String::create("1000"), "debuff1");
+			elem->setObject(String::create(""), "debuff2");
+			elem->setObject(String::create(""), "debuff3");
 
 			
 			m_pDictionary->setObject(elem, "4");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("skill_10001"), "name");
-			elem->setObject(CCString::create("CSkillComp"), "className");
-			elem->setObject(CCString::create("0"), "cd");
-			elem->setObject(CCString::create("1"), "trigger");
-			elem->setObject(CCString::create("3"), "param");
-			elem->setObject(CCString::create("3"), "target");
-			elem->setObject(CCString::create("0"), "dimension");
-			elem->setObject(CCString::create("0"), "type");
-			elem->setObject(CCString::create("0"), "range");
-			elem->setObject(CCString::create("0"), "angle");
-			elem->setObject(CCString::create("0"), "bullet");
-			elem->setObject(CCString::create("0"), "speed");
-			elem->setObject(CCString::create("0"), "resourceID");
-			elem->setObject(CCString::create("skill1"), "animation");
-			elem->setObject(CCString::create(""), "atk_se");
-			elem->setObject(CCString::create(""), "hit_eft");
-			elem->setObject(CCString::create("24002"), "buff1");
-			elem->setObject(CCString::create(""), "buff2");
-			elem->setObject(CCString::create(""), "buff3");
-			elem->setObject(CCString::create(""), "debuff1");
-			elem->setObject(CCString::create(""), "debuff2");
-			elem->setObject(CCString::create(""), "debuff3");
+			elem->setObject(String::create("skill_10001"), "name");
+			elem->setObject(String::create("CSkillComp"), "className");
+			elem->setObject(String::create("0"), "cd");
+			elem->setObject(String::create("1"), "trigger");
+			elem->setObject(String::create("3"), "param");
+			elem->setObject(String::create("3"), "target");
+			elem->setObject(String::create("0"), "dimension");
+			elem->setObject(String::create("0"), "type");
+			elem->setObject(String::create("0"), "range");
+			elem->setObject(String::create("0"), "angle");
+			elem->setObject(String::create("0"), "bullet");
+			elem->setObject(String::create("0"), "speed");
+			elem->setObject(String::create("0"), "resourceID");
+			elem->setObject(String::create("skill1"), "animation");
+			elem->setObject(String::create(""), "atk_se");
+			elem->setObject(String::create(""), "hit_eft");
+			elem->setObject(String::create("24002"), "buff1");
+			elem->setObject(String::create(""), "buff2");
+			elem->setObject(String::create(""), "buff3");
+			elem->setObject(String::create(""), "debuff1");
+			elem->setObject(String::create(""), "debuff2");
+			elem->setObject(String::create(""), "debuff3");
 
 			
 			m_pDictionary->setObject(elem, "10001");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("skill_10002"), "name");
-			elem->setObject(CCString::create("CSkillComp"), "className");
-			elem->setObject(CCString::create("10000"), "cd");
-			elem->setObject(CCString::create("0"), "trigger");
-			elem->setObject(CCString::create("0"), "param");
-			elem->setObject(CCString::create("3"), "target");
-			elem->setObject(CCString::create("0"), "dimension");
-			elem->setObject(CCString::create("0"), "type");
-			elem->setObject(CCString::create("0"), "range");
-			elem->setObject(CCString::create("0"), "angle");
-			elem->setObject(CCString::create("0"), "bullet");
-			elem->setObject(CCString::create("0"), "speed");
-			elem->setObject(CCString::create("0"), "resourceID");
-			elem->setObject(CCString::create("skill1"), "animation");
-			elem->setObject(CCString::create(""), "atk_se");
-			elem->setObject(CCString::create(""), "hit_eft");
-			elem->setObject(CCString::create("23001"), "buff1");
-			elem->setObject(CCString::create("24001"), "buff2");
-			elem->setObject(CCString::create(""), "buff3");
-			elem->setObject(CCString::create(""), "debuff1");
-			elem->setObject(CCString::create(""), "debuff2");
-			elem->setObject(CCString::create(""), "debuff3");
+			elem->setObject(String::create("skill_10002"), "name");
+			elem->setObject(String::create("CSkillComp"), "className");
+			elem->setObject(String::create("10000"), "cd");
+			elem->setObject(String::create("0"), "trigger");
+			elem->setObject(String::create("0"), "param");
+			elem->setObject(String::create("3"), "target");
+			elem->setObject(String::create("0"), "dimension");
+			elem->setObject(String::create("0"), "type");
+			elem->setObject(String::create("0"), "range");
+			elem->setObject(String::create("0"), "angle");
+			elem->setObject(String::create("0"), "bullet");
+			elem->setObject(String::create("0"), "speed");
+			elem->setObject(String::create("0"), "resourceID");
+			elem->setObject(String::create("skill1"), "animation");
+			elem->setObject(String::create(""), "atk_se");
+			elem->setObject(String::create(""), "hit_eft");
+			elem->setObject(String::create("23001"), "buff1");
+			elem->setObject(String::create("24001"), "buff2");
+			elem->setObject(String::create(""), "buff3");
+			elem->setObject(String::create(""), "debuff1");
+			elem->setObject(String::create(""), "debuff2");
+			elem->setObject(String::create(""), "debuff3");
 
 			
 			m_pDictionary->setObject(elem, "10002");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("skill_10003"), "name");
-			elem->setObject(CCString::create("CSkillComp"), "className");
-			elem->setObject(CCString::create("10000"), "cd");
-			elem->setObject(CCString::create("0"), "trigger");
-			elem->setObject(CCString::create("0"), "param");
-			elem->setObject(CCString::create("1"), "target");
-			elem->setObject(CCString::create("1"), "dimension");
-			elem->setObject(CCString::create("2"), "type");
-			elem->setObject(CCString::create("4"), "range");
-			elem->setObject(CCString::create("0"), "angle");
-			elem->setObject(CCString::create("0"), "bullet");
-			elem->setObject(CCString::create("0"), "speed");
-			elem->setObject(CCString::create("0"), "resourceID");
-			elem->setObject(CCString::create("skill1"), "animation");
-			elem->setObject(CCString::create(""), "atk_se");
-			elem->setObject(CCString::create(""), "hit_eft");
-			elem->setObject(CCString::create(""), "buff1");
-			elem->setObject(CCString::create(""), "buff2");
-			elem->setObject(CCString::create(""), "buff3");
-			elem->setObject(CCString::create(""), "debuff1");
-			elem->setObject(CCString::create(""), "debuff2");
-			elem->setObject(CCString::create(""), "debuff3");
+			elem->setObject(String::create("skill_10003"), "name");
+			elem->setObject(String::create("CSkillComp"), "className");
+			elem->setObject(String::create("10000"), "cd");
+			elem->setObject(String::create("0"), "trigger");
+			elem->setObject(String::create("0"), "param");
+			elem->setObject(String::create("1"), "target");
+			elem->setObject(String::create("1"), "dimension");
+			elem->setObject(String::create("2"), "type");
+			elem->setObject(String::create("4"), "range");
+			elem->setObject(String::create("0"), "angle");
+			elem->setObject(String::create("0"), "bullet");
+			elem->setObject(String::create("0"), "speed");
+			elem->setObject(String::create("0"), "resourceID");
+			elem->setObject(String::create("skill1"), "animation");
+			elem->setObject(String::create(""), "atk_se");
+			elem->setObject(String::create(""), "hit_eft");
+			elem->setObject(String::create(""), "buff1");
+			elem->setObject(String::create(""), "buff2");
+			elem->setObject(String::create(""), "buff3");
+			elem->setObject(String::create(""), "debuff1");
+			elem->setObject(String::create(""), "debuff2");
+			elem->setObject(String::create(""), "debuff3");
 
 			
 			m_pDictionary->setObject(elem, "10003");
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("skill_10004"), "name");
-			elem->setObject(CCString::create("CSkillComp"), "className");
-			elem->setObject(CCString::create("10000"), "cd");
-			elem->setObject(CCString::create("2"), "trigger");
-			elem->setObject(CCString::create("0"), "param");
-			elem->setObject(CCString::create("1"), "target");
-			elem->setObject(CCString::create("1"), "dimension");
-			elem->setObject(CCString::create("2"), "type");
-			elem->setObject(CCString::create("9"), "range");
-			elem->setObject(CCString::create("0"), "angle");
-			elem->setObject(CCString::create("0"), "bullet");
-			elem->setObject(CCString::create("0"), "speed");
-			elem->setObject(CCString::create("0"), "resourceID");
-			elem->setObject(CCString::create("skill1"), "animation");
-			elem->setObject(CCString::create(""), "atk_se");
-			elem->setObject(CCString::create(""), "hit_eft");
-			elem->setObject(CCString::create(""), "buff1");
-			elem->setObject(CCString::create(""), "buff2");
-			elem->setObject(CCString::create(""), "buff3");
-			elem->setObject(CCString::create("1000"), "debuff1");
-			elem->setObject(CCString::create(""), "debuff2");
-			elem->setObject(CCString::create(""), "debuff3");
+			elem->setObject(String::create("skill_10004"), "name");
+			elem->setObject(String::create("CSkillComp"), "className");
+			elem->setObject(String::create("10000"), "cd");
+			elem->setObject(String::create("2"), "trigger");
+			elem->setObject(String::create("0"), "param");
+			elem->setObject(String::create("1"), "target");
+			elem->setObject(String::create("1"), "dimension");
+			elem->setObject(String::create("2"), "type");
+			elem->setObject(String::create("9"), "range");
+			elem->setObject(String::create("0"), "angle");
+			elem->setObject(String::create("0"), "bullet");
+			elem->setObject(String::create("0"), "speed");
+			elem->setObject(String::create("0"), "resourceID");
+			elem->setObject(String::create("skill1"), "animation");
+			elem->setObject(String::create(""), "atk_se");
+			elem->setObject(String::create(""), "hit_eft");
+			elem->setObject(String::create(""), "buff1");
+			elem->setObject(String::create(""), "buff2");
+			elem->setObject(String::create(""), "buff3");
+			elem->setObject(String::create("1000"), "debuff1");
+			elem->setObject(String::create(""), "debuff2");
+			elem->setObject(String::create(""), "debuff3");
 
 			
 			m_pDictionary->setObject(elem, "10004");
@@ -257,223 +257,223 @@ public:
 
     }
         
-    CCDictionary* getData(const string& key)
+    Dictionary* getData(const string& key)
     {
         CC_ASSERT(m_pDictionary);
-        return dynamic_cast<CCDictionary*>(m_pDictionary->objectForKey(key));
+        return dynamic_cast<Dictionary*>(m_pDictionary->objectForKey(key));
     }
 
-    CCString* getValueOf(const string& key, const string& subKey)
+    String* getValueOf(const string& key, const string& subKey)
     {
         CC_ASSERT(m_pDictionary);
-        CCDictionary* sub = getData(key);
+        Dictionary* sub = getData(key);
         if (sub)
         {
-            return dynamic_cast<CCString*>(sub->objectForKey(subKey));
+            return dynamic_cast<String*>(sub->objectForKey(subKey));
         }
-        return NULL;
+        return nullptr;
     }
 
-    CCString* getValueOf(CCDictionary* subDict, const string& subKey)
+    String* getValueOf(Dictionary* subDict, const string& subKey)
     {
         CC_ASSERT(subDict);
-        return dynamic_cast<CCString*>(subDict->objectForKey(subKey));
+        return dynamic_cast<String*>(subDict->objectForKey(subKey));
     }
 
-	CCString* get_name_Value(const string& key)
+	String* get_name_Value(const string& key)
 	{
 		return getValueOf(key, "name");
 	}
-	CCString* get_name_Value(CCDictionary* subDict)
+	String* get_name_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "name");
 	}
 
-	CCString* get_className_Value(const string& key)
+	String* get_className_Value(const string& key)
 	{
 		return getValueOf(key, "className");
 	}
-	CCString* get_className_Value(CCDictionary* subDict)
+	String* get_className_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "className");
 	}
 
-	CCString* get_cd_Value(const string& key)
+	String* get_cd_Value(const string& key)
 	{
 		return getValueOf(key, "cd");
 	}
-	CCString* get_cd_Value(CCDictionary* subDict)
+	String* get_cd_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "cd");
 	}
 
-	CCString* get_trigger_Value(const string& key)
+	String* get_trigger_Value(const string& key)
 	{
 		return getValueOf(key, "trigger");
 	}
-	CCString* get_trigger_Value(CCDictionary* subDict)
+	String* get_trigger_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "trigger");
 	}
 
-	CCString* get_param_Value(const string& key)
+	String* get_param_Value(const string& key)
 	{
 		return getValueOf(key, "param");
 	}
-	CCString* get_param_Value(CCDictionary* subDict)
+	String* get_param_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "param");
 	}
 
-	CCString* get_target_Value(const string& key)
+	String* get_target_Value(const string& key)
 	{
 		return getValueOf(key, "target");
 	}
-	CCString* get_target_Value(CCDictionary* subDict)
+	String* get_target_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "target");
 	}
 
-	CCString* get_dimension_Value(const string& key)
+	String* get_dimension_Value(const string& key)
 	{
 		return getValueOf(key, "dimension");
 	}
-	CCString* get_dimension_Value(CCDictionary* subDict)
+	String* get_dimension_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "dimension");
 	}
 
-	CCString* get_type_Value(const string& key)
+	String* get_type_Value(const string& key)
 	{
 		return getValueOf(key, "type");
 	}
-	CCString* get_type_Value(CCDictionary* subDict)
+	String* get_type_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "type");
 	}
 
-	CCString* get_range_Value(const string& key)
+	String* get_range_Value(const string& key)
 	{
 		return getValueOf(key, "range");
 	}
-	CCString* get_range_Value(CCDictionary* subDict)
+	String* get_range_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "range");
 	}
 
-	CCString* get_angle_Value(const string& key)
+	String* get_angle_Value(const string& key)
 	{
 		return getValueOf(key, "angle");
 	}
-	CCString* get_angle_Value(CCDictionary* subDict)
+	String* get_angle_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "angle");
 	}
 
-	CCString* get_bullet_Value(const string& key)
+	String* get_bullet_Value(const string& key)
 	{
 		return getValueOf(key, "bullet");
 	}
-	CCString* get_bullet_Value(CCDictionary* subDict)
+	String* get_bullet_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "bullet");
 	}
 
-	CCString* get_speed_Value(const string& key)
+	String* get_speed_Value(const string& key)
 	{
 		return getValueOf(key, "speed");
 	}
-	CCString* get_speed_Value(CCDictionary* subDict)
+	String* get_speed_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "speed");
 	}
 
-	CCString* get_resourceID_Value(const string& key)
+	String* get_resourceID_Value(const string& key)
 	{
 		return getValueOf(key, "resourceID");
 	}
-	CCString* get_resourceID_Value(CCDictionary* subDict)
+	String* get_resourceID_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "resourceID");
 	}
 
-	CCString* get_animation_Value(const string& key)
+	String* get_animation_Value(const string& key)
 	{
 		return getValueOf(key, "animation");
 	}
-	CCString* get_animation_Value(CCDictionary* subDict)
+	String* get_animation_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "animation");
 	}
 
-	CCString* get_atk_se_Value(const string& key)
+	String* get_atk_se_Value(const string& key)
 	{
 		return getValueOf(key, "atk_se");
 	}
-	CCString* get_atk_se_Value(CCDictionary* subDict)
+	String* get_atk_se_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "atk_se");
 	}
 
-	CCString* get_hit_eft_Value(const string& key)
+	String* get_hit_eft_Value(const string& key)
 	{
 		return getValueOf(key, "hit_eft");
 	}
-	CCString* get_hit_eft_Value(CCDictionary* subDict)
+	String* get_hit_eft_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "hit_eft");
 	}
 
-	CCString* get_buff1_Value(const string& key)
+	String* get_buff1_Value(const string& key)
 	{
 		return getValueOf(key, "buff1");
 	}
-	CCString* get_buff1_Value(CCDictionary* subDict)
+	String* get_buff1_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "buff1");
 	}
 
-	CCString* get_buff2_Value(const string& key)
+	String* get_buff2_Value(const string& key)
 	{
 		return getValueOf(key, "buff2");
 	}
-	CCString* get_buff2_Value(CCDictionary* subDict)
+	String* get_buff2_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "buff2");
 	}
 
-	CCString* get_buff3_Value(const string& key)
+	String* get_buff3_Value(const string& key)
 	{
 		return getValueOf(key, "buff3");
 	}
-	CCString* get_buff3_Value(CCDictionary* subDict)
+	String* get_buff3_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "buff3");
 	}
 
-	CCString* get_debuff1_Value(const string& key)
+	String* get_debuff1_Value(const string& key)
 	{
 		return getValueOf(key, "debuff1");
 	}
-	CCString* get_debuff1_Value(CCDictionary* subDict)
+	String* get_debuff1_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "debuff1");
 	}
 
-	CCString* get_debuff2_Value(const string& key)
+	String* get_debuff2_Value(const string& key)
 	{
 		return getValueOf(key, "debuff2");
 	}
-	CCString* get_debuff2_Value(CCDictionary* subDict)
+	String* get_debuff2_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "debuff2");
 	}
 
-	CCString* get_debuff3_Value(const string& key)
+	String* get_debuff3_Value(const string& key)
 	{
 		return getValueOf(key, "debuff3");
 	}
-	CCString* get_debuff3_Value(CCDictionary* subDict)
+	String* get_debuff3_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "debuff3");
 	}
@@ -481,7 +481,7 @@ public:
 
 
 protected:
-	DTSkill():m_pDictionary(NULL)
+	DTSkill():m_pDictionary(nullptr)
 	{}
 	~DTSkill()
 	{
@@ -489,7 +489,7 @@ protected:
 	}
 	
 private:
-	CCDictionary* m_pDictionary;
+	Dictionary* m_pDictionary;
 };
 
 

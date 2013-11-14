@@ -34,6 +34,6 @@ public class GameX extends Cocos2dxActivity{
 	}
 	
     static {
-         System.loadLibrary("game");
+         System.loadLibrary("GameX");
     }
 }

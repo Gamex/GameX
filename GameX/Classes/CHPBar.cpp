@@ -13,7 +13,7 @@
 
 CHPBar::CHPBar() :
 m_percentage(1.f)
-,m_pBar(NULL)
+,m_pBar(nullptr)
 {
 
 }
@@ -63,7 +63,7 @@ bool CHPBar::init(const char* foregroundName, const char* backgroundName)
 
 
 
-bool CHPBar::attachSpriteTo(CCNode* parent, int zOrder, int tag)
+bool CHPBar::attachSpriteTo(Node* parent, int zOrder, int tag)
 {
     do
     {
@@ -92,7 +92,7 @@ void CHPBar::clearThis()
     {
         getBar()->clearAll();
         getBar()->removeFromParentAndCleanup(true);
-        setBar(NULL);
+        setBar(nullptr);
     }
 }
 
@@ -100,7 +100,7 @@ void CHPBar::clearThis()
 
 void CHPBar::updateBar()
 {
-    if (NULL == getInnerSprite() || NULL == m_pBar)
+    if (nullptr == getInnerSprite() || nullptr == m_pBar)
     {
         return;
     }
@@ -113,7 +113,7 @@ void CHPBar::updateBar()
     {
         m_pBar->setSpriteVisible(true);
         
-        CCSize sz = OrigBarSize_;
+        Size sz = OrigBarSize_;
         sz.width = OrigBarSize_.width * m_percentage;
 
         m_pBar->setSpritePreferredSize(sz);
@@ -126,11 +126,11 @@ void CHPBar::update(float dt)
 {
     CSpriteObject::update(dt);
     
-    CCPoint pt = getSpritePosition();
-    CCSize sz = m_pBar->getSpriteContentSize();
+    Point pt = getSpritePosition();
+    Size sz = m_pBar->getSpriteContentSize();
 
     
-    CCSize bkgSize = getSpriteContentSize();
+    Size bkgSize = getSpriteContentSize();
     pt.x -= (bkgSize.width - sz.width) * .5f - 2;
 
     m_pBar->setSpritePosition(pt);

@@ -10,8 +10,8 @@
 #include "CVisibleObject.h"
 
 CSensor::CSensor()
-: m_pOwner(NULL)
-, m_TriggerHandler(NULL)
+: m_pOwner(nullptr)
+, m_TriggerHandler(nullptr)
 , m_collisionGroup(0)
 {
     
@@ -31,7 +31,7 @@ void CSensor::collideWithObject(TFCollisionProtocol* obj)
 {
     if (m_pOwner && m_TriggerHandler)
     {
-        (m_pOwner->*m_TriggerHandler)(dynamic_cast<CCObject*>(obj));
+        (m_pOwner->*m_TriggerHandler)(dynamic_cast<Object*>(obj));
     }
 }
 

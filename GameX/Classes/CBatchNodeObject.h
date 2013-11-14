@@ -13,12 +13,12 @@
 
 class CBatchNodeObject
 {
-//    CC_SYNTHESIZE_RETAIN(CCSpriteBatchNode*, pBatchNode_, BatchNode);
+//    CC_SYNTHESIZE_RETAIN(SpriteBatchNode*, pBatchNode_, BatchNode);
 //public:
 //    CBatchNodeObject();
 //    virtual ~CBatchNodeObject();
 //    virtual bool init();
-//    virtual bool attachBatchNodeToParent(CCNode* parent, int zOrder=0, int tag=-1);
+//    virtual bool attachBatchNodeToParent(Node* parent, int zOrder=0, int tag=-1);
 //    virtual void clearAllBatchNode();
 //protected:
 //    virtual GameArts getBatchNodeName()=0;

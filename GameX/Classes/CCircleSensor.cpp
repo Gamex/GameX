@@ -30,13 +30,13 @@ CCircleSensor::~CCircleSensor()
 bool CCircleSensor::isCollsionWith(TFCollisionProtocol* object)
 {
     CVisibleObject* pObj = dynamic_cast<CVisibleObject*>(object);
-    if (NULL == pObj)
+    if (nullptr == pObj)
     {
         return false;
     }
     
-    CCPoint b1 = getOwner()->getSpritePositionInWorldSpace();
-    CCPoint b2 = pObj->getSpritePositionInWorldSpace();
+    Point b1 = getOwner()->getSpritePositionInWorldSpace();
+    Point b2 = pObj->getSpritePositionInWorldSpace();
     
     float diffX = b2.x - b1.x;
     if (fabs(diffX) > m_radius) return false;

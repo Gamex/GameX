@@ -10,7 +10,7 @@
 
 
 // std::string toolkit
-void TFPListReaderHelper::split(std::string src, const char* token, CCArray& vect)
+void TFPListReaderHelper::split(std::string src, const char* token, Array& vect)
 {
     int nend=0;
     int nbegin=0;
@@ -19,12 +19,12 @@ void TFPListReaderHelper::split(std::string src, const char* token, CCArray& vec
         nend = src.find(token, nbegin);
         if(nend == -1)
         {
-            CCString* s = CCString::create(src.substr(nbegin, src.length()-nbegin));
+            String* s = String::create(src.substr(nbegin, src.length()-nbegin));
             vect.addObject(s);
         }
         else
         {
-            CCString* s = CCString::create(src.substr(nbegin, nend-nbegin));
+            String* s = String::create(src.substr(nbegin, nend-nbegin));
             vect.addObject(s);
         }
         nbegin = nend + strlen(token);
@@ -35,7 +35,7 @@ void TFPListReaderHelper::split(std::string src, const char* token, CCArray& vec
 // if the form is right,the std::string will be split into the parameter strs;
 // or the parameter strs will be empty.
 // if the form is right return true,else return false.
-bool TFPListReaderHelper::splitWithForm(const char* pStr, CCArray& strs)
+bool TFPListReaderHelper::splitWithForm(const char* pStr, Array& strs)
 {
     bool bRet = false;
     

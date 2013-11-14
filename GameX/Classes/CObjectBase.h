@@ -19,7 +19,7 @@
 
 class TFRoleData;
 
-class CObjectBase : public CCNode, public CState, public TFCollisionProtocol
+class CObjectBase : public Node, public CState, public TFCollisionProtocol
 {
 public:
 	virtual ~CObjectBase();
@@ -41,7 +41,7 @@ public:
     virtual bool isNeedCheckCollision();
     
     ////////////////////
-    virtual void addComponentForState(int state, CCComponent* comp);
+    virtual void addComponentForState(int state, Component* comp);
 
 #ifdef DEBUG
     virtual std::string whoAmI(){return "CObjectBase";}

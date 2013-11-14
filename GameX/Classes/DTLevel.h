@@ -15,210 +15,210 @@ public:
         return m_pArray->count();
     }
     
-	CCArray* getRoot() const
+	Array* getRoot() const
 	{
 		return m_pArray;
 	}
     
 	void loadData2CCArray()
     {
-        if (NULL == m_pArray)
+        if (nullptr == m_pArray)
         {
-            m_pArray = CCArray::create();
+            m_pArray = Array::create();
             CC_SAFE_RETAIN(m_pArray);
         }
 
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10001"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("5"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("5"), "num");
-			elem->setObject(CCString::create("1"), "positionID");
-			elem->setObject(CCString::create("5"), "duration");
+			elem->setObject(String::create("10001"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("5"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("5"), "num");
+			elem->setObject(String::create("1"), "positionID");
+			elem->setObject(String::create("5"), "duration");
 
 			
 			m_pArray->addObject(elem);
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10002"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("5"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("5"), "num");
-			elem->setObject(CCString::create("2"), "positionID");
-			elem->setObject(CCString::create("5"), "duration");
+			elem->setObject(String::create("10002"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("5"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("5"), "num");
+			elem->setObject(String::create("2"), "positionID");
+			elem->setObject(String::create("5"), "duration");
 
 			
 			m_pArray->addObject(elem);
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10003"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("5"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("5"), "num");
-			elem->setObject(CCString::create("3"), "positionID");
-			elem->setObject(CCString::create("5"), "duration");
+			elem->setObject(String::create("10003"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("5"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("5"), "num");
+			elem->setObject(String::create("3"), "positionID");
+			elem->setObject(String::create("5"), "duration");
 
 			
 			m_pArray->addObject(elem);
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10004"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("5"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("5"), "num");
-			elem->setObject(CCString::create("4"), "positionID");
-			elem->setObject(CCString::create("5"), "duration");
+			elem->setObject(String::create("10004"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("5"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("5"), "num");
+			elem->setObject(String::create("4"), "positionID");
+			elem->setObject(String::create("5"), "duration");
 
 			
 			m_pArray->addObject(elem);
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10005"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("5"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("5"), "num");
-			elem->setObject(CCString::create("5"), "positionID");
-			elem->setObject(CCString::create("5"), "duration");
+			elem->setObject(String::create("10005"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("5"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("5"), "num");
+			elem->setObject(String::create("5"), "positionID");
+			elem->setObject(String::create("5"), "duration");
 
 			
 			m_pArray->addObject(elem);
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10006"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("10"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("5"), "num");
-			elem->setObject(CCString::create("1"), "positionID");
-			elem->setObject(CCString::create("3"), "duration");
+			elem->setObject(String::create("10006"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("10"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("5"), "num");
+			elem->setObject(String::create("1"), "positionID");
+			elem->setObject(String::create("3"), "duration");
 
 			
 			m_pArray->addObject(elem);
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10007"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("10"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("5"), "num");
-			elem->setObject(CCString::create("3"), "positionID");
-			elem->setObject(CCString::create("3"), "duration");
+			elem->setObject(String::create("10007"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("10"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("5"), "num");
+			elem->setObject(String::create("3"), "positionID");
+			elem->setObject(String::create("3"), "duration");
 
 			
 			m_pArray->addObject(elem);
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10008"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("10"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("5"), "num");
-			elem->setObject(CCString::create("5"), "positionID");
-			elem->setObject(CCString::create("3"), "duration");
+			elem->setObject(String::create("10008"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("10"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("5"), "num");
+			elem->setObject(String::create("5"), "positionID");
+			elem->setObject(String::create("3"), "duration");
 
 			
 			m_pArray->addObject(elem);
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10009"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("15"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("5"), "num");
-			elem->setObject(CCString::create("1"), "positionID");
-			elem->setObject(CCString::create("3"), "duration");
+			elem->setObject(String::create("10009"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("15"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("5"), "num");
+			elem->setObject(String::create("1"), "positionID");
+			elem->setObject(String::create("3"), "duration");
 
 			
 			m_pArray->addObject(elem);
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10010"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("15"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("10"), "num");
-			elem->setObject(CCString::create("2"), "positionID");
-			elem->setObject(CCString::create("3"), "duration");
+			elem->setObject(String::create("10010"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("15"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("10"), "num");
+			elem->setObject(String::create("2"), "positionID");
+			elem->setObject(String::create("3"), "duration");
 
 			
 			m_pArray->addObject(elem);
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10011"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("15"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("20"), "num");
-			elem->setObject(CCString::create("3"), "positionID");
-			elem->setObject(CCString::create("5"), "duration");
+			elem->setObject(String::create("10011"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("15"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("20"), "num");
+			elem->setObject(String::create("3"), "positionID");
+			elem->setObject(String::create("5"), "duration");
 
 			
 			m_pArray->addObject(elem);
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10012"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("15"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("10"), "num");
-			elem->setObject(CCString::create("4"), "positionID");
-			elem->setObject(CCString::create("3"), "duration");
+			elem->setObject(String::create("10012"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("15"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("10"), "num");
+			elem->setObject(String::create("4"), "positionID");
+			elem->setObject(String::create("3"), "duration");
 
 			
 			m_pArray->addObject(elem);
 		}
 		{
-			CCDictionary* elem = CCDictionary::create();
+			Dictionary* elem = Dictionary::create();
 			
-			elem->setObject(CCString::create("10013"), "roundID");
-			elem->setObject(CCString::create("1"), "levelID");
-			elem->setObject(CCString::create("15"), "time");
-			elem->setObject(CCString::create("1"), "type");
-			elem->setObject(CCString::create("1001"), "monsterID");
-			elem->setObject(CCString::create("5"), "num");
-			elem->setObject(CCString::create("5"), "positionID");
-			elem->setObject(CCString::create("3"), "duration");
+			elem->setObject(String::create("10013"), "roundID");
+			elem->setObject(String::create("1"), "levelID");
+			elem->setObject(String::create("15"), "time");
+			elem->setObject(String::create("1"), "type");
+			elem->setObject(String::create("1001"), "monsterID");
+			elem->setObject(String::create("5"), "num");
+			elem->setObject(String::create("5"), "positionID");
+			elem->setObject(String::create("3"), "duration");
 
 			
 			m_pArray->addObject(elem);
@@ -226,89 +226,89 @@ public:
 
     }
         
-    CCDictionary* getData(int key)
+    Dictionary* getData(int key)
     {
         CC_ASSERT(m_pArray);
-        if(key < 0 || key >= m_pArray->count()) return NULL;
-        return dynamic_cast<CCDictionary*>(m_pArray->objectAtIndex(key));
+        if(key < 0 || key >= m_pArray->count()) return nullptr;
+        return dynamic_cast<Dictionary*>(m_pArray->getObjectAtIndex(key));
     }
 
-    CCString* getValueOf(int key, const string& subKey)
+    String* getValueOf(int key, const string& subKey)
     {
         CC_ASSERT(m_pArray);
-        CCDictionary* sub = getData(key);
+        Dictionary* sub = getData(key);
         if (sub)
         {
-            return dynamic_cast<CCString*>(sub->objectForKey(subKey));
+            return dynamic_cast<String*>(sub->objectForKey(subKey));
         }
-        return NULL;
+        return nullptr;
     }
 
-    CCString* getValueOf(CCDictionary* subDict, const string& subKey)
+    String* getValueOf(Dictionary* subDict, const string& subKey)
     {
         CC_ASSERT(subDict);
-        return dynamic_cast<CCString*>(subDict->objectForKey(subKey));
+        return dynamic_cast<String*>(subDict->objectForKey(subKey));
     }
 
-	CCString* get_levelID_Value(int key)
+	String* get_levelID_Value(int key)
 	{
 		return getValueOf(key, "levelID");
 	}
-	CCString* get_levelID_Value(CCDictionary* subDict)
+	String* get_levelID_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "levelID");
 	}
 
-	CCString* get_time_Value(int key)
+	String* get_time_Value(int key)
 	{
 		return getValueOf(key, "time");
 	}
-	CCString* get_time_Value(CCDictionary* subDict)
+	String* get_time_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "time");
 	}
 
-	CCString* get_type_Value(int key)
+	String* get_type_Value(int key)
 	{
 		return getValueOf(key, "type");
 	}
-	CCString* get_type_Value(CCDictionary* subDict)
+	String* get_type_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "type");
 	}
 
-	CCString* get_monsterID_Value(int key)
+	String* get_monsterID_Value(int key)
 	{
 		return getValueOf(key, "monsterID");
 	}
-	CCString* get_monsterID_Value(CCDictionary* subDict)
+	String* get_monsterID_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "monsterID");
 	}
 
-	CCString* get_num_Value(int key)
+	String* get_num_Value(int key)
 	{
 		return getValueOf(key, "num");
 	}
-	CCString* get_num_Value(CCDictionary* subDict)
+	String* get_num_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "num");
 	}
 
-	CCString* get_positionID_Value(int key)
+	String* get_positionID_Value(int key)
 	{
 		return getValueOf(key, "positionID");
 	}
-	CCString* get_positionID_Value(CCDictionary* subDict)
+	String* get_positionID_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "positionID");
 	}
 
-	CCString* get_duration_Value(int key)
+	String* get_duration_Value(int key)
 	{
 		return getValueOf(key, "duration");
 	}
-	CCString* get_duration_Value(CCDictionary* subDict)
+	String* get_duration_Value(Dictionary* subDict)
 	{
 		return getValueOf(subDict, "duration");
 	}
@@ -316,7 +316,7 @@ public:
 
 
 protected:
-	DTLevel():m_pArray(NULL)
+	DTLevel():m_pArray(nullptr)
 	{}
 	~DTLevel()
 	{
@@ -324,7 +324,7 @@ protected:
 	}
 	
 private:
-	CCArray* m_pArray;
+	Array* m_pArray;
 };
 
 

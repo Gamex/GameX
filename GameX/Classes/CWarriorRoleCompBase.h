@@ -20,7 +20,7 @@ if (this->isEnabled() == false)\
 { break;}
 
 class CWarriorRoleCompBase
-: public CCComponent
+: public Component
 , public ICCBAnimationDelegate
 {
 public:

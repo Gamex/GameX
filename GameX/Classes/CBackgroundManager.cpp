@@ -28,8 +28,8 @@
 
 
 CBackgroundManager::CBackgroundManager()
-: m_tiledMap(NULL)
-, m_pathFinder(NULL)
+: m_tiledMap(nullptr)
+, m_pathFinder(nullptr)
 , m_mapScaleThresholdMax(2.f)
 , m_mapScaleThresholdMin(.5)
 {
@@ -45,22 +45,22 @@ CBackgroundManager::~CBackgroundManager()
 }
 
 
-void CBackgroundManager::attachBackgroundTo(CCNode* parent)
+void CBackgroundManager::attachBackgroundTo(Node* parent)
 {
     parent->addChild(this);
 }
 
 
-void CBackgroundManager::centerTileMapOnTileCoord(CCPoint tilePos)
+void CBackgroundManager::centerTileMapOnTileCoord(Point tilePos)
 {
     // 获取屏幕大小和屏幕中心点
-    CCSize screenSize = CCDirector::sharedDirector()->getWinSize();
-    CCPoint screenCenter(screenSize.width * 0.5f, screenSize.height * 0.5f);
+    Size screenSize = Director::getInstance()->getWinSize();
+    Point screenCenter(screenSize.width * 0.5f, screenSize.height * 0.5f);
 
     // 仅在内部使用：瓷砖的Y坐标要减去1
     tilePos.y -= 1;
     // 获取瓷砖坐标处以像素表示的坐标信息
-    CCPoint scrollPosition =  m_groundLayer->positionAt(tilePos);
+    Point scrollPosition =  m_groundLayer->getPositionAt(tilePos);
     // 考虑到地图移动的情况，我将像素坐标信息乘以 -1，从而得到负值
     scrollPosition = scrollPosition * -1;
     // 为屏幕中央坐标添加位移值
@@ -68,7 +68,7 @@ void CBackgroundManager::centerTileMapOnTileCoord(CCPoint tilePos)
     
     // 移动瓷砖地图
     setPosition(scrollPosition * getScale());
-//    CCAction* move = [CCMoveTo actionWithDuration:0.2f position:scrollPosition];
+//    Action* move = [CCMoveTo actionWithDuration:0.2f position:scrollPosition];
 //    [tileMap stopAllActions];
 //    [tileMap runAction:move];
 }
@@ -78,29 +78,29 @@ bool CBackgroundManager::init()
 {
     do
     {
-        BREAK_IF_FAILED(CCLayer::init());
+        BREAK_IF_FAILED(Layer::init());
         
-        m_tiledMap = CCTMXTiledMap::create(TILE_MAP_NAME);
+        m_tiledMap = TMXTiledMap::create(TILE_MAP_NAME);
         BREAK_IF_FAILED(m_tiledMap);
         CC_SAFE_RETAIN(m_tiledMap);
         
-        m_bkgMap = CCTMXTiledMap::create(TILE_BKG_MAP_NAME);
+        m_bkgMap = TMXTiledMap::create(TILE_BKG_MAP_NAME);
         CC_SAFE_RETAIN(m_bkgMap);
         
-        m_groundLayer = m_tiledMap->layerNamed(GROUND_LAYER_NAME);
-        m_objectLayer = m_tiledMap->layerNamed(OBJECT_LAYER_NAME);
+        m_groundLayer = m_tiledMap->getLayer(GROUND_LAYER_NAME);
+        m_objectLayer = m_tiledMap->getLayer(OBJECT_LAYER_NAME);
         
-        CCPoint centerTile = m_tiledMap->getMapSize();
+        Point centerTile{m_tiledMap->getMapSize()};
         centerTile = centerTile * 0.5f;
         centerTileMapOnTileCoord(centerTile);
         
-        CCPoint bkgCenterPoint = m_bkgMap->getContentSize() * 0.5f;
-        CCPoint tileCenterPoint = m_groundLayer->positionAt(centerTile);
+        Point bkgCenterPoint{m_bkgMap->getContentSize() * 0.5f};
+        Point tileCenterPoint{m_groundLayer->getPositionAt(centerTile)};
 
         m_bkgMap->setPosition(tileCenterPoint - bkgCenterPoint);
         
 
-        CCSize layerSz = m_groundLayer->getLayerSize();
+        Size layerSz = m_groundLayer->getLayerSize();
         
         m_grids.clear();
         m_grids.reserve(layerSz.width * layerSz.height);
@@ -127,12 +127,12 @@ bool CBackgroundManager::init()
 
 
 
-CLogicGrid* CBackgroundManager::getLogicGrid(const CCPoint& gridPos)
+CLogicGrid* CBackgroundManager::getLogicGrid(const Point& gridPos)
 {
     do
     {
         CC_ASSERT(m_groundLayer);
-        CCSize layerSz = m_groundLayer->getLayerSize();
+        Size layerSz = m_groundLayer->getLayerSize();
         
         BREAK_IF(gridPos.x < 0 || FLT_GE(gridPos.x, layerSz.width));
         BREAK_IF(gridPos.y < 0 || FLT_GE(gridPos.y, layerSz.height));
@@ -140,22 +140,22 @@ CLogicGrid* CBackgroundManager::getLogicGrid(const CCPoint& gridPos)
         return &(m_grids[gridPos.x + gridPos.y * layerSz.width]);
     } while (false);
     
-    return NULL;
+    return nullptr;
 }
 
 
 
 
-CLogicGrid* CBackgroundManager::getGridFromWorldPt(const CCPoint& pt)
+CLogicGrid* CBackgroundManager::getGridFromWorldPt(const Point& pt)
 {
-    const CCPoint& gridPos = worldPointToGrid(pt);
+    const Point& gridPos = worldPointToGrid(pt);
     
     return getLogicGrid(gridPos);
 }
 
 
 
-CCPoint CBackgroundManager::worldPointToScreen(const CCPoint& pt)
+Point CBackgroundManager::worldPointToScreen(const Point& pt)
 {
     return convertToWorldSpace(pt);
 //    return pt + getPosition();
@@ -163,7 +163,7 @@ CCPoint CBackgroundManager::worldPointToScreen(const CCPoint& pt)
 
 
 
-CCPoint CBackgroundManager::screenPointToWorld(const CCPoint& pt)
+Point CBackgroundManager::screenPointToWorld(const Point& pt)
 {
     return convertToNodeSpace(pt);
     return pt - getPosition();
@@ -171,32 +171,32 @@ CCPoint CBackgroundManager::screenPointToWorld(const CCPoint& pt)
 
 
 
-CCPoint CBackgroundManager::gridToWorldPoint(const CCPoint& gridPos)
+Point CBackgroundManager::gridToWorldPoint(const Point& gridPos)
 {
     CC_ASSERT(m_groundLayer);
-    CCPoint pt = m_groundLayer->positionAt(gridPos) + m_groundLayer->getMapTileSize() / 2;
+    Point pt{m_groundLayer->getPositionAt(gridPos) + Point{m_groundLayer->getMapTileSize() / 2}};
     return pt;
 }
 
 
 
-CCPoint CBackgroundManager::screenPointToGrid(const CCPoint& pt)
+Point CBackgroundManager::screenPointToGrid(const Point& pt)
 {
     return worldPointToGrid(screenPointToWorld(pt));
 }
 
 
 
-CCPoint CBackgroundManager::worldPointToGrid(const CCPoint& pt)
+Point CBackgroundManager::worldPointToGrid(const Point& pt)
 {
-    CCPoint pos = pt;
-    const CCSize& mapSize = m_tiledMap->getMapSize();
+    Point pos = pt;
+    const Size& mapSize = m_tiledMap->getMapSize();
     float halfMapWidth =  mapSize.width * 0.5f;
     float mapHeight =  mapSize.height;
-    const CCSize& tileSize = m_tiledMap->getTileSize();
+    const Size& tileSize = m_tiledMap->getTileSize();
     float tileWidth = tileSize.width;
     float tileHeight = tileSize.height;
-    CCPoint tilePosDiv(pos.x / tileWidth, pos.y / tileHeight);
+    Point tilePosDiv(pos.x / tileWidth, pos.y / tileHeight);
     float inverseTileY = mapHeight - tilePosDiv.y;
     
     // 将得到的计算结果转换成 int，以确保得到的是整数
@@ -208,29 +208,29 @@ CCPoint CBackgroundManager::worldPointToGrid(const CCPoint& pt)
     posY = MAX(0, posY);
     posY = MIN( mapSize.height - 1, posY);
      
-    return CCPoint(posX, posY);
+    return Point(posX, posY);
 }
 
 
 
-CLogicGrid* CBackgroundManager::getEmptyGridNearby(const CCPoint& gridPos, int width, int height,
+CLogicGrid* CBackgroundManager::getEmptyGridNearby(const Point& gridPos, int width, int height,
                                                    int level, int step, int count, int dir)
 {
-    CLogicGrid* grid = NULL;
+    CLogicGrid* grid = nullptr;
     
     int x, y;
     for (y = 0; y < height; ++y)
     {
         for (x = 0; x < width; ++x)
         {
-            CLogicGrid* tmp = getLogicGrid(CCPoint(gridPos.x + x, gridPos.y + y));
-            if (grid == NULL)
+            CLogicGrid* tmp = getLogicGrid(Point(gridPos.x + x, gridPos.y + y));
+            if (grid == nullptr)
             {
                 grid = tmp;
             }
-            if (NULL == tmp || tmp->getUnit())
+            if (nullptr == tmp || tmp->getUnit())
             {
-                grid = NULL;
+                grid = nullptr;
                 break;
             }
         }
@@ -285,7 +285,7 @@ CLogicGrid* CBackgroundManager::getEmptyGridNearby(const CCPoint& gridPos, int w
 
     }
     
-    return getEmptyGridNearby(CCPoint(x, y), width, height, level, step, count, dir);
+    return getEmptyGridNearby(Point(x, y), width, height, level, step, count, dir);
 
 }
 
@@ -293,8 +293,8 @@ CLogicGrid* CBackgroundManager::getEmptyGridNearby(const CCPoint& gridPos, int w
 
 void CBackgroundManager::clearAllHightlightGrids()
 {
-    const CCSize& sz = m_groundLayer->getLayerSize();
-    CCPoint pt;
+    const Size& sz = m_groundLayer->getLayerSize();
+    Point pt;
     for (pt.y = 0; pt.y < sz.height; ++pt.y)
     {
         for (pt.x = 0; pt.x < sz.width; ++pt.x)
@@ -306,9 +306,9 @@ void CBackgroundManager::clearAllHightlightGrids()
 
 
 
-void CBackgroundManager::hightlightGrid(const CCPoint& gridPos, bool onOff)
+void CBackgroundManager::hightlightGrid(const Point& gridPos, bool onOff)
 {
-    const CCSize& sz = m_groundLayer->getLayerSize();
+    const Size& sz = m_groundLayer->getLayerSize();
     if (gridPos.x >= 0 && gridPos.x < sz.width &&
         gridPos.y >= 0 && gridPos.y < sz.height)
     {
@@ -320,8 +320,8 @@ void CBackgroundManager::hightlightGrid(const CCPoint& gridPos, bool onOff)
 
 void CBackgroundManager::clearAllUnits()
 {
-    const CCSize& sz = m_groundLayer->getLayerSize();
-    CCPoint pt;
+    const Size& sz = m_groundLayer->getLayerSize();
+    Point pt;
     for (pt.y = 0; pt.y < sz.height; ++pt.y)
     {
         for (pt.x = 0; pt.x < sz.width; ++pt.x)
@@ -333,20 +333,20 @@ void CBackgroundManager::clearAllUnits()
                 role->die();        // 如何释放还没想清楚，直接调用die是不行的！！！
             }
             
-            grid.m_unit = NULL;
+            grid.m_unit = nullptr;
         }
     }
 }
 
 
-void CBackgroundManager::addRoleToGrid(const CCPoint& gridPos, IGridRole* role)
+void CBackgroundManager::addRoleToGrid(const Point& gridPos, IGridRole* role)
 {
     CLogicGrid* lgrid = getLogicGrid(gridPos);
     if (role && lgrid)
     {
         int w = role->getGridWidth();
         int h = role->getGridHeight();
-        CCPoint pt;
+        Point pt;
         int x, y;
         for (y = 0; y < h; ++y)
         {
@@ -357,7 +357,7 @@ void CBackgroundManager::addRoleToGrid(const CCPoint& gridPos, IGridRole* role)
                 CLogicGrid* g = getLogicGrid(pt);
                 if (g)
                 {
-                    CC_ASSERT(g->m_unit == NULL);
+                    CC_ASSERT(g->m_unit == nullptr);
                     g->m_unit = role;
                     g->m_isPrimary = false;
                     g->m_locked = false;
@@ -385,7 +385,7 @@ void CBackgroundManager::removeRoleFromGrid(IGridRole* role)
 
 
 
-void CBackgroundManager::removeRoleFromGrid(const CCPoint& gridPos)
+void CBackgroundManager::removeRoleFromGrid(const Point& gridPos)
 {
     CLogicGrid* lgrid = getLogicGrid(gridPos);
     if (lgrid)
@@ -395,10 +395,10 @@ void CBackgroundManager::removeRoleFromGrid(const CCPoint& gridPos)
         {
             lgrid = role->getLogicGrid();
             CC_ASSERT(lgrid);
-            role->setLogicGrid(NULL);
+            role->setLogicGrid(nullptr);
             int w = role->getGridWidth();
             int h = role->getGridHeight();
-            CCPoint pt;
+            Point pt;
             int x, y;
             for (y = 0; y < h; ++y)
             {
@@ -409,8 +409,8 @@ void CBackgroundManager::removeRoleFromGrid(const CCPoint& gridPos)
                     CLogicGrid* g = getLogicGrid(pt);
                     if (g)
                     {
-                        CC_ASSERT(g->m_unit != NULL);
-                        g->m_unit = NULL;
+                        CC_ASSERT(g->m_unit != nullptr);
+                        g->m_unit = nullptr;
                     }
                 }
             }
@@ -420,13 +420,13 @@ void CBackgroundManager::removeRoleFromGrid(const CCPoint& gridPos)
 
 
 
-bool CBackgroundManager::isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& gridPos, bool lock)
+bool CBackgroundManager::isRoleCanBePlacedOnPos(IGridRole* role, const Point& gridPos, bool lock)
 {
     CC_ASSERT(role);
     int width = role->getGridWidth();
     int height = role->getGridHeight();
 
-    CCPoint pt;
+    Point pt;
     int x, y;
     for (y = 0; y < height; ++y)
     {
@@ -436,8 +436,8 @@ bool CBackgroundManager::isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& 
             pt.y = gridPos.y + y;
             CLogicGrid* g = getLogicGrid(pt);
 
-            bool condi = (g == NULL);
-            condi = (condi || g->m_locked == true || (g != NULL && g->m_unit != NULL && g->m_unit != role));
+            bool condi = (g == nullptr);
+            condi = (condi || g->m_locked == true || (g != nullptr && g->m_unit != nullptr && g->m_unit != role));
             if (condi)
             {
                 return false;
@@ -464,16 +464,16 @@ bool CBackgroundManager::isRoleCanBePlacedOnPos(IGridRole* role, const CCPoint& 
 }
 
 
-bool CBackgroundManager::isGridPosInGridRange(const CCPoint& gridPos, int width, int height, const CCPoint& testPos)
+bool CBackgroundManager::isGridPosInGridRange(const Point& gridPos, int width, int height, const Point& testPos)
 {
-    CCRect rect(gridPos.x, gridPos.y, width - 1, height - 1);
+    Rect rect(gridPos.x, gridPos.y, width - 1, height - 1);
     
     return rect.containsPoint(testPos);
 }
 
 
 
-void CBackgroundManager::scaleMap(float s, CCPoint centerTilePos)
+void CBackgroundManager::scaleMap(float s, Point centerTilePos)
 {
     if (s < m_mapScaleThresholdMin)
     {
@@ -498,23 +498,23 @@ float CBackgroundManager::getMapScale()
 
 
 
-void CBackgroundManager::addMapScale(float scaleDelta, CCPoint centerTilePos)
+void CBackgroundManager::addMapScale(float scaleDelta, Point centerTilePos)
 {
     scaleMap(getMapScale() + scaleDelta, centerTilePos);
 }
 
 
 
-void CBackgroundManager::moveMap(const CCPoint& offset)
+void CBackgroundManager::moveMap(const Point& offset)
 {
-    CCPoint pt = getPosition() + offset;
+    Point pt = getPosition() + offset;
    
     setPosition(pt);
 }
 
 
 
-void CBackgroundManager::moveMapTo(const CCPoint& pos)
+void CBackgroundManager::moveMapTo(const Point& pos)
 {
 }
 
@@ -536,7 +536,7 @@ float CBackgroundManager::getHeightInGrid() const
 
 
 
-const CCSize& CBackgroundManager::getSizeInGrid() const
+const Size& CBackgroundManager::getSizeInGrid() const
 {
     CC_ASSERT(m_groundLayer);
 	return m_groundLayer->getLayerSize();
@@ -544,13 +544,13 @@ const CCSize& CBackgroundManager::getSizeInGrid() const
 
 
 
-bool CBackgroundManager::placeRole(IGridRole* role, const CCPoint& gridPos)
+bool CBackgroundManager::placeRole(IGridRole* role, const Point& gridPos)
 {
     do
     {
         role->setBackGround(this);
         
-        CCPoint pt = gridToWorldPoint(gridPos);
+        Point pt = gridToWorldPoint(gridPos);
         
         role->onPlaceOnMap(gridPos, pt);
 
@@ -565,7 +565,7 @@ bool CBackgroundManager::placeRole(IGridRole* role, const CCPoint& gridPos)
 
 
 
-void CBackgroundManager::findPath(const CCPoint& startPos, const CCPoint& targetPos, IGridRole* role, IPathFinderDelegate* delegate)
+void CBackgroundManager::findPath(const Point& startPos, const Point& targetPos, IGridRole* role, IPathFinderDelegate* delegate)
 {
     CC_ASSERT(m_pathFinder);
     m_pathFinder->findPath(startPos, targetPos, role, delegate);
@@ -576,7 +576,7 @@ void CBackgroundManager::findPath(const CCPoint& startPos, const CCPoint& target
 
 void CBackgroundManager::update(float dt)
 {
-    CCLayer::update(dt);
+    Layer::update(dt);
     
     m_pathFinder->update(dt);
 }
@@ -585,7 +585,7 @@ void CBackgroundManager::update(float dt)
 #pragma mark  -- CLogicGrid
 
 CLogicGrid::CLogicGrid(int x, int y)
-: m_unit(NULL)
+: m_unit(nullptr)
 , m_gridPos(x, y)
 , m_locked(false)
 {

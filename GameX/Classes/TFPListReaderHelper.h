@@ -14,8 +14,8 @@
 class TFPListReaderHelper
 {
 public:
-    static void split(std::string src, const char* token, CCArray& vect);
-    static bool splitWithForm(const char* pStr, CCArray& strs);
+    static void split(std::string src, const char* token, Array& vect);
+    static bool splitWithForm(const char* pStr, Array& strs);
 
 protected:
 private:
@@ -23,22 +23,22 @@ private:
 
 
 //#define PREPARE_READ_FROM_DICT_AND_RETURN(__return__)  \
-//CCDictionary* pDict = getObjectDictionary();\
-//if (NULL == pDict)\
+//Dictionary* pDict = getObjectDictionary();\
+//if (nullptr == pDict)\
 //{\
 //return __return__;\
 //}
 //
 //#define PREPARE_READ_FROM_DICT  \
-//CCDictionary* pDict = getObjectDictionary();\
-//if (NULL == pDict)\
+//Dictionary* pDict = getObjectDictionary();\
+//if (nullptr == pDict)\
 //{\
 //return;\
 //}
 //
 //#define READ_INT_FROM_DICT(__key__)  \
-//CCString* str = dynamic_cast<CCString*>(pDict->objectForKey(#__key__));\
-//if (NULL == str)\
+//String* str = dynamic_cast<String*>(pDict->objectForKey(#__key__));\
+//if (nullptr == str)\
 //{\
 //return 0;\
 //}\
@@ -48,10 +48,10 @@ private:
 //#define DECLARE_DICTFUNC_BY_LEVEL(__type, __key) virtual __type get##__key##FromDictByLevel(int level);
 //
 //#define DEFINE_DICTFUNC_STR(__class, __key) \
-//CCString* __class::get##__key##FromDict()\
+//String* __class::get##__key##FromDict()\
 //{\
-//PREPARE_READ_FROM_DICT_AND_RETURN(NULL);\
-//CCString* str = dynamic_cast<CCString*>(pDict->objectForKey(#__key));\
+//PREPARE_READ_FROM_DICT_AND_RETURN(nullptr);\
+//String* str = dynamic_cast<String*>(pDict->objectForKey(#__key));\
 //return str;\
 //}
 //
@@ -59,8 +59,8 @@ private:
 //__type __class::get##__key##FromDict()\
 //{\
 //PREPARE_READ_FROM_DICT_AND_RETURN(__return)\
-//CCString* str = dynamic_cast<CCString*>(pDict->objectForKey(#__key));\
-//if (NULL == str)\
+//String* str = dynamic_cast<String*>(pDict->objectForKey(#__key));\
+//if (nullptr == str)\
 //{\
 //return __return;\
 //}\
@@ -68,25 +68,25 @@ private:
 //}
 //
 //#define DEFINE_DICTFUNC_ARRAY(__class, __key)   \
-//CCArray* __class::get##__key##FromDict()\
+//Array* __class::get##__key##FromDict()\
 //{\
-//PREPARE_READ_FROM_DICT_AND_RETURN(NULL)\
-//CCArray* array = dynamic_cast<CCArray*>(pDict->objectForKey(#__key));\
-//if (NULL == array)\
+//PREPARE_READ_FROM_DICT_AND_RETURN(nullptr)\
+//Array* array = dynamic_cast<Array*>(pDict->objectForKey(#__key));\
+//if (nullptr == array)\
 //{\
-//return NULL;\
+//return nullptr;\
 //}\
 //return array;\
 //}
 //
 //#define DEFINE_DICTFUNC_DICTIONARY(__class, __key)   \
-//CCDictionary* __class::get##__key##FromDict()\
+//Dictionary* __class::get##__key##FromDict()\
 //{\
-//PREPARE_READ_FROM_DICT_AND_RETURN(NULL)\
-//CCDictionary* dict = dynamic_cast<CCDictionary*>(pDict->objectForKey(#__key));\
-//if (NULL == dict)\
+//PREPARE_READ_FROM_DICT_AND_RETURN(nullptr)\
+//Dictionary* dict = dynamic_cast<Dictionary*>(pDict->objectForKey(#__key));\
+//if (nullptr == dict)\
 //{\
-//return NULL;\
+//return nullptr;\
 //}\
 //return dict;\
 //}
@@ -95,16 +95,16 @@ private:
 //__type __class::get##__key##FromDictByLevel(int level)\
 //{\
 //PREPARE_READ_FROM_DICT_AND_RETURN(__return);\
-//CCString* str = dynamic_cast<CCString*>(pDict->objectForKey(#__key));\
-//if (NULL == str)\
+//String* str = dynamic_cast<String*>(pDict->objectForKey(#__key));\
+//if (nullptr == str)\
 //{\
 //return __return;\
 //}\
-//CCArray array;\
+//Array array;\
 //if (TFPListReaderHelper::splitWithForm(str->getCString(), array))\
 //{\
-//CCString* dat = dynamic_cast<CCString*>(array.objectAtIndex(level));\
-//if (NULL != dat)\
+//String* dat = dynamic_cast<String*>(array.getObjectAtIndex(level));\
+//if (nullptr != dat)\
 //{\
 //return dat->__type##Value();\
 //}\
@@ -113,20 +113,20 @@ private:
 //}
 //
 //#define DEFINE_DICTFUNC_STR_BY_LEVEL(__class, __key)\
-//CCString* __class::get##__key##FromDictByLevel(int level)\
+//String* __class::get##__key##FromDictByLevel(int level)\
 //{\
-//PREPARE_READ_FROM_DICT_AND_RETURN(NULL);\
-//CCString* str = dynamic_cast<CCString*>(pDict->objectForKey(#__key));\
-//if (NULL == str)\
+//PREPARE_READ_FROM_DICT_AND_RETURN(nullptr);\
+//String* str = dynamic_cast<String*>(pDict->objectForKey(#__key));\
+//if (nullptr == str)\
 //{\
 //return __return;\
 //}\
-//CCArray array;\
+//Array array;\
 //if (TFPListReaderHelper::splitWithForm(str->getCString(), array))\
 //{\
-//return dynamic_cast<CCString*>(array.objectAtIndex(level));\
+//return dynamic_cast<String*>(array.getObjectAtIndex(level));\
 //}\
-//return NULL;\
+//return nullptr;\
 //}
 
 
