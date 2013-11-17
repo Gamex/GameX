@@ -135,6 +135,10 @@ enum GBCollisionType {
 USING_NS_CC;
 USING_NS_CC_EXT;
 
+#pragma mark -- Pomelo
+#include "jansson.h"
+#include "pomelo.h"
+
 #pragma mark -- stl headers and typedefs for stl container
 #include <set>
 #include <vector>
@@ -143,6 +147,7 @@ USING_NS_CC_EXT;
 #include <string>
 #include <algorithm>
 #include <functional>
+
 
 using namespace std;
 

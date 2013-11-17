@@ -254,7 +254,7 @@
 	<key>javascriptMainCCB</key>
 	<string></string>
 	<key>needRepublish</key>
-	<true/>
+	<false/>
 	<key>onlyPublishCCBs</key>
 	<false/>
 	<key>publishDirectory</key>

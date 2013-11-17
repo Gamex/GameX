@@ -9,6 +9,8 @@
 #include "CLobbyLayer.h"
 #include "CGameSceneManager.h"
 
+#include "CCPomelo.h"
+
 static class CLobbyLayerRegister
 {
 public:
@@ -50,6 +52,7 @@ SEL_MenuHandler CLobbyLayer::onResolveCCBCCMenuItemSelector(Object * pTarget, co
 {
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onFormation", CLobbyLayer::onFormation);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onBattle", CLobbyLayer::onBattle);
+    CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onTestSocket", CLobbyLayer::onTestSocket);
     return nullptr;
 }
 
@@ -87,6 +90,42 @@ void CLobbyLayer::onBattle(Object* pSender)
 }
 
 
+void CLobbyLayer::onTestSocket(Object* pSender)
+{
+    std::string ip = "192.168.1.4";
+    int port = 3010;
+
+    if(0 != POMELO->connect(ip.c_str(), port))
+    {
+        CCLOG("connect fiald ");
+    }
+    else
+    {
+        CCLOG("connect ok");
+        const char *route = "connector.entryHandler.entry";
+        json_t *msg = json_object();
+        json_object_set(msg, "hello pomelo", json_integer(1));
+        POMELO->request(route, msg, bind(&CLobbyLayer::onMsg, this, std::placeholders::_1, std::placeholders::_2));
+    }
+}
 
 
+
+void CLobbyLayer::onMsg(Node* node, void* resp)
+{
+    CCPomeloReponse* ccpomeloresp = (CCPomeloReponse*)resp;
+    CCLOG("entryCB %s",json_dumps(ccpomeloresp->docs, JSON_COMPACT));
+    
+    json_t* msg = json_object_get(ccpomeloresp->docs, "msg");
+    
+    CCLOG("msg: %s", json_string_value(msg));
+//
+//    CCPomelo::getInstance()->addListener("onChat",this, callfuncND_selector(HelloWorld::onChat));
+//    
+//    const char *route = "chat.chatHandler.send";
+//    json_t *msg = json_object();
+//    json_object_set(msg, "content", json_string("hello CCPomelo"));
+//    json_object_set(msg, "target", json_string("*"));
+//    CCPomelo::getInstance()->request(route, msg, this,  callfuncND_selector(HelloWorld::sendCB));
+}
 

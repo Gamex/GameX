@@ -432,8 +432,8 @@
 								<string>Block</string>
 								<key>value</key>
 								<array>
-									<string></string>
-									<integer>0</integer>
+									<string>onTestSocket</string>
+									<integer>1</integer>
 								</array>
 							</dict>
 							<dict>
