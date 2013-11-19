@@ -92,8 +92,8 @@ void CLobbyLayer::onBattle(Object* pSender)
 
 void CLobbyLayer::onTestSocket(Object* pSender)
 {
-    std::string ip = "192.168.1.4";
-    int port = 3010;
+    std::string ip = "10.73.9.37";
+    int port = 3017;
 
     if(0 != POMELO->connect(ip.c_str(), port))
     {
@@ -102,9 +102,10 @@ void CLobbyLayer::onTestSocket(Object* pSender)
     else
     {
         CCLOG("connect ok");
-        const char *route = "connector.entryHandler.entry";
+        const char *route = "gate.gateHandler.queryEntry";
         json_t *msg = json_object();
-        json_object_set(msg, "hello pomelo", json_integer(1));
+        json_object_set(msg, "userName", json_string("test0"));
+        json_object_set(msg, "password", json_string("123"));
         POMELO->request(route, msg, bind(&CLobbyLayer::onMsg, this, std::placeholders::_1, std::placeholders::_2));
     }
 }
@@ -116,9 +117,9 @@ void CLobbyLayer::onMsg(Node* node, void* resp)
     CCPomeloReponse* ccpomeloresp = (CCPomeloReponse*)resp;
     CCLOG("entryCB %s",json_dumps(ccpomeloresp->docs, JSON_COMPACT));
     
-    json_t* msg = json_object_get(ccpomeloresp->docs, "msg");
+    json_t* host = json_object_get(ccpomeloresp->docs, "host");
     
-    CCLOG("msg: %s", json_string_value(msg));
+    CCLOG("host: %s", json_string_value(host));
 //
 //    CCPomelo::getInstance()->addListener("onChat",this, callfuncND_selector(HelloWorld::onChat));
 //    
