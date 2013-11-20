@@ -11,7 +11,7 @@
 #include "CLobbyLayer.h"
 #include "CFormationLayer.h"
 #include "CFormationLayer.h"
-
+#include "CLoginLayer.h"
 
 IMPLEMENT_SINGLETON(CGameSceneManager);
 
@@ -51,6 +51,13 @@ bool CGameSceneManager::go(SCENE_TYPE st)
     Scene* scene = nullptr;
     switch (st)
     {
+        case ST_LOGIN:
+        {
+            CCBReader* pReader = new CCBReader(NodeLoaderLibrary::getInstance());
+            scene = pReader->createSceneWithNodeGraphFromFile("login_layer.ccbi");
+            delete pReader;
+            break;
+        }
         case ST_LOBBY:
         {
             CCBReader* pReader = new CCBReader(NodeLoaderLibrary::getInstance());

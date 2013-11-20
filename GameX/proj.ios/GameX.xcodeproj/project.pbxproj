@@ -29,6 +29,8 @@
 		5411742417E203FE0082E53C /* unit10.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411741817E203FE0082E53C /* unit10.ccbi */; };
 		5411742517E203FE0082E53C /* unit11.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411741917E203FE0082E53C /* unit11.ccbi */; };
 		5411742E17E5B5750082E53C /* CMoveOnGridComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5411742C17E5B5750082E53C /* CMoveOnGridComp.cpp */; };
+		54156FC0183CDE8D007502A2 /* CLoginLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54156FBE183CDE8D007502A2 /* CLoginLayer.cpp */; };
+		54156FC2183CED1A007502A2 /* Login_layer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 54156FC1183CED1A007502A2 /* Login_layer.ccbi */; };
 		54467E0E1817F2680028B700 /* effect0.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 54467E0D1817F2680028B700 /* effect0.ccbi */; };
 		54467E121817F4040028B700 /* CGameEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54467E101817F4040028B700 /* CGameEffect.cpp */; };
 		544F90A918064AFC0049139F /* CSkillComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544F90A718064AFC0049139F /* CSkillComp.cpp */; };
@@ -142,6 +144,9 @@
 		5411741917E203FE0082E53C /* unit11.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit11.ccbi; sourceTree = "<group>"; };
 		5411742C17E5B5750082E53C /* CMoveOnGridComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CMoveOnGridComp.cpp; path = ../../Classes/CMoveOnGridComp.cpp; sourceTree = "<group>"; };
 		5411742D17E5B5750082E53C /* CMoveOnGridComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMoveOnGridComp.h; path = ../../Classes/CMoveOnGridComp.h; sourceTree = "<group>"; };
+		54156FBE183CDE8D007502A2 /* CLoginLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CLoginLayer.cpp; path = ../../Classes/CLoginLayer.cpp; sourceTree = "<group>"; };
+		54156FBF183CDE8D007502A2 /* CLoginLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginLayer.h; path = ../../Classes/CLoginLayer.h; sourceTree = "<group>"; };
+		54156FC1183CED1A007502A2 /* Login_layer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = Login_layer.ccbi; sourceTree = "<group>"; };
 		5435A2621816CA85009B4D81 /* ICCBAnimationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ICCBAnimationDelegate.h; path = ../../Classes/ICCBAnimationDelegate.h; sourceTree = "<group>"; };
 		54467E0D1817F2680028B700 /* effect0.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = effect0.ccbi; sourceTree = "<group>"; };
 		54467E101817F4040028B700 /* CGameEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CGameEffect.cpp; path = ../../Classes/CGameEffect.cpp; sourceTree = "<group>"; };
@@ -332,6 +337,7 @@
 		5407D0CA17DC99570071A620 /* ccbi */ = {
 			isa = PBXGroup;
 			children = (
+				54156FC1183CED1A007502A2 /* Login_layer.ccbi */,
 				54467E0D1817F2680028B700 /* effect0.ccbi */,
 				5411740E17E203FE0082E53C /* unit0.ccbi */,
 				5411740F17E203FE0082E53C /* unit1.ccbi */,
@@ -611,6 +617,8 @@
 				54DFBE1B17DB747800B006F3 /* CBaseLayer.h */,
 				5497E89F1800492100544B86 /* CBkgLayerBase.cpp */,
 				5497E8A01800492100544B86 /* CBkgLayerBase.h */,
+				54156FBE183CDE8D007502A2 /* CLoginLayer.cpp */,
+				54156FBF183CDE8D007502A2 /* CLoginLayer.h */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -753,6 +761,7 @@
 				5411742417E203FE0082E53C /* unit10.ccbi in Resources */,
 				5411742517E203FE0082E53C /* unit11.ccbi in Resources */,
 				54467E0E1817F2680028B700 /* effect0.ccbi in Resources */,
+				54156FC2183CED1A007502A2 /* Login_layer.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,6 +849,7 @@
 				5482A56B181CEDC900D1B668 /* CSkillMeleeAttack.cpp in Sources */,
 				5482A56E181CEF5800D1B668 /* CEffectManager.cpp in Sources */,
 				540B1EF31835C4F5001D6B74 /* CCPomelo.cpp in Sources */,
+				54156FC0183CDE8D007502A2 /* CLoginLayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

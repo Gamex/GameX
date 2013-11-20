@@ -67,7 +67,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         
         TP_INIT();
         
-        SCENE_MANAGER->go(ST_LOBBY);
+        SCENE_MANAGER->go(ST_LOGIN);
         
         return true;
     } while (false);

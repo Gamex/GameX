@@ -15,6 +15,7 @@
 
 enum SCENE_TYPE
 {
+    ST_LOGIN,
     ST_LOBBY,
     ST_FORMATION,
     ST_BATTLE_FIELD,
