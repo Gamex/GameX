@@ -42,8 +42,8 @@ void CFightingRelationship::add(IFightingRelation* villain, IFightingRelation* v
 //    IFightingRelation::_FIGHTING_RELATION_TYPE villainType = villain->getRelationType();
 //    IFightingRelation::_FIGHTING_RELATION_TYPE victimType = victim->getRelationType();
 //    
-//    MRVR_IT villain_it = m_villains.find(villain);
-//    MRVR_IT victim_it = m_victims.find(victim);
+//    auto villain_it = m_villains.find(villain);
+//    auto victim_it = m_victims.find(victim);
     
 //    switch (villainType)
 //    {
@@ -117,11 +117,11 @@ void CFightingRelationship::removeAllRelation(IFightingRelation* role)
 
 void CFightingRelationship::removeAllVictims(IFightingRelation* role)
 {
-    MRVR_IT it = m_victims.find(role);
+    auto it = m_victims.find(role);
     if (it != m_victims.end())
     {
         VR& vr = (*it).second;
-        VR_IT vr_it = vr.begin();
+        auto vr_it = vr.begin();
         for (; vr_it != vr.end(); ++vr_it)
         {
             removeObjFrom(m_villains, *vr_it, role);
@@ -134,11 +134,11 @@ void CFightingRelationship::removeAllVictims(IFightingRelation* role)
 
 void CFightingRelationship::removeAllVillains(IFightingRelation* role)
 {
-    MRVR_IT it = m_villains.find(role);
+    auto it = m_villains.find(role);
     if (it != m_villains.end())
     {
         VR& vr = (*it).second;
-        VR_IT vr_it = vr.begin();
+        auto vr_it = vr.begin();
         for (; vr_it != vr.end(); ++vr_it)
         {
             removeObjFrom(m_victims, *vr_it, role);
@@ -152,13 +152,13 @@ void CFightingRelationship::removeAllVillains(IFightingRelation* role)
 IFightingRelation* CFightingRelationship::getFirstVillain(IFightingRelation* role)
 {
     IFightingRelation* ret = nullptr;
-    MRVR_IT it = m_victims.find(role);
+    auto it = m_victims.find(role);
     if (it != m_victims.end())
     {
         VR& vr = (*it).second;
         if (vr.size() > 0)
         {
-            VR_IT vr_it = vr.begin();
+            auto vr_it = vr.begin();
             ret = *vr_it;
             ret->m_fightingRelationIterator = vr_it;
         }
@@ -172,13 +172,13 @@ IFightingRelation* CFightingRelationship::getFirstVillain(IFightingRelation* rol
 IFightingRelation* CFightingRelationship::getNextVillain(IFightingRelation* role, IFightingRelation* preVictim)
 {
     IFightingRelation* ret = nullptr;
-    MRVR_IT it = m_victims.find(role);
+    auto it = m_victims.find(role);
     if (it != m_victims.end())
     {
         VR& vr = (*it).second;
         if (vr.size() > 0)
         {
-            VR_IT vr_it = preVictim->m_fightingRelationIterator;
+            auto vr_it = preVictim->m_fightingRelationIterator;
             vr_it++;
             if (vr_it != vr.end())
             {
@@ -196,13 +196,13 @@ IFightingRelation* CFightingRelationship::getNextVillain(IFightingRelation* role
 IFightingRelation* CFightingRelationship::getFirstVictim(IFightingRelation* role)
 {
     IFightingRelation* ret = nullptr;
-    MRVR_IT it = m_villains.find(role);
+    auto it = m_villains.find(role);
     if (it != m_villains.end())
     {
         VR& vr = (*it).second;
         if (vr.size() > 0)
         {
-            VR_IT vr_it = vr.begin();
+            auto vr_it = vr.begin();
             ret = *vr_it;
             ret->m_fightingRelationIterator = vr_it;
         }
@@ -216,13 +216,13 @@ IFightingRelation* CFightingRelationship::getFirstVictim(IFightingRelation* role
 IFightingRelation* CFightingRelationship::getNextVictim(IFightingRelation* role, IFightingRelation* preVillain)
 {
     IFightingRelation* ret = nullptr;
-    MRVR_IT it = m_villains.find(role);
+    auto it = m_villains.find(role);
     if (it != m_villains.end())
     {
         VR& vr = (*it).second;
         if (vr.size() > 0)
         {
-            VR_IT vr_it = preVillain->m_fightingRelationIterator;
+            auto vr_it = preVillain->m_fightingRelationIterator;
             vr_it++;
             if (vr_it != vr.end())
             {
@@ -239,11 +239,11 @@ IFightingRelation* CFightingRelationship::getNextVictim(IFightingRelation* role,
 
 void CFightingRelationship::removeObjFrom(MRVR& mrvr, IFightingRelation* key, IFightingRelation* toBeDel)
 {
-    MRVR_IT it = mrvr.find(key);
+    auto it = mrvr.find(key);
     if (it != mrvr.end())
     {
         VR& vr = (*it).second;
-        VR_IT vr_it = find(vr.begin(), vr.end(), toBeDel);
+        auto vr_it = find(vr.begin(), vr.end(), toBeDel);
         if (vr_it != vr.end())
         {
             vr.erase(vr_it);

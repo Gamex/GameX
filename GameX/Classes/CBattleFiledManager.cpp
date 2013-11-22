@@ -88,7 +88,7 @@ void CBattleFiledManager::wakeUpAllDefender()
     if (!m_defenderInBattle)
     {
         SR& df = m_roleByGroups[ROLE_GROUP_DEFENCE];
-        SR_IT it = df.begin();
+        auto it = df.begin();
         for (; it != df.end(); ++it)
         {
             (*it)->enterBattleState();

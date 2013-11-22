@@ -165,13 +165,16 @@ void CBattleFieldLayer::touchesEnded(const std::vector<Touch*>& touches, Event* 
             {
                 bkg->clearAllHightlightGrids();
                 CLogicGrid* grid = bkg->getLogicGrid(gp);
-                m_curSelRole = dynamic_cast<CRole*>(grid->getUnit());
-                if (m_curSelRole)
+                if (grid)
                 {
-                    bkg->hightlightGrid(grid->getGridPos());
-//                    m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
-                    MARK_ROLE(m_curSelRole);
-                    bkg->hightlightGrid(m_curSelRole->getMovetarget());
+                    m_curSelRole = dynamic_cast<CRole*>(grid->getUnit());
+                    if (m_curSelRole)
+                    {
+                        bkg->hightlightGrid(grid->getGridPos());
+//                        m_curSelRole->playAnimation(ROLE_ANIMATION_IDLE);
+                        MARK_ROLE(m_curSelRole);
+                        bkg->hightlightGrid(m_curSelRole->getMovetarget());
+                    }
                 }
             }
             else    // move it
@@ -234,7 +237,7 @@ bool CBattleFieldLayer::loadFormation()
 
     CFormation* fmt = FORMATION_MANAGER->getFormation();
     fmt->loadFromFile("f.fmt");
-    VFE_IT it = fmt->m_elements.begin();
+    auto it = fmt->m_elements.begin();
     for (; it != fmt->m_elements.end(); ++it)
     {
         CFormationElement* fe = (*it);
@@ -254,7 +257,7 @@ bool CBattleFieldLayer::loadFormation()
 
     CFormation* fmt1 = FORMATION_MANAGER->getFormation1();
     fmt1->loadFromFile("f1.fmt");
-    VFE_IT it1 = fmt1->m_elements.begin();
+    auto it1 = fmt1->m_elements.begin();
     for (; it1 != fmt1->m_elements.end(); ++it1)
     {
         CFormationElement* fe = (*it1);

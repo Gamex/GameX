@@ -54,7 +54,7 @@ bool TFCollisionProtocol::isNeedCheckCollision()
 void TFCollisionProtocol::checkCollision(TFCollisionProtocol* rb)
 {
     GBCollisionType type = rb->getCollisionType();
-    MICH_IT it = m_handlers.find(type);
+    auto it = m_handlers.find(type);
     if (it != m_handlers.end())
     {
         CObjectBase* _this = dynamic_cast<CObjectBase*>(this);

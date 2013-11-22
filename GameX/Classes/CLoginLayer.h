@@ -35,11 +35,16 @@ public:
     
     virtual void onNodeLoaded(Node * pNode, NodeLoader * pNodeLoader);
 protected:
-    Layer* m_editUserNameLayer;
-    Layer* m_editPasswordLayer;
+    Layer* m_editUserNameLayer = nullptr;
+    Layer* m_editPasswordLayer = nullptr;
+    
+    EditBox* m_userName = nullptr;
+    EditBox* m_password = nullptr;
+
     
     virtual void onLogin(Object* sender, Control::EventType event);
     virtual void onCancel(Object* sender, Control::EventType event);
+
 };
 
 

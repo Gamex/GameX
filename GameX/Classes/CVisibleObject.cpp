@@ -523,7 +523,7 @@ void CVisibleObject::enableAlphaTest(float value)
 
 bool CVisibleObject::addSlot(CVisibleObject* vo, int tag)
 {
-    MISVO_IT it = m_slots.find(tag);
+    auto it = m_slots.find(tag);
     if (it == m_slots.end())
     {
         vo->setTag(tag);
@@ -540,7 +540,7 @@ bool CVisibleObject::addSlot(CVisibleObject* vo, int tag)
 
 void CVisibleObject::removeSlot(CVisibleObject* vo)
 {
-    MISVO_IT it = m_slots.find(vo->getTag());
+    auto it = m_slots.find(vo->getTag());
     if (it != m_slots.end())
     {
         m_slots.erase(it);
@@ -551,7 +551,7 @@ void CVisibleObject::removeSlot(CVisibleObject* vo)
 
 void CVisibleObject::removeSlotByTag(int tag)
 {
-    MISVO_IT it = m_slots.find(tag);
+    auto it = m_slots.find(tag);
     if (it != m_slots.end())
     {
         m_slots.erase(it);
@@ -563,7 +563,7 @@ void CVisibleObject::removeSlotByTag(int tag)
 void CVisibleObject::updateSlots(float dt)
 {
     Point pt = getSpritePosition();
-    MISVO_IT it = m_slots.begin();
+    auto it = m_slots.begin();
     for (; it != m_slots.end(); ++it)
     {
         CVisibleObject* vo = (*it).second;

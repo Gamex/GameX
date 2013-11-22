@@ -35,7 +35,7 @@ class CCPomelo
 public:
     int connect(const char* addr, int port);
     
-    void asyncConnect(const char* addr, int port, std::function<void(Node*, void*)> f);
+    int asyncConnect(const char* addr, int port, std::function<void(Node*, void*)> f);
 
     void stop();
 

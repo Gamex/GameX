@@ -74,7 +74,7 @@ bool CTimeProfile::log(const char* s, int identifier)
 {
     do
     {
-        MIT_IT it = m_beginLogTimes.find(identifier);
+        auto it = m_beginLogTimes.find(identifier);
         BREAK_IF(it == m_lastLogTimes.end());
         timeval& t = (*it).second;
         

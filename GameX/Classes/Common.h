@@ -154,91 +154,31 @@ using namespace std;
 typedef std::vector<unsigned int> VUI;
 typedef std::vector<unsigned int>::iterator VUI_IT;
 typedef std::vector<unsigned int>::const_iterator VUI_CIT;
-
 typedef std::vector<std::string> VS;
-typedef std::vector<std::string>::iterator VS_IT;
-typedef std::vector<std::string>::const_iterator VS_CIT;
-
 typedef std::set<std::string> SS;
-typedef std::set<std::string>::iterator SS_IT;
-typedef std::set<std::string>::const_iterator SS_CIT;
-
 typedef std::set<class CRole*> SR;
-typedef std::set<class CRole*>::iterator SR_IT;
-typedef std::set<class CRole*>::const_iterator SR_CIT;
-
 typedef std::queue<class CRole*> QR;
-
 typedef std::map<std::string, SpriteBatchNode*> MSSBN;              // batch node name -> batch node object
-typedef std::map<std::string, SpriteBatchNode*>::iterator MSSBN_IT;
-typedef std::map<std::string, SpriteBatchNode*>::const_iterator MSSBN_CIT;
-
 typedef std::vector<class IFightingRelation*> VR;
 typedef std::vector<class IFightingRelation*>::iterator VR_IT;
 typedef std::vector<class IFightingRelation*>::const_iterator VR_CIT;
-
 typedef std::map<class IFightingRelation*, VR> MRVR;
-typedef std::map<class IFightingRelation*, VR>::iterator MRVR_IT;
-typedef std::map<class IFightingRelation*, VR>::const_iterator MRVR_CIT;
-
-
 typedef std::vector<class CFormationElement*> VFE;
 typedef std::vector<class CFormationElement*>::iterator VFE_IT;
 typedef std::vector<class CFormationElement*>::const_iterator VFE_CIT;
-
-
 typedef std::map<int, SS> VSS;
-typedef std::map<int, SS>::iterator VSS_IT;
-typedef std::map<int, SS>::const_iterator VSS_CIT;
-
-
 typedef std::queue<class _FinderTask*> QFT;
-
 typedef std::set<class TFCollisionProtocol*> LRB;
-typedef std::set<class TFCollisionProtocol*>::iterator LRB_IT;
-typedef std::set<class TFCollisionProtocol*>::const_iterator LRB_CIT;
-
 typedef std::vector<LRB> MILRB;
-typedef std::vector<LRB>::iterator MILRB_IT;
-typedef std::vector<LRB>::const_iterator MILRB_CIT;
-
-
 typedef std::map<GBCollisionType, COLLISION_HANDLER> MICH;
-typedef std::map<GBCollisionType, COLLISION_HANDLER>::iterator MICH_IT;
-typedef std::map<GBCollisionType, COLLISION_HANDLER>::const_iterator MICH_CIT;
-
-
 typedef std::map<class CRole*, float> MRF;
-typedef std::map<class CRole*, float>::iterator MRF_IT;
-typedef std::map<class CRole*, float>::const_iterator MRF_CIT;
-
-
 typedef std::map<int, string> MIS;
-typedef std::map<int, string>::iterator MIS_IT;
-typedef std::map<int, string>::const_iterator MIS_CIT;
-
-
 typedef std::map<int, timeval> MIT;
-typedef std::map<int, timeval>::iterator MIT_IT;
-typedef std::map<int, timeval>::const_iterator MIT_CIT;
-
-
 typedef std::set<class ICCBAnimationDelegate*> SAD;
-typedef std::set<class ICCBAnimationDelegate*>::iterator SAD_IT;
-typedef std::set<class ICCBAnimationDelegate*>::const_iterator SAD_CIT;
-
-
 typedef std::set<class CObjectBase*> SOB;
-typedef std::set<class CObjectBase*>::iterator SOB_IT;
-typedef std::set<class CObjectBase*>::const_iterator SOB_CIT;
-
 typedef std::vector<class CNodeContainer*> VNC;
-typedef std::vector<class CNodeContainer*>::iterator VNC_IT;
-typedef std::vector<class CNodeContainer*>::const_iterator VNC_CIT;
-
 typedef std::map<int, class CVisibleObject*> MISVO;
-typedef std::map<int, class CVisibleObject*>::iterator MISVO_IT;
-typedef std::map<int, class CVisibleObject*>::const_iterator MISVO_CIT;
+
 
 #pragma mark --debug
 

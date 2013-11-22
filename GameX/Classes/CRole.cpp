@@ -58,6 +58,8 @@ bool CRole::init(const string& unitId, bool editorMode)
 {
     do
     {
+        m_isEditMode = editorMode;
+        
         BREAK_IF(!CSpriteObject::init());
         
         m_faceToPrefix.resize(FACE_TO_MAX);
@@ -117,6 +119,8 @@ bool CRole::init()
 
 void CRole::addComponentsForStates()
 {
+    if (m_isEditMode) return;
+    
     CMoveOnGridComp* moveComp = CMoveOnGridComp::create();
     addComponentForState(ROLE_STATE_MOVE, moveComp);
     

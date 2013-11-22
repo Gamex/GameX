@@ -29,7 +29,7 @@ CEffectManager::~CEffectManager()
 
 void CEffectManager::clear()
 {
-    VNC_IT it = m_caches.begin();
+    auto it = m_caches.begin();
     for (; it != m_caches.end(); ++it)
     {
         delete *it;
@@ -80,12 +80,12 @@ bool CEffectManager::init(CBackgroundManager* bm)
 
 void CEffectManager::update(float dt)
 {
-    VNC_IT it = m_caches.begin();
+    auto it = m_caches.begin();
     for (; it != m_caches.end(); ++it)
     {
         SOB toDel;
         const SOB& sob = (*it)->getInUseArray();
-        SOB_IT sob_it = sob.begin();
+        auto sob_it = sob.begin();
         for (; sob_it != sob.end(); ++sob_it)
         {
             CGameEffect* gf = (CGameEffect*)(*sob_it);

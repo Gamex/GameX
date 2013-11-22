@@ -32,7 +32,7 @@ CObjectBase* CNodeContainer::checkoutElement()
         return nullptr;
     }
     
-    SOB_IT it = m_containerUnUseArray.begin();
+    auto it = m_containerUnUseArray.begin();
     CObjectBase* pObj = (CObjectBase*)*it;
     
     
@@ -48,7 +48,7 @@ void CNodeContainer::checkinElement(CObjectBase* elem)
 {
     CC_ASSERT(nullptr != elem);
     
-    SOB_IT it = m_containerInUseArray.find(elem);
+    auto it = m_containerInUseArray.find(elem);
     if (it == m_containerInUseArray.end())
     {
         return;
@@ -64,7 +64,7 @@ void CNodeContainer::checkinElement(CObjectBase* elem)
 
 void CNodeContainer::clear()
 {
-    SOB_IT it = m_containerInUseArray.begin();
+    auto it = m_containerInUseArray.begin();
     for (; it != m_containerInUseArray.end(); ++it)
     {
         CObjectBase* pTFObj = (CObjectBase*)*it;

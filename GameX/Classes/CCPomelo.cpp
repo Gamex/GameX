@@ -307,7 +307,7 @@ int CCPomelo::connect(const char* addr,int port)
 
 
 
-void CCPomelo::asyncConnect(const char* addr, int port, std::function<void(Node*, void*)> f)
+int CCPomelo::asyncConnect(const char* addr, int port, std::function<void(Node*, void*)> f)
 {
     struct sockaddr_in address;
     memset(&address, 0, sizeof(struct sockaddr_in));
@@ -333,15 +333,21 @@ void CCPomelo::asyncConnect(const char* addr, int port, std::function<void(Node*
         log("pc_client_connect2 error:%d", errno);
         pc_client_destroy(client);
     }
-    if (!connect_content)
+    else
     {
-        connect_status = 0;
-        connect_content = new CCPomeloConnect_;
-        connect_content->func = f;
-    }else
-    {
-        log("can not call again before the first connect callback");
+        if (!connect_content)
+        {
+            connect_status = 0;
+            connect_content = new CCPomeloConnect_;
+            connect_content->func = f;
+        }
+        else
+        {
+            log("can not call again before the first connect callback");
+        }
     }
+    
+    return ret;
 }
 
 

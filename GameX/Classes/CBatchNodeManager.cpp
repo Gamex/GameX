@@ -113,7 +113,7 @@ void CBatchNodeManager::attachToParent(Node* parent, int z)
 
 Node* CBatchNodeManager::getNodeByName(const std::string& name, bool& isBatchNode)
 {
-    MSSBN_IT it = m_pBatchNodes.find(name);
+    auto it = m_pBatchNodes.find(name);
     if (it == m_pBatchNodes.end())
     {
         isBatchNode = false;
@@ -130,7 +130,7 @@ Node* CBatchNodeManager::getNodeByName(const std::string& name, bool& isBatchNod
 
 void CBatchNodeManager::clearAllChildren()
 {
-    MSSBN_IT it = m_pBatchNodes.begin();
+    auto it = m_pBatchNodes.begin();
     for (; it != m_pBatchNodes.end(); ++it)
     {
         (*it).second->retain();

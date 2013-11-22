@@ -113,6 +113,33 @@ ControlButton* CBaseLayer::createImageButton(const char* spriteFrameName, Point 
 }
 
 
+ControlButton* CBaseLayer::createImageButtonWithTitle(const char* title, const char* font, int fontSize,  const char* spriteFrameName, Point position)
+{
+    CCAssert(title && strlen(title) > 0, "Invalid title.");
+    CCAssert(spriteFrameName && strlen(spriteFrameName) > 0, "Invalid sprite frame name.");
+    
+    do
+    {
+        LabelTTF* pLabel = LabelTTF::create(title, font, fontSize);
+        CC_BREAK_IF(nullptr == pLabel);
+        Scale9Sprite* pBackground = Scale9Sprite::createWithSpriteFrameName(spriteFrameName);
+        CC_BREAK_IF(nullptr == pBackground);
+        ControlButton* pButton = ControlButton::create(pLabel, pBackground);
+        CC_BREAK_IF(nullptr == pButton);
+        Size size = pLabel->getContentSize();
+        Size backgroundSize = pBackground->getContentSize();
+        size.width = 2 + size.width > backgroundSize.width ? size.width : backgroundSize.width;
+        size.height = 2 + size.height > backgroundSize.height ? size.height : backgroundSize.height;
+        pButton->setPreferredSize(size);
+        pButton->setPosition(position);
+        
+        return pButton;
+    } while (false);
+    
+    return nullptr;
+}
+
+
 ControlButton* CBaseLayer::createImageButtonWithTitle(const char* title, GameFonts font, const char* spriteFrameName, Point position)
 {
     CCAssert(title && strlen(title) > 0, "Invalid title.");
@@ -304,4 +331,23 @@ void CBaseLayer::menuCloseCallback(Object* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+
+
+EditBox* CBaseLayer::createEdit(const char* spriteFrameName, Size size, Rect rect)
+{
+    SpriteFrame *pFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(spriteFrameName);
+    CC_ASSERT(pFrame);
+    Size sz = pFrame->getRect().size;
+    if (rect.equals(Rect::ZERO))
+    {
+        rect = Rect(1, 1, sz.width-2, sz.height-2);
+    }
+    Scale9Sprite* s9s = Scale9Sprite::createWithSpriteFrameName(spriteFrameName, rect);
+    if (size.equals(Size::ZERO))
+    {
+        size = sz;
+    }
+    return EditBox::create(size, s9s);
 }

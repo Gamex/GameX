@@ -80,13 +80,15 @@ bool CWarriorRole::init(const string& unitId, bool editorMode)
         m_visionRadiusSq = str->floatValue();
 
         // load skills
-        LOAD_SKILL(0);
-//        LOAD_SKILL(1);
-//        LOAD_SKILL(2);
-//        LOAD_SKILL(3);
-//        LOAD_SKILL(4);
-//        LOAD_SKILL(5);
-
+        if (!editorMode)
+        {
+            LOAD_SKILL(0);
+            LOAD_SKILL(1);
+            LOAD_SKILL(2);
+            LOAD_SKILL(3);
+            LOAD_SKILL(4);
+            LOAD_SKILL(5);
+        }
         return true;
     } while (false);
     
@@ -165,7 +167,7 @@ CSkillComp* CWarriorRole::getSkillCompByName(const string& skillName)
 
 void CWarriorRole::onSkillHit(Node* obj)
 {
-    SAD_IT it = m_ccbAnimatonDelegates.begin();
+    auto it = m_ccbAnimatonDelegates.begin();
     for ( ;it != m_ccbAnimatonDelegates.end(); ++it)
     {
         (*it)->onSkillHit(this);
@@ -176,7 +178,7 @@ void CWarriorRole::onSkillHit(Node* obj)
 
 void CWarriorRole::onSkillOver(Node* obj)
 {
-    SAD_IT it = m_ccbAnimatonDelegates.begin();
+    auto it = m_ccbAnimatonDelegates.begin();
     for ( ;it != m_ccbAnimatonDelegates.end(); ++it)
     {
         (*it)->onSkillOver(this);
@@ -187,7 +189,7 @@ void CWarriorRole::onSkillOver(Node* obj)
 
 void CWarriorRole::onDyingOver(Node* obj)
 {
-    SAD_IT it = m_ccbAnimatonDelegates.begin();
+    auto it = m_ccbAnimatonDelegates.begin();
     for ( ;it != m_ccbAnimatonDelegates.end(); ++it)
     {
         (*it)->onDyingOver(this);
@@ -199,7 +201,7 @@ void CWarriorRole::onDyingOver(Node* obj)
 
 void CWarriorRole::addToSkipList(CWarriorRole* role)
 {
-    MRF_IT it = m_skipList.find(role);
+    auto it = m_skipList.find(role);
     if (it == m_skipList.end())
     {
         m_skipList[role] = 5.f;
@@ -215,7 +217,7 @@ void CWarriorRole::addToSkipList(CWarriorRole* role)
 void CWarriorRole::updateSkipList(float dt)
 {
     vector<CRole*> toDel;
-    MRF_IT it = m_skipList.begin();
+    auto it = m_skipList.begin();
     for (; it != m_skipList.end(); ++it)
     {
         (*it).second -= dt;
@@ -245,7 +247,7 @@ void CWarriorRole::thinkOfVisionField()
     {
         changeState(ROLE_STATE_MOVE);
         SR& roles = BF_MANAGER->getRoles(m_roleGroup == ROLE_GROUP_ATTACK ? ROLE_GROUP_DEFENCE : ROLE_GROUP_ATTACK);
-        SR_IT it = roles.begin();
+        auto it = roles.begin();
         for (; it != roles.end(); ++it)
         {
             if (m_skipList.find((*it)) == m_skipList.end())
@@ -268,7 +270,7 @@ void CWarriorRole::thinkOfVisionField()
     if (target && !target->isDying() && !target->isDead())
     {
         distance = getDistanceSqInGrid(target);
-        SS_IT it = m_skillNames.begin();
+        auto it = m_skillNames.begin();
         for (; it != m_skillNames.end(); ++it)
         {
             const string& name = *it;

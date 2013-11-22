@@ -148,10 +148,10 @@ void CObjectBase::onEnterState(int state)
 {
     do
     {
-        VSS_IT it = m_stateComponentTable.find(state);
+        auto it = m_stateComponentTable.find(state);
         BREAK_IF(it == m_stateComponentTable.end());
         SS& ss = (*it).second;
-        SS_IT ss_it = ss.begin();
+        auto ss_it = ss.begin();
         for (; ss_it != ss.end(); ++ss_it)
         {
             Component* comp = getComponent((*ss_it).c_str());
@@ -168,10 +168,10 @@ void CObjectBase::onLeaveState(int state)
 {
     do
     {
-        VSS_IT it = m_stateComponentTable.find(state);
+        auto it = m_stateComponentTable.find(state);
         BREAK_IF(it == m_stateComponentTable.end());
         SS& ss = (*it).second;
-        SS_IT ss_it = ss.begin();
+        auto ss_it = ss.begin();
         for (; ss_it != ss.end(); ++ss_it)
         {
             Component* comp = getComponent((*ss_it).c_str());

@@ -130,9 +130,9 @@ protected:
     virtual void addComponentsForStates();
 
     VS m_faceToPrefix;
-    
-    
     SAD m_ccbAnimatonDelegates;
+    
+    bool m_isEditMode = true;
 private:
 };
 

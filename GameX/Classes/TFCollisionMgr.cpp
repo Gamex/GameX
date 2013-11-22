@@ -71,7 +71,7 @@ bool TFCollisionMgr::registerCollisionObj(TFCollisionProtocol* pRB, int group)
     
     m_ToBeAdded[group].insert(pRB);
     
-    LRB_IT it = m_ToBeDeleted[group].find(pRB);
+    auto it = m_ToBeDeleted[group].find(pRB);
     if (it != m_ToBeDeleted[group].end())
     {
         m_ToBeDeleted[group].erase(it);
@@ -92,7 +92,7 @@ void TFCollisionMgr::unregisterCollisionObj(TFCollisionProtocol* pRB, int group)
     
     m_ToBeDeleted[group].insert(pRB);
     
-    LRB_IT it = m_ToBeAdded[group].find(pRB);
+    auto it = m_ToBeAdded[group].find(pRB);
     if (it != m_ToBeAdded[group].end())
     {
         m_ToBeAdded[group].erase(it);
@@ -135,7 +135,7 @@ void TFCollisionMgr::update()
 
 void TFCollisionMgr::checkCollisionOf2Groups(LRB& group1, LRB& group2)
 {
-    LRB_IT it1 = group1.begin();
+    auto it1 = group1.begin();
     
     for (; it1 != group1.end(); ++it1)
     {
@@ -148,7 +148,7 @@ void TFCollisionMgr::checkCollisionOf2Groups(LRB& group1, LRB& group2)
         
 //        timeval time1, time2;
 //        CCTime::gettimeofdayCocos2d(&time1, nullptr);
-        LRB_IT it2 = group2.begin();
+        auto it2 = group2.begin();
         for (; it2 != group2.end(); ++it2)
         {
             
@@ -204,10 +204,10 @@ void TFCollisionMgr::updateToBeDeleted()
 {
     for (int i = 0; i < m_ToBeDeleted.size(); ++i)
     {
-        LRB_IT it = m_ToBeDeleted[i].begin();
+        auto it = m_ToBeDeleted[i].begin();
         for (; it != m_ToBeDeleted[i].end(); ++it)
         {
-            LRB_IT co_it = m_CollisionObjs[i].find(*it);
+            auto co_it = m_CollisionObjs[i].find(*it);
             if (co_it != m_CollisionObjs[i].end())
             {
                 m_CollisionObjs[i].erase(co_it);

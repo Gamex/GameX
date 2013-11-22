@@ -36,7 +36,7 @@
  * @param \__TYPE__  class type to add create(), such as Layer
  */
 #define CREATE_FUNC(__TYPE__) \
-static __TYPE__* create() \
+    static __TYPE__* create() \
 { \
     __TYPE__ *pRet = new __TYPE__(); \
     if (pRet && pRet->init()) \

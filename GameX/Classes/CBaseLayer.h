@@ -23,9 +23,11 @@ public:
     static Scale9Sprite* createTile(const char* spriteFrameName, Size size = Size::ZERO, Point position = Point::ZERO);
     static ControlButton* createImageButton(const char* spriteFrameName, Point position = Point::ZERO);
     static ControlButton* createImageButtonWithTitle(const char* title, GameFonts font, const char* spriteFrameName, Point position = Point::ZERO);
+    static ControlButton* createImageButtonWithTitle(const char* title, const char* font, int fontSize, const char* spriteFrameName, Point position = Point::ZERO);
     static CCControlToggleButton* createToggleButton(const char* toggleOn, const char* toggleOff, Point position = Point::ZERO);
     static LabelBMFont* createLabelBMFont(const char* title, GameFonts font, TextHAlignment alignment = TextHAlignment::CENTER, Point position = Point::ZERO);
-    
+    static EditBox* createEdit(const char* spriteFrameName, Size size = Size::ZERO, Rect rect = Rect::ZERO);
+
     virtual void onEnter();
     virtual void onExit();
     virtual void onEnterTransitionDidFinish();

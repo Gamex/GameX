@@ -115,6 +115,7 @@
 		54EBA2DF18373256009A67E9 /* libjansson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EBA2DC18373256009A67E9 /* libjansson.a */; };
 		54EBA2E018373256009A67E9 /* libpomelo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EBA2DD18373256009A67E9 /* libpomelo.a */; };
 		54EBA2E118373256009A67E9 /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EBA2DE18373256009A67E9 /* libuv.a */; };
+		54F33A5B183E3B7600F4D8B5 /* CMessageBoxLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54F33A59183E3B7500F4D8B5 /* CMessageBoxLayer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -297,6 +298,8 @@
 		54EBA2DC18373256009A67E9 /* libjansson.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjansson.a; path = ../../libpomelo/lib/libjansson.a; sourceTree = "<group>"; };
 		54EBA2DD18373256009A67E9 /* libpomelo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpomelo.a; path = ../../libpomelo/lib/libpomelo.a; sourceTree = "<group>"; };
 		54EBA2DE18373256009A67E9 /* libuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libuv.a; path = ../../libpomelo/lib/libuv.a; sourceTree = "<group>"; };
+		54F33A59183E3B7500F4D8B5 /* CMessageBoxLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CMessageBoxLayer.cpp; path = ../../Classes/CMessageBoxLayer.cpp; sourceTree = "<group>"; };
+		54F33A5A183E3B7500F4D8B5 /* CMessageBoxLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMessageBoxLayer.h; path = ../../Classes/CMessageBoxLayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -619,6 +622,8 @@
 				5497E8A01800492100544B86 /* CBkgLayerBase.h */,
 				54156FBE183CDE8D007502A2 /* CLoginLayer.cpp */,
 				54156FBF183CDE8D007502A2 /* CLoginLayer.h */,
+				54F33A59183E3B7500F4D8B5 /* CMessageBoxLayer.cpp */,
+				54F33A5A183E3B7500F4D8B5 /* CMessageBoxLayer.h */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -850,6 +855,7 @@
 				5482A56E181CEF5800D1B668 /* CEffectManager.cpp in Sources */,
 				540B1EF31835C4F5001D6B74 /* CCPomelo.cpp in Sources */,
 				54156FC0183CDE8D007502A2 /* CLoginLayer.cpp in Sources */,
+				54F33A5B183E3B7600F4D8B5 /* CMessageBoxLayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
