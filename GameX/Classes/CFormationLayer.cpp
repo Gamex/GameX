@@ -218,8 +218,7 @@ void CFormationLayer::touchesEnded(const std::vector<Touch*>& touches, Event* ev
                 bkgGrd->hightlightGrid(m_curSelGrid, false);
                 m_curSelGrid.x = -1;
                 m_curSelGrid.y = -1;
-                
-                
+
                 CRole* role = dynamic_cast<CRole*>(grid->getUnit());
                 
                 if (role == nullptr)       // this grid is not occupied, so place in it

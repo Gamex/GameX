@@ -206,3 +206,9 @@ void CMessageBoxLayer::adjustBoxSize()
 }
 
 
+
+bool CMessageBoxLayer::onTouchBegan(Touch *touch, Event *event)
+{
+    return true;
+}
+

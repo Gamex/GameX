@@ -30,6 +30,8 @@ public:
     
     virtual bool init();
     
+    virtual bool onTouchBegan(Touch *touch, Event *event) override;
+    
     virtual bool addButton(const char* t, BUTTON_TYPE btnType);
     virtual void setMsg(const char* msg);
     virtual void setTitle(const char* title);
