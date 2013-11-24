@@ -56,6 +56,10 @@ void CMessageBoxLayer::onButtonClicked(Object* sender, Control::EventType type)
             closeModal();
         }
     }
+    else
+    {
+        closeModal();
+    }
 }
 
 

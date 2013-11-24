@@ -45,6 +45,7 @@ protected:
     virtual void onLogin(Object* sender, Control::EventType event);
     virtual void onCancel(Object* sender, Control::EventType event);
 
+    void connectToConnector(const char* ip, int port, const char* token);
 };
 
 

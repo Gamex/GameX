@@ -96,7 +96,7 @@ bool CLoginLayer::init()
 
 void CLoginLayer::onLogin(Object* sender, Control::EventType event)
 {
-    std::string ip = "10.73.9.36";
+    std::string ip = "127.0.0.1";
     int port = 3017;
 
     CMessageBoxLayer* mb = CMessageBoxLayer::create();
@@ -118,14 +118,19 @@ void CLoginLayer::onLogin(Object* sender, Control::EventType event)
                              json_object_set(msg, "userName", json_string(m_userName->getText()));
                              json_object_set(msg, "password", json_string(m_password->getText()));
                              POMELO->request(route, msg, [&, mb](Node* node, void* resp){
+                                 mb->closeModal();
                                  CCPomeloReponse* ccpomeloresp = (CCPomeloReponse*)resp;
                                  CCLOG("entryCB %s",json_dumps(ccpomeloresp->docs, JSON_COMPACT));
                                  
+                                 json_t* code = json_object_get(ccpomeloresp->docs, "code");
+                                 if (200 != json_integer_value(code))
+                                 {
+                                     return;
+                                 }
                                  json_t* host = json_object_get(ccpomeloresp->docs, "host");
-                                 
-                                 CCLOG("host: %s", json_string_value(host));
-                                 
-                                 mb->closeModal();
+                                 json_t* ip = json_object_get(ccpomeloresp->docs, "port");
+                                 json_t* token = json_object_get(ccpomeloresp->docs, "token");
+                                 connectToConnector(json_string_value(host), json_integer_value(ip), json_string_value(token));
                              });
                          }))
     {
@@ -142,3 +147,39 @@ void CLoginLayer::onCancel(Object* sender, Control::EventType event)
 
 
 
+void CLoginLayer::connectToConnector(const char* ip, int port, const char* token)
+{
+    CCLOG("TOKEN: %s", token);
+    CMessageBoxLayer* mb = CMessageBoxLayer::create();
+    mb->setMsg("Entering game ...");
+    mb->doModal();
+    
+    if (0 != POMELO->asyncConnect(ip, port, [&, mb](Node* node, void* resp)
+                                  {
+                                      CCPomeloReponse* pr = (CCPomeloReponse*)resp;
+                                      if (pr->status != 0)
+                                      {
+                                          CCLOG("gate not connected!");
+                                          mb->closeModal();
+                                          return;
+                                      }
+                                      CCLOG("gate connect ok");
+//                                      const char *route = "gate.gateHandler.queryEntry";
+//                                      json_t *msg = json_object();
+//                                      json_object_set(msg, "userName", json_string(m_userName->getText()));
+//                                      json_object_set(msg, "password", json_string(m_password->getText()));
+//                                      POMELO->request(route, msg, [&, mb](Node* node, void* resp){
+//                                          mb->closeModal();
+//                                          CCPomeloReponse* ccpomeloresp = (CCPomeloReponse*)resp;
+//                                          CCLOG("entryCB %s",json_dumps(ccpomeloresp->docs, JSON_COMPACT));
+//                                          
+//                                          json_t* host = json_object_get(ccpomeloresp->docs, "host");
+//                                          json_t* ip = json_object_get(ccpomeloresp->docs, "port");
+//                                          
+//                                          connectGate(json_string_value(host), json_integer_value(ip));
+//                                      });
+                                  }))
+    {
+        mb->closeModal();
+    }
+}
