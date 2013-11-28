@@ -113,7 +113,7 @@ void CLoginLayer::onLogin(Object* sender, Control::EventType event)
                                  return;
                              }
                              CCLOG("connect ok");
-                             const char *route = "gate.gateHandler.queryEntry";
+                             const char *route = "gate.gateHandler.queryConnectorEntry";
                              json_t *msg = json_object();
                              json_object_set(msg, "userName", json_string(m_userName->getText()));
                              json_object_set(msg, "password", json_string(m_password->getText()));
@@ -129,8 +129,7 @@ void CLoginLayer::onLogin(Object* sender, Control::EventType event)
                                  }
                                  json_t* host = json_object_get(ccpomeloresp->docs, "host");
                                  json_t* ip = json_object_get(ccpomeloresp->docs, "port");
-                                 json_t* token = json_object_get(ccpomeloresp->docs, "token");
-                                 connectToConnector(json_string_value(host), json_integer_value(ip), json_string_value(token));
+                                 connectToConnector(json_string_value(host), json_integer_value(ip));
                              });
                          }))
     {
@@ -147,9 +146,8 @@ void CLoginLayer::onCancel(Object* sender, Control::EventType event)
 
 
 
-void CLoginLayer::connectToConnector(const char* ip, int port, const char* token)
+void CLoginLayer::connectToConnector(const char* ip, int port)
 {
-    CCLOG("TOKEN: %s", token);
     CMessageBoxLayer* mb = CMessageBoxLayer::create();
     mb->setMsg("Entering game ...");
     mb->doModal();
@@ -164,20 +162,25 @@ void CLoginLayer::connectToConnector(const char* ip, int port, const char* token
                                           return;
                                       }
                                       CCLOG("gate connect ok");
-//                                      const char *route = "gate.gateHandler.queryEntry";
-//                                      json_t *msg = json_object();
-//                                      json_object_set(msg, "userName", json_string(m_userName->getText()));
-//                                      json_object_set(msg, "password", json_string(m_password->getText()));
-//                                      POMELO->request(route, msg, [&, mb](Node* node, void* resp){
-//                                          mb->closeModal();
-//                                          CCPomeloReponse* ccpomeloresp = (CCPomeloReponse*)resp;
-//                                          CCLOG("entryCB %s",json_dumps(ccpomeloresp->docs, JSON_COMPACT));
-//                                          
-//                                          json_t* host = json_object_get(ccpomeloresp->docs, "host");
-//                                          json_t* ip = json_object_get(ccpomeloresp->docs, "port");
-//                                          
-//                                          connectGate(json_string_value(host), json_integer_value(ip));
-//                                      });
+                                      const char *route = "connector.entryHandler.entry";;
+                                      json_t *msg = json_object();
+                                      json_object_set(msg, "userName", json_string(m_userName->getText()));
+                                      json_object_set(msg, "password", json_string(m_password->getText()));
+                                      POMELO->request(route, msg, [&, mb](Node* node, void* resp){
+                                          mb->closeModal();
+                                          CCPomeloReponse* ccpomeloresp = (CCPomeloReponse*)resp;
+                                          CCLOG("entryCB %s",json_dumps(ccpomeloresp->docs, JSON_COMPACT));
+                                          
+                                          json_t* code = json_object_get(ccpomeloresp->docs, "code");
+                                          if (json_integer_value(code) != 200)
+                                          {
+                                              CCLOG("connect to connector failed");
+                                          }
+                                          else
+                                          {
+                                              CCLOG("connect to connector ok");
+                                          }
+                                      });
                                   }))
     {
         mb->closeModal();
