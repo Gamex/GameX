@@ -162,7 +162,7 @@ void CLoginLayer::connectToConnector(const char* ip, int port)
                                           return;
                                       }
                                       CCLOG("gate connect ok");
-                                      const char *route = "connector.entryHandler.entry";;
+                                      const char *route = "connector.entryHandler.login";;
                                       json_t *msg = json_object();
                                       json_object_set(msg, "userName", json_string(m_userName->getText()));
                                       json_object_set(msg, "password", json_string(m_password->getText()));
