@@ -32,7 +32,7 @@ void CSkillMeleeAttack::onSkillHit(Node* obj)
         return;
     }
     
-    float damage = m_ownerRole->getATK() - m_skillTarget->getDEF();
+    float damage = m_ownerRole->getATK();// - m_skillTarget->getDEF();
     if (damage < 1.f)
     {
         damage = 1.f;

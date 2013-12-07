@@ -32,7 +32,7 @@ void CSkillMarineGunAttack::onSkillHit(Node* obj)
     
     CGameEffect* effect = EFFECT_MANAGER->createEffect(0, m_skillTarget);
     
-    float damage = m_ownerRole->getATK() - m_skillTarget->getDEF();
+    float damage = m_ownerRole->getATK();// - m_skillTarget->getDEF();
     if (damage < 1.f)
     {
         damage = 1.f;

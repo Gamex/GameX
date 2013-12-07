@@ -49,22 +49,19 @@ bool CEffectManager::init(CBackgroundManager* bm)
         
         clear();
         
-        int eftCount = DTEFFECT->getArrayCount();
+        m_allEffects = DTEFFECT->getAllKeys();
+        int eftCount = m_allEffects.size();
         CC_ASSERT(eftCount > 0);
         m_caches.reserve(eftCount);
         
         for (int i = 0; i < eftCount; ++i)
         {
-            String* s = DTEFFECT->get_cacheNum_Value(i);
-            CC_ASSERT(s);
-            int cacheNum = s->intValue();
-            
-            s = DTEFFECT->get_className_Value(i);
-            CC_ASSERT(s);
-            
-            
+            auto effectData = DTEFFECT->getData(m_allEffects[i]);
+            CC_ASSERT(nullptr != effectData);
+            int cacheNum = effectData->cacheNum;
+
             CNodeContainer* nc = new CNodeContainer;
-            bool res = nc->initCache(s->getCString(), cacheNum, this,
+            bool res = nc->initCache(effectData->className, cacheNum, this,
                                          (NODE_CONTAINER_INIT_CALL_BACK)&CEffectManager::onCacheElemInit,
                                          (void*)i);
             CC_ASSERT(res);
@@ -144,14 +141,11 @@ bool CEffectManager::onCacheElemInit(SOB& unUseArrray, CObjectBase* curObj, void
     do
     {
         int idx = (int)pUserData;
-
-        String* s = DTEFFECT->get_resourceID_Value(idx);
+        auto effectData = DTEFFECT->getData(m_allEffects[idx]);
         CGameEffect* gf = (CGameEffect*)curObj;
-        BREAK_IF_FAILED(gf->init(s->getCString()));
-        curObj->die();
-        
-        curObj->setTag(idx);
-        
+        BREAK_IF_FAILED(gf->init(effectData->resourceID));
+        gf->die();
+        gf->setTag(idx);
         gf->attachSpriteTo(m_bkgMgr);
         return true;
     } while (false);

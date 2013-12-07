@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 #include <assert.h>
 #include "CSTLStringHelper.h"
+#import "JSONKit.h"
 
 #define BREAK_IF(__condi__) \
 if (__condi__)\
@@ -78,6 +79,28 @@ bool CCsv2PListSourceCode::openCVS(const char* cvsName)
                     break;
                 case 1:
                 {
+                    vector<string> tmp = STL_STRING_HELPER::split(lines[lineNo], delim);
+                    for (int i = 0; i < tmp.size(); ++i)
+                    {
+                        if (tmp[i].compare("int") == 0)
+                        {
+                            m_types.push_back(DATA_TYPE_INT);
+                        }
+                        else if (tmp[i].compare("float") == 0)
+                        {
+                            m_types.push_back(DATA_TYPE_FLOAT);
+                        }
+                        else
+                        {
+                            m_types.push_back(DATA_TYPE_STRING);
+                        }
+                    }
+                    
+                    m_types.erase(m_types.begin());
+                    break;
+                }
+                case 2:
+                {
                     m_keys = STL_STRING_HELPER::split(lines[lineNo], delim);
                     m_keys.erase(m_keys.begin());       // 第一列用于文本描述，所以删除不用
                     break;
@@ -87,7 +110,20 @@ bool CCsv2PListSourceCode::openCVS(const char* cvsName)
                     VS vs = STL_STRING_HELPER::split(lines[lineNo], delim);
                     vs.erase(vs.begin());               // 第一列用于文本描述，所以删除不用
                     assert(vs.size() == m_keys.size());
-                    m_elems.push_back(vs);
+                    
+                    bool ok = false;
+                    for (int i = 0; i < vs.size(); ++i)
+                    {
+                        if (vs[i].size() > 0)
+                        {
+                            ok = true;
+                            break;
+                        }
+                    }
+                    if (ok)
+                    {
+                        m_elems.push_back(vs);
+                    }
                     break;
                 }
             }
@@ -99,6 +135,163 @@ bool CCsv2PListSourceCode::openCVS(const char* cvsName)
     
     fclose(fp);
     return ret;
+}
+
+
+
+bool CCsv2PListSourceCode::outputJSONforServer(const char* jsonFilename)
+{
+    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    
+    for (int i = 0; i < m_elems.size(); ++i)
+    {
+        NSMutableDictionary* elem = [NSMutableDictionary dictionary];
+        for (int j = 1; j < m_keys.size(); ++j)
+        {
+            string key = m_keys[j];
+            string::size_type pos;
+            pos = key.find("(b)");
+            if (pos == string::npos)
+            {
+                pos = key.find("(s)");
+            }
+            
+            if (pos != string::npos && pos == key.size() - 3)
+            {
+                key = key.substr(0, pos);
+                
+                
+                NSString* skey = [NSString stringWithFormat:@"%s", key.c_str()];
+                NSString* sobj = [NSString stringWithFormat:@"%s", m_elems[i][j].c_str()];
+                id obj;
+                switch (m_types[j]) {
+                    case DATA_TYPE_INT:
+                        obj = [NSNumber numberWithInt:[sobj intValue]];
+                        break;
+                    case DATA_TYPE_FLOAT:
+                        obj = [NSNumber numberWithFloat:[sobj floatValue]];
+                        break;
+                    default:
+                        obj = sobj;
+                        [obj retain];
+                        break;
+                }
+                
+                [elem setObject:obj forKey:skey];
+                [skey release];
+                [obj release];
+                [sobj release];
+            }
+        }
+        
+        if ([elem count] > 0)
+        {
+            NSString* skey = [NSString stringWithFormat:@"%s", m_elems[i][0].c_str()];
+            if ([dict objectForKey:skey] != nil)
+            {
+                return false;
+            }
+            [dict setObject:elem forKey:skey];
+        }
+        
+        [elem release];
+    }
+
+    NSData* jd = [dict JSONDataWithOptions:JKSerializeOptionValidFlags error:nil];
+    [dict release];
+    NSString* fn = [NSString stringWithFormat:@"%s.json", jsonFilename];
+    [jd writeToFile:fn atomically:NO];
+    [fn release];
+    [jd release];
+    return true;
+}
+
+
+
+bool CCsv2PListSourceCode::outputJSONforClient(const char* jsonDataFilename, const char* jsonReaderFilename)
+{
+    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+
+    for (int i = 0; i < m_elems.size(); ++i)
+    {
+        NSMutableDictionary* elem = [NSMutableDictionary dictionary];
+        for (int j = 1; j < m_keys.size(); ++j)
+        {
+            string key = m_keys[j];
+            string::size_type pos;
+            bool ok = false;
+            pos = key.find("(b)");
+            if (pos != string::npos && pos == key.size() - 3)
+            {
+                ok = true;
+                key = key.substr(0, pos);
+            }
+            if (!ok)
+            {
+                pos = key.find("(s)");
+                if (pos == string::npos)
+                {
+                    ok = true;
+                }
+            }
+            
+            if (ok)
+            {
+                if (key.size() > 0 || m_elems[i][j].size() > 0)
+                {
+                    NSString* skey = [NSString stringWithFormat:@"%s", key.c_str()];
+                    NSString* sobj = [NSString stringWithFormat:@"%s", m_elems[i][j].c_str()];
+                    id obj;
+                    switch (m_types[j]) {
+                        case DATA_TYPE_INT:
+                            obj = [NSNumber numberWithInt:[sobj intValue]];
+                            break;
+                       case DATA_TYPE_FLOAT:
+                            obj = [NSNumber numberWithFloat:[sobj floatValue]];
+                            break;
+                        default:
+                            obj = sobj;
+                            [obj retain];
+                            break;
+                    }
+
+                    if (i == 0)
+                    {
+                        addJSONReaderVar(m_types[j], key);
+                    }
+                    
+                    [elem setObject:obj forKey:skey];
+                    [skey release];
+                    [obj release];
+                    [sobj release];
+                }
+            }
+        }
+        
+        if ([elem count] > 0)
+        {
+            NSString* skey = [NSString stringWithFormat:@"%s", m_elems[i][0].c_str()];
+            if ([dict objectForKey:skey] != nil)
+            {
+                return false;
+            }
+            [dict setObject:elem forKey:skey];
+        }
+        
+        [elem release];
+    }
+    
+    NSData* jd = [dict JSONDataWithOptions:JKSerializeOptionValidFlags error:nil];
+    [dict release];
+    NSString* fn = [NSString stringWithFormat:@"%s.json", jsonDataFilename];
+    [jd writeToFile:fn atomically:NO];
+    [fn release];
+    [jd release];
+    
+    string sfn = jsonReaderFilename;
+    sfn += ".h";
+    outputJSONReaderCPP(sfn.c_str());
+    return true;
 }
 
 
@@ -124,197 +317,78 @@ void CCsv2PListSourceCode::printDebug()
 
 
 
-
-bool CCsv2PListSourceCode::outputCCDictionary2CPP(const char* cppFilename)
+void CCsv2PListSourceCode::addJSONReaderVar(DATA_TYPE type, const string& var)
 {
-    
-    NSString* path = [NSString stringWithFormat:@"%s", m_templatePath.c_str()];
-    NSArray* templateFilenames = [NSArray arrayWithObjects:
-                                [NSString stringWithFormat:@"%@%@", path, @"templateDictionaryH.txt"],
-                                [NSString stringWithFormat:@"%@%@", path, @"templateDictionary__BLOCK_1__.txt"],
-                                [NSString stringWithFormat:@"%@%@", path, @"templateDictionary__BLOCK_1_1__.txt"],
-                                [NSString stringWithFormat:@"%@%@", path, @"templateDictionary__BLOCK_2__.txt"],
-                                nil];
-    
+    char s[512];
+    switch (type) {
+        case DATA_TYPE_INT:
+            sprintf(s, "\t\tint %s;\n", var.c_str());
+            m_jsonReaderBlock1 += s;
+            sprintf(s, "\t\t\td->%s = json_integer_value(json_object_get(value, \"%s\"));\n", var.c_str(), var.c_str());
+            m_jsonReaderBlock2 += s;
+            break;
+        case DATA_TYPE_FLOAT:
+            sprintf(s, "\t\tfloat %s;\n", var.c_str());
+            m_jsonReaderBlock1 += s;
+            sprintf(s, "\t\t\t{json_t* o = json_object_get(value, \"%s\"); d->%s = (float)(json_is_real(o) ? json_real_value(o) : json_integer_value(o));}\n", var.c_str(), var.c_str());
+            m_jsonReaderBlock2 += s;
+            break;
+        case DATA_TYPE_STRING:
+            sprintf(s, "\t\tstring %s;\n", var.c_str());
+            m_jsonReaderBlock1 += s;
+            sprintf(s, "\t\t\td->%s = json_string_value(json_object_get(value, \"%s\"));\n", var.c_str(), var.c_str());
+            m_jsonReaderBlock2 += s;
+            break;
+        default:
+            break;
+    }
+}
 
+
+
+bool CCsv2PListSourceCode::outputJSONReaderCPP(const char* cppFilename)
+{    
+    string fn = m_templatePath;
+    fn += "templateJsonReader.txt";
+    
     auto_ptr<char> buf(new char[SOURCE_FILE_BUF_MAX]);
     
     string source;
-    string block1;
-    string block1_1;
-    string block2;
+    FILE* fp = fopen(fn.c_str(), "rb");
+    assert(fp);
+    fseek(fp, 0, SEEK_END);
+    int len = (int)ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+    fread(buf.get(), len, 1, fp);
+    fclose(fp);
+    source = buf.get();
     
-    string* strings[] = {&source, &block1, &block1_1, &block2};
-      
-    for (int i = 0; i < (int)[templateFilenames count]; ++i)
-    {
-        memset(buf.get(), 0, SOURCE_FILE_BUF_MAX);
-        NSString* fn = [templateFilenames objectAtIndex:i];
-        char cfn[260];
-        [fn getCString:cfn maxLength:260 encoding:NSUTF8StringEncoding];
-        FILE* fp = fopen(cfn, "rb");
-        assert(fp);
-        fseek(fp, 0, SEEK_END);
-        int len = (int)ftell(fp);
-        fseek(fp, 0, SEEK_SET);
-        fread(buf.get(), len, 1, fp);
-        fclose(fp);
-        *(strings[i]) = buf.get();
-    }
-    
-    
-    bool ret = false;
     do
     {
-        BREAK_IF(cppFilename == NULL);
         vector<string> v1 = STL_STRING_HELPER::split(cppFilename, ".");
         string& str = v1[v1.size() - 2];
         string className = *(STL_STRING_HELPER::split(str, "/").rbegin());
-        string outputStr(source);
-        string b1, b1_1, b2;
-        int i, j;
         
-        for (j = 0; j < m_elems.size(); ++j)
-        {
-            for (i = 1; i < m_keys.size(); ++i)
-            {
-                if (!m_keys[i].empty())
-                {
-                    sprintf(buf.get(), block1_1.c_str(), m_elems[j][i].c_str(), m_keys[i].c_str());
-                    b1_1 += buf.get();
-                }
-            }
-            sprintf(buf.get(), block1.c_str(), m_elems[j][0].c_str());
-            b1 += buf.get();
-            STL_STRING_HELPER::replace(b1, "#__BLOCK_1_1__", b1_1);
-            
-            b1_1.clear();
-        }
-        
-        for (i = 1; i < m_keys.size(); ++i)
-        {
-            if (!m_keys[i].empty())
-            {
-                string::const_pointer key = m_keys[i].c_str();
-                sprintf(buf.get(), block2.c_str(), key, key, key, key);
-                b2 += buf.get();
-            }
-        }
-        
-        STL_STRING_HELPER::replace(outputStr, "#__CLASS_NAME__", className);
-        STL_STRING_HELPER::replace(outputStr, "#__BLOCK_1__", b1);
-        STL_STRING_HELPER::replace(outputStr, "#__BLOCK_2__", b2);
-        b2.clear();
+        STL_STRING_HELPER::replace(source, "#__CLASS_NAME__", className);
+        STL_STRING_HELPER::replace(source, "#__BLOCK_1__", m_jsonReaderBlock1);
+        STL_STRING_HELPER::replace(source, "#__BLOCK_2__", m_jsonReaderBlock2);
         
         FILE* fp = fopen(cppFilename, "wt");
         if (fp)
         {
-            fputs(outputStr.c_str(), fp);
+            fputs(source.c_str(), fp);
         }
         else
         {
             printf("Can't open file: %s", cppFilename);
             break;
         }
-        ret = true;
-    } while(false);
+        return true;
+    } while (false);
     
-    return ret;
+	return false;
 }
 
 
-bool CCsv2PListSourceCode::outputCCArray2CPP(const char* cppFilename)
-{
-    
-    NSString* path = [NSString stringWithFormat:@"%s", m_templatePath.c_str()];
-    NSArray* templateFilenames = [NSArray arrayWithObjects:
-                                  [NSString stringWithFormat:@"%@%@", path, @"templateArrayH.txt"],
-                                  [NSString stringWithFormat:@"%@%@", path, @"templateArray__BLOCK_1__.txt"],
-                                  [NSString stringWithFormat:@"%@%@", path, @"templateArray__BLOCK_1_1__.txt"],
-                                  [NSString stringWithFormat:@"%@%@", path, @"templateArray__BLOCK_2__.txt"],
-                                  nil];
-    
-    
-    auto_ptr<char> buf(new char[SOURCE_FILE_BUF_MAX]);
-    
-    string source;
-    string block1;
-    string block1_1;
-    string block2;
-    
-    string* strings[] = {&source, &block1, &block1_1, &block2};
-    
-    for (int i = 0; i < (int)[templateFilenames count]; ++i)
-    {
-        memset(buf.get(), 0, SOURCE_FILE_BUF_MAX);
-        NSString* fn = [templateFilenames objectAtIndex:i];
-        char cfn[260];
-        [fn getCString:cfn maxLength:260 encoding:NSUTF8StringEncoding];
-        FILE* fp = fopen(cfn, "rb");
-        assert(fp);
-        fseek(fp, 0, SEEK_END);
-        int len = (int)ftell(fp);
-        fseek(fp, 0, SEEK_SET);
-        fread(buf.get(), len, 1, fp);
-        fclose(fp);
-        *(strings[i]) = buf.get();
-    }
 
-    bool ret = false;
-    do
-    {
-        BREAK_IF(cppFilename == NULL);
-        vector<string> v1 = STL_STRING_HELPER::split(cppFilename, ".");
-        string& str = v1[v1.size() - 2];
-        string className = *(STL_STRING_HELPER::split(str, "/").rbegin());
-        string outputStr(source);
-        string b1, b1_1, b2;
-        int i, j;
-        
-        auto_ptr<char> buf(new char[SOURCE_FILE_BUF_MAX]);
-        
-        for (j = 0; j < m_elems.size(); ++j)
-        {
-            for (i = 0; i < m_keys.size(); ++i)
-            {
-                if (!m_keys[i].empty())
-                {
-                    sprintf(buf.get(), block1_1.c_str(), m_elems[j][i].c_str(), m_keys[i].c_str());
-                    b1_1 += buf.get();
-                }
-            }
-            b1 += block1;
-            STL_STRING_HELPER::replace(b1, "#__BLOCK_1_1__", b1_1);
-            b1_1.clear();
-        }
-        
-        for (i = 1; i < m_keys.size(); ++i)
-        {
-            if (!m_keys[i].empty())
-            {
-                string::const_pointer key = m_keys[i].c_str();
-                sprintf(buf.get(), block2.c_str(), key, key, key, key);
-                b2 += buf.get();
-            }
-        }
-        
-        STL_STRING_HELPER::replace(outputStr, "#__CLASS_NAME__", className);
-        STL_STRING_HELPER::replace(outputStr, "#__BLOCK_1__", b1);
-        STL_STRING_HELPER::replace(outputStr, "#__BLOCK_2__", b2);
-        b2.clear();
-        
-        FILE* fp = fopen(cppFilename, "wt");
-        if (fp)
-        {
-            fputs(outputStr.c_str(), fp);
-        }
-        else
-        {
-            printf("Can't open file: %s", cppFilename);
-            break;
-        }
-        ret = true;
-    } while(false);
-    
-    return ret;
-}
+

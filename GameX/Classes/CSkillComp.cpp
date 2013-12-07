@@ -30,16 +30,12 @@ bool CSkillComp::init(const string& skillName)
     {
         BREAK_IF_FAILED(CWarriorRoleCompBase::init());
         
-        Dictionary* skillDict = DTSKILL->getData(skillName);
-        CC_ASSERT(skillDict);
-        
-        String* str = DTSKILL->get_range_Value(skillDict);
-        CC_ASSERT(str);
-        m_attackRadiusSq = str->floatValue();
+        const DTSkill::_Data* skillData = DTSKILL->getData(skillName);
+        CC_ASSERT(skillData);
 
-        str = DTSKILL->get_cd_Value(skillDict);
-        CC_ASSERT(str);
-        m_CDTotalTime = 1.f;//str->floatValue();
+        m_attackRadiusSq = skillData->range;
+        
+        m_CDTotalTime = skillData->cd;
         m_CDLeftTime = 0.f;
         
         setName(skillName.c_str());

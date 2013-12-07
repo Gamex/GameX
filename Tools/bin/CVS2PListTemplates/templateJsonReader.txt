@@ -1,9 +1,9 @@
-#ifndef __DTEffect__
-#define __DTEffect__
+#ifndef __#__CLASS_NAME____
+#define __#__CLASS_NAME____
 #include "Common.h"
 
 
-class DTEffect
+class #__CLASS_NAME__
 {
 	friend class CDataCenterManager;
 public:
@@ -11,10 +11,7 @@ public:
 	{
 	public:
 		string ID;
-		string className;
-		int cacheNum;
-		string resourceID;
-
+#__BLOCK_1__
 	};
     
     vector<string> getAllKeys()
@@ -31,7 +28,7 @@ public:
 	void loadJSONData()
     {
         FileUtils* fu = FileUtils::getInstance();
-        std::string fullPath = fu->fullPathForFilename("DTEffect.json");
+        std::string fullPath = fu->fullPathForFilename("#__CLASS_NAME__.json");
         unsigned long size;
         const char *pFileContent = (char*)fu->getFileData(fullPath.c_str(), "r", &size);
         size_t flags = 0;
@@ -46,10 +43,7 @@ public:
             d->ID = key;
             CC_ASSERT(m_data.find(d->ID) == m_data.end());
 
-			d->className = json_string_value(json_object_get(value, "className"));
-			d->cacheNum = json_integer_value(json_object_get(value, "cacheNum"));
-			d->resourceID = json_string_value(json_object_get(value, "resourceID"));
-
+#__BLOCK_2__
             
             m_data[d->ID] = d;
         }
@@ -72,4 +66,4 @@ private:
 };
 
 
-#endif	// __DTEffect__
+#endif	// __#__CLASS_NAME____

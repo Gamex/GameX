@@ -69,7 +69,7 @@ class CRole
     CC_SYNTHESIZE(float, m_maxHP, MaxHP);
     CC_SYNTHESIZE(float, m_curHP, CurHP);
     CC_SYNTHESIZE(float, m_ATK, ATK);
-    CC_SYNTHESIZE(float, m_DEF, DEF);
+//    CC_SYNTHESIZE(float, m_DEF, DEF);
     CC_SYNTHESIZE(float, m_AtkSpeed, AtkSpeed);
 #if DEBUG
     CC_SYNTHESIZE(bool, m_mark, Mark);

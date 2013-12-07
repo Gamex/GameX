@@ -35,13 +35,10 @@ void CWarriorRole::setRoleGroup(ROLE_GROUP var)
     }
     else
     {
-        Dictionary* dict = DTUNIT->getData(getUnitId());
-        if (dict)
+        const DTUnit::_Data* unitData = DTUNIT->getData(getUnitId());
+        if (unitData)
         {
-            String* str = DTUNIT->get_radius_Value(dict);
-            CC_ASSERT(str);
-            m_visionRadiusSq = str->floatValue();
-
+            m_visionRadiusSq = unitData->radius;
             m_visionRadiusSq *= m_visionRadiusSq;
         }
     }
@@ -60,12 +57,8 @@ SEL_CallFuncN CWarriorRole::onResolveCCBCCCallFuncSelector(Object * pTarget, con
 
 
 
-#define LOAD_SKILL(__SKILL_IDX__)\
-{\
-String* str = DTUNIT->get_skill##__SKILL_IDX__##_Value(dict);\
-CC_ASSERT(str);\
-addSkillByName(str->getCString(), __SKILL_IDX__);\
-}
+#define LOAD_SKILL(__SKILL_IDX__)   addSkillByName(unitData->skill##__SKILL_IDX__.c_str(), __SKILL_IDX__);
+
 
 bool CWarriorRole::init(const string& unitId, bool editorMode)
 {
@@ -73,11 +66,10 @@ bool CWarriorRole::init(const string& unitId, bool editorMode)
     {
         BREAK_IF(!CRole::init(unitId, editorMode));
         
-        Dictionary* dict = DTUNIT->getData(unitId);
+        const DTUnit::_Data* unitData = DTUNIT->getData(unitId);
+        CC_ASSERT(unitData);
 
-        String* str = DTUNIT->get_radius_Value(dict);
-        CC_ASSERT(str);
-        m_visionRadiusSq = str->floatValue();
+        m_visionRadiusSq = unitData->radius;
 
         // load skills
         if (!editorMode)
@@ -141,9 +133,9 @@ void CWarriorRole::addSkillByName(const string& skillName, int skillIdx)
     do
     {
         CC_ASSERT(m_skillNames.find(skillName) == m_skillNames.end());
-        String* s = DTSKILL->get_className_Value(skillName);
-        BREAK_IF(nullptr == s);
-        CSkillComp* skill = (CSkillComp*)OBJECT_FACTORY->createInstance(s->getCString());
+        const DTSkill::_Data* skillData = DTSKILL->getData(skillName);
+        BREAK_IF(nullptr == skillData);
+        CSkillComp* skill = (CSkillComp*)OBJECT_FACTORY->createInstance(skillData->className);
         BREAK_IF(nullptr == skill);
         BREAK_IF_FAILED(skill->init(skillName));
         

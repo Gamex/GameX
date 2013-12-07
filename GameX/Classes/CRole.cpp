@@ -73,18 +73,18 @@ bool CRole::init(const string& unitId, bool editorMode)
 
         setUnitId(unitId);
         
-        Dictionary* dict = DTUNIT->getData(unitId);
-        setGridWidth(DTUNIT->get_gridWidth_Value(dict)->intValue());
-        setGridHeight(DTUNIT->get_gridHeight_Value(dict)->intValue());
+        const DTUnit::_Data* unitData = DTUNIT->getData(getUnitId());
+        CC_ASSERT(unitData);
+        setGridWidth(unitData->gridWidth);
+        setGridHeight(unitData->gridHeight);
         
-        setSpeed(DTUNIT->get_speed_Value(dict)->floatValue());
-        setMaxHP(DTUNIT->get_hp_Value(dict)->floatValue());
+        setSpeed(unitData->speed);
+        setMaxHP(unitData->hp);
         setCurHP(getMaxHP());
-        setATK(DTUNIT->get_atk_Value(dict)->floatValue());
-        setDEF(DTUNIT->get_def_Value(dict)->floatValue());
-        setAtkSpeed(DTUNIT->get_rate_Value(dict)->floatValue());
+        setATK(unitData->atk);
+        setAtkSpeed(unitData->rate);
         
-        BREAK_IF_FAILED(CSpriteObject::setSpriteFromCcbi(DTUNIT->get_resourceID_Value(dict)->getCString()));
+        BREAK_IF_FAILED(CSpriteObject::setSpriteFromCcbi(unitData->resourceID.c_str()));
         
         if (!editorMode)
         {

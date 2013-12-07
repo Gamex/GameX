@@ -18,13 +18,22 @@ using namespace std;
 class CCsv2PListSourceCode
 {
 public:
+    enum DATA_TYPE
+    {
+        DATA_TYPE_INT,
+        DATA_TYPE_FLOAT,
+        DATA_TYPE_STRING,
+    };
     CCsv2PListSourceCode(const char* tp);
     virtual ~CCsv2PListSourceCode();
     
     bool openCVS(const char* cvsName);
     void printDebug();
-    bool outputCCDictionary2CPP(const char* cppFilename);
-    bool outputCCArray2CPP(const char* cppFilename);
+    bool outputJSONforServer(const char* jsonFilename);
+    bool outputJSONforClient(const char* jsonDataFilename, const char* jsonReaderFilename);
+    
+    void addJSONReaderVar(DATA_TYPE type, const string& var);
+    bool outputJSONReaderCPP(const char* cppFilename);
 protected:
     void clearAll();
     
@@ -36,8 +45,12 @@ protected:
     typedef vector<VS>::iterator VVS_IT;
     typedef vector<VS>::const_iterator VVS_CIT;
     
+    vector<DATA_TYPE> m_types;
     VS m_keys;
     VVS m_elems;
+    
+    string m_jsonReaderBlock1;
+    string m_jsonReaderBlock2;
     
     string m_templatePath;
 };

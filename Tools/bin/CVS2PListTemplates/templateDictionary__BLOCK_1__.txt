@@ -1,7 +1,0 @@
-		{
-			CCDictionary* elem = CCDictionary::create();
-			
-#__BLOCK_1_1__
-			
-			m_pDictionary->setObject(elem, "%s");
-		}

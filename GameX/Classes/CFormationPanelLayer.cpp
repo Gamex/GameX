@@ -53,9 +53,9 @@ bool CFormationPanelLayer::init()
     {
 //        setTouchEnabled(true);
         
-        m_editRoleIds.push_back("1");
-        m_editRoleIds.push_back("2");
-        m_editRoleIds.push_back("3");
+        m_editRoleIds.push_back("1001");
+        m_editRoleIds.push_back("1002");
+        m_editRoleIds.push_back("1003");
 //        m_editRoleIds.push_back("4");
 //        m_editRoleIds.push_back("5");
 //        m_editRoleIds.push_back("6");
@@ -70,9 +70,9 @@ bool CFormationPanelLayer::init()
         CC_SAFE_RETAIN(m_allRoles);
         for (int i = 0; i < m_editRoleIds.size(); ++i)
         {
-            Dictionary* dict = DTUNIT->getData(m_editRoleIds[i]);
-            String* class_name = DTUNIT->get_className_Value(dict);
-            CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_name->getCString()));
+            const DTUnit::_Data* unitData = DTUNIT->getData(m_editRoleIds[i]);
+            CC_ASSERT(unitData);
+            CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(unitData->className));
             CC_ASSERT(role);
             role->init(m_editRoleIds[i], true);
 

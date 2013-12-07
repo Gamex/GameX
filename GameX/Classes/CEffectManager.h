@@ -37,6 +37,8 @@ protected:
     VNC m_caches;
     
     SpriteBatchNode* m_batchNode;
+    
+    vector<string> m_allEffects;
 };
 
 

@@ -82,17 +82,14 @@ void CFormationLayer::onFrameSel(const std::string& unitId)
     CBackgroundManager* bkgGrd = getBkgGrd();
     CC_ASSERT(bkgGrd);
     
-    Dictionary* dict = DTUNIT->getData(unitId);
-    int gridWidth = DTUNIT->get_gridWidth_Value(dict)->intValue();
-    int gridHeight = DTUNIT->get_gridHeight_Value(dict)->intValue();
-    
+    const DTUnit::_Data* unitData = DTUNIT->getData(unitId);
+    CC_ASSERT(unitData);
     Point screenCenter {Director::getInstance()->getWinSize() / 2};
     Point gridPos = bkgGrd->screenPointToGrid(screenCenter);
-    CLogicGrid* grid = bkgGrd->getEmptyGridNearby(gridPos, gridWidth, gridHeight);
+    CLogicGrid* grid = bkgGrd->getEmptyGridNearby(gridPos, unitData->gridWidth, unitData->gridHeight);
     if (grid)
     {
-        String* class_name = DTUNIT->get_className_Value(dict);
-        CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_name->getCString()));
+        CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(unitData->className));
         CC_ASSERT(role);
         role->init(unitId, true);
         bkgGrd->placeRole(role, grid->getGridPos());
@@ -286,9 +283,10 @@ void CFormationLayer::onLoad(CFormation* fmt)
         for (int i = 0; i < sz; ++i)
         {
             CFormationElement* fe = fmt->m_elements[i];
-            Dictionary* dict = DTUNIT->getData(fe->unitId);
-            String* className = DTUNIT->get_className_Value(dict);
-            CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(className->getCString()));
+            
+            const DTUnit::_Data* unitData = DTUNIT->getData(fe->unitId);
+            CC_ASSERT(unitData);
+            CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(unitData->className));
             CC_ASSERT(role);
             role->init(fe->unitId, true);
             bkgGrd->placeRole(role, fe->pos);

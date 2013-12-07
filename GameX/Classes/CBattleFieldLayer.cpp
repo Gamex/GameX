@@ -242,10 +242,9 @@ bool CBattleFieldLayer::loadFormation()
     {
         CFormationElement* fe = (*it);
         
-        Dictionary* dict = DTUNIT->getData(fe->unitId);
-        String* class_Name = DTUNIT->get_className_Value(dict);
-        
-        CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_Name->getCString()));
+        const DTUnit::_Data* unitData = DTUNIT->getData(fe->unitId);
+        CC_ASSERT(unitData);
+        CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(unitData->className));
         CC_ASSERT(role);
         role->init(fe->unitId);
         bkgGrd->placeRole(role, fe->pos);
@@ -262,9 +261,8 @@ bool CBattleFieldLayer::loadFormation()
     {
         CFormationElement* fe = (*it1);
         
-        Dictionary* dict = DTUNIT->getData(fe->unitId);
-        String* class_name = DTUNIT->get_className_Value(dict);
-        CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(class_name->getCString()));
+        const DTUnit::_Data* unitData = DTUNIT->getData(fe->unitId);
+        CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(unitData->className));
         CC_ASSERT(role);
         role->init(fe->unitId);
         bkgGrd->placeRole(role, fe->pos);
