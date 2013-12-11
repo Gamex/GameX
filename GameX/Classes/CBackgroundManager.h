@@ -101,6 +101,8 @@ public:
     virtual CLogicGrid* getLogicGrid(const Point& gridPos);
     virtual CLogicGrid* getGridFromWorldPt(const Point& pt);
     
+    virtual bool changeMap(const char* backgroundTmxName, const char* tileTmxName);
+    
     virtual Point gridToWorldPoint(const Point& gridPos);
     virtual Point worldPointToGrid(const Point& pt);
     virtual Point screenPointToGrid(const Point& pt);
@@ -141,6 +143,8 @@ protected:
 private:
     std::vector<CLogicGrid> m_grids;
     CPathFinderManager* m_pathFinder;
+    
+    string m_backgroundTmxName;
 };
 
 #endif /* defined(__GameX__CBackgroundManager__) */

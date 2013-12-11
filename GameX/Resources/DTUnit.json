@@ -1,5 +1,5 @@
 {
-  "1001": {
+  "10101": {
     "atk": 10,
     "buildingTime": 30,
     "className": "CWarriorUnit0",
@@ -20,9 +20,10 @@
     "skill4": "",
     "skill5": "",
     "speed": 3,
-    "target": 0
+    "target": 0,
+    "type": ""
   },
-  "1002": {
+  "10201": {
     "atk": 8,
     "buildingTime": 30,
     "className": "CWarriorUnit1",
@@ -43,9 +44,10 @@
     "skill4": "",
     "skill5": "",
     "speed": 3,
-    "target": 0
+    "target": 0,
+    "type": ""
   },
-  "1003": {
+  "10301": {
     "atk": 32,
     "buildingTime": 30,
     "className": "CWarriorUnit2",
@@ -66,9 +68,10 @@
     "skill4": "",
     "skill5": "",
     "speed": 2,
-    "target": 0
+    "target": 0,
+    "type": ""
   },
-  "1004": {
+  "10401": {
     "atk": 12,
     "buildingTime": 30,
     "className": "CWarriorUnit3",
@@ -89,12 +92,13 @@
     "skill4": "",
     "skill5": "",
     "speed": 2,
-    "target": 0
+    "target": 0,
+    "type": ""
   },
-  "2001": {
+  "20101": {
     "atk": 0,
     "buildingTime": 60,
-    "className": "CArchHome",
+    "className": "CMainBase",
     "dimension": 1,
     "gasCost": 500,
     "gridHeight": 8,
@@ -112,12 +116,13 @@
     "skill4": "",
     "skill5": "",
     "speed": 0,
-    "target": 0
+    "target": 0,
+    "type": ""
   },
-  "2002": {
+  "20102": {
     "atk": 0,
     "buildingTime": 180,
-    "className": "CArchHome",
+    "className": "CMainBase",
     "dimension": 1,
     "gasCost": 1000,
     "gridHeight": 8,
@@ -135,9 +140,10 @@
     "skill4": "",
     "skill5": "",
     "speed": 0,
-    "target": 0
+    "target": 0,
+    "type": ""
   },
-  "2003": {
+  "20201": {
     "atk": 0,
     "buildingTime": 60,
     "className": "CBarrack",
@@ -158,9 +164,10 @@
     "skill4": "",
     "skill5": "",
     "speed": 0,
-    "target": 0
+    "target": 0,
+    "type": ""
   },
-  "2004": {
+  "20202": {
     "atk": 0,
     "buildingTime": 180,
     "className": "CBarrack",
@@ -181,6 +188,7 @@
     "skill4": "",
     "skill5": "",
     "speed": 0,
-    "target": 0
+    "target": 0,
+    "type": ""
   }
 }

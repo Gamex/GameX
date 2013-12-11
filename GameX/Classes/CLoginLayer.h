@@ -46,6 +46,7 @@ protected:
     virtual void onCancel(Object* sender, Control::EventType event);
 
     void connectToConnector(const char* ip, int port);
+    void getPlayerInfo(void);
 };
 
 

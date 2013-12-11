@@ -24,6 +24,8 @@
 
 
 #define BATCHNODE_LIST          "BatchNodes.plist"
+#define TILE_MAP_NAME           "background.tmx"
+#define BACKGROUND_MAP_NAME       "bkg1.tmx"
 
 #define Z_ORDER_GAME_PANEL          1000
 
@@ -63,7 +65,7 @@ bool CBattleFieldLayer::init()
         
         loadConfig();
 
-        BREAK_IF_FAILED(CBkgLayerBase::initBkgLayerBase(BATCHNODE_LIST));
+        BREAK_IF_FAILED(CBkgLayerBase::initBkgLayerBase(BATCHNODE_LIST, BACKGROUND_MAP_NAME, TILE_MAP_NAME));
         setGamePanelLayer(CGamePanelLayer::create());
         addChild(m_pGamePanelLayer, Z_ORDER_GAME_PANEL);
 

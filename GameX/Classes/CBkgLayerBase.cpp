@@ -38,7 +38,7 @@ CBkgLayerBase::~CBkgLayerBase()
 
 
 
-bool CBkgLayerBase::initBkgLayerBase(const char* batchNodeName)
+bool CBkgLayerBase::initBkgLayerBase(const char* batchNodeName, const char* backgroundTmxName, const char* tileTmxName)
 {
     do
     {
@@ -51,6 +51,7 @@ bool CBkgLayerBase::initBkgLayerBase(const char* batchNodeName)
         
         setBkgGrd(CBackgroundManager::create());
         BREAK_IF_FAILED(m_bkgGrd);
+        m_bkgGrd->changeMap(backgroundTmxName, tileTmxName);
         
         m_bkgGrd->attachBackgroundTo(m_layer);
         m_batchNode->attachToParent(m_bkgGrd, 0);

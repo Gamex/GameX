@@ -18,6 +18,7 @@ enum SCENE_TYPE
     ST_LOGIN,
     ST_LOBBY,
     ST_FORMATION,
+    ST_HOME,
     ST_BATTLE_FIELD,
     ST_SETTINGS,
     ST_NUM,

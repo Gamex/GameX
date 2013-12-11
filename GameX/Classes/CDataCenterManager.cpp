@@ -36,6 +36,10 @@ bool CDataCenterManager::initialize()
         
         m_DTEffect = new DTEffect;
         m_DTEffect->loadJSONData();
+        
+        m_DTRequirement = new DTRequirement;
+        m_DTRequirement->loadJSONData();
+        
         return true;
     } while (false);
     

@@ -24,7 +24,7 @@ public:
 
     virtual void update(float dt);
 protected:
-    virtual bool initBkgLayerBase(const char* batchNodeName);
+    virtual bool initBkgLayerBase(const char* batchNodeName, const char* backgroundTmxName, const char* tileTmxName);
     
     virtual void bkgLayerBaseTouchesBegan(const std::vector<Touch*>& touches, Event* event);
     virtual void bkgLayerBaseTouchesMoved(const std::vector<Touch*>& touches, Event* event);

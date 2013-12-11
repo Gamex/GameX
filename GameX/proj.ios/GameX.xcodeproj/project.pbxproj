@@ -10,6 +10,7 @@
 		5400250D1838A40A009525AD /* libcocos2dx iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5400250A1838A40A009525AD /* libcocos2dx iOS.a */; };
 		5400250E1838A40A009525AD /* libcocos2dx-extensions iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5400250B1838A40A009525AD /* libcocos2dx-extensions iOS.a */; };
 		5400250F1838A40A009525AD /* libCocosDenshion iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5400250C1838A40A009525AD /* libCocosDenshion iOS.a */; };
+		540784791858297C00FC03F7 /* login_layer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 540784781858297C00FC03F7 /* login_layer.ccbi */; };
 		5407D0C917DC994E0071A620 /* lobby_layer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5407D0C817DC994E0071A620 /* lobby_layer.ccbi */; };
 		5407D0CC17DCC5450071A620 /* formation_layer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5407D0CB17DCC5450071A620 /* formation_layer.ccbi */; };
 		5407D0CE17DCCCEE0071A620 /* background_grid.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5407D0CD17DCCCEE0071A620 /* background_grid.ccbi */; };
@@ -30,10 +31,14 @@
 		5411742517E203FE0082E53C /* unit11.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 5411741917E203FE0082E53C /* unit11.ccbi */; };
 		5411742E17E5B5750082E53C /* CMoveOnGridComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5411742C17E5B5750082E53C /* CMoveOnGridComp.cpp */; };
 		54156FC0183CDE8D007502A2 /* CLoginLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54156FBE183CDE8D007502A2 /* CLoginLayer.cpp */; };
-		54156FC2183CED1A007502A2 /* Login_layer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 54156FC1183CED1A007502A2 /* Login_layer.ccbi */; };
 		5434E5401852E9A9002EC3D4 /* DTEffect.json in Resources */ = {isa = PBXBuildFile; fileRef = 5434E53F1852E9A9002EC3D4 /* DTEffect.json */; };
+		5442D94618588E9500B5B94C /* CMainBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5442D94418588E9500B5B94C /* CMainBase.cpp */; };
+		5442D94918588ED900B5B94C /* CBuildingRole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5442D94718588ED900B5B94C /* CBuildingRole.cpp */; };
 		54467E0E1817F2680028B700 /* effect0.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 54467E0D1817F2680028B700 /* effect0.ccbi */; };
 		54467E121817F4040028B700 /* CGameEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54467E101817F4040028B700 /* CGameEffect.cpp */; };
+		544A6F3A1856B805008053F0 /* DTRequirement.json in Resources */ = {isa = PBXBuildFile; fileRef = 544A6F391856B805008053F0 /* DTRequirement.json */; };
+		544A6F3D1856B864008053F0 /* CShopManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544A6F3B1856B864008053F0 /* CShopManager.cpp */; };
+		544A6F401856C271008053F0 /* CPlayerInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544A6F3E1856C271008053F0 /* CPlayerInfo.cpp */; };
 		544F90A918064AFC0049139F /* CSkillComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544F90A718064AFC0049139F /* CSkillComp.cpp */; };
 		544F90AC18064B200049139F /* CWarriorRoleCompBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 544F90AA18064B200049139F /* CWarriorRoleCompBase.cpp */; };
 		5454C4A11850288200214AB2 /* DTUnit.json in Resources */ = {isa = PBXBuildFile; fileRef = 5454C4A01850288200214AB2 /* DTUnit.json */; };
@@ -46,6 +51,9 @@
 		54607B821760D96400108571 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B811760D96400108571 /* Foundation.framework */; };
 		54607B841760D96400108571 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54607B831760D96400108571 /* CoreGraphics.framework */; };
 		546EB2121851D61D0038794A /* DTSkill.json in Resources */ = {isa = PBXBuildFile; fileRef = 546EB2111851D61D0038794A /* DTSkill.json */; };
+		547B7EE01858177F0015D056 /* unit2001.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 547B7EDF1858177F0015D056 /* unit2001.ccbi */; };
+		547B7EE3185817A80015D056 /* home_layer.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 547B7EE1185817A80015D056 /* home_layer.ccbi */; };
+		547B7EE4185817A80015D056 /* unit2002.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 547B7EE2185817A80015D056 /* unit2002.ccbi */; };
 		54801F1C18059E2A00F3F68E /* CWarriorUnit0.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54801F1A18059E2A00F3F68E /* CWarriorUnit0.cpp */; };
 		54801F211805A46800F3F68E /* CWarriorUnit1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54801F1D1805A46800F3F68E /* CWarriorUnit1.cpp */; };
 		54801F221805A46800F3F68E /* CWarriorUnit2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54801F1F1805A46800F3F68E /* CWarriorUnit2.cpp */; };
@@ -68,6 +76,7 @@
 		54D0CD8017DC8EAA0022A1E9 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D0CD7817DC8EAA0022A1E9 /* Icon-Small@2x.png */; };
 		54D0CD8117DC8EAA0022A1E9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D0CD7917DC8EAA0022A1E9 /* Icon.png */; };
 		54D0CD8217DC8EAA0022A1E9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D0CD7A17DC8EAA0022A1E9 /* Icon@2x.png */; };
+		54D7857518543E7F000E3998 /* CHomeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54D7857318543E7F000E3998 /* CHomeLayer.cpp */; };
 		54DFBAA617DB6FBE00B006F3 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBAA217DB6FBE00B006F3 /* AppController.mm */; };
 		54DFBAA717DB6FBE00B006F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBAA317DB6FBE00B006F3 /* main.m */; };
 		54DFBAA817DB6FBE00B006F3 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 54DFBAA517DB6FBE00B006F3 /* RootViewController.mm */; };
@@ -125,6 +134,7 @@
 		5400250A1838A40A009525AD /* libcocos2dx iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2dx iOS.a"; path = "../../cocos2d-x/libs/libcocos2dx iOS.a"; sourceTree = "<group>"; };
 		5400250B1838A40A009525AD /* libcocos2dx-extensions iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2dx-extensions iOS.a"; path = "../../cocos2d-x/libs/libcocos2dx-extensions iOS.a"; sourceTree = "<group>"; };
 		5400250C1838A40A009525AD /* libCocosDenshion iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libCocosDenshion iOS.a"; path = "../../cocos2d-x/libs/libCocosDenshion iOS.a"; sourceTree = "<group>"; };
+		540784781858297C00FC03F7 /* login_layer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = login_layer.ccbi; sourceTree = "<group>"; };
 		5407D0C817DC994E0071A620 /* lobby_layer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = lobby_layer.ccbi; sourceTree = "<group>"; };
 		5407D0CB17DCC5450071A620 /* formation_layer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = formation_layer.ccbi; sourceTree = "<group>"; };
 		5407D0CD17DCCCEE0071A620 /* background_grid.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = background_grid.ccbi; sourceTree = "<group>"; };
@@ -150,13 +160,22 @@
 		5411742D17E5B5750082E53C /* CMoveOnGridComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMoveOnGridComp.h; path = ../../Classes/CMoveOnGridComp.h; sourceTree = "<group>"; };
 		54156FBE183CDE8D007502A2 /* CLoginLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CLoginLayer.cpp; path = ../../Classes/CLoginLayer.cpp; sourceTree = "<group>"; };
 		54156FBF183CDE8D007502A2 /* CLoginLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLoginLayer.h; path = ../../Classes/CLoginLayer.h; sourceTree = "<group>"; };
-		54156FC1183CED1A007502A2 /* Login_layer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = Login_layer.ccbi; sourceTree = "<group>"; };
 		5434E53E1852E950002EC3D4 /* DTEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTEffect.h; path = ../../Classes/DTEffect.h; sourceTree = "<group>"; };
 		5434E53F1852E9A9002EC3D4 /* DTEffect.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = DTEffect.json; path = ../Resources/DTEffect.json; sourceTree = "<group>"; };
 		5435A2621816CA85009B4D81 /* ICCBAnimationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ICCBAnimationDelegate.h; path = ../../Classes/ICCBAnimationDelegate.h; sourceTree = "<group>"; };
+		5442D94418588E9500B5B94C /* CMainBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CMainBase.cpp; path = ../../Classes/CMainBase.cpp; sourceTree = "<group>"; };
+		5442D94518588E9500B5B94C /* CMainBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMainBase.h; path = ../../Classes/CMainBase.h; sourceTree = "<group>"; };
+		5442D94718588ED900B5B94C /* CBuildingRole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBuildingRole.cpp; path = ../../Classes/CBuildingRole.cpp; sourceTree = "<group>"; };
+		5442D94818588ED900B5B94C /* CBuildingRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBuildingRole.h; path = ../../Classes/CBuildingRole.h; sourceTree = "<group>"; };
 		54467E0D1817F2680028B700 /* effect0.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = effect0.ccbi; sourceTree = "<group>"; };
 		54467E101817F4040028B700 /* CGameEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CGameEffect.cpp; path = ../../Classes/CGameEffect.cpp; sourceTree = "<group>"; };
 		54467E111817F4040028B700 /* CGameEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CGameEffect.h; path = ../../Classes/CGameEffect.h; sourceTree = "<group>"; };
+		544A6F381856B7F8008053F0 /* DTRequirement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTRequirement.h; path = ../../Classes/DTRequirement.h; sourceTree = "<group>"; };
+		544A6F391856B805008053F0 /* DTRequirement.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = DTRequirement.json; path = ../Resources/DTRequirement.json; sourceTree = "<group>"; };
+		544A6F3B1856B864008053F0 /* CShopManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CShopManager.cpp; path = ../../Classes/CShopManager.cpp; sourceTree = "<group>"; };
+		544A6F3C1856B864008053F0 /* CShopManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CShopManager.h; path = ../../Classes/CShopManager.h; sourceTree = "<group>"; };
+		544A6F3E1856C271008053F0 /* CPlayerInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CPlayerInfo.cpp; path = ../../Classes/CPlayerInfo.cpp; sourceTree = "<group>"; };
+		544A6F3F1856C271008053F0 /* CPlayerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CPlayerInfo.h; path = ../../Classes/CPlayerInfo.h; sourceTree = "<group>"; };
 		544F90A718064AFC0049139F /* CSkillComp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CSkillComp.cpp; path = ../../Classes/CSkillComp.cpp; sourceTree = "<group>"; };
 		544F90A818064AFC0049139F /* CSkillComp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSkillComp.h; path = ../../Classes/CSkillComp.h; sourceTree = "<group>"; };
 		544F90AA18064B200049139F /* CWarriorRoleCompBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorRoleCompBase.cpp; path = ../../Classes/CWarriorRoleCompBase.cpp; sourceTree = "<group>"; };
@@ -173,6 +192,9 @@
 		54607B831760D96400108571 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		54607E101760D96800108571 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = ../Prefix.pch; sourceTree = "<group>"; };
 		546EB2111851D61D0038794A /* DTSkill.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = DTSkill.json; path = ../Resources/DTSkill.json; sourceTree = "<group>"; };
+		547B7EDF1858177F0015D056 /* unit2001.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit2001.ccbi; sourceTree = "<group>"; };
+		547B7EE1185817A80015D056 /* home_layer.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = home_layer.ccbi; sourceTree = "<group>"; };
+		547B7EE2185817A80015D056 /* unit2002.ccbi */ = {isa = PBXFileReference; lastKnownFileType = file; path = unit2002.ccbi; sourceTree = "<group>"; };
 		54801F1A18059E2A00F3F68E /* CWarriorUnit0.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorUnit0.cpp; path = ../../Classes/CWarriorUnit0.cpp; sourceTree = "<group>"; };
 		54801F1B18059E2A00F3F68E /* CWarriorUnit0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CWarriorUnit0.h; path = ../../Classes/CWarriorUnit0.h; sourceTree = "<group>"; };
 		54801F1D1805A46800F3F68E /* CWarriorUnit1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CWarriorUnit1.cpp; path = ../../Classes/CWarriorUnit1.cpp; sourceTree = "<group>"; };
@@ -204,6 +226,8 @@
 		54D0CD7817DC8EAA0022A1E9 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		54D0CD7917DC8EAA0022A1E9 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		54D0CD7A17DC8EAA0022A1E9 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		54D7857318543E7F000E3998 /* CHomeLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CHomeLayer.cpp; path = ../../Classes/CHomeLayer.cpp; sourceTree = "<group>"; };
+		54D7857418543E7F000E3998 /* CHomeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHomeLayer.h; path = ../../Classes/CHomeLayer.h; sourceTree = "<group>"; };
 		54DFBAA117DB6FBE00B006F3 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = Classes/AppController.h; sourceTree = SOURCE_ROOT; };
 		54DFBAA217DB6FBE00B006F3 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppController.mm; path = Classes/AppController.mm; sourceTree = SOURCE_ROOT; };
 		54DFBAA317DB6FBE00B006F3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Classes/main.m; sourceTree = SOURCE_ROOT; };
@@ -344,7 +368,10 @@
 		5407D0CA17DC99570071A620 /* ccbi */ = {
 			isa = PBXGroup;
 			children = (
-				54156FC1183CED1A007502A2 /* Login_layer.ccbi */,
+				540784781858297C00FC03F7 /* login_layer.ccbi */,
+				547B7EE1185817A80015D056 /* home_layer.ccbi */,
+				547B7EE2185817A80015D056 /* unit2002.ccbi */,
+				547B7EDF1858177F0015D056 /* unit2001.ccbi */,
 				54467E0D1817F2680028B700 /* effect0.ccbi */,
 				5411740E17E203FE0082E53C /* unit0.ccbi */,
 				5411740F17E203FE0082E53C /* unit1.ccbi */,
@@ -453,6 +480,8 @@
 		54801F1918059DE600F3F68E /* UnitObjects */ = {
 			isa = PBXGroup;
 			children = (
+				5442D94418588E9500B5B94C /* CMainBase.cpp */,
+				5442D94518588E9500B5B94C /* CMainBase.h */,
 				54801F1A18059E2A00F3F68E /* CWarriorUnit0.cpp */,
 				54801F1B18059E2A00F3F68E /* CWarriorUnit0.h */,
 				54801F1D1805A46800F3F68E /* CWarriorUnit1.cpp */,
@@ -473,6 +502,7 @@
 		54D0CD6B17DC8BDB0022A1E9 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
+				544A6F391856B805008053F0 /* DTRequirement.json */,
 				5434E53F1852E9A9002EC3D4 /* DTEffect.json */,
 				546EB2111851D61D0038794A /* DTSkill.json */,
 				5454C4A01850288200214AB2 /* DTUnit.json */,
@@ -531,6 +561,10 @@
 				549FC92C1816123E000319A0 /* CTimeProfile.h */,
 				5482A56C181CEF5800D1B668 /* CEffectManager.cpp */,
 				5482A56D181CEF5800D1B668 /* CEffectManager.h */,
+				544A6F3B1856B864008053F0 /* CShopManager.cpp */,
+				544A6F3C1856B864008053F0 /* CShopManager.h */,
+				544A6F3E1856C271008053F0 /* CPlayerInfo.cpp */,
+				544A6F3F1856C271008053F0 /* CPlayerInfo.h */,
 			);
 			name = Manangers;
 			sourceTree = "<group>";
@@ -579,6 +613,8 @@
 				54DFBE6917DB747800B006F3 /* CScale9SpriteObject.cpp */,
 				54DFBE6A17DB747800B006F3 /* CScale9SpriteObject.h */,
 				5435A2621816CA85009B4D81 /* ICCBAnimationDelegate.h */,
+				5442D94718588ED900B5B94C /* CBuildingRole.cpp */,
+				5442D94818588ED900B5B94C /* CBuildingRole.h */,
 			);
 			name = BaseClasses;
 			sourceTree = "<group>";
@@ -631,6 +667,8 @@
 				54156FBF183CDE8D007502A2 /* CLoginLayer.h */,
 				54F33A59183E3B7500F4D8B5 /* CMessageBoxLayer.cpp */,
 				54F33A5A183E3B7500F4D8B5 /* CMessageBoxLayer.h */,
+				54D7857318543E7F000E3998 /* CHomeLayer.cpp */,
+				54D7857418543E7F000E3998 /* CHomeLayer.h */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -638,6 +676,7 @@
 		54D0CD8817DC92030022A1E9 /* DTs */ = {
 			isa = PBXGroup;
 			children = (
+				544A6F381856B7F8008053F0 /* DTRequirement.h */,
 				5434E53E1852E950002EC3D4 /* DTEffect.h */,
 				549C19D01806F9D500649BD3 /* DTSkill.h */,
 				54DFBE8617DB747800B006F3 /* DTUnit.h */,
@@ -771,10 +810,14 @@
 				5411742417E203FE0082E53C /* unit10.ccbi in Resources */,
 				5411742517E203FE0082E53C /* unit11.ccbi in Resources */,
 				54467E0E1817F2680028B700 /* effect0.ccbi in Resources */,
-				54156FC2183CED1A007502A2 /* Login_layer.ccbi in Resources */,
 				5454C4A11850288200214AB2 /* DTUnit.json in Resources */,
 				546EB2121851D61D0038794A /* DTSkill.json in Resources */,
 				5434E5401852E9A9002EC3D4 /* DTEffect.json in Resources */,
+				544A6F3A1856B805008053F0 /* DTRequirement.json in Resources */,
+				547B7EE01858177F0015D056 /* unit2001.ccbi in Resources */,
+				547B7EE3185817A80015D056 /* home_layer.ccbi in Resources */,
+				547B7EE4185817A80015D056 /* unit2002.ccbi in Resources */,
+				540784791858297C00FC03F7 /* login_layer.ccbi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -864,6 +907,11 @@
 				540B1EF31835C4F5001D6B74 /* CCPomelo.cpp in Sources */,
 				54156FC0183CDE8D007502A2 /* CLoginLayer.cpp in Sources */,
 				54F33A5B183E3B7600F4D8B5 /* CMessageBoxLayer.cpp in Sources */,
+				54D7857518543E7F000E3998 /* CHomeLayer.cpp in Sources */,
+				544A6F3D1856B864008053F0 /* CShopManager.cpp in Sources */,
+				544A6F401856C271008053F0 /* CPlayerInfo.cpp in Sources */,
+				5442D94618588E9500B5B94C /* CMainBase.cpp in Sources */,
+				5442D94918588ED900B5B94C /* CBuildingRole.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,6 +37,7 @@ public:
 protected:
     virtual void onFormation(Object *pSender);
     virtual void onBattle(Object* pSender);
+    virtual void onHome(Object* pSender);
     virtual void onTestSocket(Object* pSender);
 
     void onMsg(Node* node, void* resp);

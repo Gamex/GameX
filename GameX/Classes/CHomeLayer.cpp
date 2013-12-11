@@ -1,42 +1,47 @@
 //
-//  CFormationLayer.cpp
+//  CHomeLayer.cpp
 //  GameX
 //
-//  Created by 马 俊 on 13-8-28.
+//  Created by 马 俊 on 13-12-8.
 //
 //
 
-#include "CFormationLayer.h"
-#include "CFormationPanelLayer.h"
-#include "CGameSceneManager.h"
-#include "CFormationManager.h"
+#include "CHomeLayer.h"
 #include "CRole.h"
+#include "CShopManager.h"
+#include "CGameSceneManager.h"
+#include "CCPomelo.h"
 #include "CDataCenterManager.h"
 
-
 #define BATCHNODE_LIST          "BatchNodes.plist"
-#define TILE_MAP_NAME           "background.tmx"
-//#define BACKGROUND_MAP_NAME       "bkg1.tmx"
+#define TILE_MAP_NAME           "homeTile.tmx"
 #define BACKGROUND_MAP_NAME       "home.tmx"
 
-#define Z_ORDER_PANEL           1000
 
-CFormationLayer::CFormationLayer()
-: m_curSelRole(nullptr)
+static class CHomeLayerRegister
 {
-    
+public:
+    CHomeLayerRegister()
+    {
+        NodeLoaderLibrary::getInstance()->registerNodeLoader( "CHomeLayer", CHomeLayerLoader::loader());
+    }
+} __reg;
+
+
+
+CHomeLayer::CHomeLayer()
+{
 }
 
 
 
-CFormationLayer::~CFormationLayer()
+CHomeLayer::~CHomeLayer()
 {
-    clearAll();
 }
 
 
 
-bool CFormationLayer::init()
+bool CHomeLayer::init()
 {
     do
     {
@@ -47,23 +52,13 @@ bool CFormationLayer::init()
         
         setTouchEnabled(true);
         
-        CCBReader* pReader = new CCBReader(NodeLoaderLibrary::getInstance());
-        m_panel = dynamic_cast<CFormationPanelLayer*>(pReader->readNodeGraphFromFile("formation_layer.ccbi"));
-        delete pReader;
+        BREAK_IF_FAILED(CBkgLayerBase::initBkgLayerBase(BATCHNODE_LIST, BACKGROUND_MAP_NAME, TILE_MAP_NAME));
         
-        m_panel->setDelegate(this);
-        addChild(m_panel, Z_ORDER_PANEL);
-
-        BREAK_IF_FAILED(initBkgLayerBase(BATCHNODE_LIST, BACKGROUND_MAP_NAME, TILE_MAP_NAME));
+        scheduleUpdate();
         
-        m_roleNode = Node::create();
-        addChild(m_roleNode);
-
-        m_curSelGrid.x = -1;
-        m_curSelGrid.y = -1;
-
-        this->scheduleUpdate();
-
+        
+        reqHomeInfo();
+        
         return true;
     } while (false);
     
@@ -71,41 +66,81 @@ bool CFormationLayer::init()
 }
 
 
-
-void CFormationLayer::update(float dt)
+SEL_MenuHandler CHomeLayer::onResolveCCBCCMenuItemSelector(Object * pTarget, const char* pSelectorName)
 {
-    CBaseLayer::update(dt);
-    CBkgLayerBase::update(dt);
+    return nullptr;
 }
 
 
 
-void CFormationLayer::onFrameSel(const std::string& unitId)
+void CHomeLayer::reqHomeInfo()
 {
     CBackgroundManager* bkgGrd = getBkgGrd();
     CC_ASSERT(bkgGrd);
+    bkgGrd->clearAllUnits();
     
-    const DTUnit::_Data* unitData = DTUNIT->getData(unitId);
-    CC_ASSERT(unitData);
-    Point screenCenter {Director::getInstance()->getWinSize() / 2};
-    Point gridPos = bkgGrd->screenPointToGrid(screenCenter);
-    CLogicGrid* grid = bkgGrd->getEmptyGridNearby(gridPos, unitData->gridWidth, unitData->gridHeight);
-    if (grid)
-    {
-        CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(unitData->className));
-        CC_ASSERT(role);
-        role->init(unitId, true);
-        bkgGrd->placeRole(role, grid->getGridPos());
-        role->attachSpriteTo(bkgGrd);
-        m_roleNode->addChild(role);
+    const char *route = "gameplay.gameplayHandler.getHomeInfo";;
+    json_t *msg = json_object();
+    POMELO->request(route, msg, [&, bkgGrd](Node* node, void* resp)
+                    {
+                        CCPomeloReponse* ccpomeloresp = (CCPomeloReponse*)resp;
+                        json_t* code = json_object_get(ccpomeloresp->docs, "code");
+                        if (json_integer_value(code) != 200)
+                        {
+                            CCLOG("get home info failed");
+                        }
+                        else
+                        {
+                            json_t* homeInfoArr = json_object_get(ccpomeloresp->docs, "info");
+                            int count = json_array_size(homeInfoArr);
+                            for (int i = 0; i < count; ++i)
+                            {
+                                json_t* info = json_array_get(homeInfoArr, i);
+                                string bname = json_string_value(json_object_get(info, "bname"));
+                                Point pos{json_integer_value(json_object_get(info, "x")),
+                                        json_integer_value(json_object_get(info, "y"))};
+                                
+                                auto unitData = DTUNIT->getData(bname);
+                                CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(unitData->className));
+                                CC_ASSERT(role);
+                                role->init(bname);
+                                bkgGrd->placeRole(role, pos);
+                                role->attachSpriteTo(bkgGrd);
+                                role->playAnimation("Idle");
+                            }
+                        }
+                    });
+}
 
-        bkgGrd->hightlightGrid(grid->getGridPos());
-    }
+
+Control::Handler CHomeLayer::onResolveCCBCCControlSelector(Object * pTarget, const char* pSelectorName)
+{
+    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onMenu", CHomeLayer::onMenu);
+    CCB_SELECTORRESOLVER_CCCONTROL_GLUE(this, "onBack", CHomeLayer::onBack);
+    return nullptr;
 }
 
 
 
-void CFormationLayer::touchesBegan(const std::vector<Touch*>& touches, Event* event)
+bool CHomeLayer::onAssignCCBMemberVariable(Object * pTarget, const char* pMemberVariableName, Node * pNode)
+{
+	return false;
+}
+
+
+
+void CHomeLayer::onNodeLoaded(Node * pNode, NodeLoader * pNodeLoader)
+{
+}
+
+
+
+void CHomeLayer::update(float dt)
+{
+}
+
+
+void CHomeLayer::touchesBegan(const std::vector<Touch*>& touches, Event* event)
 {
     
     bool swallow = false;
@@ -117,8 +152,8 @@ void CFormationLayer::touchesBegan(const std::vector<Touch*>& touches, Event* ev
         {
             Touch* t1 = touches[0];
             Point point1 = Director::getInstance()->convertToUI(t1->getLocationInView());
-//            Point location1 = this->convertToNodeSpace(point1);
-
+            //            Point location1 = this->convertToNodeSpace(point1);
+            
             CBackgroundManager* bkgGrd = getBkgGrd();
             CC_ASSERT(bkgGrd);
             
@@ -137,7 +172,7 @@ void CFormationLayer::touchesBegan(const std::vector<Touch*>& touches, Event* ev
                     swallow = true;
                 }
             }
-
+            
             break;
         }
     }
@@ -150,7 +185,7 @@ void CFormationLayer::touchesBegan(const std::vector<Touch*>& touches, Event* ev
 
 
 
-void CFormationLayer::touchesMoved(const std::vector<Touch*>& touches, Event* event)
+void CHomeLayer::touchesMoved(const std::vector<Touch*>& touches, Event* event)
 {
     bool swallow = false;
     
@@ -166,7 +201,7 @@ void CFormationLayer::touchesMoved(const std::vector<Touch*>& touches, Event* ev
             Point location1 = this->convertToNodeSpace(point1);
             
             Point gp = bkgGrd->screenPointToGrid(location1);
-
+            
             bkgGrd->hightlightGrid(m_curSelGrid, false);
             m_curSelGrid = gp;
             bkgGrd->hightlightGrid(m_curSelGrid, true);
@@ -196,7 +231,7 @@ void CFormationLayer::touchesMoved(const std::vector<Touch*>& touches, Event* ev
 
 
 
-void CFormationLayer::touchesEnded(const std::vector<Touch*>& touches, Event* event)
+void CHomeLayer::touchesEnded(const std::vector<Touch*>& touches, Event* event)
 {
     bool swallow = false;
     
@@ -210,7 +245,7 @@ void CFormationLayer::touchesEnded(const std::vector<Touch*>& touches, Event* ev
             Touch* t1 = touches[0];
             Point point1 = Director::getInstance()->convertToUI(t1->getLocationInView());
             Point location1 = this->convertToNodeSpace(point1);
-
+            
             location1 = bkgGrd->screenPointToWorld(location1);
             CLogicGrid* grid = bkgGrd->getGridFromWorldPt(location1);
             if (m_curSelRole != nullptr)
@@ -218,7 +253,7 @@ void CFormationLayer::touchesEnded(const std::vector<Touch*>& touches, Event* ev
                 bkgGrd->hightlightGrid(m_curSelGrid, false);
                 m_curSelGrid.x = -1;
                 m_curSelGrid.y = -1;
-
+                
                 CRole* role = dynamic_cast<CRole*>(grid->getUnit());
                 
                 if (role == nullptr)       // this grid is not occupied, so place in it
@@ -243,87 +278,20 @@ void CFormationLayer::touchesEnded(const std::vector<Touch*>& touches, Event* ev
 
 
 
-void CFormationLayer::onSave(CFormation* fmt)
+void CHomeLayer::onBack(Object* sender, Control::EventType event)
 {
-    int x, y;
-    CBackgroundManager* bkgGrd = getBkgGrd();
-    CC_ASSERT(bkgGrd);
-    Point pos;
-    for (y = 0; y < bkgGrd->getHeightInGrid(); ++y)
-    {
-        for (x = 0; x < bkgGrd->getWidthInGrid(); ++x)
-        {
-            pos.x = x;
-            pos.y = y;
-            CLogicGrid* grid = bkgGrd->getLogicGrid(pos);
-            CRole* role = dynamic_cast<CRole*>(grid->getUnit());
-            if (role && grid->getIsPrimary())
-            {
-                CFormationElement* fe = new CFormationElement;
-                fe->pos = pos;
-                fe->unitId = role->getUnitId();
-                
-                fmt->m_elements.push_back(fe);
-            }
-        }
-    }
-    
-    fmt->saveToFile();
+    SCENE_MANAGER->go(ST_LOBBY);
 }
 
 
 
-void CFormationLayer::onLoad(CFormation* fmt)
+void CHomeLayer::onMenu(Object* sender, Control::EventType event)
 {
-    
-    if (fmt->loadFromFile())
-    {
-        clearFormation();
-        CBackgroundManager* bkgGrd = getBkgGrd();
-        CC_ASSERT(bkgGrd);
-        
-        int sz = fmt->m_elements.size();
-        for (int i = 0; i < sz; ++i)
-        {
-            CFormationElement* fe = fmt->m_elements[i];
-            
-            const DTUnit::_Data* unitData = DTUNIT->getData(fe->unitId);
-            CC_ASSERT(unitData);
-            CRole* role = dynamic_cast<CRole*>(OBJECT_FACTORY->createInstance(unitData->className));
-            CC_ASSERT(role);
-            role->init(fe->unitId, true);
-            bkgGrd->placeRole(role, fe->pos);
-            role->attachSpriteTo(bkgGrd);
-            m_roleNode->addChild(role);
-        }
-    }
-    
+    createShops();
 }
 
 
-
-void CFormationLayer::clearAll()
+void CHomeLayer::createShops()
 {
-    clearFormation();
-    removeAllChildrenWithCleanup(true);
-}
-
-
-void CFormationLayer::clearFormation()
-{
-    CBackgroundManager* bkgGrd = getBkgGrd();
-    CC_ASSERT(bkgGrd);
-    bkgGrd->clearAllUnits();
-    Array* roles = m_roleNode->getChildren();
-    Object* obj;
-    CCARRAY_FOREACH(roles, obj)
-    {
-        CRole* role = (CRole*)obj;
-        role->clearAll();
-    }
     
-    m_roleNode->removeAllChildrenWithCleanup(true);
 }
-
-
-

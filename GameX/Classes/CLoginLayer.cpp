@@ -10,6 +10,7 @@
 #include "CCPomelo.h"
 #include "CGameSceneManager.h"
 #include "CMessageBoxLayer.h"
+#include "CPlayerInfo.h"
 
 static class CLoginLayerRegister
 {
@@ -88,7 +89,7 @@ bool CLoginLayer::init()
 {
     SpriteFrameCache* sfc = SpriteFrameCache::getInstance();
     sfc->addSpriteFramesWithFile("huds.plist");
-    
+
 	return true;
 }
 
@@ -179,10 +180,49 @@ void CLoginLayer::connectToConnector(const char* ip, int port)
                                           else
                                           {
                                               CCLOG("connect to connector ok");
+                                              getPlayerInfo();
                                           }
                                       });
                                   }))
     {
         mb->closeModal();
     }
+}
+
+
+void CLoginLayer::getPlayerInfo(void)
+{
+    CMessageBoxLayer* mb = CMessageBoxLayer::create();
+    mb->setMsg("Getting player info ...");
+    mb->doModal();
+    const char *route = "connector.entryHandler.getPlayerInfo";;
+    json_t *msg = json_object();
+    POMELO->request(route, msg, [&, mb](Node* node, void* resp)
+    {
+        mb->closeModal();
+        CCPomeloReponse* ccpomeloresp = (CCPomeloReponse*)resp;
+        
+        json_t* code = json_object_get(ccpomeloresp->docs, "code");
+        if (json_integer_value(code) != 200)
+        {
+            CCLOG("get player info failed");
+        }
+        else
+        {
+            CCLOG("get player info done!");
+            CCLOG("playerInfo: %s",json_dumps(ccpomeloresp->docs, JSON_COMPACT));
+            json_t* player = json_object_get(ccpomeloresp->docs, "player");
+            CC_ASSERT(player);
+            PLAYER_INFO->setUID(json_integer_value(json_object_get(player, "uid")));
+            PLAYER_INFO->setPID(json_integer_value(json_object_get(player, "pid")));
+            const char* nickname = json_string_value(json_object_get(player, "nickname"));
+            PLAYER_INFO->setNickName(nickname ? nickname : "");
+            PLAYER_INFO->setLevel(json_integer_value(json_object_get(player, "level")));
+            PLAYER_INFO->setMoney(json_integer_value(json_object_get(player, "money")));
+            PLAYER_INFO->setMineral(json_integer_value(json_object_get(player, "mineral")));
+            PLAYER_INFO->setGas(json_integer_value(json_object_get(player, "gas")));
+            
+            SCENE_MANAGER->go(ST_HOME);
+        }
+    });
 }

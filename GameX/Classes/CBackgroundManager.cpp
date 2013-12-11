@@ -19,11 +19,9 @@
 #define NORMAL_GID              0
 #define HIGHTLITE_GID           1
 
-#define TILE_MAP_NAME           "background.tmx"
+
 #define GROUND_LAYER_NAME       "ground"
 #define OBJECT_LAYER_NAME       "object"
-
-#define TILE_BKG_MAP_NAME       "bkg1.tmx"
 
 
 
@@ -80,11 +78,26 @@ bool CBackgroundManager::init()
     {
         BREAK_IF_FAILED(Layer::init());
         
-        m_tiledMap = TMXTiledMap::create(TILE_MAP_NAME);
+        m_pathFinder = new CPathFinderManager;
+        m_pathFinder->setBkg(this);
+        
+        return true;
+    } while (false);
+    
+    return false;
+}
+
+
+
+bool CBackgroundManager::changeMap(const char* backgroundTmxName, const char* tileTmxName)
+{
+    do
+    {
+        m_tiledMap = TMXTiledMap::create(tileTmxName);
         BREAK_IF_FAILED(m_tiledMap);
         CC_SAFE_RETAIN(m_tiledMap);
         
-        m_bkgMap = TMXTiledMap::create(TILE_BKG_MAP_NAME);
+        m_bkgMap = TMXTiledMap::create(backgroundTmxName);
         CC_SAFE_RETAIN(m_bkgMap);
         
         m_groundLayer = m_tiledMap->getLayer(GROUND_LAYER_NAME);
@@ -96,10 +109,10 @@ bool CBackgroundManager::init()
         
         Point bkgCenterPoint{m_bkgMap->getContentSize() * 0.5f};
         Point tileCenterPoint{m_groundLayer->getPositionAt(centerTile)};
-
+        
         m_bkgMap->setPosition(tileCenterPoint - bkgCenterPoint);
         
-
+        
         Size layerSz = m_groundLayer->getLayerSize();
         
         m_grids.clear();
@@ -112,19 +125,16 @@ bool CBackgroundManager::init()
                 m_grids.push_back(CLogicGrid(x, y));
             }
         }
-
+        
         addChild(m_bkgMap, -2);
         addChild(m_tiledMap, -1);
         
-        m_pathFinder = new CPathFinderManager;
-        m_pathFinder->setBkg(this);
-        
+//        m_tiledMap->setVisible(false);
         return true;
     } while (false);
     
     return false;
 }
-
 
 
 CLogicGrid* CBackgroundManager::getLogicGrid(const Point& gridPos)

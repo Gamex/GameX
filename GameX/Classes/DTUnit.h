@@ -12,6 +12,7 @@ public:
 	public:
 		string ID;
 		string name;
+		string type;
 		string resourceID;
 		string className;
 		int gridWidth;
@@ -65,6 +66,7 @@ public:
             CC_ASSERT(m_data.find(d->ID) == m_data.end());
 
 			d->name = json_string_value(json_object_get(value, "name"));
+			d->type = json_string_value(json_object_get(value, "type"));
 			d->resourceID = json_string_value(json_object_get(value, "resourceID"));
 			d->className = json_string_value(json_object_get(value, "className"));
 			d->gridWidth = json_integer_value(json_object_get(value, "gridWidth"));

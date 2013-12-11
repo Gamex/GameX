@@ -13,7 +13,7 @@
 #include "DTUnit.h"
 #include "DTSkill.h"
 #include "DTEffect.h"
-
+#include "DTRequirement.h"
 
 
 class CDataCenterManager : public CSingleton<CDataCenterManager>
@@ -26,12 +26,14 @@ public:
     DTUnit* getDTUnit(){return m_DTUnit;}
     DTSkill* getDTSkill(){return m_DTSkill;}
     DTEffect* getDTEffect(){return m_DTEffect;}
+    DTRequirement* getRequirement(){return m_DTRequirement;}
 protected:
 private:
 
     DTUnit* m_DTUnit = nullptr;
     DTSkill* m_DTSkill = nullptr;
     DTEffect* m_DTEffect = nullptr;
+    DTRequirement* m_DTRequirement = nullptr;
 };
 
 
@@ -39,5 +41,6 @@ private:
 #define DTUNIT              (DATA_CENTER->getDTUnit())
 #define DTSKILL             (DATA_CENTER->getDTSkill())
 #define DTEFFECT            (DATA_CENTER->getDTEffect())
+#define DTREQUIREMENT       (DATA_CENTER->getRequirement())
 
 #endif /* defined(__GameX__CDataCenterManager__) */

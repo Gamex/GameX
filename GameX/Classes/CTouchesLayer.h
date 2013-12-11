@@ -45,9 +45,9 @@ public:
     
     
     // Override of touches
-    virtual void onTouchesBegan(const std::vector<Touch*>& touches, Event* event);
-    virtual void onTouchesMoved(const std::vector<Touch*>& touches, Event* event);
-    virtual void onTouchesEnded(const std::vector<Touch*>& touches, Event* event);
+    virtual void onTouchesBegan(const std::vector<Touch*>& touches, Event* event) override;
+    virtual void onTouchesMoved(const std::vector<Touch*>& touches, Event* event) override;
+    virtual void onTouchesEnded(const std::vector<Touch*>& touches, Event* event) override;
     
 
     // Override for subclsss

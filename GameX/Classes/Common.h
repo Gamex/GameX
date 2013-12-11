@@ -147,6 +147,8 @@ USING_NS_CC_EXT;
 #include <string>
 #include <algorithm>
 #include <functional>
+#include <sstream>
+#include <iostream>
 
 
 using namespace std;

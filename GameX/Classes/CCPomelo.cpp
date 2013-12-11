@@ -379,7 +379,6 @@ int CCPomelo::notify(const char*route, json_t *msg, std::function<void(Node*, vo
 }
 
 
-
 int CCPomelo::addListener(const char* event, std::function<void(Node*, void*)> f)
 {
     std::map<std::string, std::function<void(Node*, void*)> >::iterator it = event_content.find(event);

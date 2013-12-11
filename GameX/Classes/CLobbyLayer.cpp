@@ -52,6 +52,7 @@ SEL_MenuHandler CLobbyLayer::onResolveCCBCCMenuItemSelector(Object * pTarget, co
 {
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onFormation", CLobbyLayer::onFormation);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onBattle", CLobbyLayer::onBattle);
+    CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onHome", CLobbyLayer::onHome);
     CCB_SELECTORRESOLVER_CCMENUITEM_GLUE(this, "onTestSocket", CLobbyLayer::onTestSocket);
     return nullptr;
 }
@@ -108,6 +109,13 @@ void CLobbyLayer::onTestSocket(Object* pSender)
         json_object_set(msg, "password", json_string("123"));
         POMELO->request(route, msg, bind(&CLobbyLayer::onMsg, this, std::placeholders::_1, std::placeholders::_2));
     }
+}
+
+
+
+void CLobbyLayer::onHome(Object* pSender)
+{
+    SCENE_MANAGER->go(ST_HOME);
 }
 
 

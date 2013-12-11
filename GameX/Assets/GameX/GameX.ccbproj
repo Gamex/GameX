@@ -77,6 +77,25 @@
 			<key>textureFileFormatHTML5</key>
 			<integer>0</integer>
 		</dict>
+		<key>buildings</key>
+		<dict>
+			<key>compress</key>
+			<true/>
+			<key>dither</key>
+			<true/>
+			<key>ditherAndroid</key>
+			<true/>
+			<key>ditherHTML5</key>
+			<true/>
+			<key>isDirty</key>
+			<true/>
+			<key>textureFileFormat</key>
+			<integer>3</integer>
+			<key>textureFileFormatAndroid</key>
+			<integer>3</integer>
+			<key>textureFileFormatHTML5</key>
+			<integer>0</integer>
+		</dict>
 		<key>bullets</key>
 		<dict>
 			<key>compress</key>
@@ -264,6 +283,44 @@
 			<integer>2</integer>
 			<key>textureFileFormatAndroid</key>
 			<integer>2</integer>
+			<key>textureFileFormatHTML5</key>
+			<integer>0</integer>
+		</dict>
+		<key>unit2001</key>
+		<dict>
+			<key>compress</key>
+			<true/>
+			<key>dither</key>
+			<true/>
+			<key>ditherAndroid</key>
+			<true/>
+			<key>ditherHTML5</key>
+			<true/>
+			<key>isDirty</key>
+			<false/>
+			<key>textureFileFormat</key>
+			<integer>3</integer>
+			<key>textureFileFormatAndroid</key>
+			<integer>3</integer>
+			<key>textureFileFormatHTML5</key>
+			<integer>0</integer>
+		</dict>
+		<key>unit2002</key>
+		<dict>
+			<key>compress</key>
+			<true/>
+			<key>dither</key>
+			<true/>
+			<key>ditherAndroid</key>
+			<true/>
+			<key>ditherHTML5</key>
+			<true/>
+			<key>isDirty</key>
+			<false/>
+			<key>textureFileFormat</key>
+			<integer>3</integer>
+			<key>textureFileFormatAndroid</key>
+			<integer>3</integer>
 			<key>textureFileFormatHTML5</key>
 			<integer>0</integer>
 		</dict>

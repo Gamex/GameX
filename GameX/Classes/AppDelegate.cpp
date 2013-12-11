@@ -19,6 +19,7 @@
 #include "CBackgroundManager.h"
 #include "CGameSceneManager.h"
 #include "CTimeProfile.h"
+#include "CShopManager.h"
 #include <time.h>
 
 
@@ -56,6 +57,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     do
     {
         BREAK_IF_FAILED(DATA_CENTER->initialize());
+        
+        BREAK_IF_FAILED(SHOP->initialize());
         
         BREAK_IF_FAILED(OBJECT_FACTORY->Initialize());
         

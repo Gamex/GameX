@@ -12,6 +12,7 @@
 #include "CFormationLayer.h"
 #include "CFormationLayer.h"
 #include "CLoginLayer.h"
+#include "CHomeLayer.h"
 
 IMPLEMENT_SINGLETON(CGameSceneManager);
 
@@ -79,6 +80,13 @@ bool CGameSceneManager::go(SCENE_TYPE st)
         }
         case ST_SETTINGS:
             break;
+        case ST_HOME:
+        {
+            CCBReader* pReader = new CCBReader(NodeLoaderLibrary::getInstance());
+            scene = pReader->createSceneWithNodeGraphFromFile("home_layer.ccbi");
+            delete pReader;
+            break;
+        }
         default:
             break;
     }

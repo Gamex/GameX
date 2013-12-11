@@ -20,6 +20,8 @@
 #include "CSkillMeleeAttack.h"
 #include "CSkillMarineGunAttack.h"
 #include "CGameEffect.h"
+#include "CBuildingRole.h"
+#include "CMainBase.h"
 
 #define REGISTER_CLASS(__classname) if (!registerClass(#__classname, FACTORY_SEL(__classname::create))){return false;}
 #define FACTORY_SEL(__selector) (FACTORY_CREATE_FUNC)(&__selector)
@@ -54,6 +56,8 @@ bool CObjectFactory::Initialize()
     REGISTER_CLASS(CSkillMeleeAttack);
     REGISTER_CLASS(CSkillMarineGunAttack);
     REGISTER_CLASS(CGameEffect);
+    REGISTER_CLASS(CBuildingRole);
+    REGISTER_CLASS(CMainBase);
     return true;
 }
 
