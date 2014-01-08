@@ -25,6 +25,7 @@
 #define ROLE_ANIMATION_MOVE         "Move"
 #define ROLE_ANIMATION_ATTACK       "Attack"
 #define ROLE_ANIMATION_DYING        "Dying"
+#define ROLE_ANIMATION_SELECTED     "Selected"
 
 enum ROLE_STATE
 {

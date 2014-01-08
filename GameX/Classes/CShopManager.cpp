@@ -29,16 +29,13 @@ bool CShopManager::initialize()
     {
         CCASSERT(DTREQUIREMENT, "you must initialize CDataManager first!");
         m_curLevel = 1;
-        stringstream ss;
-        ss << 1;
-        string levelStr = ss.str();
-        auto keys = DTREQUIREMENT->getAllKeys();
+        auto keys = DTCONSTRUCTTABLE->getAllKeys();
         for (int i = 0; i < keys.size(); ++i)
         {
-            auto data = DTREQUIREMENT->getData(keys[i]);
-            if (data->ex_unit == levelStr)
+            auto data = DTCONSTRUCTTABLE->getData(keys[i]);
+            if (data->level == m_curLevel && data->type == m_TYPE)
             {
-                m_IDs.push_back(data->ID);
+                m_IDs.push_back(data->unitId);
             }
         }
         return true;
@@ -54,20 +51,17 @@ const vector<string>& CShopManager::getShopListByLevel(int level)
     CC_ASSERT(level >= m_curLevel);
     if (level > m_curLevel)
     {
-        auto keys = DTREQUIREMENT->getAllKeys();
+        auto keys = DTCONSTRUCTTABLE->getAllKeys();
         do
         {
             ++m_curLevel;
-            stringstream ss;
-            ss << m_curLevel;
-            string levelStr = ss.str();
             
             for (int i = 0; i < keys.size(); ++i)
             {
-                auto data = DTREQUIREMENT->getData(keys[i]);
-                if (data->ex_unit == levelStr)
+                auto data = DTCONSTRUCTTABLE->getData(keys[i]);
+                if (data->level == m_curLevel && data->type == m_TYPE)
                 {
-                    m_IDs.push_back(data->ID);
+                    m_IDs.push_back(data->unitId);
                 }
             }
             

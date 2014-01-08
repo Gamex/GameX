@@ -40,6 +40,9 @@ bool CDataCenterManager::initialize()
         m_DTRequirement = new DTRequirement;
         m_DTRequirement->loadJSONData();
         
+        m_DTConstructTable = new DTConstructTable;
+        m_DTConstructTable->loadJSONData();
+        
         return true;
     } while (false);
     

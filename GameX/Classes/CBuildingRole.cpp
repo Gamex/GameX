@@ -52,3 +52,8 @@ SEL_CallFuncN CBuildingRole::onResolveCCBCCCallFuncSelector(Object * pTarget, co
 
 
 
+bool CBuildingRole::playAnimation(const std::string& name)
+{    
+    return CSpriteObject::playAnimation(name);
+}
+

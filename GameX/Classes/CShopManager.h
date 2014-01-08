@@ -25,6 +25,8 @@ protected:
 private:
     int m_curLevel = 0;
     vector<string> m_IDs;
+    
+    const int m_TYPE = 0;
 };
 
 

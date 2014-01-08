@@ -32,6 +32,7 @@
 		5411742E17E5B5750082E53C /* CMoveOnGridComp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5411742C17E5B5750082E53C /* CMoveOnGridComp.cpp */; };
 		54156FC0183CDE8D007502A2 /* CLoginLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54156FBE183CDE8D007502A2 /* CLoginLayer.cpp */; };
 		5434E5401852E9A9002EC3D4 /* DTEffect.json in Resources */ = {isa = PBXBuildFile; fileRef = 5434E53F1852E9A9002EC3D4 /* DTEffect.json */; };
+		54416C351865552D00F1D8F3 /* CSpriteEx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54416C331865552D00F1D8F3 /* CSpriteEx.cpp */; };
 		5442D94618588E9500B5B94C /* CMainBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5442D94418588E9500B5B94C /* CMainBase.cpp */; };
 		5442D94918588ED900B5B94C /* CBuildingRole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5442D94718588ED900B5B94C /* CBuildingRole.cpp */; };
 		54467E0E1817F2680028B700 /* effect0.ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 54467E0D1817F2680028B700 /* effect0.ccbi */; };
@@ -127,6 +128,7 @@
 		54EBA2DF18373256009A67E9 /* libjansson.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EBA2DC18373256009A67E9 /* libjansson.a */; };
 		54EBA2E018373256009A67E9 /* libpomelo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EBA2DD18373256009A67E9 /* libpomelo.a */; };
 		54EBA2E118373256009A67E9 /* libuv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54EBA2DE18373256009A67E9 /* libuv.a */; };
+		54EF29A5185AB50400A0CB56 /* DTConstructTable.json in Resources */ = {isa = PBXBuildFile; fileRef = 54EF29A4185AB50400A0CB56 /* DTConstructTable.json */; };
 		54F33A5B183E3B7600F4D8B5 /* CMessageBoxLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54F33A59183E3B7500F4D8B5 /* CMessageBoxLayer.cpp */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +165,8 @@
 		5434E53E1852E950002EC3D4 /* DTEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTEffect.h; path = ../../Classes/DTEffect.h; sourceTree = "<group>"; };
 		5434E53F1852E9A9002EC3D4 /* DTEffect.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = DTEffect.json; path = ../Resources/DTEffect.json; sourceTree = "<group>"; };
 		5435A2621816CA85009B4D81 /* ICCBAnimationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ICCBAnimationDelegate.h; path = ../../Classes/ICCBAnimationDelegate.h; sourceTree = "<group>"; };
+		54416C331865552D00F1D8F3 /* CSpriteEx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CSpriteEx.cpp; path = ../../Classes/CSpriteEx.cpp; sourceTree = "<group>"; };
+		54416C341865552D00F1D8F3 /* CSpriteEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CSpriteEx.h; path = ../../Classes/CSpriteEx.h; sourceTree = "<group>"; };
 		5442D94418588E9500B5B94C /* CMainBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CMainBase.cpp; path = ../../Classes/CMainBase.cpp; sourceTree = "<group>"; };
 		5442D94518588E9500B5B94C /* CMainBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMainBase.h; path = ../../Classes/CMainBase.h; sourceTree = "<group>"; };
 		5442D94718588ED900B5B94C /* CBuildingRole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CBuildingRole.cpp; path = ../../Classes/CBuildingRole.cpp; sourceTree = "<group>"; };
@@ -326,6 +330,8 @@
 		54EBA2DC18373256009A67E9 /* libjansson.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjansson.a; path = ../../libpomelo/lib/libjansson.a; sourceTree = "<group>"; };
 		54EBA2DD18373256009A67E9 /* libpomelo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpomelo.a; path = ../../libpomelo/lib/libpomelo.a; sourceTree = "<group>"; };
 		54EBA2DE18373256009A67E9 /* libuv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libuv.a; path = ../../libpomelo/lib/libuv.a; sourceTree = "<group>"; };
+		54EF29A4185AB50400A0CB56 /* DTConstructTable.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = DTConstructTable.json; path = ../Resources/DTConstructTable.json; sourceTree = "<group>"; };
+		54EF29A6185AB51800A0CB56 /* DTConstructTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTConstructTable.h; path = ../../Classes/DTConstructTable.h; sourceTree = "<group>"; };
 		54F33A59183E3B7500F4D8B5 /* CMessageBoxLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CMessageBoxLayer.cpp; path = ../../Classes/CMessageBoxLayer.cpp; sourceTree = "<group>"; };
 		54F33A5A183E3B7500F4D8B5 /* CMessageBoxLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMessageBoxLayer.h; path = ../../Classes/CMessageBoxLayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -502,6 +508,7 @@
 		54D0CD6B17DC8BDB0022A1E9 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
+				54EF29A4185AB50400A0CB56 /* DTConstructTable.json */,
 				544A6F391856B805008053F0 /* DTRequirement.json */,
 				5434E53F1852E9A9002EC3D4 /* DTEffect.json */,
 				546EB2111851D61D0038794A /* DTSkill.json */,
@@ -615,6 +622,8 @@
 				5435A2621816CA85009B4D81 /* ICCBAnimationDelegate.h */,
 				5442D94718588ED900B5B94C /* CBuildingRole.cpp */,
 				5442D94818588ED900B5B94C /* CBuildingRole.h */,
+				54416C331865552D00F1D8F3 /* CSpriteEx.cpp */,
+				54416C341865552D00F1D8F3 /* CSpriteEx.h */,
 			);
 			name = BaseClasses;
 			sourceTree = "<group>";
@@ -676,6 +685,7 @@
 		54D0CD8817DC92030022A1E9 /* DTs */ = {
 			isa = PBXGroup;
 			children = (
+				54EF29A6185AB51800A0CB56 /* DTConstructTable.h */,
 				544A6F381856B7F8008053F0 /* DTRequirement.h */,
 				5434E53E1852E950002EC3D4 /* DTEffect.h */,
 				549C19D01806F9D500649BD3 /* DTSkill.h */,
@@ -818,6 +828,7 @@
 				547B7EE3185817A80015D056 /* home_layer.ccbi in Resources */,
 				547B7EE4185817A80015D056 /* unit2002.ccbi in Resources */,
 				540784791858297C00FC03F7 /* login_layer.ccbi in Resources */,
+				54EF29A5185AB50400A0CB56 /* DTConstructTable.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,6 +923,7 @@
 				544A6F401856C271008053F0 /* CPlayerInfo.cpp in Sources */,
 				5442D94618588E9500B5B94C /* CMainBase.cpp in Sources */,
 				5442D94918588ED900B5B94C /* CBuildingRole.cpp in Sources */,
+				54416C351865552D00F1D8F3 /* CSpriteEx.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,6 +29,8 @@ public:
     virtual SEL_CallFuncN onResolveCCBCCCallFuncSelector(Object * pTarget, const char* pSelectorName);
 
     virtual void addComponentsForStates() override;
+    
+    virtual bool playAnimation(const std::string& name) override;
 protected:
 
     

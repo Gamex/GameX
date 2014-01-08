@@ -48,12 +48,21 @@ public:
 protected:
     virtual void onMenu(Object* sender, Control::EventType event);
     virtual void onBack(Object* sender, Control::EventType event);
-    void createShops();
+    
+    void refreshMainMenu();
+    void toggleMainMenu();
+    
+    void onShopItemClicked(Object* obj, Control::EventType type);
+    void onBuildCommitClicked(Object* obj, Control::EventType type);
     
     void reqHomeInfo();
 private:
-    class CRole* m_curSelRole;
+    class CRole* m_curSelRole = nullptr;
     Point m_curSelGrid;
+    
+    CCNode* m_mainMenuRoot = nullptr;
+
+    class CRole* m_buildingRole = nullptr;
 };
 
 

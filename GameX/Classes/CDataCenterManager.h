@@ -14,7 +14,7 @@
 #include "DTSkill.h"
 #include "DTEffect.h"
 #include "DTRequirement.h"
-
+#include "DTConstructTable.h"
 
 class CDataCenterManager : public CSingleton<CDataCenterManager>
 {
@@ -27,6 +27,7 @@ public:
     DTSkill* getDTSkill(){return m_DTSkill;}
     DTEffect* getDTEffect(){return m_DTEffect;}
     DTRequirement* getRequirement(){return m_DTRequirement;}
+    DTConstructTable* getConstructTable(){return m_DTConstructTable;}
 protected:
 private:
 
@@ -34,6 +35,7 @@ private:
     DTSkill* m_DTSkill = nullptr;
     DTEffect* m_DTEffect = nullptr;
     DTRequirement* m_DTRequirement = nullptr;
+    DTConstructTable* m_DTConstructTable = nullptr;
 };
 
 
@@ -42,5 +44,6 @@ private:
 #define DTSKILL             (DATA_CENTER->getDTSkill())
 #define DTEFFECT            (DATA_CENTER->getDTEffect())
 #define DTREQUIREMENT       (DATA_CENTER->getRequirement())
+#define DTCONSTRUCTTABLE    (DATA_CENTER->getConstructTable())
 
 #endif /* defined(__GameX__CDataCenterManager__) */
